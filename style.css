@@ -13,33 +13,33 @@ a { color: inherit; }
 
 /* ── Design tokens ──────────────────────────────────────────── */
 :root {
-  /* Colors — dark (default) */
-  --bg:           #0d1117;
-  --bg2:          #161b22;
-  --bg3:          #1c2330;
-  --bg4:          #21262d;
-  --border:       #30363d;
-  --border-light: #21262d;
-  --accent:       #2563eb;
-  --accent-hover: #1d4ed8;
-  --accent-glow:  #60a5fa;
-  --text:         #e6edf3;
-  --text-muted:   #8b949e;
-  --text-dim:     #484f58;
-  --code-bg:      #161b22;
-  --code-text:    #e6edf3;
-  --inline-code:  #f97316;
-  --tag-bg:       #162032;
-  --tag-text:     #58a6ff;
-  --warn-bg:      #1c1400;
-  --warn-border:  #d97706;
-  --warn-text:    #fbbf24;
-  --success-bg:   #0d1f12;
-  --success-border:#16a34a;
-  --success-text: #4ade80;
-  --shadow-sm:    0 1px 3px rgba(0,0,0,.4);
-  --shadow-md:    0 4px 16px rgba(0,0,0,.5);
-  --shadow-lg:    0 8px 32px rgba(0,0,0,.6);
+  /* Colors — dark OLED almond (default) */
+  --bg:           #000000;
+  --bg2:          #0e0c0a;
+  --bg3:          #1a1510;
+  --bg4:          #242018;
+  --border:       #3d3020;
+  --border-light: #242018;
+  --accent:       #c47a30;
+  --accent-hover: #a8632a;
+  --accent-glow:  #e8a050;
+  --text:         #f0e0c0;
+  --text-muted:   #9e8a74;
+  --text-dim:     #4a3c2c;
+  --code-bg:      #0e0c0a;
+  --code-text:    #f0e0c0;
+  --inline-code:  #e8833a;
+  --tag-bg:       #2a1e10;
+  --tag-text:     #e0a050;
+  --warn-bg:      #1a1200;
+  --warn-border:  #c47a10;
+  --warn-text:    #f0c040;
+  --success-bg:   #0a1800;
+  --success-border:#2a7a1a;
+  --success-text: #70d060;
+  --shadow-sm:    0 1px 3px rgba(0,0,0,.6);
+  --shadow-md:    0 4px 16px rgba(0,0,0,.7);
+  --shadow-lg:    0 8px 32px rgba(0,0,0,.8);
 
   /* Layout */
   --sidebar-w:    272px;

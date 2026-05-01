@@ -54,7 +54,7 @@ flowchart TD
         S1[Policy signed with cert]
         S2[Applied + Rebooted]
         S3[Anti-tamper active]
-        S4[Admin deletes from C:\\]
+        S4[Admin deletes from C: drive]
         S5[Policy STILL enforced\nfrom EFI partition]
         S6[Delete from EFI]
         S7[SYSTEM WILL NOT BOOT\nuntil replacement deployed]
@@ -357,8 +357,8 @@ The EFI partition stores policy files at:
 
 ```mermaid
 flowchart TD
-    ATTACKER[Attacker / Rogue Admin] --> TRY1[Delete from\nC:\\Windows\\System32\\CodeIntegrity\\]
-    ATTACKER --> TRY2[Delete from\nEFI Partition\n\\EFI\\Microsoft\\Boot\\CiPolicies\\]
+    ATTACKER[Attacker / Rogue Admin] --> TRY1[Delete from\nCodeIntegrity folder\non C: drive]
+    ATTACKER --> TRY2[Delete from\nEFI Partition\nCiPolicies folder]
     TRY1 --> RESULT1[System restarts\nPolicy STILL enforced\nLoaded from EFI copy]
     TRY2 --> RESULT2[System restarts\nSECURE BOOT BLOCKS\nOS will not load]
     RESULT2 --> RECOVER[Recovery options:]

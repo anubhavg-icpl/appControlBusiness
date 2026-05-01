@@ -307,7 +307,7 @@ The Managed Installer feature uses a special rule set embedded in the policy to 
 ```mermaid
 sequenceDiagram
     participant Intune as Microsoft Intune
-    participant MIME as Intune Management\nExtension (IME)
+    participant MIME as Intune Mgmt Extension
     participant CI as Code Integrity
     participant FS as File System
     participant App as Installed Application

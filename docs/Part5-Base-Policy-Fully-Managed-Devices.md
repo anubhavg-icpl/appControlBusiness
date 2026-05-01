@@ -76,7 +76,7 @@ New-CIPolicy -MultiplePolicy -filePath "C:\temp\MyBigBusinessPolicyFromScratch.x
 sequenceDiagram
     participant Admin
     participant PS as PowerShell
-    participant FS as File System (C:)
+    participant FS as File System C Drive
     participant CI as ConfigCI Module
     participant XML as Policy XML
 

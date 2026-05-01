@@ -288,8 +288,8 @@ flowchart TD
         BP --> SUP2
         BP --> SUP3
     end
-    Single -.->|Less flexible\nMax compatibility| X[ ]
-    Multiple -.->|Flexible\nWin 10 1903+ only| X
+    Single -.->|Less flexible\nMax compatibility| RESULT[Policy Deployed\nto Endpoint]
+    Multiple -.->|Flexible\nWin 10 1903+ only| RESULT
     style SP fill:#1c2330,color:#e6edf3
     style BP fill:#162032,color:#58a6ff
     style SUP1 fill:#1c2330,color:#e6edf3
