@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mastering App Control for Business — Anubhav Gain</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <div id="sidebar-header">
+      <div id="logo-mark">ACfB</div>
+      <div>
+        <div id="series-title">App Control for Business</div>
+        <div id="series-author">by Anubhav Gain</div>
+      </div>
+    </div>
+
+    <div id="search-wrap">
+      <input id="search" type="text" placeholder="Search parts…" autocomplete="off" />
+    </div>
+
+    <nav id="nav">
+      <ul id="part-list">
+        <li class="nav-item active" data-file="docs/Part1-Introduction-KeyConcepts.md" data-part="1">
+          <span class="part-badge">01</span>
+          <span class="part-label">Introduction &amp; Key Concepts</span>
+        </li>
+        <li class="nav-item" data-file="docs/Part2-Policy-Templates-Rule-Options.md" data-part="2">
+          <span class="part-badge">02</span>
+          <span class="part-label">Policy Templates &amp; Rule Options</span>
+        </li>
+        <li class="nav-item" data-file="docs/Part3-AppID-Tagging-Managed-Installer.md" data-part="3">
+          <span class="part-badge">03</span>
+          <span class="part-label">AppID Tagging &amp; Managed Installer</span>
+        </li>
+        <li class="nav-item" data-file="docs/Part4-Starter-Base-Policy-Lightly-Managed.md" data-part="4">
+          <span class="part-badge">04</span>
+          <span class="part-label">Starter Base Policy — Lightly Managed</span>
+        </li>
+        <li class="nav-item" data-file="docs/Part5-Base-Policy-Fully-Managed-Devices.md" data-part="5">
+          <span class="part-badge">05</span>
+          <span class="part-label">Base Policy — Fully Managed Devices</span>
+        </li>
+        <li class="nav-item" data-file="docs/Part6-Sign-Apply-Remove-Signed-Policies.md" data-part="6">
+          <span class="part-badge">06</span>
+          <span class="part-label">Sign, Apply &amp; Remove Signed Policies</span>
+        </li>
+        <li class="nav-item" data-file="docs/Part7-Maintaining-Policies-AzureDevOps-PowerShell.md" data-part="7">
+          <span class="part-badge">07</span>
+          <span class="part-label">Maintaining Policies with Azure DevOps</span>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="sidebar-footer">
+      <span>Source: ctrlshiftenter.cloud</span>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div id="main">
+
+    <!-- Top bar -->
+    <header id="topbar">
+      <button id="sidebar-toggle" title="Toggle sidebar">&#9776;</button>
+      <div id="breadcrumb">
+        <span id="bc-series">App Control for Business</span>
+        <span id="bc-sep">›</span>
+        <span id="bc-part">Part 1</span>
+      </div>
+      <div id="topbar-actions">
+        <button id="toc-toggle" title="Table of contents">&#9776; ToC</button>
+        <button id="theme-toggle" title="Toggle theme">&#9790;</button>
+        <span id="read-time"></span>
+      </div>
+    </header>
+
+    <!-- Progress bar -->
+    <div id="progress-bar"><div id="progress-fill"></div></div>
+
+    <!-- Content -->
+    <div id="content-wrap">
+      <article id="content">
+        <div id="loading">
+          <div class="spinner"></div>
+          <p>Loading document…</p>
+        </div>
+      </article>
+
+      <!-- ToC panel -->
+      <aside id="toc-panel">
+        <div id="toc-title">On this page</div>
+        <nav id="toc-nav"></nav>
+      </aside>
+    </div>
+
+    <!-- Part navigation -->
+    <nav id="part-nav">
+      <button id="prev-part" disabled>&#8592; Previous</button>
+      <div id="part-dots"></div>
+      <button id="next-part">Next &#8594;</button>
+    </nav>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
