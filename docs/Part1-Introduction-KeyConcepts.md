@@ -380,8 +380,6 @@ sequenceDiagram
     CI->>Policy: Check rules
     Policy-->>CI: Not in allowlist
     CI-->>App: BLOCK — Event 3077 logged
-    style Admin fill:#1e3a5f,color:#93c5fd
-    style CI fill:#162032,color:#58a6ff
 ```
 
 ---

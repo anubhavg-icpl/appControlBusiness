@@ -255,11 +255,11 @@ Sign the policy binary using SignTool.exe:
 
 ```mermaid
 flowchart TD
-    XML[Policy XML v10.0.5.2] --> CONV[ConvertFrom-CIPolicy\nXML → {GUID}.cip]
-    CONV --> CIP[{GUID}.cip\nUnsigned binary]
+    XML[Policy XML v10.0.5.2] --> CONV[ConvertFrom-CIPolicy\nXML → PolicyGUID.cip]
+    CONV --> CIP[PolicyGUID.cip\nUnsigned binary]
     CIP --> SIGN[SignTool.exe sign\n-p7co 1.3.6.1.4.1.311.79.1\n-fd sha256\n-n CodeSigningCertTest]
-    SIGN --> P7[{GUID}.cip.p7\nSigned policy]
-    P7 --> REN[Rename to\n{GUID}.cip]
+    SIGN --> P7[PolicyGUID.cip.p7\nSigned policy]
+    P7 --> REN[Rename to\nPolicyGUID.cip]
     REN --> VERIFY[certutil -asn\nor PowerShell SignedCms]
     VERIFY --> APPLY[CiTool --update-policy]
     APPLY --> REBOOT[Reboot device]
@@ -443,7 +443,7 @@ flowchart TD
     REPLACE --> SIGN[Step 3: Sign replacement\nwith original certificate]
     SIGN --> DEPLOY[Step 4: Deploy replacement\nvia same method]
     DEPLOY --> REBOOT1[Step 5: Reboot device]
-    REBOOT1 --> REMOVE[Step 6: CiTool.exe\n--remove-policy {GUID}]
+    REBOOT1 --> REMOVE[Step 6: CiTool.exe\n--remove-policy PolicyGUID]
     REMOVE --> REBOOT2[Step 7: Reboot device]
     REBOOT2 --> DELETE[Step 8: Delete .cip files\nfrom disk + EFI partition]
     DELETE --> REBOOT3[Step 9: Final reboot]
@@ -458,7 +458,7 @@ flowchart TD
 ```mermaid
 flowchart TD
     UEFI[UEFI Firmware\nPassword Protected] --> SB[Secure Boot\nEnabled]
-    SB --> EFI_LOAD[Load EFI Policy\n{GUID}.cip from EFI partition]
+    SB --> EFI_LOAD[Load EFI Policy\nPolicyGUID.cip from EFI partition]
     EFI_LOAD --> CI[Code Integrity\nVerifies policy signature]
     CI --> CHAIN[Certificate chain\nvalidated against UEFI DB]
     CHAIN --> OS[Windows OS loads\nwith policy enforced]
