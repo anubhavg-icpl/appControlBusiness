@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mastering App Control for Business — Anubhav Gain</title>
+  <meta name="description" content="Mastering App Control for Business — 7-part corporate reference series by Anubhav Gain" />
+  <title>App Control for Business — Anubhav Gain</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Sidebar -->
+  <!-- Mobile sidebar backdrop -->
+  <div id="backdrop"></div>
+
+  <!-- ── Sidebar ──────────────────────────────────────────────── -->
   <aside id="sidebar">
     <div id="sidebar-header">
       <div id="logo-mark">ACfB</div>
@@ -20,69 +24,71 @@
     </div>
 
     <div id="search-wrap">
-      <input id="search" type="text" placeholder="Search parts…" autocomplete="off" />
+      <input id="search" type="search" placeholder="Search parts…" autocomplete="off" spellcheck="false" />
     </div>
 
     <nav id="nav">
       <ul id="part-list">
-        <li class="nav-item active" data-file="docs/Part1-Introduction-KeyConcepts.md" data-part="1">
+        <li class="nav-item active" data-index="0">
           <span class="part-badge">01</span>
           <span class="part-label">Introduction &amp; Key Concepts</span>
         </li>
-        <li class="nav-item" data-file="docs/Part2-Policy-Templates-Rule-Options.md" data-part="2">
+        <li class="nav-item" data-index="1">
           <span class="part-badge">02</span>
           <span class="part-label">Policy Templates &amp; Rule Options</span>
         </li>
-        <li class="nav-item" data-file="docs/Part3-AppID-Tagging-Managed-Installer.md" data-part="3">
+        <li class="nav-item" data-index="2">
           <span class="part-badge">03</span>
           <span class="part-label">AppID Tagging &amp; Managed Installer</span>
         </li>
-        <li class="nav-item" data-file="docs/Part4-Starter-Base-Policy-Lightly-Managed.md" data-part="4">
+        <li class="nav-item" data-index="3">
           <span class="part-badge">04</span>
           <span class="part-label">Starter Base Policy — Lightly Managed</span>
         </li>
-        <li class="nav-item" data-file="docs/Part5-Base-Policy-Fully-Managed-Devices.md" data-part="5">
+        <li class="nav-item" data-index="4">
           <span class="part-badge">05</span>
           <span class="part-label">Base Policy — Fully Managed Devices</span>
         </li>
-        <li class="nav-item" data-file="docs/Part6-Sign-Apply-Remove-Signed-Policies.md" data-part="6">
+        <li class="nav-item" data-index="5">
           <span class="part-badge">06</span>
           <span class="part-label">Sign, Apply &amp; Remove Signed Policies</span>
         </li>
-        <li class="nav-item" data-file="docs/Part7-Maintaining-Policies-AzureDevOps-PowerShell.md" data-part="7">
+        <li class="nav-item" data-index="6">
           <span class="part-badge">07</span>
           <span class="part-label">Maintaining Policies with Azure DevOps</span>
         </li>
       </ul>
     </nav>
 
-    <div id="sidebar-footer">
-      <span>Source: ctrlshiftenter.cloud</span>
-    </div>
+    <div id="sidebar-footer">Source: ctrlshiftenter.cloud &nbsp;·&nbsp; Patrick Seltmann</div>
   </aside>
 
-  <!-- Main -->
+  <!-- ── Main ─────────────────────────────────────────────────── -->
   <div id="main">
 
-    <!-- Top bar -->
+    <!-- Topbar -->
     <header id="topbar">
-      <button id="sidebar-toggle" title="Toggle sidebar">&#9776;</button>
+      <button class="topbar-btn" id="sidebar-toggle" title="Toggle sidebar" aria-label="Toggle sidebar">☰</button>
+
       <div id="breadcrumb">
         <span id="bc-series">App Control for Business</span>
         <span id="bc-sep">›</span>
         <span id="bc-part">Part 1</span>
       </div>
-      <div id="topbar-actions">
-        <button id="toc-toggle" title="Table of contents">&#9776; ToC</button>
-        <button id="theme-toggle" title="Toggle theme">&#9790;</button>
+
+      <div id="topbar-right">
         <span id="read-time"></span>
+        <button class="topbar-btn" id="toc-toggle" title="Table of contents" aria-label="Toggle table of contents">≡</button>
+        <button class="topbar-btn" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">☾</button>
       </div>
     </header>
 
-    <!-- Progress bar -->
-    <div id="progress-bar"><div id="progress-fill"></div></div>
+    <!-- Reading progress -->
+    <div id="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+      <div id="progress-fill"></div>
+    </div>
 
-    <!-- Content -->
+    <!-- Content + ToC -->
     <div id="content-wrap">
       <article id="content">
         <div id="loading">
@@ -91,21 +97,20 @@
         </div>
       </article>
 
-      <!-- ToC panel -->
-      <aside id="toc-panel">
+      <aside id="toc-panel" aria-label="Table of contents">
         <div id="toc-title">On this page</div>
         <nav id="toc-nav"></nav>
       </aside>
     </div>
 
     <!-- Part navigation -->
-    <nav id="part-nav">
-      <button id="prev-part" disabled>&#8592; Previous</button>
-      <div id="part-dots"></div>
-      <button id="next-part">Next &#8594;</button>
+    <nav id="part-nav" aria-label="Part navigation">
+      <button class="nav-btn" id="prev-part" disabled aria-label="Previous part">← Previous</button>
+      <div id="part-dots" role="tablist" aria-label="Parts"></div>
+      <button class="nav-btn" id="next-part" aria-label="Next part">Next →</button>
     </nav>
 
-  </div>
+  </div><!-- /#main -->
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
