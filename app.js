@@ -237,6 +237,39 @@ function postProcessCode(container) {
   });
 }
 
+/* ── Mermaid diagram rendering ────────────────────────────────── */
+async function renderMermaid(container) {
+  if (typeof mermaid === 'undefined') return;
+
+  // Find all mermaid code blocks (marked outputs <code class="language-mermaid">)
+  const blocks = container.querySelectorAll('pre code.language-mermaid, code.language-mermaid');
+  if (blocks.length === 0) return;
+
+  blocks.forEach((block, i) => {
+    const diagram = block.innerText || block.textContent;
+    const pre = block.closest('pre') || block.parentElement;
+
+    // Create mermaid container
+    const wrap = document.createElement('div');
+    wrap.className = 'mermaid-wrap';
+
+    const mermaidDiv = document.createElement('div');
+    mermaidDiv.className = 'mermaid';
+    mermaidDiv.id = `mermaid-${Date.now()}-${i}`;
+    mermaidDiv.textContent = diagram;
+
+    wrap.appendChild(mermaidDiv);
+    pre.parentNode.replaceChild(wrap, pre);
+  });
+
+  // Re-run mermaid on newly added diagrams
+  try {
+    await mermaid.run({ nodes: container.querySelectorAll('.mermaid') });
+  } catch (e) {
+    console.warn('Mermaid render error:', e);
+  }
+}
+
 /* ── Table wrapper — enables horizontal scroll on mobile ─────── */
 function wrapTables(container) {
   container.querySelectorAll('table').forEach(table => {
@@ -405,6 +438,7 @@ async function loadPart(index) {
 
     // Post-process
     postProcessCode(content);
+    await renderMermaid(content);
     wrapTables(content);
     buildToc();
     readTime.textContent = calcReadTime(raw);
@@ -458,6 +492,16 @@ themeBtn.addEventListener('click', () => {
       ? 'https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css'
       : 'https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css';
   }
+  // Update mermaid theme and re-render current diagrams
+  if (typeof mermaid !== 'undefined') {
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: next === 'light' ? 'default' : 'dark',
+      securityLevel: 'loose',
+      fontFamily: 'Inter, system-ui, sans-serif',
+    });
+    renderMermaid(content);
+  }
 });
 
 /* ── Part nav buttons ─────────────────────────────────────────── */
@@ -499,6 +543,18 @@ window.addEventListener('popstate', e => {
   if (theme === 'light') {
     const hljsLink = document.getElementById('hljs-theme');
     if (hljsLink) hljsLink.href = 'https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css';
+  }
+
+  // Initialize Mermaid
+  if (typeof mermaid !== 'undefined') {
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: localStorage.getItem('acfb-theme') === 'light' ? 'default' : 'dark',
+      securityLevel: 'loose',
+      fontFamily: 'Inter, system-ui, sans-serif',
+      flowchart: { curve: 'basis', padding: 20 },
+      sequence: { actorMargin: 60, messageMargin: 40 },
+    });
   }
 
   buildDots();

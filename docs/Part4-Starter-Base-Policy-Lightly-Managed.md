@@ -46,6 +46,23 @@ The recommended starting point is the **Smart App Control policy** (`SmartAppCon
 
 Always deploy policies in **Audit Mode** first. This allows you to observe what would be blocked without disrupting users. Only switch to Enforcement Mode after validating the policy impact.
 
+```mermaid
+flowchart LR
+    A[Choose Template\nSmartAppControl.xml] --> B[Remove unsupported\ncode snippets]
+    B --> C[Set Policy ID\nName & Version]
+    C --> D[Configure\nSecurity Options]
+    D --> E[Deploy in\nAudit Mode]
+    E --> F[Review Event Log\nEvent 3034 — would-be blocks]
+    F --> G{Rules OK?}
+    G -->|No — tune rules| D
+    G -->|Yes| H[Switch to\nEnforcement Mode]
+    H --> I[Monitor Event Log\nEvent 3077 — actual blocks]
+    style A fill:#1e3a5f,color:#93c5fd
+    style E fill:#1c1400,color:#fbbf24
+    style H fill:#14532d,color:#86efac
+    style I fill:#14532d,color:#86efac
+```
+
 ---
 
 ## 2. Scenario
@@ -62,6 +79,20 @@ IT team member Patrick's strategy is to **start slowly**:
 - Create one smart standalone policy for most users
 - Expand with more restrictive rules in the future as confidence in the policy grows
 - Avoid disruption to legitimate business applications during rollout
+
+```mermaid
+flowchart TD
+    PROB[Problem: Employees install\nany app they want] --> RISK[Security Risk:\nMalware, unlicensed SW]
+    RISK --> PLAN[Patrick's Plan:\nStart with Signed+Reputable policy]
+    PLAN --> T1[Allow: Windows + Store + M365]
+    PLAN --> T2[Allow: Publicly trusted signed code]
+    PLAN --> T3[Allow: Good reputation via ISG]
+    PLAN --> T4[Configure: Intune as Managed Installer]
+    PLAN --> T5[Require: WHQL for drivers]
+    T1 & T2 & T3 & T4 & T5 --> DEPLOY[Deploy in Audit Mode\nValidate — then Enforce]
+    style PROB fill:#3b1515,color:#fca5a5
+    style DEPLOY fill:#14532d,color:#86efac
+```
 
 ### Template Selected
 
@@ -148,6 +179,20 @@ The SmartAppControl.xml template contains XML blocks that are **not supported** 
 <Setting Provider="Microsoft" Key="WindowsLockdownPolicySettings" ValueName="VerifiedAndReputableAllowAntiMalware">
   <Value><Boolean>true</Boolean></Value>
 </Setting>
+```
+
+```mermaid
+flowchart LR
+    RAW[SmartAppControl.xml\nOriginal Template] -->|Remove| C1[Conditional Windows\nLockdown Policy rule]
+    RAW -->|Remove| C2[11× WindowsLockdown\nSettings Provider blocks]
+    RAW -->|Keep| K1[All Signer rules]
+    RAW -->|Keep| K2[EKU definitions]
+    RAW -->|Keep| K3[Signing Scenarios]
+    RAW -->|Keep| K4[ISG + Reputation rules]
+    C1 & C2 & K1 & K2 & K3 & K4 --> CLEAN[Clean Policy\nReady for customisation]
+    style C1 fill:#3b1515,color:#fca5a5
+    style C2 fill:#3b1515,color:#fca5a5
+    style CLEAN fill:#14532d,color:#86efac
 ```
 
 ### Step 3: Set Basic Policy Information
@@ -252,6 +297,23 @@ XML equivalent:
 | 13 | Enabled:Managed Installer | Trust Intune-deployed applications |
 | 16 | Enabled:Update Policy No Reboot | Apply updates without rebooting |
 
+```mermaid
+flowchart TD
+    subgraph REQUIRED["Options Set for Starter Policy"]
+        O2[Option 2\nRequired:WHQL\nAll drivers WHQL-certified]
+        O3[Option 3\nAudit Mode\nTest before enforce]
+        O6[Option 6\nUnsigned Policy\nNo signing required yet]
+        O13[Option 13\nManaged Installer\nIntune apps auto-trusted]
+        O16[Option 16\nNo Reboot on Update\nSeamless policy updates]
+    end
+    subgraph LATER["Add Later — Production Hardening"]
+        O0[Option 0\nUMCI — User Mode\nEnable for full coverage]
+        SIG[Remove Option 6\nSign the policy]
+    end
+    style REQUIRED fill:#162032,color:#58a6ff,stroke:#2563eb
+    style LATER fill:#1c1400,color:#fbbf24,stroke:#d97706
+```
+
 ---
 
 ## 5. Method 2: App Control Policy Wizard
@@ -284,6 +346,21 @@ After installation, a new icon appears in the Start Menu.
    - **Merge with Recommended Kernel Block Rules** — integrates known-bad kernel-mode signers as deny rules
 
 > Both block rule merge options integrate Microsoft's maintained deny lists directly into your policy, providing an additional layer of protection against known malicious signers.
+
+```mermaid
+flowchart TD
+    WIZ[Open App Control\nPolicy Wizard] --> PC[Policy Creator]
+    PC --> MPF[Multiple Policy Format\n+ Base Policy]
+    MPF --> TMPL[Select Template:\nSigned & Reputable]
+    TMPL --> NAME[Set Policy Name\n+ Output Directory]
+    NAME --> OPT[Configure Options:\nISG + MI + WHQL\n+ No Reboot + Unsigned + Audit]
+    OPT --> MERGE{Merge Block Rules?}
+    MERGE -->|Yes — recommended| UMB[Merge User Mode\nBlock Rules]
+    MERGE -->|Yes — recommended| KB[Merge Kernel\nBlock Rules]
+    UMB & KB --> OUT[Output:\nPolicy XML + Binary .cip]
+    style WIZ fill:#1e3a5f,color:#93c5fd
+    style OUT fill:#14532d,color:#86efac
+```
 
 ---
 
@@ -387,6 +464,28 @@ Get-WinEvent -FilterXml $filterXml
 Replace the GUID in the query with the Policy ID assigned to your policy.
 
 Reference: Understanding App Control event IDs | Microsoft Learn
+
+```mermaid
+flowchart TD
+    DEPLOY[Policy Deployed] --> E3099
+    E3099{Event 3099\nPolicy loaded?}
+    E3099 -->|Yes| OK[Policy active\nCheck enforcement state]
+    E3099 -->|No| FAIL[Policy not loaded\nCheck citool output]
+    OK --> E3034
+    E3034{Event 3034 found\nin audit mode?}
+    E3034 -->|Yes| TUNE[Review blocked files\nAdd allow rules if legitimate]
+    E3034 -->|No| CLEAN[No issues\nReady to enforce]
+    TUNE --> ITERATE[Tune rules\nRe-deploy]
+    CLEAN --> ENFORCE[Switch to\nEnforcement Mode]
+    ITERATE --> E3034
+    ENFORCE --> E3077{Event 3077\nActual blocks?}
+    E3077 -->|Expected| GOOD[Working as intended]
+    E3077 -->|Unexpected| REVIEW[Review + add\nexception rules]
+    style OK fill:#14532d,color:#86efac
+    style CLEAN fill:#14532d,color:#86efac
+    style GOOD fill:#14532d,color:#86efac
+    style FAIL fill:#3b1515,color:#fca5a5
+```
 
 ### Next Step: Enable Enforcement Mode
 

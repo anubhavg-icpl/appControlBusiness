@@ -37,6 +37,36 @@ The approach provides:
 
 > **Prerequisite:** An Azure DevOps organization must be connected to your Microsoft Entra ID tenant before proceeding.
 
+```mermaid
+flowchart LR
+    subgraph REPO["Azure DevOps Repository"]
+        direction TB
+        XML[Policies/unsigned_original/\nBase_*.xml\nSupplemental_*.xml]
+        CERT[Certs/\norg-code-sign.cer]
+        PS[Publish-ACFBPolicy.ps1]
+        YML[ACFB-Build-Pipeline.yml]
+    end
+    subgraph PIPELINE["Azure DevOps Pipeline"]
+        direction TB
+        T1[Task 1: Get Graph Token\nOIDC via service connection]
+        T2[Task 2: Sign + Upload\nPublish-ACFBPolicy.ps1]
+        T3[Task 3: Commit signed output\nback to repo]
+        T1 --> T2 --> T3
+    end
+    subgraph INTUNE["Microsoft Intune"]
+        direction TB
+        POL[ACfB Configuration Policy\nCreated / Updated]
+        DEV[Enrolled Devices\nPolicy applied]
+        POL --> DEV
+    end
+    XML & CERT --> PIPELINE
+    PIPELINE -->|Graph API PUT/POST| INTUNE
+    T3 --> REPO
+    style REPO fill:#1e3a5f,color:#93c5fd,stroke:#2563eb
+    style PIPELINE fill:#162032,color:#58a6ff,stroke:#2563eb
+    style INTUNE fill:#14532d,color:#86efac,stroke:#16a34a
+```
+
 ---
 
 ## 2. Azure DevOps Setup
@@ -64,6 +94,31 @@ To prevent storing secrets in Azure DevOps, the pipeline authenticates against M
 | 4 | Token grants access only to resources specified in its permissions |
 
 This eliminates long-lived secrets from the pipeline entirely, reducing credential exposure risk.
+
+```mermaid
+sequenceDiagram
+    participant ADO as Azure DevOps Pipeline
+    participant ENTRA as Microsoft Entra ID
+    participant SP as Service Principal
+    participant GRAPH as Microsoft Graph API
+    participant INTUNE as Intune
+
+    ADO->>ENTRA: Request OIDC token\n(no stored credentials)
+    ENTRA->>ENTRA: Verify pipeline identity\nagainst federated credential
+    ENTRA-->>ADO: Short-lived bearer token\n(valid for pipeline run only)
+    ADO->>GRAPH: GET configurationPolicies\nAuthorization: Bearer {token}
+    GRAPH->>ENTRA: Validate token
+    ENTRA-->>GRAPH: Token valid
+    GRAPH-->>ADO: Existing policy list
+    ADO->>ADO: Compare VersionEx\nlocal vs remote
+    alt Local version > Remote
+        ADO->>GRAPH: PUT/POST policy\nwith signed XML payload
+        GRAPH->>INTUNE: Update policy
+        INTUNE-->>ADO: 200 OK
+    else Versions match
+        ADO->>ADO: Skip — no update needed
+    end
+```
 
 ---
 
@@ -126,6 +181,23 @@ repo-root/
 | `Policies/signed/` | Output directory — auto-populated by the pipeline after signing |
 
 > **Source files** are available at: [PatrickSeltmann/AppControlForBusiness_DevOps](https://github.com/PatrickSeltmann/AppControlForBusiness_DevOps) on GitHub.
+
+```mermaid
+flowchart TD
+    ROOT[repo-root/] --> SCRIPT[Publish-ACFBPolicy.ps1]
+    ROOT --> YML[ACFB-Build-Pipeline.yml]
+    ROOT --> README[README.md]
+    ROOT --> CERTS[Certs/]
+    ROOT --> POLICIES[Policies/]
+    CERTS --> CERT1[org-code-sign.cer]
+    POLICIES --> UNSIGNED[unsigned_original/]
+    POLICIES --> SIGNED[signed/\nauto-populated by pipeline]
+    UNSIGNED --> BASE[Base_MyBigBusiness.xml\nBase_*.xml]
+    UNSIGNED --> SUPP[Supplemental_Allow_Vendors.xml\nSupplemental_*.xml]
+    style ROOT fill:#162032,color:#58a6ff
+    style SIGNED fill:#14532d,color:#86efac
+    style CERT1 fill:#1a0a2e,color:#c4b5fd
+```
 
 ---
 
@@ -230,6 +302,32 @@ steps:
       # Commit with [skip ci] to prevent triggering pipeline again
 ```
 
+```mermaid
+flowchart TD
+    TRIGGER[Trigger:\nPush to main branch\nPolicies/unsigned_original/**] --> S1
+    subgraph S1["Stage 1: Get Token"]
+        AZ[AzureCLI@2 Task\naz account get-access-token\n--resource-type ms-graph]
+        TOKEN[Secret pipeline variable\n$secret — masked in logs]
+        AZ --> TOKEN
+    end
+    S1 --> S2
+    subgraph S2["Stage 2: Build & Publish"]
+        PS[PowerShell@2 Task\nPublish-ACFBPolicy.ps1]
+        SIGN[Add-SignerRule\nSign XML with cert]
+        VER[Compare VersionEx\nLocal vs Intune]
+        UPLOAD[Graph API\nPOST or PUT policy]
+        PS --> SIGN --> VER --> UPLOAD
+    end
+    S2 --> S3
+    subgraph S3["Stage 3: Commit Signed"]
+        GIT[git add Policies/signed\ngit commit skip ci\ngit push]
+    end
+    style TRIGGER fill:#1e3a5f,color:#93c5fd
+    style S1 fill:#162032,color:#58a6ff
+    style S2 fill:#14532d,color:#86efac
+    style S3 fill:#1e3a5f,color:#93c5fd
+```
+
 ### Pipeline Task Summary
 
 | Task | Purpose |
@@ -281,6 +379,26 @@ The script performs the following steps in sequence:
 | Versions match, or remote is newer | **SKIP** — no update required |
 
 > **Important:** When you modify a local policy XML, you **must manually increment the `VersionEx`** value in the XML. This is the mechanism the script uses to determine what requires updating. Without a version bump, the script will skip the policy even if the content has changed.
+
+```mermaid
+flowchart TD
+    SCAN[Script scans\nPolicies/unsigned_original/] --> FIND[Find Base_*.xml\nand Supplemental_*.xml]
+    FIND --> LOOP[For each policy file]
+    LOOP --> SIGN[Sign XML\nAdd-SignerRule]
+    SIGN --> RESTORE[Restore VersionEx\nfrom source after signing]
+    RESTORE --> QUERY[Graph API: GET\nconfigurationPolicies\nfilter by name + templateFamily]
+    QUERY --> EXISTS{Policy exists\nin Intune?}
+    EXISTS -->|No| CREATE[Graph API: POST\nCreate new policy]
+    EXISTS -->|Yes| COMPARE[Compare VersionEx:\nLocal vs Remote]
+    COMPARE --> NEWER{Local >\nRemote?}
+    NEWER -->|Yes| UPDATE[Graph API: PUT\nUpdate policy]
+    NEWER -->|No| SKIP[Skip — no change\nneeded]
+    CREATE & UPDATE --> NEXT[Next policy file]
+    SKIP --> NEXT
+    style CREATE fill:#14532d,color:#86efac
+    style UPDATE fill:#1e3a5f,color:#93c5fd
+    style SKIP fill:#1c1400,color:#fbbf24
+```
 
 ### Template Families
 
@@ -356,6 +474,28 @@ The end-to-end workflow for updating a policy:
 | 6 | Pipeline | `Publish-ACFBPolicy.ps1` signs XML, compares versions, creates or updates policy in Intune |
 | 7 | Pipeline | Signed XML committed back to `Policies/signed/` with `[skip ci]` to prevent pipeline re-trigger |
 
+```mermaid
+sequenceDiagram
+    participant DEV as Security Engineer
+    participant GIT as Git Repository
+    participant ADO as Azure DevOps Pipeline
+    participant INTUNE as Microsoft Intune
+    participant DEVICE as Enrolled Devices
+
+    DEV->>GIT: Edit Base_Policy.xml\nIncrement VersionEx 10.0.5.1 → 10.0.5.2
+    DEV->>GIT: git commit + git push → main
+    GIT->>ADO: Trigger pipeline\n(path filter: Policies/unsigned_original/**)
+    ADO->>ADO: Task 1: Get OIDC token
+    ADO->>ADO: Task 2: Sign + compare versions
+    Note over ADO: Local 10.0.5.2 > Remote 10.0.5.1
+    ADO->>INTUNE: PUT configurationPolicy\nwith signed XML payload
+    INTUNE-->>ADO: 200 OK — Updated
+    ADO->>GIT: Commit signed XML\nto Policies/signed/ [skip ci]
+    INTUNE->>DEVICE: Policy sync on next\ncheckin (8 hours or manual)
+    DEVICE->>DEVICE: Apply updated\nACfB policy
+    Note over DEVICE: New rules enforced\nEvent 3099 logged
+```
+
 ### Key Design Decisions
 
 | Decision | Rationale |
@@ -379,6 +519,23 @@ The end-to-end workflow for updating a policy:
 > The `beta` endpoint is required because ACfB configuration policies are not yet available on the v1.0 Microsoft Graph endpoint.
 
 ---
+
+```mermaid
+flowchart TD
+    MAINTAIN[Ongoing Policy Maintenance] --> MON[Monitor Event Logs\nEvent 3077 — actual blocks]
+    MON --> REVIEW{Legitimate\napp blocked?}
+    REVIEW -->|Yes| RULE[Add allow rule to\nSupplemental or Base policy]
+    REVIEW -->|No — expected| LOG[Log + document\nthe block]
+    RULE --> VER[Increment VersionEx]
+    VER --> COMMIT[Commit to repo]
+    COMMIT --> PIPELINE[Pipeline triggers\nautomatically]
+    PIPELINE --> INTUNE[Policy updated in Intune]
+    INTUNE --> DEVICES[Devices receive\nnew policy]
+    DEVICES --> MON
+    style MAINTAIN fill:#1e3a5f,color:#93c5fd
+    style PIPELINE fill:#162032,color:#58a6ff
+    style DEVICES fill:#14532d,color:#86efac
+```
 
 ## Series Navigation
 

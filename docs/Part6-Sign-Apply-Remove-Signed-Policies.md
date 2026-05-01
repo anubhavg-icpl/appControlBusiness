@@ -42,6 +42,32 @@ Unsigned policies are appropriate for testing and lab environments. **Signed pol
 
 **Reference:** [Use signed policies to protect App Control for Business against tampering | Microsoft Learn](https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/deployment/use-signed-policies-to-protect-appcontrol-against-tampering)
 
+```mermaid
+flowchart TD
+    subgraph UNSIGNED["Unsigned Policy"]
+        U1[Policy file on disk]
+        U2[Admin deletes file]
+        U3[Policy removed — no protection]
+        U1 --> U2 --> U3
+    end
+    subgraph SIGNED["Signed Policy + Secure Boot"]
+        S1[Policy signed with cert]
+        S2[Applied + Rebooted]
+        S3[Anti-tamper active]
+        S4[Admin deletes from C:\\]
+        S5[Policy STILL enforced\nfrom EFI partition]
+        S6[Delete from EFI]
+        S7[SYSTEM WILL NOT BOOT\nuntil replacement deployed]
+        S1 --> S2 --> S3
+        S3 --> S4 --> S5
+        S5 --> S6 --> S7
+    end
+    style UNSIGNED fill:#3b1515,color:#fca5a5,stroke:#ef4444
+    style SIGNED fill:#162032,color:#58a6ff,stroke:#2563eb
+    style S7 fill:#7f1d1d,color:#fca5a5
+    style U3 fill:#7f1d1d,color:#fca5a5
+```
+
 ---
 
 ## 2. Requirements
@@ -109,6 +135,24 @@ Write-Host "Certificate was created and exported with private key to: $pfxPath"
 Write-Host "Certificate was exported to: $crtPath"
 ```
 
+```mermaid
+flowchart TD
+    NEED[Need Code Signing\nCertificate] --> OPT1
+    OPT1{Environment?}
+    OPT1 -->|Enterprise with PKI| INT[Internal Enterprise CA\nBest control + cost]
+    OPT1 -->|No internal PKI| PUR[Purchase from\nMicrosoft Trusted Root\nProgram participant]
+    OPT1 -->|Lab / Testing only| SELF[Self-signed certificate\nNew-SelfSignedCertificate]
+    INT --> REQ[Ensure: SHA256\n4096-bit key\nCode Signing EKU]
+    PUR --> REQ
+    SELF --> LAB[Testing only\nNever use in production]
+    REQ --> STORE[Export PFX + CRT\nStore securely — HSM recommended]
+    STORE --> TRUST[Deploy CRT to all devices\nTrusted Publisher — Machine Store]
+    style INT fill:#14532d,color:#86efac
+    style PUR fill:#1e3a5f,color:#93c5fd
+    style SELF fill:#1c1400,color:#fbbf24
+    style LAB fill:#3b1515,color:#fca5a5
+```
+
 ### Important Certificate Security Notes
 
 - Export **both** the certificate (`.crt`) and PFX container (`.pfx`) and store them in a secure location (e.g., a hardware security module).
@@ -158,6 +202,27 @@ Set-CIPolicyVersion -FilePath C:\temp\MyBigBusiness_v10.0.5.1.xml -Version 10.0.
 Rename-Item -Path C:\temp\MyBigBusiness_v10.0.5.1.xml -NewName C:\temp\MyBigBusiness_v10.0.5.2.xml
 ```
 
+```mermaid
+sequenceDiagram
+    participant Admin
+    participant PS as PowerShell ConfigCI
+    participant XML as Policy XML
+    participant CERT as Certificate Store
+
+    Admin->>PS: Set-RuleOption -Option 9 (F8 boot menu)
+    PS->>XML: Add Enabled:Advanced Boot Options Menu
+    Admin->>PS: Set-RuleOption -Option 10 (Boot audit on fail)
+    PS->>XML: Add Enabled:Boot Audit on Failure
+    Admin->>PS: Set-RuleOption -Option 6 -Delete (Remove unsigned)
+    PS->>XML: Remove Enabled:Unsigned System Integrity Policy
+    Note over XML: Policy now REQUIRES a signature
+    Admin->>CERT: Locate CodeSigningCertTest.crt
+    Admin->>PS: Add-SignerRule -CertificatePath cert.crt -Update -Supplemental
+    PS->>XML: Add UpdatePolicySigner entry
+    Admin->>PS: Set-CIPolicyVersion -Version 10.0.5.2
+    PS->>XML: Increment VersionEx
+```
+
 ### Preparation — App Control Wizard
 
 The same preparation steps can be performed through the **App Control Policy Wizard** UI. After completing the wizard, add the signer rule via command line:
@@ -186,6 +251,21 @@ Sign the policy binary using SignTool.exe:
 
 ```powershell
 "C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x64\signtool.exe" sign -v -n "CodeSigningCertTest" -p7 . -p7co 1.3.6.1.4.1.311.79.1 -fd sha256 "C:\temp\{fe1dbc91-5bb7-45f5-9164-299bdff9694d}.cip"
+```
+
+```mermaid
+flowchart TD
+    XML[Policy XML v10.0.5.2] --> CONV[ConvertFrom-CIPolicy\nXML → {GUID}.cip]
+    CONV --> CIP[{GUID}.cip\nUnsigned binary]
+    CIP --> SIGN[SignTool.exe sign\n-p7co 1.3.6.1.4.1.311.79.1\n-fd sha256\n-n CodeSigningCertTest]
+    SIGN --> P7[{GUID}.cip.p7\nSigned policy]
+    P7 --> REN[Rename to\n{GUID}.cip]
+    REN --> VERIFY[certutil -asn\nor PowerShell SignedCms]
+    VERIFY --> APPLY[CiTool --update-policy]
+    APPLY --> REBOOT[Reboot device]
+    REBOOT --> ACTIVE[Signed policy active\nAnti-tamper protection ON]
+    style ACTIVE fill:#14532d,color:#86efac
+    style SIGN fill:#162032,color:#58a6ff
 ```
 
 ### SignTool Parameters Explained
@@ -275,6 +355,22 @@ The EFI partition stores policy files at:
 
 1. Enter UEFI firmware settings and manually disable Secure Boot.
 
+```mermaid
+flowchart TD
+    ATTACKER[Attacker / Rogue Admin] --> TRY1[Delete from\nC:\\Windows\\System32\\CodeIntegrity\\]
+    ATTACKER --> TRY2[Delete from\nEFI Partition\n\\EFI\\Microsoft\\Boot\\CiPolicies\\]
+    TRY1 --> RESULT1[System restarts\nPolicy STILL enforced\nLoaded from EFI copy]
+    TRY2 --> RESULT2[System restarts\nSECURE BOOT BLOCKS\nOS will not load]
+    RESULT2 --> RECOVER[Recovery options:]
+    RECOVER --> R1{UEFI password\nprotected?}
+    R1 -->|Yes| STUCK[Cannot access UEFI\nReplace signed policy via\nexternal media]
+    R1 -->|No| R2[Disable Secure Boot\nin UEFI settings]
+    R2 --> R3[BitLocker recovery key required\n48-digit key per encrypted drive]
+    style RESULT1 fill:#1c1400,color:#fbbf24
+    style RESULT2 fill:#7f1d1d,color:#fca5a5
+    style STUCK fill:#14532d,color:#86efac
+```
+
 ### Why UEFI/BIOS Password Is Critical
 
 Always protect the UEFI/BIOS with a password. This is a key security recommendation for any environment deploying signed ACfB policies.
@@ -340,7 +436,38 @@ C:\Windows\System32\CodeIntegrity\SiPolicy.p7b
 
 **Restart the device.**
 
+```mermaid
+flowchart TD
+    START[Need to remove\nsigned policy] --> STOP[Step 1: Stop re-deployment\nDisable GPO / Intune assignment]
+    STOP --> REPLACE[Step 2: Create Replacement Policy\n— Same PolicyID GUID\n— Higher or equal version\n— Option 6 re-enabled\n— UpdatePolicySigner included\n— Signed with SAME certificate]
+    REPLACE --> SIGN[Step 3: Sign replacement\nwith original certificate]
+    SIGN --> DEPLOY[Step 4: Deploy replacement\nvia same method]
+    DEPLOY --> REBOOT1[Step 5: Reboot device]
+    REBOOT1 --> REMOVE[Step 6: CiTool.exe\n--remove-policy {GUID}]
+    REMOVE --> REBOOT2[Step 7: Reboot device]
+    REBOOT2 --> DELETE[Step 8: Delete .cip files\nfrom disk + EFI partition]
+    DELETE --> REBOOT3[Step 9: Final reboot]
+    REBOOT3 --> DONE[Policy fully removed]
+    style START fill:#3b1515,color:#fca5a5
+    style DONE fill:#14532d,color:#86efac
+    style SIGN fill:#162032,color:#58a6ff
+```
+
 ---
+
+```mermaid
+flowchart TD
+    UEFI[UEFI Firmware\nPassword Protected] --> SB[Secure Boot\nEnabled]
+    SB --> EFI_LOAD[Load EFI Policy\n{GUID}.cip from EFI partition]
+    EFI_LOAD --> CI[Code Integrity\nVerifies policy signature]
+    CI --> CHAIN[Certificate chain\nvalidated against UEFI DB]
+    CHAIN --> OS[Windows OS loads\nwith policy enforced]
+    OS --> BL[BitLocker FDE\n48-digit recovery key]
+    BL --> APPS[All applications\nvalidated before execution]
+    style UEFI fill:#1a0a2e,color:#c4b5fd,stroke:#7c3aed
+    style SB fill:#162032,color:#58a6ff
+    style APPS fill:#14532d,color:#86efac
+```
 
 ## Series Navigation
 

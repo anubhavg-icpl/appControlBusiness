@@ -30,6 +30,23 @@ Two approaches are covered for creating a base policy for fully managed devices:
 
 > **Recommendation:** Use one of the two highlighted policy templates from the App Control Policy Wizard and add additional rules as needed, rather than creating a policy from scratch. This reduces complexity and accelerates deployment.
 
+```mermaid
+flowchart TD
+    START[Create Base Policy\nfor Fully Managed Devices] --> Q1{Do you have a\nclean reference system?}
+    Q1 -->|Yes| SCAN[Approach 1:\nNew-CIPolicy scan]
+    Q1 -->|No| WIZ[Approach 2:\nApp Control Policy Wizard\nRECOMMENDED]
+    SCAN --> LONG[Long scan — full C: drive\nGenerates FilePublisher rules]
+    WIZ --> TMPL[Start from AllowMicrosoft\nor DefaultWindows template]
+    LONG --> DEDUP[Remove duplicate\npublisher entries]
+    TMPL --> CUSTOM[Add custom rules\ne.g. Notepad++ FilePublisher]
+    DEDUP & CUSTOM --> AUDIT[Deploy in Audit Mode]
+    AUDIT --> VALIDATE[Validate via Event Log]
+    VALIDATE --> ENFORCE[Enforcement Mode]
+    style WIZ fill:#14532d,color:#86efac,stroke:#16a34a
+    style SCAN fill:#1e3a5f,color:#93c5fd
+    style ENFORCE fill:#14532d,color:#86efac
+```
+
 ### Key Deployment Principles
 
 | # | Principle |
@@ -55,6 +72,29 @@ Set up a **reference system** that is representative of your users' devices. Ins
 New-CIPolicy -MultiplePolicy -filePath "C:\temp\MyBigBusinessPolicyFromScratch.xml" -ScanPath C: -OmitPaths "C:\Windows.old" -Level FilePublisher -UserPEs -Fallback Hash
 ```
 
+```mermaid
+sequenceDiagram
+    participant Admin
+    participant PS as PowerShell
+    participant FS as File System (C:)
+    participant CI as ConfigCI Module
+    participant XML as Policy XML
+
+    Admin->>PS: New-CIPolicy -ScanPath C: -Level FilePublisher -Fallback Hash
+    PS->>FS: Enumerate all PE binaries
+    loop For each binary
+        FS-->>CI: Binary metadata + signature
+        CI->>CI: Extract publisher, filename, version
+        CI->>CI: Generate FilePublisher rule
+        alt No publisher info
+            CI->>CI: Fallback to Hash rule
+        end
+    end
+    CI->>XML: Write all rules to policy XML
+    XML-->>Admin: MyBigBusinessPolicyFromScratch.xml
+    Note over Admin: Review + remove duplicate publishers
+```
+
 ### Set Policy Metadata
 
 ```powershell
@@ -77,6 +117,24 @@ Set-RuleOption -FilePath C:\temp\MyBigBusinessPolicyFromScratch.xml -Option 17  
 Set-RuleOption -FilePath C:\temp\MyBigBusinessPolicyFromScratch.xml -Option 19  # Enabled:Dynamic Code Security
 
 Set-HVCIOptions -Strict -FilePath C:\temp\MyBigBusinessPolicyFromScratch.xml
+```
+
+```mermaid
+flowchart LR
+    subgraph FULLY_MANAGED["Fully Managed Device — Security Options"]
+        O0[Option 0\nUMCI — User+Kernel\nFull coverage]
+        O2[Option 2\nWHQL — Certified\ndrivers only]
+        O3[Option 3\nAudit Mode first]
+        O4[Option 4\nNo Flight Signing\nRelease builds only]
+        O9[Option 9\nF8 Boot Menu\nTroubleshooting]
+        O10[Option 10\nBoot Audit on Fail\nSafety net]
+        O12[Option 12\nEnforce Store Apps]
+        O13[Option 13\nManaged Installer]
+        O17[Option 17\nAllow Supplemental]
+        O19[Option 19\nDynamic Code Security\n.NET + dynamic libs]
+        HVCI[Set-HVCIOptions -Strict\nMemory Integrity]
+    end
+    style FULLY_MANAGED fill:#162032,color:#58a6ff,stroke:#2563eb
 ```
 
 > **HVCI Reference:** Enable memory integrity | Microsoft Learn
@@ -116,6 +174,25 @@ After the scan completes, the policy XML will include any application installed 
 | **Hash** | Very High | Allows only that exact binary version of a file. | High — requires updates for every file change or software update |
 | **WHQL options** | High (drivers) | Trusts only Microsoft-certified drivers via WHQL. Best choice for kernel-mode protection. | Low — stable, centrally managed by Microsoft |
 
+```mermaid
+quadrantChart
+    title Fallback Rule Levels — Security vs Maintenance
+    x-axis Low Maintenance --> High Maintenance
+    y-axis Low Security --> High Security
+    quadrant-1 Best Choice
+    quadrant-2 High Security High Cost
+    quadrant-3 Avoid
+    quadrant-4 Easy but Weak
+    Hash: [0.92, 0.97]
+    FilePublisher: [0.55, 0.88]
+    SignedVersion: [0.5, 0.7]
+    LeafCertificate: [0.45, 0.65]
+    WHQL: [0.15, 0.82]
+    Publisher: [0.2, 0.5]
+    FileName: [0.1, 0.2]
+    FilePath: [0.08, 0.12]
+```
+
 ---
 
 ## 5. Approach 2: App Control Policy Wizard with Custom Rules
@@ -142,6 +219,21 @@ The wizard produces two files automatically:
 | Base policy XML | Human-readable source policy definition |
 | Base policy binary (`.cip`) | Ready-to-apply binary; no conversion step required |
 
+```mermaid
+flowchart TD
+    WIZ[Policy Wizard] --> CR[Policy Creator]
+    CR --> MPF[Multiple Policy Format\n+ Base Policy]
+    MPF -->|Option A| AM[Allow Microsoft Mode\nAll MS signed code]
+    MPF -->|Option B| DW[DefaultWindows Mode\nWindows + Store + HW]
+    AM & DW --> NP[Add Custom Rules\nfor Notepad++]
+    NP --> NP1[Rule Type: FilePublisher]
+    NP1 --> NP2[Publisher: Notepad++ cert]
+    NP2 --> NP3[Filename: notepad++.exe]
+    NP3 --> NP4[Min Version: current]
+    NP4 --> OUT[Output:\nBase_Policy.xml\nBase_Policy.cip]
+    style OUT fill:#14532d,color:#86efac
+```
+
 ---
 
 ## 6. Apply Policy Locally
@@ -166,6 +258,21 @@ CiTool --update-policy "C:\temp\MyBigBusinessFromWizard.cip"
 
 > **Note:** The `CiTool` command applies the policy directly. No system restart is required for the policy to become active.
 
+```mermaid
+flowchart TD
+    POLICY[Policy File] --> SRC{Created with?}
+    SRC -->|New-CIPolicy\nPowerShell| CONV[ConvertFrom-CIPolicy\nXML → .bin]
+    SRC -->|App Control Wizard| READY[Already .cip\nReady to apply]
+    CONV --> APP
+    READY --> APP[CiTool --update-policy]
+    APP --> PROD{Production?}
+    PROD -->|Yes| INTUNE[Deploy via Intune\nRecommended]
+    PROD -->|No test| LOCAL[Local test only]
+    INTUNE --> SCOPE[Assign to Device Groups\nin Endpoint Security]
+    style INTUNE fill:#14532d,color:#86efac
+    style LOCAL fill:#1c1400,color:#fbbf24
+```
+
 ---
 
 ## 7. User Experience with Enforced Policies
@@ -181,6 +288,24 @@ Once a policy is active in enforcement mode, the following behavior applies:
 |----------|-----------------------|
 | Attempting to **install** a not-allowed application | Windows notification displayed to the user |
 | Attempting to **execute** an already-installed not-allowed application | Windows notification displayed to the user |
+
+```mermaid
+flowchart TD
+    USER[User Action] --> A1[Try to INSTALL\nnot-allowed app]
+    USER --> A2[Try to RUN\nnot-allowed app]
+    USER --> A3[Run Intune-deployed\napp via MI]
+    USER --> A4[Run Windows\nbuilt-in tool]
+    A1 --> B1[Windows notification:\nInstallation blocked]
+    A2 --> B2[Windows notification:\nBlocked by IT policy]
+    A3 --> B3[Allowed — MI tag\nfound on binary]
+    A4 --> B4[Allowed — in Base\npolicy allowlist]
+    B1 & B2 --> C1[Event 3077 logged\nAdmin reviews]
+    B3 & B4 --> C2[No event logged\nClean execution]
+    style B1 fill:#3b1515,color:#fca5a5
+    style B2 fill:#3b1515,color:#fca5a5
+    style B3 fill:#14532d,color:#86efac
+    style B4 fill:#14532d,color:#86efac
+```
 
 ---
 

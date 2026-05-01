@@ -32,6 +32,30 @@ Tags can be any alphanumeric string including symbols such as `: / , . _`
 
 > **Key distinction:** An AppID Tagging Policy is purely a labeling mechanism. Enforcement decisions belong to the base or supplemental policy — or to systems such as Windows Firewall that consume those tags.
 
+```mermaid
+flowchart LR
+    subgraph BASE["Base Policy"]
+        B1[ALLOW rules]
+        B2[DENY rules]
+        B3[Standalone]
+    end
+    subgraph SUPP["Supplemental Policy"]
+        S1[ALLOW rules only]
+        S2[Extends Base]
+    end
+    subgraph TAG["AppID Tagging Policy"]
+        T1[Labels only]
+        T2[No Allow / Deny]
+        T3[User mode only]
+    end
+    BASE -->|extends| SUPP
+    TAG -->|tags processes for| FW[Windows Firewall]
+    TAG -->|tags processes for| CM[Compliance Tools]
+    style BASE fill:#162032,color:#58a6ff,stroke:#2563eb
+    style SUPP fill:#1c2330,color:#a5b4fc
+    style TAG fill:#0d1f12,color:#86efac,stroke:#16a34a
+```
+
 ---
 
 ## 2. Platform Requirements
@@ -61,6 +85,30 @@ Tags can be any alphanumeric string including symbols such as `: / , . _`
 | **Package App Name** | Based on the package family name of an AppX or MSIX application. |
 | **Hash** | Matches files using the PE Authenticode hash — a unique fingerprint of the file. |
 
+```mermaid
+mindmap
+  root((AppID Tagging\nRule Types))
+    Publisher Rules
+      Signing certificate chain
+      Combine with filename
+      Combine with version
+    Path Rules
+      File path
+      Folder path
+      Wildcards supported
+    File Attribute Rules
+      Original filename
+      File description
+      Product name
+      Internal name
+    Package App Rules
+      AppX package family
+      MSIX package family
+    Hash Rules
+      PE Authenticode hash
+      Exact file fingerprint
+```
+
 ---
 
 ## 4. Creating a Tagging Policy via PowerShell
@@ -69,6 +117,21 @@ The following example creates a tagging policy targeting the **Global Secure Acc
 
 ```powershell
 New-CIPolicy -Level Publisher -ScanPath "C:\Program Files\Global Secure Access Client" -AppIdTaggingPolicy -AppIdTaggingKey "MyCustomKey" -AppIdTaggingValue "MyGreatAppTagID"
+```
+
+```mermaid
+flowchart TD
+    A[Run New-CIPolicy\n-AppIdTaggingPolicy] --> B[Scan target folder\ne.g. Global Secure Access Client]
+    B --> C[Identify all publishers\nin the folder]
+    C --> D[Create Signer entries\nper discovered publisher]
+    D --> E[Attach AppIDTag\nKey + Value pair]
+    E --> F[Output XML policy file\nPolicyType=AppID Tagging Policy]
+    F --> G{Deploy via?}
+    G --> H[Intune\nRecommended]
+    G --> I[CiTool\nLocal test]
+    H & I --> J[Windows assigns tag\nto matching processes at launch]
+    style A fill:#1e3a5f,color:#93c5fd
+    style J fill:#14532d,color:#86efac
 ```
 
 > **Note:** The scanning process may take several minutes and can trigger antivirus activity on the scanned directory. Plan maintenance windows accordingly or configure antivirus exclusions for the scan path during policy creation.
@@ -161,6 +224,20 @@ You can tag Windows OS components and corporate business applications using an A
 
 This removes the operational burden of maintaining explicit file path lists in firewall rules and makes the ruleset resilient to application updates or path changes.
 
+```mermaid
+flowchart TD
+    POLICY[AppID Tagging Policy\nDeployed via Intune] --> CI[Code Integrity\nTags process at launch]
+    CI --> PROC[Process runs with\nAppIDTag = MyGreatAppIDTag]
+    PROC --> FW[Windows Firewall Engine]
+    FW --> RULE{Firewall Rule\nscoped to AppIDTag?}
+    RULE -->|Tag matches — corporate app| INET[Allow outbound\nInternet access]
+    RULE -->|No tag — unknown process| BLOCK[Block outbound\nInternet access]
+    style POLICY fill:#1e3a5f,color:#93c5fd
+    style CI fill:#162032,color:#58a6ff
+    style INET fill:#14532d,color:#86efac
+    style BLOCK fill:#3b1515,color:#fca5a5
+```
+
 ---
 
 ## 7. Block Outbound Traffic by Default — Allow Only Tagged Processes
@@ -178,6 +255,26 @@ This removes the operational burden of maintaining explicit file path lists in f
 | 5 | Roll out to a pilot group first. Monitor Event Viewer and MDE alerts before expanding. |
 
 > **Profile coverage is mandatory.** Applying the block-by-default rule only to the domain profile leaves endpoints exposed on public networks — a common misconfiguration in mobile and remote-work scenarios.
+
+```mermaid
+flowchart LR
+    subgraph ENDPOINT["Corporate Endpoint"]
+        TA[Tagged App\ne.g. Teams, Outlook]
+        UA[Untagged Process\ne.g. unknown.exe]
+    end
+    subgraph FW["Windows Firewall — All Profiles"]
+        R1[ALLOW rule\nAppIDTag = CorporateApp]
+        R2[BLOCK ALL\nDefault outbound deny]
+    end
+    INET[Internet]
+    TA -->|Outbound| R1 --> INET
+    UA -->|Outbound| R2
+    R2 -->|Dropped| X[✗]
+    style TA fill:#14532d,color:#86efac
+    style UA fill:#3b1515,color:#fca5a5
+    style R1 fill:#14532d,color:#86efac
+    style R2 fill:#3b1515,color:#fca5a5
+```
 
 ---
 
@@ -207,6 +304,26 @@ When the Managed Installer feature is active, Windows tracks the origin of files
 
 The Managed Installer feature uses a special rule set embedded in the policy to define which installer binaries are recognized as trusted by the organization.
 
+```mermaid
+sequenceDiagram
+    participant Intune as Microsoft Intune
+    participant MIME as Intune Management\nExtension (IME)
+    participant CI as Code Integrity
+    participant FS as File System
+    participant App as Installed Application
+
+    Intune->>MIME: Deploy app package
+    Note over MIME: IME is a trusted Managed Installer
+    MIME->>CI: CI tracks IME process + child processes
+    MIME->>FS: Write app binaries to disk
+    CI->>FS: Tag written files as Managed Installer origin
+    Note over FS: Files tagged with MI extended attribute
+    App->>CI: User launches installed app
+    CI->>CI: Check MI tag on binary
+    CI-->>App: ALLOW — Managed Installer tag found
+    Note over App: No explicit allow rule needed
+```
+
 ---
 
 ## 10. Security Considerations
@@ -230,6 +347,25 @@ Managed Installer is best suited for environments where:
 | **Heuristic limitations** | Trust is based on observed behavior — not a cryptographic proof of provenance. Unusual installer behavior may produce unexpected trust grants. | Audit Managed Installer events regularly via Event Viewer or MDE Advanced Hunting. |
 
 > **Defense-in-depth reminder:** Managed Installer should be layered with other controls — including MDE, privileged access management, and network segmentation — not treated as a standalone control.
+
+```mermaid
+flowchart TD
+    MI[Managed Installer\nFeature Enabled] --> R1
+    MI --> R2
+    MI --> R3
+    R1[Risk: Admin privilege abuse\nAttacker exploits IME process]
+    R2[Risk: Auto-launch after install\nFiles tagged before policy review]
+    R3[Risk: Heuristic-based\nNot explicit rules — behavior monitored]
+    R1 --> M1[Mitigation: No local admin rights\nfor standard users]
+    R2 --> M2[Mitigation: Disable auto-launch\nin deployment config]
+    R3 --> M3[Mitigation: Use in low-risk\nenvironments only]
+    style R1 fill:#3b1515,color:#fca5a5
+    style R2 fill:#3b1515,color:#fca5a5
+    style R3 fill:#3b1515,color:#fca5a5
+    style M1 fill:#14532d,color:#86efac
+    style M2 fill:#14532d,color:#86efac
+    style M3 fill:#14532d,color:#86efac
+```
 
 ---
 

@@ -45,6 +45,22 @@ Microsoft ships a set of **example base policies** with Windows and the WDAC Wiz
 
 > **Recommendation:** Always start from a Microsoft-provided template rather than authoring a policy from scratch. The DefaultWindows or AllowMicrosoft templates are the recommended starting points for most enterprise deployments.
 
+```mermaid
+flowchart TD
+    A[Start: Choose a Template] --> B{Use Case?}
+    B -->|Lightly managed\nConsumer-like| C[SmartAppControl.xml\nSigned + Reputable]
+    B -->|Standard enterprise| D[DefaultWindows.xml\nWindows + Store + HW drivers]
+    B -->|Microsoft software trust| E[AllowMicrosoft.xml\nAll Microsoft signed]
+    B -->|Build a blocklist| F[AllowAll.xml\nBlock specific bad code]
+    B -->|Audit everything first| G[DenyAllAudit.xml\nAudit mode only — not Server 2019]
+    C & D & E --> H[Extend with\nSupplemental Policies]
+    F --> I[Add DENY rules\nfor specific threats]
+    style C fill:#14532d,color:#86efac
+    style D fill:#1e3a5f,color:#93c5fd
+    style E fill:#1e3a5f,color:#93c5fd
+    style G fill:#3b1515,color:#fca5a5
+```
+
 ---
 
 ## 2. Block Header Information
@@ -98,6 +114,31 @@ Understanding execution modes is essential for configuring App Control policy ru
 | Policy scope | Device-scoped only | Device or user scoped |
 | Protection depth | Deeper — kernel-level by default | Shallower — user-level only |
 
+```mermaid
+flowchart TD
+    subgraph KM["Kernel Mode (Ring 0)"]
+        direction LR
+        OS[Operating System Core]
+        DRV[Drivers]
+        CI[Code Integrity CI]
+        HAL[Hardware Abstraction Layer]
+    end
+    subgraph UM["User Mode (Ring 3)"]
+        direction LR
+        WORD[Word / Excel]
+        BROWSER[Browsers]
+        SCRIPTS[PowerShell / Scripts]
+        APPS[User Applications]
+    end
+    HW[Hardware] <--> KM
+    KM <-->|System Calls\nControlled Interface| UM
+    CI -->|Enforces KMCI| DRV
+    CI -->|Enforces UMCI\nopt-in via Option 0| APPS
+    style KM fill:#1a0a2e,color:#c4b5fd,stroke:#7c3aed
+    style UM fill:#0a1628,color:#93c5fd,stroke:#2563eb
+    style CI fill:#162032,color:#58a6ff
+```
+
 ### Verify UMCI / KMCI Status
 
 Use the following PowerShell command to check the current code integrity enforcement status:
@@ -142,6 +183,20 @@ All 21 rule options available in App Control for Business policies are documente
 | **Enabled:Dynamic Code Security** | 19 | Enforces ACfB on .NET applications and dynamically loaded libraries. Always enforced if any UMCI policy enables it. No audit mode available. Requires Windows 10 1803+ or Server 2019+. | No |
 | **Enabled:Revoked Expired As Unsigned** | 20 | Treats binaries signed with revoked certificates or certificates with a Lifetime Signing EKU that have expired as unsigned — relevant in enterprise signing scenarios. | No |
 | **Enabled:Developer Mode Dynamic Code Trust** | — | Allows UWP applications debugged in Visual Studio or deployed via Device Portal to be trusted when Developer Mode is active on the device. | No |
+
+```mermaid
+flowchart LR
+    O0[Option 0\nUMCI Enabled] --> FULL[Full User+Kernel\nProtection]
+    O2[Option 2\nRequire WHQL] --> DRVR[Only Certified\nDrivers Load]
+    O3[Option 3\nAudit Mode] -->|Remove before prod| ENF[Enforcement Mode]
+    O6[Option 6\nUnsigned Policy] -->|Remove + sign| SIGNED[Signed Policy\nTamper-proof]
+    O13[Option 13\nManaged Installer] --> MI[Intune-deployed Apps\nAuto-trusted]
+    O14[Option 14\nISG] --> REP[Good-reputation Apps\nAuto-trusted]
+    O17[Option 17\nAllow Supplemental] --> SUPP[Supplemental Policies\nCan extend base]
+    style FULL fill:#14532d,color:#86efac
+    style SIGNED fill:#14532d,color:#86efac
+    style ENF fill:#14532d,color:#86efac
+```
 
 ### Setting and Removing Rule Options via PowerShell
 
@@ -196,6 +251,26 @@ The following scripts are available from the blog author's Azure DevOps reposito
 - `Decode-OID.ps1` — decodes an encoded OID value back to its dotted-decimal form
 - `Encode-OID.ps1` — encodes a dotted-decimal OID to the ACfB policy value format
 
+```mermaid
+sequenceDiagram
+    participant App as Application Binary
+    participant CI as Code Integrity
+    participant CHAIN as Certificate Chain
+    participant EKU as EKU Validator
+    participant POLICY as ACfB Policy
+
+    App->>CI: Request to execute
+    CI->>CHAIN: Extract signing certificate chain
+    CHAIN-->>CI: Leaf → PCA → Root
+    CI->>EKU: Check Extended Key Usage OIDs
+    EKU->>POLICY: Does signer rule reference this EKU?
+    POLICY-->>EKU: Match found (ID_EKU_STORE)
+    EKU-->>CI: EKU valid
+    CI->>POLICY: Check CertRoot TBS hash
+    POLICY-->>CI: Hash matches trusted CA
+    CI-->>App: ALLOW execution
+```
+
 ---
 
 ## 5. File Rules & Signer Rules
@@ -237,6 +312,25 @@ File rules define the **file attributes** that must be valid for a file to be tr
 | **WHQL** | Trusts only binaries submitted to and signed by the Windows Hardware Qualification Lab. Primarily used for kernel binaries. |
 | **WHQLPublisher** | WHQL + CN on leaf certificate. Primarily for kernel binaries. |
 | **WHQLFilePublisher** | FileName + WHQLPublisher + minimum version. Primarily for kernel binaries. |
+
+```mermaid
+quadrantChart
+    title File Rule Levels — Security vs Maintenance Effort
+    x-axis Low Maintenance --> High Maintenance
+    y-axis Low Security --> High Security
+    quadrant-1 Ideal
+    quadrant-2 Secure but costly
+    quadrant-3 Avoid
+    quadrant-4 Easy but risky
+    Hash: [0.9, 0.95]
+    FilePublisher: [0.55, 0.85]
+    SignedVersion: [0.5, 0.7]
+    LeafCertificate: [0.45, 0.65]
+    Publisher: [0.2, 0.55]
+    WHQL: [0.15, 0.8]
+    FileName: [0.1, 0.2]
+    FilePath: [0.1, 0.15]
+```
 
 ---
 
@@ -488,6 +582,34 @@ Enforces security at the application and script execution level. Ensures only si
 </SigningScenarios>
 ```
 
+```mermaid
+flowchart TD
+    BOOT[System Boot] --> KMCI
+    subgraph KMCI["Kernel Mode Code Integrity — Value=131"]
+        K1[Driver Load Request]
+        K2{WHQL Signed?\nIn Allowlist?}
+        K3[Load Driver]
+        K4[Block — BSOD possible]
+        K1 --> K2
+        K2 -->|Yes| K3
+        K2 -->|No| K4
+    end
+    USER[User Logs In] --> UMCI
+    subgraph UMCI["User Mode Code Integrity — Value=12 + Option 0"]
+        U1[App / Script Execution]
+        U2{Signed?\nTrusted?\nISG / MI?}
+        U3[Allow]
+        U4[Block — Event 3077]
+        U1 --> U2
+        U2 -->|Yes| U3
+        U2 -->|No| U4
+    end
+    style KMCI fill:#1a0a2e,color:#c4b5fd,stroke:#7c3aed
+    style UMCI fill:#0a1628,color:#93c5fd,stroke:#2563eb
+    style K4 fill:#3b1515,color:#fca5a5
+    style U4 fill:#3b1515,color:#fca5a5
+```
+
 ---
 
 ## 7. Update Policy Signers
@@ -524,6 +646,25 @@ App Control for Business evaluates rules in a **fixed order**. Understanding thi
 ### Operational Recommendation
 
 Use **separate ALLOW and DENY policies** on Windows versions that support multiple active App Control policies. Keeping allow and deny logic in distinct policy files makes policies easier to read, audit, and maintain over time.
+
+```mermaid
+flowchart TD
+    REQ[File Execution Request] --> D1
+    D1{Deny Rule Match?}
+    D1 -->|Yes| DENY[BLOCK\nDeny rules always win]
+    D1 -->|No| A1
+    A1{Allow Rule Match?}
+    A1 -->|Yes| ALLOW[ALLOW]
+    A1 -->|No| MI1
+    MI1{Managed Installer\nOption 13 enabled?}
+    MI1 -->|Tagged by MI| ALLOW
+    MI1 -->|Not tagged| ISG1
+    ISG1{ISG Auth\nOption 14 enabled?}
+    ISG1 -->|Good reputation| ALLOW
+    ISG1 -->|Unknown / bad| DENY
+    style DENY fill:#3b1515,color:#fca5a5
+    style ALLOW fill:#14532d,color:#86efac
+```
 
 ---
 

@@ -816,3 +816,39 @@ body {
 ::-webkit-scrollbar-track  { background: transparent; }
 ::-webkit-scrollbar-thumb  { background: var(--border); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Mermaid Diagrams ────────────────────────────────────────── */
+.mermaid-wrap {
+  margin: 20px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg2);
+  padding: 20px;
+  overflow-x: auto;
+  text-align: center;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mermaid-wrap svg {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+.mermaid-wrap .mermaid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60px;
+}
+
+/* Error state */
+.mermaid-wrap .mermaid[data-processed="true"]:empty::after {
+  content: 'Diagram could not be rendered';
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+@media (max-width: 640px) {
+  .mermaid-wrap { padding: 12px; }
+}

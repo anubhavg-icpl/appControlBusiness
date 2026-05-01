@@ -44,6 +44,20 @@ Traditional security solutions are **reactive** — they respond after a threat 
 | 3 | Understand policy impact before rolling out organization-wide |
 | 4 | Enforce centralized endpoint control — limit user-driven software decisions |
 
+```mermaid
+flowchart LR
+    A[Application Executes] -->|Traditional| B[Antivirus Scans]
+    B --> C{Known Threat?}
+    C -->|Yes| D[Block / Quarantine]
+    C -->|No| E[Allow — GAP EXPLOITED]
+    A -->|App Control for Business| F{Trust Verified?}
+    F -->|Approved & Trusted| G[Allow Execution]
+    F -->|Unknown / Untrusted| H[Block — Zero Gap]
+    style E fill:#7f1d1d,color:#fca5a5
+    style H fill:#14532d,color:#86efac
+    style G fill:#14532d,color:#86efac
+```
+
 ---
 
 ## 2. Key Use Cases
@@ -54,6 +68,24 @@ ACfB is particularly well-suited for the following environments:
 - **Industrial control systems** and OT/SCADA environments
 - **Physical security systems** — ATMs, cash machines, access control systems
 - **Enterprise-wide enforcement** where infrastructure is well-documented, software rollout is controlled, and endpoint management is mature
+
+```mermaid
+mindmap
+  root((ACfB Use Cases))
+    Privileged Access
+      PAW Workstations
+      Admin Jump Systems
+    Industrial
+      SCADA / OT Systems
+      Control Systems
+    Physical Security
+      ATMs
+      Cash Machines
+      Entry Systems
+    Enterprise Wide
+      Controlled Software Rollout
+      Strict Endpoint Management
+```
 
 ---
 
@@ -85,6 +117,20 @@ SAC is powered by **Code Integrity (CI)**, a Windows core component that enforce
 - Execution path (Windows 10 1903+)
 - Initiating/parent process
 
+```mermaid
+flowchart TD
+    A[App Control for Business] --> B{Deployment Method}
+    B --> C[Microsoft Intune\nRECOMMENDED]
+    B --> D[PowerShell\nCmdlets]
+    B --> E[Group Policy\nNot Recommended]
+    B --> F[MECM\nLimited Support]
+    C --> G[XML Policy Upload\nor Binary .cip]
+    D --> H[CiTool / Scripts]
+    E --> I[SiPolicy.p7b]
+    style C fill:#1e3a5f,color:#93c5fd
+    style E fill:#3b1515,color:#fca5a5
+```
+
 ---
 
 ## 4. Licensing & Device Requirements
@@ -112,6 +158,23 @@ SAC is powered by **Code Integrity (CI)**, a Windows core component that enforce
 | Co-managed devices | Set Endpoint Protection slider to **Intune** |
 
 > An additional **Intune license** is required to deploy ACfB policies via Intune.
+
+```mermaid
+flowchart LR
+    A[Windows Device] --> B{Edition?}
+    B --> C[Pro / Pro Edu / SE]
+    B --> D[Enterprise E3/E5]
+    B --> E[Education A3/A5]
+    C & D & E --> F{Enrolled in Intune?}
+    F -->|Yes| G[Full ACfB Support]
+    F -->|No| H[GPO / Script Only]
+    G --> I{OS Version?}
+    I -->|Win 10 1903+| J[Multi-Policy Format]
+    I -->|Win 11| K[Full Feature Set]
+    style G fill:#14532d,color:#86efac
+    style J fill:#1e3a5f,color:#93c5fd
+    style K fill:#1e3a5f,color:#93c5fd
+```
 
 ---
 
@@ -209,6 +272,31 @@ Policies can be **cryptographically signed** to prevent tampering or unauthorize
 
 > Signing details and management procedures will be covered in a future part of this series.
 
+```mermaid
+flowchart TD
+    subgraph Single["Single Policy Format"]
+        direction TB
+        SP[SiPolicy.p7b\nOne file — all rules]
+    end
+    subgraph Multiple["Multiple Policy Format"]
+        direction TB
+        BP[Base Policy\nCore Rules + Deny List]
+        SUP1[Supplemental Policy A\nVendor Apps]
+        SUP2[Supplemental Policy B\nDev Tools]
+        SUP3[Supplemental Policy N\n...]
+        BP --> SUP1
+        BP --> SUP2
+        BP --> SUP3
+    end
+    Single -.->|Less flexible\nMax compatibility| X[ ]
+    Multiple -.->|Flexible\nWin 10 1903+ only| X
+    style SP fill:#1c2330,color:#e6edf3
+    style BP fill:#162032,color:#58a6ff
+    style SUP1 fill:#1c2330,color:#e6edf3
+    style SUP2 fill:#1c2330,color:#e6edf3
+    style SUP3 fill:#1c2330,color:#e6edf3
+```
+
 ---
 
 ## 9. Policy Types
@@ -244,6 +332,20 @@ Policies can be **cryptographically signed** to prevent tampering or unauthorize
 | Typical audience | Security Admins | App Owners / Project Teams | Compliance / Inventory |
 | Impact if removed/corrupted | High | Medium | Low |
 
+```mermaid
+flowchart TD
+    BASE[Base Policy\nAllows + Denies\nStandalone] -->|extends| SUP[Supplemental Policy\nAllow rules only\nCannot standalone]
+    BASE -.->|independent of| TAG[AppID Tagging Policy\nLabels only\nNo Allow/Deny]
+    TAG --> FW[Windows Firewall\nProcess-scoped rules]
+    TAG --> CM[Compliance Tools\nIdentity-aware policy]
+    SUP --> BASE
+    style BASE fill:#162032,color:#58a6ff,stroke:#2563eb
+    style SUP fill:#1c2330,color:#a5b4fc
+    style TAG fill:#1a1f0a,color:#86efac
+    style FW fill:#1c2330,color:#e6edf3
+    style CM fill:#1c2330,color:#e6edf3
+```
+
 ---
 
 ## 10. Core Terminology
@@ -258,6 +360,29 @@ Policies can be **cryptographically signed** to prevent tampering or unauthorize
 | **Microsoft Intelligent Security Graph (ISG)** | AI/ML-powered reputation service used by SAC and ACfB to evaluate application trustworthiness. |
 | **Managed Installer** | A trusted software deployment system (e.g., Intune, SCCM) whose installations are automatically trusted by ACfB policy. |
 | **ApplicationControl CSP** | The Windows Configuration Service Provider used by Intune to deploy ACfB policies. Replaces the legacy AppLocker CSP. |
+
+```mermaid
+sequenceDiagram
+    participant Admin
+    participant Policy as ACfB Policy
+    participant CI as Code Integrity (CI)
+    participant App as Application
+
+    Admin->>Policy: Deploy in Audit Mode (Option 3)
+    App->>CI: Requests execution
+    CI->>Policy: Check rules
+    Policy-->>CI: Would be blocked (audit)
+    CI-->>App: ALLOW (audit — not blocked)
+    CI->>Admin: Log Event 3034 (would-be block)
+    Note over Admin: Review logs, tune rules
+    Admin->>Policy: Remove Audit Mode → Enforce
+    App->>CI: Requests execution
+    CI->>Policy: Check rules
+    Policy-->>CI: Not in allowlist
+    CI-->>App: BLOCK — Event 3077 logged
+    style Admin fill:#1e3a5f,color:#93c5fd
+    style CI fill:#162032,color:#58a6ff
+```
 
 ---
 
