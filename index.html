@@ -3,20 +3,156 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Mastering App Control for Business — 7-part corporate reference series by Anubhav Gain" />
-  <title>App Control for Business — Anubhav Gain</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" />
+
+  <!-- ── Primary SEO ────────────────────────────────────────────── -->
+  <title>Mastering App Control for Business | Complete 7-Part Guide — Anubhav Gain</title>
+  <meta name="description" content="Complete 7-part corporate reference guide to Microsoft App Control for Business (WDAC). Covers policy templates, rule options, AppID tagging, managed installer, signed policies, and Azure DevOps automation. Compiled by Anubhav Gain." />
+  <meta name="keywords" content="App Control for Business, WDAC, Windows Defender Application Control, Microsoft Intune, endpoint security, application allowlisting, policy templates, managed installer, AppID tagging, signed policies, Azure DevOps, PowerShell, endpoint management, Anubhav Gain" />
+  <meta name="author" content="Anubhav Gain" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="theme-color" content="#0d1117" id="meta-theme-color" />
+  <link rel="canonical" href="https://anubhavg-icpl.github.io/appControlBusiness/" id="canonical" />
+
+  <!-- ── Open Graph ─────────────────────────────────────────────── -->
+  <meta property="og:type"        content="article" />
+  <meta property="og:site_name"   content="App Control for Business Reference" />
+  <meta property="og:title"       content="Mastering App Control for Business | Complete 7-Part Guide" id="og-title" />
+  <meta property="og:description" content="Complete 7-part corporate reference guide to Microsoft App Control for Business (WDAC) — policy templates, signed policies, Azure DevOps automation, and more." id="og-desc" />
+  <meta property="og:url"         content="https://anubhavg-icpl.github.io/appControlBusiness/" id="og-url" />
+  <meta property="og:locale"      content="en_US" />
+  <meta property="article:author" content="Anubhav Gain" />
+  <meta property="article:section" content="Endpoint Security" />
+  <meta property="article:tag"    content="WDAC" />
+  <meta property="article:tag"    content="App Control for Business" />
+  <meta property="article:tag"    content="Microsoft Intune" />
+  <meta property="article:tag"    content="Endpoint Security" />
+
+  <!-- ── Twitter / X Card ──────────────────────────────────────── -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:site"        content="@anubhavg" />
+  <meta name="twitter:creator"     content="@anubhavg" />
+  <meta name="twitter:title"       content="Mastering App Control for Business | 7-Part Guide" id="tw-title" />
+  <meta name="twitter:description" content="Complete corporate reference for WDAC/ACfB — policy design, signed policies, Azure DevOps automation. By Anubhav Gain." id="tw-desc" />
+
+  <!-- ── JSON-LD Structured Data ───────────────────────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Mastering App Control for Business",
+    "description": "A complete 7-part corporate reference series on Microsoft App Control for Business (WDAC), covering introduction, policy templates, rule options, AppID tagging, managed installer, policy creation for lightly and fully managed devices, signing policies, and Azure DevOps pipeline automation.",
+    "url": "https://anubhavg-icpl.github.io/appControlBusiness/",
+    "author": {
+      "@type": "Person",
+      "name": "Anubhav Gain",
+      "url": "https://github.com/anubhavg-icpl"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "Anubhav Gain — Security Reference",
+      "url": "https://github.com/anubhavg-icpl"
+    },
+    "inLanguage": "en",
+    "educationalLevel": "Advanced",
+    "about": [
+      { "@type": "Thing", "name": "Windows Defender Application Control" },
+      { "@type": "Thing", "name": "Microsoft Intune" },
+      { "@type": "Thing", "name": "Endpoint Security" },
+      { "@type": "Thing", "name": "Azure DevOps" }
+    ],
+    "hasCourseInstance": [
+      {
+        "@type": "CourseInstance",
+        "name": "Part 1: Introduction & Key Concepts",
+        "courseMode": "online",
+        "url": "https://anubhavg-icpl.github.io/appControlBusiness/#part1"
+      },
+      {
+        "@type": "CourseInstance",
+        "name": "Part 2: Policy Templates & Rule Options",
+        "courseMode": "online",
+        "url": "https://anubhavg-icpl.github.io/appControlBusiness/#part2"
+      },
+      {
+        "@type": "CourseInstance",
+        "name": "Part 3: AppID Tagging & Managed Installer",
+        "courseMode": "online",
+        "url": "https://anubhavg-icpl.github.io/appControlBusiness/#part3"
+      },
+      {
+        "@type": "CourseInstance",
+        "name": "Part 4: Starter Base Policy for Lightly Managed Devices",
+        "courseMode": "online",
+        "url": "https://anubhavg-icpl.github.io/appControlBusiness/#part4"
+      },
+      {
+        "@type": "CourseInstance",
+        "name": "Part 5: Base Policy for Fully Managed Devices",
+        "courseMode": "online",
+        "url": "https://anubhavg-icpl.github.io/appControlBusiness/#part5"
+      },
+      {
+        "@type": "CourseInstance",
+        "name": "Part 6: Sign, Apply & Remove Signed Policies",
+        "courseMode": "online",
+        "url": "https://anubhavg-icpl.github.io/appControlBusiness/#part6"
+      },
+      {
+        "@type": "CourseInstance",
+        "name": "Part 7: Maintaining Policies with Azure DevOps",
+        "courseMode": "online",
+        "url": "https://anubhavg-icpl.github.io/appControlBusiness/#part7"
+      }
+    ]
+  }
+  </script>
+
+  <!-- ── Breadcrumb structured data ────────────────────────────── -->
+  <script type="application/ld+json" id="ld-breadcrumb">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "App Control for Business",
+        "item": "https://anubhavg-icpl.github.io/appControlBusiness/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Part 1: Introduction & Key Concepts",
+        "item": "https://anubhavg-icpl.github.io/appControlBusiness/#part1"
+      }
+    ]
+  }
+  </script>
+
+  <!-- ── Web App Manifest ───────────────────────────────────────── -->
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- ── Favicon (inline SVG) ──────────────────────────────────── -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232563eb'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='900' font-size='11' fill='white'%3EACfB%3C/text%3E%3C/svg%3E" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%232563eb'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='900' font-size='60' fill='white'%3EAC%3C/text%3E%3C/svg%3E" />
+
+  <!-- ── Preconnect to CDN ──────────────────────────────────────── -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+
+  <!-- ── Stylesheets ────────────────────────────────────────────── -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" id="hljs-theme" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Mobile sidebar backdrop -->
-  <div id="backdrop"></div>
+  <!-- ── Backdrop (mobile sidebar overlay) ───────────────────────── -->
+  <div id="backdrop" role="presentation"></div>
 
-  <!-- ── Sidebar ──────────────────────────────────────────────── -->
-  <aside id="sidebar">
+  <!-- ── Sidebar ─────────────────────────────────────────────────── -->
+  <aside id="sidebar" aria-label="Series navigation">
     <div id="sidebar-header">
-      <div id="logo-mark">ACfB</div>
+      <div id="logo-mark" aria-hidden="true">ACfB</div>
       <div>
         <div id="series-title">App Control for Business</div>
         <div id="series-author">by Anubhav Gain</div>
@@ -24,94 +160,140 @@
     </div>
 
     <div id="search-wrap">
-      <input id="search" type="search" placeholder="Search parts…" autocomplete="off" spellcheck="false" />
+      <input id="search" type="search" placeholder="Search parts…"
+             autocomplete="off" spellcheck="false"
+             aria-label="Search parts" role="searchbox" />
     </div>
 
-    <nav id="nav">
-      <ul id="part-list">
-        <li class="nav-item active" data-index="0">
-          <span class="part-badge">01</span>
+    <nav id="nav" aria-label="Parts list">
+      <ul id="part-list" role="list">
+        <li class="nav-item active" data-index="0" role="listitem" tabindex="0"
+            aria-label="Part 1: Introduction and Key Concepts" aria-current="page">
+          <span class="part-badge" aria-hidden="true">01</span>
           <span class="part-label">Introduction &amp; Key Concepts</span>
         </li>
-        <li class="nav-item" data-index="1">
-          <span class="part-badge">02</span>
+        <li class="nav-item" data-index="1" role="listitem" tabindex="0"
+            aria-label="Part 2: Policy Templates and Rule Options">
+          <span class="part-badge" aria-hidden="true">02</span>
           <span class="part-label">Policy Templates &amp; Rule Options</span>
         </li>
-        <li class="nav-item" data-index="2">
-          <span class="part-badge">03</span>
+        <li class="nav-item" data-index="2" role="listitem" tabindex="0"
+            aria-label="Part 3: AppID Tagging and Managed Installer">
+          <span class="part-badge" aria-hidden="true">03</span>
           <span class="part-label">AppID Tagging &amp; Managed Installer</span>
         </li>
-        <li class="nav-item" data-index="3">
-          <span class="part-badge">04</span>
+        <li class="nav-item" data-index="3" role="listitem" tabindex="0"
+            aria-label="Part 4: Starter Base Policy for Lightly Managed Devices">
+          <span class="part-badge" aria-hidden="true">04</span>
           <span class="part-label">Starter Base Policy — Lightly Managed</span>
         </li>
-        <li class="nav-item" data-index="4">
-          <span class="part-badge">05</span>
+        <li class="nav-item" data-index="4" role="listitem" tabindex="0"
+            aria-label="Part 5: Base Policy for Fully Managed Devices">
+          <span class="part-badge" aria-hidden="true">05</span>
           <span class="part-label">Base Policy — Fully Managed Devices</span>
         </li>
-        <li class="nav-item" data-index="5">
-          <span class="part-badge">06</span>
+        <li class="nav-item" data-index="5" role="listitem" tabindex="0"
+            aria-label="Part 6: Sign, Apply and Remove Signed Policies">
+          <span class="part-badge" aria-hidden="true">06</span>
           <span class="part-label">Sign, Apply &amp; Remove Signed Policies</span>
         </li>
-        <li class="nav-item" data-index="6">
-          <span class="part-badge">07</span>
+        <li class="nav-item" data-index="6" role="listitem" tabindex="0"
+            aria-label="Part 7: Maintaining Policies with Azure DevOps">
+          <span class="part-badge" aria-hidden="true">07</span>
           <span class="part-label">Maintaining Policies with Azure DevOps</span>
         </li>
       </ul>
     </nav>
 
-    <div id="sidebar-footer">Source: ctrlshiftenter.cloud &nbsp;·&nbsp; Patrick Seltmann</div>
+    <div id="sidebar-footer">
+      Source: <a href="https://ctrlshiftenter.cloud" target="_blank" rel="noopener noreferrer"
+        style="color:inherit;text-decoration:underline">ctrlshiftenter.cloud</a>
+      &nbsp;·&nbsp; Patrick Seltmann
+    </div>
   </aside>
 
-  <!-- ── Main ─────────────────────────────────────────────────── -->
-  <div id="main">
+  <!-- ── Main ─────────────────────────────────────────────────────── -->
+  <div id="main" role="main">
 
     <!-- Topbar -->
     <header id="topbar">
-      <button class="topbar-btn" id="sidebar-toggle" title="Toggle sidebar" aria-label="Toggle sidebar">☰</button>
+      <button class="topbar-btn" id="sidebar-toggle"
+              title="Toggle sidebar" aria-label="Toggle navigation sidebar"
+              aria-expanded="false" aria-controls="sidebar">☰</button>
 
-      <div id="breadcrumb">
-        <span id="bc-series">App Control for Business</span>
-        <span id="bc-sep">›</span>
-        <span id="bc-part">Part 1</span>
-      </div>
+      <nav id="breadcrumb" aria-label="Breadcrumb">
+        <ol style="display:flex;align-items:center;gap:6px;list-style:none;font-size:13px;color:var(--text-muted)">
+          <li><span id="bc-series">App Control for Business</span></li>
+          <li aria-hidden="true" id="bc-sep" style="color:var(--text-dim)">›</li>
+          <li><span id="bc-part" style="color:var(--text);font-weight:600">Part 1</span></li>
+        </ol>
+      </nav>
 
       <div id="topbar-right">
-        <span id="read-time"></span>
-        <button class="topbar-btn" id="toc-toggle" title="Table of contents" aria-label="Toggle table of contents">≡</button>
-        <button class="topbar-btn" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">☾</button>
+        <span id="read-time" aria-label="Estimated reading time"></span>
+        <button class="topbar-btn" id="toc-toggle"
+                title="Toggle table of contents" aria-label="Toggle table of contents"
+                aria-expanded="true" aria-controls="toc-panel">≡</button>
+        <button class="topbar-btn" id="theme-toggle"
+                title="Toggle light/dark theme" aria-label="Toggle color theme">☾</button>
       </div>
     </header>
 
     <!-- Reading progress -->
-    <div id="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+    <div id="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Reading progress">
       <div id="progress-fill"></div>
     </div>
 
     <!-- Content + ToC -->
     <div id="content-wrap">
-      <article id="content">
-        <div id="loading">
-          <div class="spinner"></div>
+      <article id="content" aria-live="polite" aria-atomic="false">
+        <div id="loading" role="status" aria-live="polite">
+          <div class="spinner" aria-hidden="true"></div>
           <p>Loading document…</p>
         </div>
       </article>
 
-      <aside id="toc-panel" aria-label="Table of contents">
+      <aside id="toc-panel" aria-label="Table of contents for current part">
         <div id="toc-title">On this page</div>
-        <nav id="toc-nav"></nav>
+        <nav id="toc-nav" aria-label="Section links"></nav>
       </aside>
     </div>
 
     <!-- Part navigation -->
-    <nav id="part-nav" aria-label="Part navigation">
-      <button class="nav-btn" id="prev-part" disabled aria-label="Previous part">← Previous</button>
-      <div id="part-dots" role="tablist" aria-label="Parts"></div>
-      <button class="nav-btn" id="next-part" aria-label="Next part">Next →</button>
+    <nav id="part-nav" aria-label="Navigate between parts">
+      <button class="nav-btn" id="prev-part" disabled
+              aria-label="Go to previous part">← Previous</button>
+      <div id="part-dots" role="tablist" aria-label="All parts"></div>
+      <button class="nav-btn" id="next-part"
+              aria-label="Go to next part">Next →</button>
     </nav>
 
   </div><!-- /#main -->
 
+  <!-- ── noscript fallback — readable by crawlers ─────────────── -->
+  <noscript>
+    <style>
+      #backdrop,#sidebar,#main { all: unset; }
+      body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
+      h1 { margin-bottom: 16px; }
+      ul { line-height: 2; }
+    </style>
+    <h1>Mastering App Control for Business</h1>
+    <p>A 7-part corporate reference guide by <strong>Anubhav Gain</strong>.</p>
+    <p>JavaScript is required to view this site interactively.
+       The full Markdown source files are available below:</p>
+    <ul>
+      <li><a href="docs/Part1-Introduction-KeyConcepts.md">Part 1 — Introduction &amp; Key Concepts</a></li>
+      <li><a href="docs/Part2-Policy-Templates-Rule-Options.md">Part 2 — Policy Templates &amp; Rule Options</a></li>
+      <li><a href="docs/Part3-AppID-Tagging-Managed-Installer.md">Part 3 — AppID Tagging &amp; Managed Installer</a></li>
+      <li><a href="docs/Part4-Starter-Base-Policy-Lightly-Managed.md">Part 4 — Starter Base Policy for Lightly Managed Devices</a></li>
+      <li><a href="docs/Part5-Base-Policy-Fully-Managed-Devices.md">Part 5 — Base Policy for Fully Managed Devices</a></li>
+      <li><a href="docs/Part6-Sign-Apply-Remove-Signed-Policies.md">Part 6 — Sign, Apply &amp; Remove Signed Policies</a></li>
+      <li><a href="docs/Part7-Maintaining-Policies-AzureDevOps-PowerShell.md">Part 7 — Maintaining Policies with Azure DevOps</a></li>
+    </ul>
+  </noscript>
+
+  <!-- ── Scripts ─────────────────────────────────────────────────── -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
   <script src="app.js"></script>

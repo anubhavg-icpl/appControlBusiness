@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Main entry point -->
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Part 1: Introduction & Key Concepts -->
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/#part1</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Part 2: Policy Templates & Rule Options -->
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/#part2</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Part 3: AppID Tagging & Managed Installer -->
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/#part3</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Part 4: Starter Base Policy — Lightly Managed -->
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/#part4</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Part 5: Base Policy — Fully Managed Devices -->
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/#part5</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Part 6: Sign, Apply & Remove Signed Policies -->
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/#part6</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Part 7: Maintaining Policies with Azure DevOps -->
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/#part7</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Raw Markdown docs (indexable content) -->
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/docs/Part1-Introduction-KeyConcepts.md</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/docs/Part2-Policy-Templates-Rule-Options.md</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/docs/Part3-AppID-Tagging-Managed-Installer.md</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/docs/Part4-Starter-Base-Policy-Lightly-Managed.md</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/docs/Part5-Base-Policy-Fully-Managed-Devices.md</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/docs/Part6-Sign-Apply-Remove-Signed-Policies.md</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/docs/Part7-Maintaining-Policies-AzureDevOps-PowerShell.md</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

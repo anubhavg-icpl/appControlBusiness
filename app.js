@@ -1,14 +1,66 @@
 'use strict';
 
 /* ── Parts config ─────────────────────────────────────────────── */
+const BASE_URL = 'https://anubhavg-icpl.github.io/appControlBusiness/';
+const SITE_NAME = 'Mastering App Control for Business';
+
 const PARTS = [
-  { file: 'docs/Part1-Introduction-KeyConcepts.md',               label: 'Introduction & Key Concepts',           num: 1, tags: ['Concept','Licensing','Policy Types'] },
-  { file: 'docs/Part2-Policy-Templates-Rule-Options.md',          label: 'Policy Templates & Rule Options',        num: 2, tags: ['Templates','Rule Options','EKU','XML'] },
-  { file: 'docs/Part3-AppID-Tagging-Managed-Installer.md',        label: 'AppID Tagging & Managed Installer',      num: 3, tags: ['AppID Tagging','Firewall','Managed Installer'] },
-  { file: 'docs/Part4-Starter-Base-Policy-Lightly-Managed.md',    label: 'Starter Base Policy — Lightly Managed', num: 4, tags: ['SmartAppControl','PowerShell','Wizard'] },
-  { file: 'docs/Part5-Base-Policy-Fully-Managed-Devices.md',      label: 'Base Policy — Fully Managed Devices',   num: 5, tags: ['Reference Scan','FilePublisher','Enforcement'] },
-  { file: 'docs/Part6-Sign-Apply-Remove-Signed-Policies.md',      label: 'Sign, Apply & Remove Signed Policies',  num: 6, tags: ['Code Signing','SignTool','UEFI','Secure Boot'] },
-  { file: 'docs/Part7-Maintaining-Policies-AzureDevOps-PowerShell.md', label: 'Maintaining Policies with Azure DevOps', num: 7, tags: ['Azure DevOps','OIDC','Pipeline','Graph API'] },
+  {
+    file:  'docs/Part1-Introduction-KeyConcepts.md',
+    label: 'Introduction & Key Concepts',
+    num:   1,
+    tags:  ['Concept','Licensing','Policy Types'],
+    desc:  'Introduction to Microsoft App Control for Business (WDAC): key concepts, use cases, licensing requirements, policy formats, and core terminology including base, supplemental, and AppID tagging policies.',
+    keywords: 'App Control for Business introduction, WDAC concepts, application allowlisting, policy types, base policy, supplemental policy, AppID tagging',
+  },
+  {
+    file:  'docs/Part2-Policy-Templates-Rule-Options.md',
+    label: 'Policy Templates & Rule Options',
+    num:   2,
+    tags:  ['Templates','Rule Options','EKU','XML'],
+    desc:  'Deep dive into ACfB policy templates (DefaultWindows, AllowMicrosoft, SmartAppControl), all 21 security rule options, EKU encoding, file rules, signer rules, signing scenarios, and complete XML examples.',
+    keywords: 'WDAC policy templates, rule options, EKU, Enhanced Key Usage, signer rules, file rules, signing scenarios, UMCI, KMCI, WHQL',
+  },
+  {
+    file:  'docs/Part3-AppID-Tagging-Managed-Installer.md',
+    label: 'AppID Tagging & Managed Installer',
+    num:   3,
+    tags:  ['AppID Tagging','Firewall','Managed Installer'],
+    desc:  'How to create Application ID Tagging Policies, integrate them with Windows Firewall for process-scoped outbound rules, and configure Intune as a Managed Installer for automatic application trust.',
+    keywords: 'AppID tagging, Application ID tagging policy, Windows Firewall, managed installer, Intune managed installer, outbound firewall rules, WDAC tagging',
+  },
+  {
+    file:  'docs/Part4-Starter-Base-Policy-Lightly-Managed.md',
+    label: 'Starter Base Policy — Lightly Managed',
+    num:   4,
+    tags:  ['SmartAppControl','PowerShell','Wizard'],
+    desc:  'Step-by-step guide to creating a starter ACfB base policy for lightly managed devices using the SmartAppControl template, PowerShell cmdlets, and the App Control Policy Wizard, with audit mode validation.',
+    keywords: 'SmartAppControl template, WDAC starter policy, lightly managed devices, audit mode, Set-RuleOption, App Control Policy Wizard, Intelligent Security Graph',
+  },
+  {
+    file:  'docs/Part5-Base-Policy-Fully-Managed-Devices.md',
+    label: 'Base Policy — Fully Managed Devices',
+    num:   5,
+    tags:  ['Reference Scan','FilePublisher','Enforcement'],
+    desc:  'Creating a production App Control for Business base policy from a reference system scan using New-CIPolicy, configuring FilePublisher rules, fallback level comparison, and enforcement mode user experience.',
+    keywords: 'New-CIPolicy, FilePublisher rule, fully managed devices, reference system scan, WDAC enforcement, policy from scratch, fallback rules, citool',
+  },
+  {
+    file:  'docs/Part6-Sign-Apply-Remove-Signed-Policies.md',
+    label: 'Sign, Apply & Remove Signed Policies',
+    num:   6,
+    tags:  ['Code Signing','SignTool','UEFI','Secure Boot'],
+    desc:  'Complete guide to signing App Control for Business policies with code signing certificates using SignTool.exe, applying signed policies via CiTool, UEFI Secure Boot anti-tampering behavior, and safely removing signed policies.',
+    keywords: 'WDAC signed policy, SignTool.exe, code signing certificate, UEFI Secure Boot, remove signed policy, CiTool, anti-tampering, UpdatePolicySigners',
+  },
+  {
+    file:  'docs/Part7-Maintaining-Policies-AzureDevOps-PowerShell.md',
+    label: 'Maintaining Policies with Azure DevOps',
+    num:   7,
+    tags:  ['Azure DevOps','OIDC','Pipeline','Graph API'],
+    desc:  'Automating App Control for Business policy signing and Intune deployment using Azure DevOps Pipelines with Workload Identity Federation (OIDC), Microsoft Graph API, and a PowerShell script with version-based update logic.',
+    keywords: 'Azure DevOps WDAC, Intune Graph API, policy automation, workload identity federation, OIDC pipeline, Publish-ACFBPolicy.ps1, policy versioning',
+  },
 ];
 
 /* ── State ────────────────────────────────────────────────────── */
@@ -35,6 +87,78 @@ const searchInput   = document.getElementById('search');
 
 /* ── Marked: use v5+ API, no deprecated highlight callback ─────── */
 marked.use({ gfm: true, breaks: false });
+
+/* ── Dynamic SEO — update meta tags on every part switch ─────── */
+function updateSEO(part) {
+  const partUrl  = `${BASE_URL}#part${part.num}`;
+  const title    = `Part ${part.num}: ${part.label} | ${SITE_NAME} — Anubhav Gain`;
+  const desc     = part.desc;
+
+  // <title>
+  document.title = title;
+
+  // Canonical
+  const canon = document.getElementById('canonical');
+  if (canon) canon.href = partUrl;
+
+  // Meta description
+  setMeta('name', 'description', desc);
+  setMeta('name', 'keywords',    part.keywords + ', App Control for Business, WDAC, Anubhav Gain');
+
+  // Open Graph
+  setMeta('property', 'og:title',       title,   'id', 'og-title');
+  setMeta('property', 'og:description', desc,    'id', 'og-desc');
+  setMeta('property', 'og:url',         partUrl, 'id', 'og-url');
+
+  // Twitter
+  setMeta('name', 'twitter:title',       title, 'id', 'tw-title');
+  setMeta('name', 'twitter:description', desc,  'id', 'tw-desc');
+
+  // Breadcrumb JSON-LD
+  const ldBC = document.getElementById('ld-breadcrumb');
+  if (ldBC) {
+    ldBC.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: SITE_NAME,
+          item: BASE_URL },
+        { '@type': 'ListItem', position: 2, name: `Part ${part.num}: ${part.label}`,
+          item: partUrl },
+      ],
+    });
+  }
+
+  // Update aria-current on sidebar items
+  navItems.forEach((item, i) => {
+    if (i === currentPart) item.setAttribute('aria-current', 'page');
+    else item.removeAttribute('aria-current');
+  });
+
+  // Update sidebar-toggle aria-expanded
+  const toggleBtn = document.getElementById('sidebar-toggle');
+  if (toggleBtn) toggleBtn.setAttribute('aria-expanded', sidebar.classList.contains('open') ? 'true' : 'false');
+
+  // Update progress-bar aria-valuenow
+  document.getElementById('progress-bar')?.setAttribute('aria-valuenow', '0');
+
+  // Push browser history state (enables back/forward between parts)
+  history.pushState({ part: part.num }, title, `#part${part.num}`);
+}
+
+/* Helper: find or create a <meta> and set its content */
+function setMeta(attrKey, attrVal, content, idKey, idVal) {
+  let el = idKey
+    ? document.getElementById(idVal)
+    : document.querySelector(`meta[${attrKey}="${attrVal}"]`);
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute(attrKey, attrVal);
+    if (idKey) el.id = idVal;
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', content);
+}
 
 /* ── Sidebar open/close helpers ───────────────────────────────── */
 function isMobile() { return window.innerWidth < 1024; }
@@ -257,6 +381,7 @@ async function loadPart(index) {
 
   updateNav();
   updateDots();
+  updateSEO(part);
   bcPart.textContent = `Part ${part.num}`;
   prevBtn.disabled   = index === 0;
   nextBtn.disabled   = index === PARTS.length - 1;
@@ -356,16 +481,32 @@ window.addEventListener('resize', () => {
   if (!isMobile()) closeSidebar();
 }, { passive: true });
 
+/* ── Browser back / forward support ──────────────────────────── */
+window.addEventListener('popstate', e => {
+  const partNum = e.state?.part;
+  if (partNum) {
+    const idx = PARTS.findIndex(p => p.num === partNum);
+    if (idx >= 0) loadPart(idx);
+  }
+});
+
 /* ── Init ─────────────────────────────────────────────────────── */
 (function init() {
+  // Restore theme
   const theme = localStorage.getItem('acfb-theme') || 'dark';
   document.documentElement.setAttribute('data-theme', theme);
   themeBtn.textContent = theme === 'light' ? '☀' : '☾';
   if (theme === 'light') {
-    const hljsLink = document.querySelector('link[href*="highlight.js"]');
+    const hljsLink = document.getElementById('hljs-theme');
     if (hljsLink) hljsLink.href = 'https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github.min.css';
   }
 
   buildDots();
-  loadPart(0);
+
+  // Deep-link: load part from URL hash (#part3 etc.)
+  const hash  = window.location.hash;
+  const match = hash.match(/#part(\d)/);
+  const startIdx = match ? Math.max(0, Math.min(PARTS.length - 1, parseInt(match[1]) - 1)) : 0;
+
+  loadPart(startIdx);
 })();

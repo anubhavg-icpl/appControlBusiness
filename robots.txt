@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://anubhavg-icpl.github.io/appControlBusiness/sitemap.xml
+
+# Crawl-delay (optional, courteous)
+Crawl-delay: 5
