@@ -344,6 +344,30 @@ The driver only stamps files written **after** it is loaded and the MI process w
 
 ## 5. KERNEL.SMARTLOCKER.ORIGINCLAIM — The EA Stamp
 
+### What is an EA?
+
+**EA = Extended Attribute** — a piece of metadata attached to a file's **inode** (the filesystem record that describes the file), completely separate from the file's actual content.
+
+Think of it as a hidden sticky note the kernel staples to a file's inode. For Managed Installer, that note says: *"I was installed by a trusted installer — let me run."*
+
+```
+Normal file on disk:
+  ├── Content         (the bytes — what you open in an app)
+  ├── Standard attrs  (name, size, timestamps, permissions)
+  └── Extended attrs  (arbitrary key=value pairs — hidden metadata)
+                       ↑
+                       THIS is where KERNEL.SMARTLOCKER.ORIGINCLAIM lives
+```
+
+In NTFS, EAs are stored directly inside the **MFT record** (Master File Table entry) for each file. They are:
+
+- **Invisible to normal users** — Windows Explorer does not show them
+- **Kernel-readable only** — accessible via native NT API `NtQueryEaFile`, not standard Win32
+- **Persistent** — survive reboots, stay on the file until it is deleted
+- **Not file content** — reading or executing the file does not touch them
+
+> **Cross-platform note:** EAs are not unique to Windows. Linux and macOS have the same concept — `xattr` on macOS, `getxattr`/`setxattr` on Linux. SELinux uses EAs extensively for security labels — the same pattern as WDAC's MI origin claim.
+
 Extended Attributes (EAs) in NTFS are arbitrary key-value pairs stored directly in a file's inode (the MFT record). They are separate from the file's content and survive the file being read, copied (on same volume), or moved within the same NTFS volume.
 
 ### EA Structure
@@ -1374,7 +1398,7 @@ quadrantChart
 | **ci.dll** | Code Integrity kernel DLL. Evaluates every PE at load time against active WDAC policies. |
 | **CiTool.exe** | Windows 11 22H2+ CLI for policy management: deploy, remove, query active policies. |
 | **ConfigCI** | PowerShell module providing WDAC cmdlets: New-CIPolicy, Set-RuleOption, ConvertFrom-CIPolicy, etc. |
-| **EA (Extended Attribute)** | Key-value metadata stored in an NTFS file inode. Separate from file content. |
+| **EA (Extended Attribute)** | Hidden key-value metadata stored in a file's NTFS inode (MFT record). Invisible to Explorer, readable only via `NtQueryEaFile`. Separate from file content — persists across reboots and file moves on the same volume. Same concept as `xattr` on macOS / Linux. |
 | **FilePublisher rule** | WDAC rule matching publisher cert + filename + version range. Recommended level. |
 | **Hash rule** | WDAC rule matching exact SHA256 of a binary. Breaks on any change. |
 | **ISG** | Intelligent Security Graph. Microsoft cloud reputation service. WDAC Option 14. |
