@@ -61,6 +61,14 @@ const PARTS = [
     desc:  'Automating App Control for Business policy signing and Intune deployment using Azure DevOps Pipelines with Workload Identity Federation (OIDC), Microsoft Graph API, and a PowerShell script with version-based update logic.',
     keywords: 'Azure DevOps WDAC, Intune Graph API, policy automation, workload identity federation, OIDC pipeline, Publish-ACFBPolicy.ps1, policy versioning',
   },
+  {
+    file:  'docs/Part8-AppLocker-Option13-Selective-MSI-Allowlisting.md',
+    label: 'AppLocker, Option 13 & Selective MSI Allowlisting',
+    num:   8,
+    tags:  ['AppLocker','Option 13','Managed Installer','Supplemental Policy','Selective Allowlist'],
+    desc:  'Deep-dive into AppLocker ManagedInstaller rule collection, AppLockerFltr.sys kernel driver, KERNEL.SMARTLOCKER.ORIGINCLAIM EA stamping, and WDAC Option 13. Compares blanket MI trust against selective MSI allowlisting via per-app FilePublisher and Hash supplemental policies — with full end-to-end PoC workflow.',
+    keywords: 'AppLocker managed installer, Option 13, WDAC supplemental policy, FilePublisher rule, KERNEL.SMARTLOCKER.ORIGINCLAIM, AppLockerFltr, selective MSI allowlisting, approved-apps.json, EA tagging, ci.dll evaluation',
+  },
 ];
 
 /* ── State ────────────────────────────────────────────────────── */
