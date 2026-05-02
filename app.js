@@ -69,6 +69,206 @@ const PARTS = [
     desc:  'Deep-dive into AppLocker ManagedInstaller rule collection, AppLockerFltr.sys kernel driver, KERNEL.SMARTLOCKER.ORIGINCLAIM EA stamping, and WDAC Option 13. Compares blanket MI trust against selective MSI allowlisting via per-app FilePublisher and Hash supplemental policies — with full end-to-end PoC workflow.',
     keywords: 'AppLocker managed installer, Option 13, WDAC supplemental policy, FilePublisher rule, KERNEL.SMARTLOCKER.ORIGINCLAIM, AppLockerFltr, selective MSI allowlisting, approved-apps.json, EA tagging, ci.dll evaluation',
   },
+
+  // ── Rule Options Reference (indices 8–29) ────────────────────
+  {
+    file:  'docs/rule-options/Option-00-UMCI.md',
+    label: 'Option 00 — UMCI',
+    num:   'opt-00',
+    category: 'rule-option',
+    tags:  ['UMCI','User Mode CI','Enforcement'],
+    desc:  'User Mode Code Integrity — the master enforcement switch. Controls whether user-space applications are subject to App Control policy evaluation via ci.dll.',
+    keywords: 'UMCI, User Mode Code Integrity, Option 0, WDAC enforcement, user mode policy, ci.dll',
+  },
+  {
+    file:  'docs/rule-options/Option-01-Boot-Menu-Protection.md',
+    label: 'Option 01 — Boot Menu Protection',
+    num:   'opt-01',
+    category: 'rule-option',
+    tags:  ['Boot Protection','UEFI','Secure Boot'],
+    desc:  'Disables the F10 boot options menu when Secure Boot is active, preventing attackers from modifying boot configuration to bypass WDAC policy at startup.',
+    keywords: 'Boot Menu Protection, Option 1, WDAC boot, Secure Boot, F10 boot menu, UEFI boot bypass',
+  },
+  {
+    file:  'docs/rule-options/Option-02-WHQL.md',
+    label: 'Option 02 — Required WHQL Drivers',
+    num:   'opt-02',
+    category: 'rule-option',
+    tags:  ['WHQL','Driver Signing','Kernel Mode','BYOVD'],
+    desc:  'All kernel-mode drivers must be WHQL-signed. Prevents unsigned or self-signed kernel drivers from loading — critical defense against BYOVD (Bring Your Own Vulnerable Driver) attacks.',
+    keywords: 'WHQL Required, Option 2, kernel driver signing, BYOVD, bring your own vulnerable driver, driver certification',
+  },
+  {
+    file:  'docs/rule-options/Option-03-Audit-Mode.md',
+    label: 'Option 03 — Audit Mode',
+    num:   'opt-03',
+    category: 'rule-option',
+    tags:  ['Audit Mode','Event Log','3076','3077'],
+    desc:  'Runs WDAC in audit-only mode — blocked executions are logged to the CodeIntegrity event log (Event IDs 3076/3077) but not actually blocked. Essential for policy development and baselining.',
+    keywords: 'Audit Mode, Option 3, WDAC audit, Event ID 3076, Event ID 3077, CodeIntegrity event log, policy testing',
+  },
+  {
+    file:  'docs/rule-options/Option-04-Flight-Signing.md',
+    label: 'Option 04 — Flight Signing',
+    num:   'opt-04',
+    category: 'rule-option',
+    tags:  ['Flight Signing','Windows Insider','Pre-release'],
+    desc:  'Allows files signed with the Microsoft flight root certificate to run — required on Windows Insider / preview builds. Must be disabled on production systems.',
+    keywords: 'Flight Signing, Option 4, Windows Insider, pre-release certificate, flight root, preview build',
+  },
+  {
+    file:  'docs/rule-options/Option-05-Inherit-Default-Policy.md',
+    label: 'Option 05 — Inherit Default Policy',
+    num:   'opt-05',
+    category: 'rule-option',
+    tags:  ['Policy Inheritance','Default Policy'],
+    desc:  'Controls whether the base policy inherits default built-in allow rules from the Windows base policy. Understanding when inheritance applies vs. when explicit rules are required.',
+    keywords: 'Inherit Default Policy, Option 5, WDAC policy inheritance, base policy inheritance, default Windows policy',
+  },
+  {
+    file:  'docs/rule-options/Option-06-Unsigned-System-Integrity-Policy.md',
+    label: 'Option 06 — Unsigned SI Policy',
+    num:   'opt-06',
+    category: 'rule-option',
+    tags:  ['Unsigned Policy','Policy Signing','Anti-Tamper'],
+    desc:  'When omitted, WDAC enforces that the base policy binary must itself be code-signed — hardening against offline policy tampering. Requires a code-signing certificate for policy deployment.',
+    keywords: 'Unsigned System Integrity Policy, Option 6, policy signing, unsigned WDAC policy, policy tamper protection',
+  },
+  {
+    file:  'docs/rule-options/Option-07-Debug-Policy-Augmented.md',
+    label: 'Option 07 — Debug Policy Augmented',
+    num:   'opt-07',
+    category: 'rule-option',
+    tags:  ['Debug Mode','Kernel Debugging','WinDbg'],
+    desc:  'When not set, enabling kernel debugging does NOT bypass WDAC enforcement. If set, kernel debug mode augments (relaxes) the policy — avoid on production machines.',
+    keywords: 'Debug Policy Augmented, Option 7, kernel debug mode, WinDbg WDAC bypass, debug mode enforcement',
+  },
+  {
+    file:  'docs/rule-options/Option-08-EV-Signers.md',
+    label: 'Option 08 — Required EV Signers',
+    num:   'opt-08',
+    category: 'rule-option',
+    tags:  ['EV Signing','Extended Validation','Certificate'],
+    desc:  'Requires drivers to be signed with an Extended Validation (EV) certificate — stronger than standard code signing. Eliminates low-cost certificates from the trusted driver pool.',
+    keywords: 'Required EV Signers, Option 8, Extended Validation certificate, EV code signing, driver signing requirements',
+  },
+  {
+    file:  'docs/rule-options/Option-09-Advanced-Boot-Options-Menu.md',
+    label: 'Option 09 — Advanced Boot Options Menu',
+    num:   'opt-09',
+    category: 'rule-option',
+    tags:  ['Boot Options','F8 Key','Safe Mode','Boot Bypass'],
+    desc:  'Prevents users from accessing the F8 Advanced Boot Options menu — blocks booting to safe mode or disabling driver signature enforcement to bypass WDAC enforcement.',
+    keywords: 'Advanced Boot Options Menu, Option 9, F8 boot menu, safe mode bypass, disable driver enforcement, boot bypass',
+  },
+  {
+    file:  'docs/rule-options/Option-10-Boot-Audit-on-Failure.md',
+    label: 'Option 10 — Boot Audit on Failure',
+    num:   'opt-10',
+    category: 'rule-option',
+    tags:  ['Boot Audit','Failure Recovery','Resilience'],
+    desc:  'If the WDAC policy fails to load at boot (e.g., corrupted policy file), the system boots to audit mode rather than hard-blocking. Prevents boot-loops from policy errors.',
+    keywords: 'Boot Audit on Failure, Option 10, WDAC boot failure, audit mode fallback, policy load failure, boot-loop prevention',
+  },
+  {
+    file:  'docs/rule-options/Option-11-Script-Enforcement-Disabled.md',
+    label: 'Option 11 — Disable Script Enforcement',
+    num:   'opt-11',
+    category: 'rule-option',
+    tags:  ['Script Enforcement','PowerShell CLM','VBScript','LOLBin'],
+    desc:  'Confusingly named: when NOT set, script enforcement IS active — PowerShell enters Constrained Language Mode and VBScript/JScript are policy-controlled. Critical for LOLBin defences.',
+    keywords: 'Disable Script Enforcement, Option 11, PowerShell Constrained Language Mode, CLM, VBScript enforcement, script policy, WDAC scripts',
+  },
+  {
+    file:  'docs/rule-options/Option-12-Enforce-Store-Applications.md',
+    label: 'Option 12 — Enforce Store Apps',
+    num:   'opt-12',
+    category: 'rule-option',
+    tags:  ['Store Apps','UWP','MSIX','Package Family Name'],
+    desc:  'Extends WDAC enforcement to UWP/Store/MSIX applications. Without explicit Package Family Name rules, enabling this can block the Windows Store and built-in inbox apps.',
+    keywords: 'Enforce Store Applications, Option 12, UWP enforcement, MSIX policy, Windows Store WDAC, Package Family Name',
+  },
+  {
+    file:  'docs/rule-options/Option-13-Managed-Installer.md',
+    label: 'Option 13 — Managed Installer',
+    num:   'opt-13',
+    category: 'rule-option',
+    tags:  ['Managed Installer','AppLocker','EA','AppLockerFltr'],
+    desc:  'Trusts files written by AppLocker-designated Managed Installer processes (SCCM, Intune). Uses KERNEL.SMARTLOCKER.ORIGINCLAIM NTFS Extended Attribute stamped by the AppLockerFltr.sys kernel driver.',
+    keywords: 'Managed Installer, Option 13, AppLocker managed installer, KERNEL.SMARTLOCKER.ORIGINCLAIM, AppLockerFltr, EA tagging, SCCM trust, Intune trust',
+  },
+  {
+    file:  'docs/rule-options/Option-14-ISG-Authorization.md',
+    label: 'Option 14 — ISG Authorization',
+    num:   'opt-14',
+    category: 'rule-option',
+    tags:  ['ISG','Intelligent Security Graph','Cloud Trust','Reputation'],
+    desc:  'Trusts files with high reputation from Microsoft Intelligent Security Graph cloud service. Queries sp.oci.microsoft.com; caches result as NTFS EA (byte[4]=0x01). Requires internet connectivity.',
+    keywords: 'ISG Authorization, Option 14, Intelligent Security Graph, cloud trust, file reputation, sp.oci.microsoft.com, WDAC cloud',
+  },
+  {
+    file:  'docs/rule-options/Option-15-Invalidate-EAs-on-Reboot.md',
+    label: 'Option 15 — Invalidate EAs on Reboot',
+    num:   'opt-15',
+    category: 'rule-option',
+    tags:  ['EA Invalidation','Reboot','ISG Cache','MI Cache'],
+    desc:  'Clears all Managed Installer and ISG Extended Attribute trust cache entries on every reboot, forcing fresh evaluation. Prevents stale trust from persisting after policy changes.',
+    keywords: 'Invalidate EAs on Reboot, Option 15, EA cache flush, MI trust reset, ISG cache invalidation, WDAC reboot policy',
+  },
+  {
+    file:  'docs/rule-options/Option-16-Update-Policy-No-Reboot.md',
+    label: 'Option 16 — Update Policy No Reboot',
+    num:   'opt-16',
+    category: 'rule-option',
+    tags:  ['Hot Reload','Policy Update','CiTool'],
+    desc:  'Allows policy updates to take effect without a reboot via CiTool.exe --update-policy. Enables live policy deployment in managed environments — essential for supplemental policy workflows.',
+    keywords: 'Update Policy No Reboot, Option 16, hot policy reload, CiTool update policy, live WDAC deployment, no reboot policy',
+  },
+  {
+    file:  'docs/rule-options/Option-17-Allow-Supplemental-Policies.md',
+    label: 'Option 17 — Allow Supplemental Policies',
+    num:   'opt-17',
+    category: 'rule-option',
+    tags:  ['Supplemental Policy','Policy Architecture','Multi-Policy'],
+    desc:  'Allows the base policy to accept linked supplemental policies. Supplementals can only ADD trust — never restrict. Enables per-app and per-department trust extensions without modifying the base.',
+    keywords: 'Allow Supplemental Policies, Option 17, supplemental policy, base policy architecture, SupplementsBasePolicyID, WDAC multi-policy',
+  },
+  {
+    file:  'docs/rule-options/Option-18-Disable-Runtime-FilePath-Rule-Protection.md',
+    label: 'Option 18 — Disable FilePath Protection',
+    num:   'opt-18',
+    category: 'rule-option',
+    tags:  ['FilePath Rules','Runtime Protection','Symlink Attack'],
+    desc:  'When not set, FilePath rules are protected at runtime against filesystem redirection. If set, junctions and symlinks can be used to spoof FilePath-based trust — avoid on production.',
+    keywords: 'Disable Runtime FilePath Protection, Option 18, FilePath rule security, symlink bypass, junction attack, WDAC path rules',
+  },
+  {
+    file:  'docs/rule-options/Option-19-Dynamic-Code-Security.md',
+    label: 'Option 19 — Dynamic Code Security',
+    num:   'opt-19',
+    category: 'rule-option',
+    tags:  ['Dynamic Code','JIT','Reflection.Emit','Always Enforced'],
+    desc:  'Extends WDAC enforcement to dynamically generated code: JIT, Reflection.Emit, Assembly.Load(byte[]), Expression.Compile. Always enforced — audit mode does NOT suppress this option.',
+    keywords: 'Dynamic Code Security, Option 19, JIT compilation WDAC, Reflection.Emit policy, Assembly.Load byte array, dynamic code enforcement, always enforced',
+  },
+  {
+    file:  'docs/rule-options/Option-20-Revoked-Expired-As-Unsigned.md',
+    label: 'Option 20 — Revoked/Expired as Unsigned',
+    num:   'opt-20',
+    category: 'rule-option',
+    tags:  ['Revoked Certificates','Expired Certs','PKI','Lifetime Signing EKU'],
+    desc:  'Files signed with revoked or expired certificates are treated as unsigned rather than cert-trusted. Enables PKI governance for enterprise CA rollover; uses Lifetime Signing EKU (OID 1.3.6.1.4.1.311.10.3.13).',
+    keywords: 'Revoked Expired as Unsigned, Option 20, revoked certificate WDAC, expired code signing, Lifetime Signing EKU, OID 1.3.6.1.4.1.311.10.3.13',
+  },
+  {
+    file:  'docs/rule-options/Option-DevMode-Dynamic-Code-Trust.md',
+    label: 'Developer Mode — Dynamic Code Trust',
+    num:   'opt-dev',
+    category: 'rule-option',
+    tags:  ['Developer Mode','Dynamic Code Trust','MDM CSP'],
+    desc:  'Trusts dynamically generated code when Windows Developer Mode is active. Requires BOTH this policy option AND Developer Mode system state. Controlled via AllowDeveloperUnlock MDM CSP.',
+    keywords: 'Developer Mode Dynamic Code Trust, WDAC developer mode, AllowDeveloperUnlock CSP, dynamic code dev gate, Option 19 interaction',
+  },
 ];
 
 /* ── State ────────────────────────────────────────────────────── */
@@ -98,9 +298,12 @@ marked.use({ gfm: true, breaks: false });
 
 /* ── Dynamic SEO — update meta tags on every part switch ─────── */
 function updateSEO(part) {
-  const partUrl  = `${BASE_URL}#part${part.num}`;
-  const title    = `Part ${part.num}: ${part.label} | ${SITE_NAME} — Anubhav Gain`;
-  const desc     = part.desc;
+  const isOpt   = part.category === 'rule-option';
+  const partUrl = isOpt ? `${BASE_URL}#${part.num}` : `${BASE_URL}#part${part.num}`;
+  const title   = isOpt
+    ? `${part.label} | WDAC Rule Options — Anubhav Gain`
+    : `Part ${part.num}: ${part.label} | ${SITE_NAME} — Anubhav Gain`;
+  const desc    = part.desc;
 
   // <title>
   document.title = title;
@@ -129,9 +332,9 @@ function updateSEO(part) {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: SITE_NAME,
-          item: BASE_URL },
-        { '@type': 'ListItem', position: 2, name: `Part ${part.num}: ${part.label}`,
+        { '@type': 'ListItem', position: 1, name: SITE_NAME, item: BASE_URL },
+        { '@type': 'ListItem', position: 2,
+          name: isOpt ? part.label : `Part ${part.num}: ${part.label}`,
           item: partUrl },
       ],
     });
@@ -151,7 +354,7 @@ function updateSEO(part) {
   document.getElementById('progress-bar')?.setAttribute('aria-valuenow', '0');
 
   // Push browser history state (enables back/forward between parts)
-  history.pushState({ part: part.num }, title, `#part${part.num}`);
+  history.pushState({ part: part.num }, title, isOpt ? `#${part.num}` : `#part${part.num}`);
 }
 
 /* Helper: find or create a <meta> and set its content */
@@ -298,11 +501,18 @@ function calcReadTime(text) {
 /* ── Part header card ─────────────────────────────────────────── */
 function buildHeaderCard(part) {
   const tags = part.tags.map(t => `<span class="phc-tag">${t}</span>`).join('');
+  const isOpt = part.category === 'rule-option';
+  const numDisplay = isOpt
+    ? part.num.replace('opt-', '').replace('dev', 'Dev').toUpperCase()
+    : String(part.num).padStart(2, '0');
+  const seriesLabel = isOpt
+    ? 'WDAC Policy Rule Options — Reference'
+    : 'Mastering App Control for Business';
   return `
-<div class="part-header-card">
-  <div class="phc-num">${String(part.num).padStart(2, '0')}</div>
+<div class="part-header-card${isOpt ? ' phc-opt' : ''}">
+  <div class="phc-num">${numDisplay}</div>
   <div class="phc-meta">
-    <div class="phc-label">Mastering App Control for Business</div>
+    <div class="phc-label">${seriesLabel}</div>
     <div class="phc-title">${part.label}</div>
     <div class="phc-tags">${tags}</div>
   </div>
@@ -381,10 +591,15 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
-/* ── Dots ─────────────────────────────────────────────────────── */
+/* ── Dots — only for main parts (not rule options) ────────────── */
+const dotPartMap = []; // maps dot-index → PARTS-index
+
 function buildDots() {
   partDots.innerHTML = '';
+  dotPartMap.length  = 0;
   PARTS.forEach((p, i) => {
+    if (p.category === 'rule-option') return;
+    dotPartMap.push(i);
     const d = document.createElement('div');
     d.className   = 'dot' + (i === currentPart ? ' active' : '');
     d.title       = p.label;
@@ -397,7 +612,9 @@ function buildDots() {
   });
 }
 function updateDots() {
-  partDots.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentPart));
+  partDots.querySelectorAll('.dot').forEach((d, di) => {
+    d.classList.toggle('active', dotPartMap[di] === currentPart);
+  });
 }
 
 /* ── Sidebar nav items ───────────────────────────────────────── */
@@ -423,7 +640,10 @@ async function loadPart(index) {
   updateNav();
   updateDots();
   updateSEO(part);
-  bcPart.textContent = `Part ${part.num}`;
+  const isOpt2 = part.category === 'rule-option';
+  bcPart.textContent = isOpt2
+    ? `Option ${part.num.replace('opt-', '').replace('dev', 'Dev').toUpperCase()}`
+    : `Part ${part.num}`;
   prevBtn.disabled   = index === 0;
   nextBtn.disabled   = index === PARTS.length - 1;
 
@@ -567,10 +787,17 @@ window.addEventListener('popstate', e => {
 
   buildDots();
 
-  // Deep-link: load part from URL hash (#part3 etc.)
-  const hash  = window.location.hash;
-  const match = hash.match(/#part(\d)/);
-  const startIdx = match ? Math.max(0, Math.min(PARTS.length - 1, parseInt(match[1]) - 1)) : 0;
+  // Deep-link: load part from URL hash (#part3 for main parts, #opt-13 for rule options)
+  const hash      = window.location.hash;
+  const partMatch = hash.match(/#part(\d+)/);
+  const optMatch  = hash.match(/#(opt-[\w]+)/);
+  let startIdx    = 0;
+  if (partMatch) {
+    startIdx = Math.max(0, Math.min(PARTS.length - 1, parseInt(partMatch[1]) - 1));
+  } else if (optMatch) {
+    const found = PARTS.findIndex(p => p.num === optMatch[1]);
+    if (found >= 0) startIdx = found;
+  }
 
   loadPart(startIdx);
 })();

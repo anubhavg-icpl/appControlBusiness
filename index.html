@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- ── Primary SEO ────────────────────────────────────────────── -->
-  <title>Mastering App Control for Business | Complete 8-Part Guide — Anubhav Gain</title>
-  <meta name="description" content="Complete 8-part corporate reference guide to Microsoft App Control for Business (WDAC). Covers policy templates, rule options, AppID tagging, managed installer, Option 13, selective MSI allowlisting, signed policies, and Azure DevOps automation. Compiled by Anubhav Gain." />
+  <title>Mastering App Control for Business | 8-Part Guide + 22 Rule Option References — Anubhav Gain</title>
+  <meta name="description" content="Complete corporate reference for Microsoft App Control for Business (WDAC): 8-part guide covering policy templates, rule options, AppID tagging, managed installer, Option 13, selective MSI allowlisting, signed policies, and Azure DevOps automation — plus a full 22-page individual reference for every WDAC policy rule option (00–20 + Developer Mode). By Anubhav Gain." />
   <meta name="keywords" content="App Control for Business, WDAC, Windows Defender Application Control, Microsoft Intune, endpoint security, application allowlisting, policy templates, managed installer, AppID tagging, signed policies, Azure DevOps, PowerShell, endpoint management, Anubhav Gain" />
   <meta name="author" content="Anubhav Gain" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
@@ -16,8 +16,8 @@
   <!-- ── Open Graph ─────────────────────────────────────────────── -->
   <meta property="og:type"        content="article" />
   <meta property="og:site_name"   content="App Control for Business Reference" />
-  <meta property="og:title"       content="Mastering App Control for Business | Complete 7-Part Guide" id="og-title" />
-  <meta property="og:description" content="Complete 7-part corporate reference guide to Microsoft App Control for Business (WDAC) — policy templates, signed policies, Azure DevOps automation, and more." id="og-desc" />
+  <meta property="og:title"       content="Mastering App Control for Business | 8-Part Guide + Rule Options Reference" id="og-title" />
+  <meta property="og:description" content="Complete corporate reference for WDAC/ACfB: 8-part guide + 22 individual rule option references. Policy templates, managed installer, Option 13, selective MSI allowlisting, signed policies, Azure DevOps. By Anubhav Gain." id="og-desc" />
   <meta property="og:url"         content="https://anubhavg-icpl.github.io/appControlBusiness/" id="og-url" />
   <meta property="og:locale"      content="en_US" />
   <meta property="article:author" content="Anubhav Gain" />
@@ -31,8 +31,8 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:site"        content="@anubhavg" />
   <meta name="twitter:creator"     content="@anubhavg" />
-  <meta name="twitter:title"       content="Mastering App Control for Business | 7-Part Guide" id="tw-title" />
-  <meta name="twitter:description" content="Complete corporate reference for WDAC/ACfB — policy design, signed policies, Azure DevOps automation. By Anubhav Gain." id="tw-desc" />
+  <meta name="twitter:title"       content="Mastering App Control for Business | 8-Part Guide + Rule Options" id="tw-title" />
+  <meta name="twitter:description" content="Complete corporate reference for WDAC/ACfB: 8-part guide + 22 rule option deep-dives. Policy design, managed installer, signed policies, Azure DevOps. By Anubhav Gain." id="tw-desc" />
 
   <!-- ── JSON-LD Structured Data ───────────────────────────────── -->
   <script type="application/ld+json">
@@ -40,7 +40,7 @@
     "@context": "https://schema.org",
     "@type": "Course",
     "name": "Mastering App Control for Business",
-    "description": "A complete 7-part corporate reference series on Microsoft App Control for Business (WDAC), covering introduction, policy templates, rule options, AppID tagging, managed installer, policy creation for lightly and fully managed devices, signing policies, and Azure DevOps pipeline automation.",
+    "description": "A complete corporate reference for Microsoft App Control for Business (WDAC): an 8-part guide covering introduction, policy templates, rule options, AppID tagging, managed installer, policy creation for lightly and fully managed devices, signing policies, and Azure DevOps automation — plus 22 individual deep-dive references for every WDAC policy rule option (Options 00–20 and Developer Mode Dynamic Code Trust).",
     "url": "https://anubhavg-icpl.github.io/appControlBusiness/",
     "author": {
       "@type": "Person",
@@ -102,6 +102,18 @@
         "name": "Part 7: Maintaining Policies with Azure DevOps",
         "courseMode": "online",
         "url": "https://anubhavg-icpl.github.io/appControlBusiness/#part7"
+      },
+      {
+        "@type": "CourseInstance",
+        "name": "Part 8: AppLocker, Option 13 & Selective MSI Allowlisting",
+        "courseMode": "online",
+        "url": "https://anubhavg-icpl.github.io/appControlBusiness/#part8"
+      },
+      {
+        "@type": "CourseInstance",
+        "name": "Rule Options Reference: Options 00–20 + Developer Mode (22 deep-dive pages)",
+        "courseMode": "online",
+        "url": "https://anubhavg-icpl.github.io/appControlBusiness/#opt-13"
       }
     ]
   }
@@ -207,13 +219,116 @@
           <span class="part-badge" aria-hidden="true">08</span>
           <span class="part-label">AppLocker, Option 13 &amp; Selective MSI Allowlisting</span>
         </li>
+
+        <!-- ── Rule Options Reference (collapsible dropdown) ── -->
+        <li class="nav-section" role="listitem">
+          <details class="nav-details">
+            <summary class="nav-section-toggle" aria-label="Rule Options Reference — expand to show all 22 option pages">
+              <span class="nav-section-icon" aria-hidden="true">⚙</span>
+              <span class="nav-section-label">Rule Options Reference</span>
+              <span class="nav-section-count" aria-hidden="true">22</span>
+              <span class="nav-section-arrow" aria-hidden="true">›</span>
+            </summary>
+            <ul class="nav-section-list" role="list">
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 00: User Mode Code Integrity (UMCI)">
+                <span class="part-badge opt-badge" aria-hidden="true">R00</span>
+                <span class="part-label">UMCI (User Mode CI)</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 01: Boot Menu Protection">
+                <span class="part-badge opt-badge" aria-hidden="true">R01</span>
+                <span class="part-label">Boot Menu Protection</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 02: Required WHQL Drivers">
+                <span class="part-badge opt-badge" aria-hidden="true">R02</span>
+                <span class="part-label">Required WHQL Drivers</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 03: Audit Mode">
+                <span class="part-badge opt-badge" aria-hidden="true">R03</span>
+                <span class="part-label">Audit Mode</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 04: Flight Signing">
+                <span class="part-badge opt-badge" aria-hidden="true">R04</span>
+                <span class="part-label">Flight Signing</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 05: Inherit Default Policy">
+                <span class="part-badge opt-badge" aria-hidden="true">R05</span>
+                <span class="part-label">Inherit Default Policy</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 06: Unsigned System Integrity Policy">
+                <span class="part-badge opt-badge" aria-hidden="true">R06</span>
+                <span class="part-label">Unsigned SI Policy</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 07: Debug Policy Augmented">
+                <span class="part-badge opt-badge" aria-hidden="true">R07</span>
+                <span class="part-label">Debug Policy Augmented</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 08: Required EV Signers">
+                <span class="part-badge opt-badge" aria-hidden="true">R08</span>
+                <span class="part-label">Required EV Signers</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 09: Advanced Boot Options Menu">
+                <span class="part-badge opt-badge" aria-hidden="true">R09</span>
+                <span class="part-label">Advanced Boot Options</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 10: Boot Audit on Failure">
+                <span class="part-badge opt-badge" aria-hidden="true">R10</span>
+                <span class="part-label">Boot Audit on Failure</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 11: Disable Script Enforcement">
+                <span class="part-badge opt-badge" aria-hidden="true">R11</span>
+                <span class="part-label">Disable Script Enforcement</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 12: Enforce Store Applications">
+                <span class="part-badge opt-badge" aria-hidden="true">R12</span>
+                <span class="part-label">Enforce Store Apps</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 13: Managed Installer">
+                <span class="part-badge opt-badge" aria-hidden="true">R13</span>
+                <span class="part-label">Managed Installer</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 14: ISG Authorization">
+                <span class="part-badge opt-badge" aria-hidden="true">R14</span>
+                <span class="part-label">ISG Authorization</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 15: Invalidate EAs on Reboot">
+                <span class="part-badge opt-badge" aria-hidden="true">R15</span>
+                <span class="part-label">Invalidate EAs on Reboot</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 16: Update Policy No Reboot">
+                <span class="part-badge opt-badge" aria-hidden="true">R16</span>
+                <span class="part-label">Update Policy No Reboot</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 17: Allow Supplemental Policies">
+                <span class="part-badge opt-badge" aria-hidden="true">R17</span>
+                <span class="part-label">Allow Supplemental Policies</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 18: Disable Runtime FilePath Protection">
+                <span class="part-badge opt-badge" aria-hidden="true">R18</span>
+                <span class="part-label">Disable FilePath Protection</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 19: Dynamic Code Security">
+                <span class="part-badge opt-badge" aria-hidden="true">R19</span>
+                <span class="part-label">Dynamic Code Security</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Option 20: Revoked/Expired as Unsigned">
+                <span class="part-badge opt-badge" aria-hidden="true">R20</span>
+                <span class="part-label">Revoked/Expired as Unsigned</span>
+              </li>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="Developer Mode: Dynamic Code Trust">
+                <span class="part-badge opt-badge" aria-hidden="true">Dev</span>
+                <span class="part-label">Developer Mode — Dyn. Code</span>
+              </li>
+            </ul>
+          </details>
+        </li>
+
       </ul>
     </nav>
 
     <div id="sidebar-footer">
-      Source: <a href="https://ctrlshiftenter.cloud" target="_blank" rel="noopener noreferrer"
-        style="color:inherit;text-decoration:underline">ctrlshiftenter.cloud</a>
-      &nbsp;·&nbsp; Patrick Seltmann
+      By <strong style="color:var(--text-muted)">Anubhav Gain</strong>
+      &nbsp;·&nbsp; <a href="https://github.com/anubhavg-icpl" target="_blank" rel="noopener noreferrer"
+        style="color:inherit;text-decoration:underline">github.com/anubhavg-icpl</a>
     </div>
   </aside>
 
@@ -284,7 +399,7 @@
       ul { line-height: 2; }
     </style>
     <h1>Mastering App Control for Business</h1>
-    <p>An 8-part corporate reference guide by <strong>Anubhav Gain</strong>.</p>
+    <p>An 8-part corporate reference guide + 22 rule option deep-dives by <strong>Anubhav Gain</strong>.</p>
     <p>JavaScript is required to view this site interactively.
        The full Markdown source files are available below:</p>
     <ul>
@@ -296,6 +411,31 @@
       <li><a href="docs/Part6-Sign-Apply-Remove-Signed-Policies.md">Part 6 — Sign, Apply &amp; Remove Signed Policies</a></li>
       <li><a href="docs/Part7-Maintaining-Policies-AzureDevOps-PowerShell.md">Part 7 — Maintaining Policies with Azure DevOps</a></li>
       <li><a href="docs/Part8-AppLocker-Option13-Selective-MSI-Allowlisting.md">Part 8 — AppLocker, Option 13 &amp; Selective MSI Allowlisting</a></li>
+    </ul>
+    <h2>Rule Options Reference</h2>
+    <ul>
+      <li><a href="docs/rule-options/Option-00-UMCI.md">Option 00 — UMCI (User Mode Code Integrity)</a></li>
+      <li><a href="docs/rule-options/Option-01-Boot-Menu-Protection.md">Option 01 — Boot Menu Protection</a></li>
+      <li><a href="docs/rule-options/Option-02-WHQL.md">Option 02 — Required WHQL Drivers</a></li>
+      <li><a href="docs/rule-options/Option-03-Audit-Mode.md">Option 03 — Audit Mode</a></li>
+      <li><a href="docs/rule-options/Option-04-Flight-Signing.md">Option 04 — Flight Signing</a></li>
+      <li><a href="docs/rule-options/Option-05-Inherit-Default-Policy.md">Option 05 — Inherit Default Policy</a></li>
+      <li><a href="docs/rule-options/Option-06-Unsigned-System-Integrity-Policy.md">Option 06 — Unsigned SI Policy</a></li>
+      <li><a href="docs/rule-options/Option-07-Debug-Policy-Augmented.md">Option 07 — Debug Policy Augmented</a></li>
+      <li><a href="docs/rule-options/Option-08-EV-Signers.md">Option 08 — Required EV Signers</a></li>
+      <li><a href="docs/rule-options/Option-09-Advanced-Boot-Options-Menu.md">Option 09 — Advanced Boot Options Menu</a></li>
+      <li><a href="docs/rule-options/Option-10-Boot-Audit-on-Failure.md">Option 10 — Boot Audit on Failure</a></li>
+      <li><a href="docs/rule-options/Option-11-Script-Enforcement-Disabled.md">Option 11 — Disable Script Enforcement</a></li>
+      <li><a href="docs/rule-options/Option-12-Enforce-Store-Applications.md">Option 12 — Enforce Store Apps</a></li>
+      <li><a href="docs/rule-options/Option-13-Managed-Installer.md">Option 13 — Managed Installer</a></li>
+      <li><a href="docs/rule-options/Option-14-ISG-Authorization.md">Option 14 — ISG Authorization</a></li>
+      <li><a href="docs/rule-options/Option-15-Invalidate-EAs-on-Reboot.md">Option 15 — Invalidate EAs on Reboot</a></li>
+      <li><a href="docs/rule-options/Option-16-Update-Policy-No-Reboot.md">Option 16 — Update Policy No Reboot</a></li>
+      <li><a href="docs/rule-options/Option-17-Allow-Supplemental-Policies.md">Option 17 — Allow Supplemental Policies</a></li>
+      <li><a href="docs/rule-options/Option-18-Disable-Runtime-FilePath-Rule-Protection.md">Option 18 — Disable FilePath Rule Protection</a></li>
+      <li><a href="docs/rule-options/Option-19-Dynamic-Code-Security.md">Option 19 — Dynamic Code Security</a></li>
+      <li><a href="docs/rule-options/Option-20-Revoked-Expired-As-Unsigned.md">Option 20 — Revoked/Expired as Unsigned</a></li>
+      <li><a href="docs/rule-options/Option-DevMode-Dynamic-Code-Trust.md">Developer Mode — Dynamic Code Trust</a></li>
     </ul>
   </noscript>
 
