@@ -390,19 +390,26 @@
           </details>
         </li>
 
-        <!-- ── Notes & Tips dropdown ── -->
-        <li class="nav-section" role="listitem">
-          <details class="nav-details">
-            <summary class="nav-section-toggle nav-section-toggle--notes" aria-label="Notes and Tips — App Control reference">
-              <span class="nav-section-icon" aria-hidden="true">📝</span>
+        <!-- rainbow divider before important section -->
+        <hr class="nav-rainbow-divider" aria-hidden="true" />
+
+        <!-- ── Notes & Tips — IMPORTANT ── -->
+        <li class="nav-section nav-section--important" role="listitem">
+          <div class="nav-important-banner" aria-label="Important reference — must read">
+            <span class="nav-important-icon" aria-hidden="true">⚠</span>
+            <span class="nav-important-text">Must-Read Reference</span>
+            <span class="nav-important-chip" aria-hidden="true">IMPORTANT</span>
+          </div>
+          <details class="nav-details" open>
+            <summary class="nav-section-toggle nav-section-toggle--notes nav-section-toggle--important" aria-label="Notes and Tips — App Control reference — highly important">
+              <span class="nav-section-icon" aria-hidden="true">📋</span>
               <span class="nav-section-label">Notes &amp; Tips</span>
-              <span class="nav-section-count" aria-hidden="true">1</span>
               <span class="nav-section-arrow" aria-hidden="true">›</span>
             </summary>
             <ul class="nav-section-list" role="list">
-              <li class="nav-item" role="listitem" tabindex="0" aria-label="App Control Notes and Tips Reference">
-                <span class="part-badge notes-badge" aria-hidden="true">NT</span>
-                <span class="part-label">Notes &amp; Tips — App Control</span>
+              <li class="nav-item" role="listitem" tabindex="0" aria-label="App Control Notes and Tips Reference — highly important">
+                <span class="part-badge notes-badge notes-badge--important" aria-hidden="true">📌</span>
+                <span class="part-label notes-label--important">Notes &amp; Tips — App Control</span>
               </li>
             </ul>
           </details>

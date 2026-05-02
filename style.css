@@ -409,6 +409,92 @@ body {
 }
 .phc-frl .phc-label { color: #86efac; }
 
+/* ── Notes & Tips — IMPORTANT highlight ─────────────────────── */
+@keyframes notes-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(253, 230, 138, 0); }
+  50%       { box-shadow: 0 0 0 4px rgba(253, 230, 138, 0.18); }
+}
+@keyframes important-glow {
+  0%, 100% { border-color: #7a6a00; }
+  50%       { border-color: #fde68a; }
+}
+
+.nav-section--important {
+  border-radius: var(--radius);
+  border: 1px solid #7a6a00;
+  padding: 4px;
+  margin-top: 6px;
+  background: #0e0c00;
+  animation: important-glow 3s ease-in-out infinite;
+}
+
+.nav-important-banner {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px 3px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fde68a;
+}
+.nav-important-icon { font-size: 12px; flex-shrink: 0; }
+.nav-important-text { flex: 1; letter-spacing: .3px; text-transform: uppercase; }
+.nav-important-chip {
+  font-size: 8px;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  letter-spacing: .5px;
+  background: #7a6a00;
+  color: #fde68a;
+  border-radius: 4px;
+  padding: 1px 5px;
+  flex-shrink: 0;
+}
+
+.nav-section-toggle--important {
+  color: #fde68a !important;
+  font-weight: 800;
+}
+.nav-section-toggle--important:hover,
+.nav-details[open] .nav-section-toggle--important {
+  background: #1a1a0d !important;
+  border-color: #7a6a00 !important;
+  color: #fde68a !important;
+}
+
+.notes-badge--important {
+  animation: notes-pulse 2s ease-in-out infinite;
+  background: #1a1a0d !important;
+  color: #fde68a !important;
+  border-color: #7a6a00 !important;
+  font-size: 13px !important;
+  min-width: 26px;
+}
+.nav-item.active .notes-badge--important {
+  background: #3a3000 !important;
+  animation: notes-pulse 1.2s ease-in-out infinite;
+}
+
+.notes-label--important {
+  color: #fde68a !important;
+  font-weight: 700 !important;
+}
+
+/* Thin rainbow divider (used between sections) */
+.nav-rainbow-divider {
+  height: 2px;
+  margin: 6px 8px;
+  border: none;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    #f87171, #fb923c, #fbbf24, #a3e635,
+    #34d399, #22d3ee, #60a5fa, #a78bfa, #f472b6
+  );
+  opacity: .5;
+  flex-shrink: 0;
+}
+
 #sidebar-footer {
   padding: 10px 16px;
   font-size: 10px;
