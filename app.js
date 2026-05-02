@@ -269,6 +269,127 @@ const PARTS = [
     desc:  'Trusts dynamically generated code when Windows Developer Mode is active. Requires BOTH this policy option AND Developer Mode system state. Controlled via AllowDeveloperUnlock MDM CSP.',
     keywords: 'Developer Mode Dynamic Code Trust, WDAC developer mode, AllowDeveloperUnlock CSP, dynamic code dev gate, Option 19 interaction',
   },
+
+  // ── File Rule Levels Reference (indices 30–41) ───────────────
+  {
+    file:  'docs/file-rule-levels/Level-Hash.md',
+    label: 'Hash Rule Level',
+    num:   'frl-hash',
+    category: 'file-rule-level',
+    tags:  ['Hash','AuthentiHash','SHA256','Most Specific'],
+    desc:  'Most specific rule level: individually computed Authenticode/PE image hash for each binary. Requires policy update on any binary change including minor version bumps. Primary fallback for unsigned files.',
+    keywords: 'Hash rule level, AuthentiHash, SHA256 hash, WDAC hash rule, PE image hash, unsigned file policy',
+  },
+  {
+    file:  'docs/file-rule-levels/Level-FileName.md',
+    label: 'FileName Rule Level',
+    num:   'frl-filename',
+    category: 'file-rule-level',
+    tags:  ['FileName','OriginalFileName','VERSIONINFO'],
+    desc:  'Trusts files based on OriginalFileName from PE VERSIONINFO resource header. No publisher check — any file with the matching name passes. Configurable via -SpecificFileNameLevel (ProductName, InternalName, etc.).',
+    keywords: 'FileName rule level, OriginalFileName, VERSIONINFO, -SpecificFileNameLevel, ProductName, WDAC file name',
+  },
+  {
+    file:  'docs/file-rule-levels/Level-FilePath.md',
+    label: 'FilePath Rule Level',
+    num:   'frl-filepath',
+    category: 'file-rule-level',
+    tags:  ['FilePath','User Mode Only','Windows 10 1903+','Option 18'],
+    desc:  'Windows 10 1903+ user-mode only: allows binaries from specific filesystem paths. Wildcards supported. Vulnerable to symlink/junction attacks unless Option 18 (Disable Runtime FilePath Rule Protection) is NOT set.',
+    keywords: 'FilePath rule level, path-based trust, WDAC FilePath, symlink attack, Option 18, admin-writable path, UNC path',
+  },
+  {
+    file:  'docs/file-rule-levels/Level-SignedVersion.md',
+    label: 'SignedVersion Rule Level',
+    num:   'frl-signedversion',
+    category: 'file-rule-level',
+    tags:  ['SignedVersion','MinimumFileVersion','Publisher + Version'],
+    desc:  'Combines Publisher (PCA cert + leaf CN) with a minimum version floor. Any signed file from the specified publisher at or above the minimum version passes — no filename binding.',
+    keywords: 'SignedVersion rule level, MinimumFileVersion, WDAC version floor, publisher version, signed version rule',
+  },
+  {
+    file:  'docs/file-rule-levels/Level-Publisher.md',
+    label: 'Publisher Rule Level',
+    num:   'frl-publisher',
+    category: 'file-rule-level',
+    tags:  ['Publisher','PCA Certificate','Leaf CN','Certificate'],
+    desc:  'Combines the PCA certificate (typically one below root) with the CN of the leaf signing certificate. Trusts all files from a specific publisher — any version, any filename. Common for OEM driver suites.',
+    keywords: 'Publisher rule level, PCA certificate, leaf CN, WDAC publisher trust, code signing publisher, intermediate cert',
+  },
+  {
+    file:  'docs/file-rule-levels/Level-FilePublisher.md',
+    label: 'FilePublisher Rule Level',
+    num:   'frl-filepublisher',
+    category: 'file-rule-level',
+    tags:  ['FilePublisher','Most Used','FileName + Publisher + Version'],
+    desc:  'Most widely used production rule level: triple binding of OriginalFileName + Publisher (PCA cert + leaf CN) + MinimumFileVersion. Survives app version updates; breaks only if publisher cert changes.',
+    keywords: 'FilePublisher rule level, FileAttrib, WDAC FilePublisher, OriginalFileName publisher version, triple binding, -SpecificFileNameLevel',
+  },
+  {
+    file:  'docs/file-rule-levels/Level-LeafCertificate.md',
+    label: 'LeafCertificate Rule Level',
+    num:   'frl-leafcert',
+    category: 'file-rule-level',
+    tags:  ['LeafCertificate','End-Entity Cert','Short Validity'],
+    desc:  'Trusts files at the individual leaf (end-entity) signing certificate level. More specific than Publisher; no CA scope. Leaf certs typically expire in 1-3 years — requires policy update on cert renewal.',
+    keywords: 'LeafCertificate rule level, end-entity certificate, WDAC leaf cert, cert renewal policy update, vendor certificate',
+  },
+  {
+    file:  'docs/file-rule-levels/Level-PcaCertificate.md',
+    label: 'PcaCertificate Rule Level',
+    num:   'frl-pcacert',
+    category: 'file-rule-level',
+    tags:  ['PcaCertificate','Intermediate CA','Broadest Cert Level'],
+    desc:  'Trusts files based on the highest available certificate in the chain (typically one below root). No leaf CN filter. Broader than Publisher — trusts everything signed by that intermediate CA, including other vendors.',
+    keywords: 'PcaCertificate rule level, intermediate CA certificate, WDAC PCA cert, broadest cert trust, DigiCert intermediate',
+  },
+  {
+    file:  'docs/file-rule-levels/Level-RootCertificate.md',
+    label: 'RootCertificate Rule Level',
+    num:   'frl-rootcert',
+    category: 'file-rule-level',
+    tags:  ['RootCertificate','NOT SUPPORTED','Unsupported'],
+    desc:  'NOT SUPPORTED in App Control for Business. Trusting a root certificate would allow everything signed by that CA and all intermediates beneath it — catastrophically broad trust surface. Use PcaCertificate instead.',
+    keywords: 'RootCertificate rule level, not supported, WDAC root cert, root CA trust, unsupported rule level',
+  },
+  {
+    file:  'docs/file-rule-levels/Level-WHQL.md',
+    label: 'WHQL Rule Level',
+    num:   'frl-whql',
+    category: 'file-rule-level',
+    tags:  ['WHQL','Kernel Mode','Hardware Lab','EKU'],
+    desc:  'Trusts binaries submitted to Microsoft and signed by the Windows Hardware Quality Lab. Primarily for kernel drivers. Checks for WHQL EKU (OID 1.3.6.1.4.1.311.10.3.5). Does not prevent BYOVD alone.',
+    keywords: 'WHQL rule level, Windows Hardware Quality Lab, kernel driver trust, WHQL EKU, BYOVD, hardware certification',
+  },
+  {
+    file:  'docs/file-rule-levels/Level-WHQLPublisher.md',
+    label: 'WHQLPublisher Rule Level',
+    num:   'frl-whqlpublisher',
+    category: 'file-rule-level',
+    tags:  ['WHQLPublisher','WHQL + Vendor CN','Kernel Mode'],
+    desc:  'Combines WHQL EKU check with the CN of the leaf certificate — trusts WHQL drivers from a specific hardware vendor only. More specific than WHQL alone. Use for OEM-specific kernel driver allowlisting.',
+    keywords: 'WHQLPublisher rule level, WHQL vendor CN, kernel driver publisher, OEM driver trust, WHQL leaf certificate',
+  },
+  {
+    file:  'docs/file-rule-levels/Level-WHQLFilePublisher.md',
+    label: 'WHQLFilePublisher Rule Level',
+    num:   'frl-whqlfilepublisher',
+    category: 'file-rule-level',
+    tags:  ['WHQLFilePublisher','Most Specific WHQL','Triple WHQL Binding'],
+    desc:  'Most specific WHQL level: WHQL EKU + vendor leaf CN + OriginalFileName + MinimumFileVersion. Primary kernel driver allowlisting approach in production policies. Auto-passes driver updates with same filename and cert.',
+    keywords: 'WHQLFilePublisher rule level, WHQL FilePublisher, kernel driver specific, triple WHQL binding, driver version floor',
+  },
+
+  // ── Notes & Tips Reference (index 42) ───────────────────────
+  {
+    file:  'docs/notes/Notes-Tips-AppControl.md',
+    label: 'Notes & Tips — App Control',
+    num:   'notes-tips',
+    category: 'notes',
+    tags:  ['Tips','Best Practices','Gotchas','Reference'],
+    desc:  'Comprehensive reference covering supplemental policy considerations, deny rule XML anatomy, rule precedence, policy merging, allow-list architecture, Microsoft recommended block rules, certificate chains, double-signed files, unsafe practices, and advanced WDAC gotchas.',
+    keywords: 'WDAC notes tips best practices, supplemental policy, deny rules, rule precedence, policy merging, allow-list, block rules, certificate chains, advanced WDAC',
+  },
 ];
 
 /* ── State ────────────────────────────────────────────────────── */
@@ -502,14 +623,20 @@ function calcReadTime(text) {
 function buildHeaderCard(part) {
   const tags = part.tags.map(t => `<span class="phc-tag">${t}</span>`).join('');
   const isOpt = part.category === 'rule-option';
+  const isFrlCard  = part.category === 'file-rule-level';
+  const isNoteCard = part.category === 'notes';
   const numDisplay = isOpt
     ? part.num.replace('opt-', '').replace('dev', 'Dev').toUpperCase()
+    : isFrlCard ? part.num.replace('frl-', '').toUpperCase()
+    : isNoteCard ? 'NT'
     : String(part.num).padStart(2, '0');
-  const seriesLabel = isOpt
-    ? 'WDAC Policy Rule Options — Reference'
+  const seriesLabel = isOpt ? 'WDAC Policy Rule Options — Reference'
+    : isFrlCard ? 'WDAC File Rule Levels — Reference'
+    : isNoteCard ? 'App Control — Notes & Tips'
     : 'Mastering App Control for Business';
+  const cardClass = isOpt ? ' phc-opt' : isFrlCard ? ' phc-frl' : isNoteCard ? ' phc-opt' : '';
   return `
-<div class="part-header-card${isOpt ? ' phc-opt' : ''}">
+<div class="part-header-card${cardClass}">
   <div class="phc-num">${numDisplay}</div>
   <div class="phc-meta">
     <div class="phc-label">${seriesLabel}</div>
@@ -641,8 +768,12 @@ async function loadPart(index) {
   updateDots();
   updateSEO(part);
   const isOpt2 = part.category === 'rule-option';
+  const isFrl  = part.category === 'file-rule-level';
+  const isNote = part.category === 'notes';
   bcPart.textContent = isOpt2
     ? `Option ${part.num.replace('opt-', '').replace('dev', 'Dev').toUpperCase()}`
+    : isFrl ? `Level: ${part.num.replace('frl-', '').toUpperCase()}`
+    : isNote ? 'Notes & Tips'
     : `Part ${part.num}`;
   prevBtn.disabled   = index === 0;
   nextBtn.disabled   = index === PARTS.length - 1;
