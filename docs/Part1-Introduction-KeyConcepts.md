@@ -415,3 +415,13 @@ sequenceDiagram
 
 *Document compiled by Anubhav from source material published at ctrlshiftenter.cloud.*  
 *Original author: Patrick Seltmann. For organizational reference use.*
+
+---
+
+## Field Notes (Handwritten)
+
+A page from the engineering field notebook, sketched while working through the core mindset shift behind App Control for Business.
+
+![Field notes — why application control matters: reactive AV vs earned trust, blocklist vs allowlist](references/handwritten/hw-01-why-appcontrol.webp)
+
+*The note captures the two ideas everything else in this series builds on: traditional antivirus is **reactive** (it detects after execution, when damage may already be done), while App Control flips the model to **trust must be earned**. The hand-drawn balance scale weighs blocklisting ("chase the bad") against allowlisting ("define the good") — with the allowlist side clearly heavier. The margin reminder "formerly WDAC!" and the sticky-note verdict "Zero trust for BINARIES" summarize the whole philosophy in one page: ransomware, unsigned tools, and LOLBins simply never get to run.*

@@ -1432,3 +1432,13 @@ quadrantChart
 ---
 
 *Document covers: AppLocker architecture, ManagedInstaller rule collection, AppLockerFltr.sys kernel filter, KERNEL.SMARTLOCKER.ORIGINCLAIM EA mechanism, WDAC Option 13 evaluation, Trust Model A (blanket MI), Trust Model B (selective supplemental allowlisting), PoC end-to-end flow, event log diagnosis, limitations, and security considerations.*
+
+---
+
+## Field Notes (Handwritten)
+
+The comparison table that settled the "AppLocker or App Control?" debate for this deployment.
+
+![Field notes — AppLocker vs App Control: use both for defense in depth](references/handwritten/hw-10-applocker-vs-wdac.webp)
+
+*Row by row: AppLocker enforces from a **user-mode service** while App Control enforces in the **kernel**; AppLocker is easier to bypass; AppLocker uniquely offers per-user rules; and strategically AppLocker is legacy while App Control is where Microsoft invests. The verdict box is the takeaway this whole part implements: **use BOTH** — AppLocker as the Managed Installer helper and per-user MSI gate, App Control as the real security boundary. The two overlapping shields in the margin say it best: defense in depth.*

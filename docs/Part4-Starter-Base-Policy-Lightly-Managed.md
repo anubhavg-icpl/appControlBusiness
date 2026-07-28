@@ -524,3 +524,13 @@ After validating all rules and confirming acceptable policy impact in audit mode
 
 *Document compiled by Anubhav Gain from source material published at ctrlshiftenter.cloud.*  
 *Original author: Patrick Seltmann. For organizational reference use.*
+
+---
+
+## Field Notes (Handwritten)
+
+The deployment workflow from this part, condensed onto a single notebook page during a real rollout.
+
+![Field notes — policy lifecycle: author, convert, audit, collect events, fix rules, enforce](references/handwritten/hw-02-policy-lifecycle.webp)
+
+*The circular flow shows the six stations every policy must pass through: **author the XML → convert to `.cip` → deploy in AUDIT mode → collect 3076/3077 events → fix rules → ENFORCE**. Note the enforce node is boxed in red with the hard-won warning "only after 2–4 wks audit!!" — skipping the audit phase is the single most common way App Control rollouts fail. The tools column (WDAC Wizard, PowerShell ConfigCI, Intune) maps each station to what you actually use.*

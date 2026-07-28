@@ -18,3 +18,4 @@ okf_version: "0.2"
 * [Policy Rule Options](rule-options/) - Deep dives on every WDAC policy rule option (0–20 plus Developer Mode Dynamic Code Trust).
 * [File Rule Levels](file-rule-levels/) - Deep dives on every WDAC file rule level, from Hash to WHQLFilePublisher.
 * [Notes & Tips](notes/) - Advanced notes, tips, and gotchas for managing App Control policies.
+* [References](references/) - Handwritten field notes and supporting reference material.

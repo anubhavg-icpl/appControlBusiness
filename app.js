@@ -795,6 +795,14 @@ async function loadPart(index) {
     content.innerHTML = buildHeaderCard(part) + html;
     content.classList.add('loaded');
 
+    // Resolve relative image paths against the markdown file's directory
+    const mdDir = part.file.slice(0, part.file.lastIndexOf('/') + 1);
+    content.querySelectorAll('img').forEach(img => {
+      const src = img.getAttribute('src') || '';
+      if (!/^(https?:|data:|\/)/.test(src)) img.setAttribute('src', mdDir + src);
+      img.loading = 'lazy';
+    });
+
     // Post-process
     postProcessCode(content);
     await renderMermaid(content);

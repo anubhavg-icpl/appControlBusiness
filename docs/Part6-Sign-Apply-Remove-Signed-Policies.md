@@ -500,3 +500,13 @@ flowchart TD
 
 *Document compiled by Anubhav Gain from source material published at ctrlshiftenter.cloud.*  
 *Original author: Patrick Seltmann. For organizational reference use.*
+
+---
+
+## Field Notes (Handwritten)
+
+A warning page written after the first encounter with a signed policy that could not simply be deleted.
+
+![Field notes — signed policies are tamper-proof; removal requires a signed empty-ish policy and two reboots](references/handwritten/hw-07-signed-policies.webp)
+
+*The flow reads: **sign the `.cip` with a code-signing cert → deploy → the policy is locked by anti-tamper**. The red warning box is the part everyone learns the hard way: removal needs a **signed** empty-ish policy plus **two reboots** — a local admin cannot just delete the file. The checklist calls out `UpdatePolicySigners` (the cert authorized to replace the policy) and the fact that an unsigned rollback attempt is simply blocked. The margin arrow "EFI partition copy!" notes where the enforced copy actually lives.*

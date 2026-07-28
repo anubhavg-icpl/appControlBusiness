@@ -568,3 +568,13 @@ flowchart TD
 
 *Document compiled by Anubhav Gain from source material published at ctrlshiftenter.cloud.*  
 *Original author: Patrick Seltmann. For organizational reference use.*
+
+---
+
+## Field Notes (Handwritten)
+
+The CI/CD pipeline from this part, as sketched during the initial Azure DevOps implementation.
+
+![Field notes — policy CI/CD with Azure DevOps: git repo, PR review, pipeline, ring deployment, rollback](references/handwritten/hw-09-devops-pipeline.webp)
+
+*Policy XML lives in a **git repo** ("XML in source control = audit trail", circled), every change goes through **PR + review**, and the pipeline runs `ConvertFrom-CIPolicy`, signs, and publishes the artifact. Deployment fans out through **three rings** (IT → pilot → everyone), drawn as concentric circles. Two operational rules are pinned in the margins: bump the policy version on every change, and rollback is nothing more exotic than redeploying the previous artifact.*

@@ -712,3 +712,13 @@ The security of Managed Installer is entirely dependent on the security of the d
 | Key Event IDs | 3090, 3091, 3092 (CodeIntegrity/Operational) |
 | Works With | Option 14 (ISG), Option 3 (Audit), supplemental policies |
 | Security Recommendation | Use signed policy when Option 13 is active |
+
+---
+
+## Field Notes (Handwritten)
+
+The Managed Installer mechanism from this page, traced end-to-end in the field notebook.
+
+![Field notes — Option 13 Managed Installer: EA stamping flow and gotchas](../references/handwritten/hw-05-option13-managed-installer.webp)
+
+*The sequence shows the invisible plumbing: **Intune/SCCM (the designated MI) writes files → `AppLockerFltr.sys` intercepts the write → stamps the NTFS extended attribute `KERNEL.SMARTLOCKER.ORIGINCLAIM` with `byte[4]=0x00` → `ci.dll` reads the EA at launch and allows**. The red gotcha list is the operational gold: self-updating apps lose their EA, the EA vanishes if a file is copied to FAT32, and a local admin can abuse custom XML to designate arbitrary installers. The margin note — "AppLocker service must be RUNNING" — is the first thing to check when MI mysteriously stops working.*

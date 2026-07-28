@@ -862,3 +862,13 @@ flowchart LR
 | Security recommendation | Use signed policy; supplement with explicit rules for critical apps |
 | Offline behavior | Uses cached EA; blocks if cache expired and cloud unreachable |
 | Data sent to Microsoft | File SHA256, name, publisher, OS version, tenant ID (no file content) |
+
+---
+
+## Field Notes (Handwritten)
+
+The ISG decision flow from this page, reduced to one notebook sketch.
+
+![Field notes — Option 14 ISG cloud trust: query flow, EA cache, fail-closed behavior](../references/handwritten/hw-06-option14-isg.webp)
+
+*An unknown file triggers a query to the **Microsoft ISG / SmartScreen cloud**, which returns good, bad, or unknown — and the note underlines the security-critical default: **unknown = DENY (fail closed)**. The highlighted cache box records the detail that distinguishes ISG from Managed Installer on disk: the cached verdict lives in the same EA but with **`byte[4]=0x01`** (MI uses `0x00`). The pulled-plug doodle covers the offline story — no connectivity means cached EAs only — and the blunt margin verdict: air-gapped networks get nothing from ISG.*

@@ -1924,3 +1924,21 @@ Get-WinEvent -LogName "Microsoft-Windows-CodeIntegrity/Operational" |
 *This document is the definitive App Control for Business reference for Anubhav Gain's team. Keep it current with each major Windows release and policy update cycle. Report corrections or additions via the project issue tracker.*
 
 *For the canonical Microsoft documentation, see: [App Control for Business documentation](https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/)*
+
+---
+
+## Field Notes (Handwritten)
+
+Three pages from the field notebook that compress the decision-making heart of this document into sketches — useful as wall-chart material for the whole team.
+
+![Field notes — rule evaluation order: explicit deny always wins, implicit deny is the default](../references/handwritten/hw-03-rule-precedence.webp)
+
+*The evaluation ladder every binary falls through: **explicit DENY (always wins, can never be overridden) → explicit ALLOW in base → ALLOW in supplemental → Managed Installer EA → ISG reputation → implicit DENY**. The bouncer doodle is apt — if nothing on the list vouches for you, the default answer is no.*
+
+![Field notes — file rule levels from specific (Hash) to broad (RootCertificate); FilePublisher is the default choice](../references/handwritten/hw-04-file-rule-levels-ladder.webp)
+
+*The staircase runs from **Hash** at the bottom (exact bytes — breaks on every update) up through the starred sweet spot **FilePublisher** (certificate + filename + minimum version) to the red-hatched danger zone of **RootCertificate** (trusts an entire CA hierarchy). **FilePath** floats off the stairs with a skull for a reason: a user-writable path is a bypass, not a rule. The circled verdict — "default choice = FilePublisher" — is the one-line answer to the most common design question in this document.*
+
+![Field notes — CodeIntegrity event ID cheat sheet](../references/handwritten/hw-08-event-ids-cheatsheet.webp)
+
+*The on-call cheat sheet: **3076** audit-mode would-be block, **3077** enforced block (highlighted — the one that pages you), **3082** audit driver block, **3086** ISG/MI query, **3089** signature information, **3090** allowed via EA, **3091/3092** script audit/block. The margin points to where they all live: Applications and Services → CodeIntegrity → Operational.*
