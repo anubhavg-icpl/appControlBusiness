@@ -1,10 +1,27 @@
+---
+type: Policy Rule Option
+title: "Option 1 — Enabled:Boot Menu Protection"
+description: "What policy rule option 1 (Enabled:Boot Menu Protection) does, why it exists, and how to configure it."
+tags: [app-control, wdac, rule-option]
+status: stable
+rule_index: 1
+policy_rule_value: "Enabled:Boot Menu Protection"
+valid_for_supplemental: false
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+sources:
+  - id: ms-appcontrol
+    resource: https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/
+    title: Microsoft Learn — App Control for Business documentation
+    author: team:microsoft-learn
+---
+
 # Option 1 — Enabled:Boot Menu Protection
 
-**Author:** Anubhav Gain
-**Category:** Endpoint Security
-**Policy Rule Value:** `Enabled:Boot Menu Protection`
-**Rule Index:** 1
-**Valid for Supplemental Policies:** No
 **Current Support Status:** Not currently supported by Windows
 
 ---

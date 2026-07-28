@@ -1,10 +1,27 @@
+---
+type: Policy Rule Option
+title: "Option 9 — Enabled:Advanced Boot Options Menu"
+description: "What policy rule option 9 (Enabled:Advanced Boot Options Menu) does, why it exists, and how to configure it."
+tags: [app-control, wdac, rule-option]
+status: stable
+rule_index: 9
+policy_rule_value: "Enabled:Advanced Boot Options Menu"
+valid_for_supplemental: false
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+sources:
+  - id: ms-appcontrol
+    resource: https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/
+    title: Microsoft Learn — App Control for Business documentation
+    author: team:microsoft-learn
+---
+
 # Option 9 — Enabled:Advanced Boot Options Menu
 
-**Author:** Anubhav Gain  
-**Category:** Endpoint Security  
-**Policy Rule Option Index:** 9  
-**XML Value:** `<Rule><Option>Enabled:Advanced Boot Options Menu</Option></Rule>`  
-**Valid for Supplemental Policies:** No  
 **Status:** Fully implemented and enforced on all supported Windows versions
 
 ---

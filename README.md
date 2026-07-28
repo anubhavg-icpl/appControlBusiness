@@ -1,3 +1,22 @@
+---
+type: Reference
+title: App Control for Business — Complete Reference Series
+description: Overview and reading guide for the App Control for Business documentation bundle.
+tags: [app-control, wdac, documentation]
+status: stable
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-01T20:28:30+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-01T20:28:30+05:30
+sources:
+  - id: ctrlshiftenter
+    resource: https://ctrlshiftenter.cloud
+    title: ctrlshiftenter.cloud — Patrick Seltmann
+    author: human:patrick-seltmann
+---
+
 # App Control for Business — Complete Reference Series
 
 Corporate-ready documentation for **Microsoft App Control for Business (ACfB)**, formerly known as Windows Defender Application Control (WDAC). Compiled by **Anubhav Gain** from source material by Patrick Seltmann at [ctrlshiftenter.cloud](https://ctrlshiftenter.cloud).

@@ -1,10 +1,27 @@
+---
+type: Policy Rule Option
+title: "Option 13 — Enabled:Managed Installer"
+description: "What policy rule option 13 (Enabled:Managed Installer) does, why it exists, and how to configure it."
+tags: [app-control, wdac, rule-option]
+status: stable
+rule_index: 13
+policy_rule_value: "Enabled:Managed Installer"
+valid_for_supplemental: true
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+sources:
+  - id: ms-appcontrol
+    resource: https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/
+    title: Microsoft Learn — App Control for Business documentation
+    author: team:microsoft-learn
+---
+
 # Option 13 — Enabled:Managed Installer
 
-**Author:** Anubhav Gain
-**Category:** Endpoint Security
-**Policy Rule Option:** 13
-**Rule Name:** `Enabled:Managed Installer`
-**Applies to Supplemental Policies:** Yes
 
 ---
 

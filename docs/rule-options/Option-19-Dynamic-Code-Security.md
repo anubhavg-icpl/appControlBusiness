@@ -1,12 +1,29 @@
+---
+type: Policy Rule Option
+title: "Option 19 — Enabled:Dynamic Code Security"
+description: "What policy rule option 19 (Enabled:Dynamic Code Security) does, why it exists, and how to configure it."
+tags: [app-control, wdac, rule-option]
+status: stable
+rule_index: 19
+policy_rule_value: "Enabled:Dynamic Code Security"
+valid_for_supplemental: false
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+sources:
+  - id: ms-appcontrol
+    resource: https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/
+    title: Microsoft Learn — App Control for Business documentation
+    author: team:microsoft-learn
+---
+
 # Option 19 — Enabled:Dynamic Code Security
 
-**Author:** Anubhav Gain  
-**Category:** Endpoint Security  
-**Policy Rule Option Number:** 19  
-**XML Token:** `Enabled:Dynamic Code Security`  
 **Applies To:** User Mode Code Integrity (UMCI)  
 **Minimum OS:** Windows 10 version 1803 (RS4) / Windows Server 2019  
-**Valid for Supplemental Policies:** No  
 
 ---
 

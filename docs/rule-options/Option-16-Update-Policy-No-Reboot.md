@@ -1,10 +1,27 @@
+---
+type: Policy Rule Option
+title: "Option 16 — Enabled:Update Policy No Reboot"
+description: "What policy rule option 16 (Enabled:Update Policy No Reboot) does, why it exists, and how to configure it."
+tags: [app-control, wdac, rule-option]
+status: stable
+rule_index: 16
+policy_rule_value: "Enabled:Update Policy No Reboot"
+valid_for_supplemental: false
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+sources:
+  - id: ms-appcontrol
+    resource: https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/
+    title: Microsoft Learn — App Control for Business documentation
+    author: team:microsoft-learn
+---
+
 # Option 16 — Enabled:Update Policy No Reboot
 
-**Author:** Anubhav Gain
-**Category:** Endpoint Security
-**Rule Option ID:** 16
-**Rule String:** `Enabled:Update Policy No Reboot`
-**Valid for Supplemental Policies:** No
 **Minimum OS Version:** Windows 10 version 1709 / Windows Server 2019
 
 ---

@@ -1,0 +1,11 @@
+# Directory Update Log
+
+## 2026-07-28
+* **Update**: Migrated the entire bundle to OKF v0.2 — every concept now carries YAML frontmatter with `type`, `title`, `description`, `tags`, `status`, `generated`, `verified`, and `sources`; legacy inline metadata removed.
+* **Creation**: Added `index.md` listings for the bundle root, [rule-options](rule-options/), [file-rule-levels](file-rule-levels/), and [notes](notes/).
+
+## 2026-05-02
+* **Creation**: Added 22 policy rule option references, 12 file rule level references, and the Notes & Tips compendium.
+
+## 2026-05-01
+* **Initialization**: Established the eight-part App Control for Business reference series.

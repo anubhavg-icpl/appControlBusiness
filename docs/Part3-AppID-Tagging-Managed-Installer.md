@@ -1,10 +1,25 @@
+---
+type: Guide
+title: "Part 3: Application ID Tagging Policies & Managed Installer"
+description: AppID tagging policies and the managed installer feature.
+tags: [app-control, wdac, endpoint-security]
+status: stable
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-01T21:03:22+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-01T21:03:22+05:30
+sources:
+  - id: ctrlshiftenter
+    resource: https://ctrlshiftenter.cloud
+    title: ctrlshiftenter.cloud — Patrick Seltmann
+    author: human:patrick-seltmann
+---
+
 # Mastering App Control for Business
 ## Part 3: Application ID Tagging Policies & Managed Installer
 
-**Author:** Anubhav Gain  
-**Source:** ctrlshiftenter.cloud — Patrick Seltmann  
-**Status:** Corporate Reference Document  
-**Category:** Endpoint Security | Endpoint Management  
 
 ---
 

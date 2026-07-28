@@ -1,10 +1,27 @@
+---
+type: Policy Rule Option
+title: "Option 0 — Enabled:UMCI (User Mode Code Integrity)"
+description: "What policy rule option 0 (Enabled:UMCI) does, why it exists, and how to configure it."
+tags: [app-control, wdac, rule-option]
+status: stable
+rule_index: 0
+policy_rule_value: "Enabled:UMCI"
+valid_for_supplemental: false
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+sources:
+  - id: ms-appcontrol
+    resource: https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/
+    title: Microsoft Learn — App Control for Business documentation
+    author: team:microsoft-learn
+---
+
 # Option 0 — Enabled:UMCI (User Mode Code Integrity)
 
-**Author:** Anubhav Gain
-**Category:** Endpoint Security
-**Policy Rule Value:** `Enabled:UMCI`
-**Rule Index:** 0
-**Valid for Supplemental Policies:** No
 
 ---
 

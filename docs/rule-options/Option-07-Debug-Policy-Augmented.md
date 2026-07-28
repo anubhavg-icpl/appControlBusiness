@@ -1,10 +1,27 @@
+---
+type: Policy Rule Option
+title: "Option 7 — Allowed:Debug Policy Augmented"
+description: "What policy rule option 7 (Allowed:Debug Policy Augmented) does, why it exists, and how to configure it."
+tags: [app-control, wdac, rule-option]
+status: stable
+rule_index: 7
+policy_rule_value: "Allowed:Debug Policy Augmented"
+valid_for_supplemental: true
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+sources:
+  - id: ms-appcontrol
+    resource: https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/
+    title: Microsoft Learn — App Control for Business documentation
+    author: team:microsoft-learn
+---
+
 # Option 7 — Allowed:Debug Policy Augmented
 
-**Author:** Anubhav Gain  
-**Category:** Endpoint Security  
-**Policy Rule Option Index:** 7  
-**XML Value:** `<Rule><Option>Allowed:Debug Policy Augmented</Option></Rule>`  
-**Valid for Supplemental Policies:** Yes  
 **Status:** Not currently supported — reserved for future debug/diagnostic use
 
 ---

@@ -1,10 +1,27 @@
+---
+type: Policy Rule Option
+title: "Option 5 — Enabled:Inherit Default Policy"
+description: "What policy rule option 5 (Enabled:Inherit Default Policy) does, why it exists, and how to configure it."
+tags: [app-control, wdac, rule-option]
+status: stable
+rule_index: 5
+policy_rule_value: "Enabled:Inherit Default Policy"
+valid_for_supplemental: true
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+sources:
+  - id: ms-appcontrol
+    resource: https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/
+    title: Microsoft Learn — App Control for Business documentation
+    author: team:microsoft-learn
+---
+
 # Option 5 — Enabled:Inherit Default Policy
 
-**Author:** Anubhav Gain  
-**Category:** Endpoint Security  
-**Policy Rule Option Index:** 5  
-**XML Value:** `<Rule><Option>Enabled:Inherit Default Policy</Option></Rule>`  
-**Valid for Supplemental Policies:** Yes  
 **Status:** Reserved for future use — currently has no runtime effect
 
 ---

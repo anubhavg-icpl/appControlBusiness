@@ -1,10 +1,25 @@
+---
+type: Guide
+title: "Part 1: Introduction & Key Concepts"
+description: Why application control matters, key concepts, licensing, and how App Control for Business compares to AppLocker.
+tags: [app-control, wdac, endpoint-security]
+status: stable
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-01T21:08:16+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-01T21:08:16+05:30
+sources:
+  - id: ctrlshiftenter
+    resource: https://ctrlshiftenter.cloud
+    title: ctrlshiftenter.cloud — Patrick Seltmann
+    author: human:patrick-seltmann
+---
+
 # Mastering App Control for Business
 ## Part 1: Introduction & Key Concepts
 
-**Author:** Anubhav  
-**Source:** ctrlshiftenter.cloud — Patrick Seltmann  
-**Status:** Corporate Reference Document  
-**Category:** Endpoint Security | Endpoint Management  
 
 ---
 

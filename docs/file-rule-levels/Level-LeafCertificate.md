@@ -1,4 +1,22 @@
-<!-- Author: Anubhav Gain | Category: WDAC File Rule Levels | Topic: LeafCertificate -->
+---
+type: File Rule Level
+title: "WDAC File Rule Level: LeafCertificate"
+description: How the LeafCertificate file rule level works, its attack resistance, and when to use it.
+tags: [app-control, wdac, file-rule-level]
+status: stable
+file_rule_level: LeafCertificate
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:43:14+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:43:14+05:30
+sources:
+  - id: ms-appcontrol
+    resource: https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/
+    title: Microsoft Learn — App Control for Business documentation
+    author: team:microsoft-learn
+---
 
 # WDAC File Rule Level: LeafCertificate
 

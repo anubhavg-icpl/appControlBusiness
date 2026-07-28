@@ -1,9 +1,25 @@
+---
+type: Guide
+title: "Part 8: AppLocker, Managed Installer (Option 13) & Selective MSI Allowlisting — End-to-End"
+description: Using AppLocker alongside rule option 13 for selective MSI allowlisting.
+tags: [app-control, wdac, endpoint-security]
+status: stable
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:04:47+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:04:47+05:30
+sources:
+  - id: ctrlshiftenter
+    resource: https://ctrlshiftenter.cloud
+    title: ctrlshiftenter.cloud — Patrick Seltmann
+    author: human:patrick-seltmann
+---
+
 # Mastering App Control for Business
 ## Part 8: AppLocker, Managed Installer (Option 13) & Selective MSI Allowlisting — End-to-End
 
-**Author:** Anubhav Gain
-**Status:** Corporate Reference Document
-**Category:** Endpoint Security | Endpoint Management
 
 ---
 

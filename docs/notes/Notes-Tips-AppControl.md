@@ -1,4 +1,21 @@
-<!-- Author: Anubhav Gain | Category: WDAC Notes & Tips | Topic: Policy Management Reference -->
+---
+type: Reference
+title: "App Control for Business — Complete Reference: Notes, Tips & Advanced Considerations"
+description: Advanced notes, tips, and gotchas for managing App Control for Business policies.
+tags: [app-control, wdac, notes, tips]
+status: stable
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:43:14+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:43:14+05:30
+sources:
+  - id: ms-appcontrol
+    resource: https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/
+    title: Microsoft Learn — App Control for Business documentation
+    author: team:microsoft-learn
+---
 
 # App Control for Business — Complete Reference: Notes, Tips & Advanced Considerations
 

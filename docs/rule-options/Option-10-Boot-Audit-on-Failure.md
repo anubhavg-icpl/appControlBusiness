@@ -1,10 +1,27 @@
+---
+type: Policy Rule Option
+title: "Option 10 — Enabled:Boot Audit on Failure"
+description: "What policy rule option 10 (Enabled:Boot Audit on Failure) does, why it exists, and how to configure it."
+tags: [app-control, wdac, rule-option]
+status: stable
+rule_index: 10
+policy_rule_value: "Enabled:Boot Audit on Failure"
+valid_for_supplemental: false
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+sources:
+  - id: ms-appcontrol
+    resource: https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/
+    title: Microsoft Learn — App Control for Business documentation
+    author: team:microsoft-learn
+---
+
 # Option 10 — Enabled:Boot Audit on Failure
 
-**Author:** Anubhav Gain
-**Category:** Endpoint Security
-**Policy Rule Option:** 10
-**Rule Name:** `Enabled:Boot Audit on Failure`
-**Applies to Supplemental Policies:** No
 
 ---
 

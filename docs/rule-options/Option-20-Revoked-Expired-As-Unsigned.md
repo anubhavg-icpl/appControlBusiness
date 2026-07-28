@@ -1,12 +1,29 @@
+---
+type: Policy Rule Option
+title: "Option 20 — Enabled:Revoked Expired As Unsigned"
+description: "What policy rule option 20 (Enabled:Revoked Expired As Unsigned) does, why it exists, and how to configure it."
+tags: [app-control, wdac, rule-option]
+status: stable
+rule_index: 20
+policy_rule_value: "Enabled:Revoked Expired As Unsigned"
+valid_for_supplemental: false
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+sources:
+  - id: ms-appcontrol
+    resource: https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/
+    title: Microsoft Learn — App Control for Business documentation
+    author: team:microsoft-learn
+---
+
 # Option 20 — Enabled:Revoked Expired As Unsigned
 
-**Author:** Anubhav Gain  
-**Category:** Endpoint Security  
-**Policy Rule Option Number:** 20  
-**XML Token:** `Enabled:Revoked Expired As Unsigned`  
 **Applies To:** User Mode Code Integrity (UMCI) — enterprise signing scenarios  
 **Minimum OS:** Windows 10 / Windows Server 2016  
-**Valid for Supplemental Policies:** No  
 
 ---
 

@@ -1,10 +1,25 @@
+---
+type: Guide
+title: "Part 7: Maintaining Policies with Azure DevOps (or PowerShell)"
+description: Maintaining App Control policies with Azure DevOps pipelines and PowerShell.
+tags: [app-control, wdac, endpoint-security]
+status: stable
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-01T20:54:41+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-01T20:54:41+05:30
+sources:
+  - id: ctrlshiftenter
+    resource: https://ctrlshiftenter.cloud
+    title: ctrlshiftenter.cloud — Patrick Seltmann
+    author: human:patrick-seltmann
+---
+
 # Mastering App Control for Business
 ## Part 7: Maintaining Policies with Azure DevOps (or PowerShell)
 
-**Author:** Anubhav Gain  
-**Source:** ctrlshiftenter.cloud — Patrick Seltmann  
-**Status:** Corporate Reference Document  
-**Category:** Endpoint Security | Endpoint Management  
 
 ---
 

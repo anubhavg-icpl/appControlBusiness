@@ -1,10 +1,27 @@
+---
+type: Policy Rule Option
+title: "Option 8 — Required:EV Signers"
+description: "What policy rule option 8 (Required:EV Signers) does, why it exists, and how to configure it."
+tags: [app-control, wdac, rule-option]
+status: stable
+rule_index: 8
+policy_rule_value: "Required:EV Signers"
+valid_for_supplemental: false
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+sources:
+  - id: ms-appcontrol
+    resource: https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/
+    title: Microsoft Learn — App Control for Business documentation
+    author: team:microsoft-learn
+---
+
 # Option 8 — Required:EV Signers
 
-**Author:** Anubhav Gain  
-**Category:** Endpoint Security  
-**Policy Rule Option Index:** 8  
-**XML Value:** `<Rule><Option>Required:EV Signers</Option></Rule>`  
-**Valid for Supplemental Policies:** No  
 **Status:** Not currently supported — reserved for future Extended Validation (EV) enforcement
 
 ---

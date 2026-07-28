@@ -1,11 +1,28 @@
+---
+type: Policy Rule Option
+title: "Option 15 — Enabled:Invalidate EAs on Reboot"
+description: "What policy rule option 15 (Enabled:Invalidate EAs on Reboot) does, why it exists, and how to configure it."
+tags: [app-control, wdac, rule-option]
+status: stable
+rule_index: 15
+policy_rule_value: "Enabled:Invalidate EAs on Reboot"
+valid_for_supplemental: false
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+sources:
+  - id: ms-appcontrol
+    resource: https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/
+    title: Microsoft Learn — App Control for Business documentation
+    author: team:microsoft-learn
+---
+
 # Option 15 — Enabled:Invalidate EAs on Reboot
 
-**Author:** Anubhav Gain
-**Category:** Endpoint Security
-**Rule Option ID:** 15
-**Rule String:** `Enabled:Invalidate EAs on Reboot`
 **Dependency:** Requires Option 14 (Enabled:Intelligent Security Graph Authorization)
-**Valid for Supplemental Policies:** No
 
 ---
 

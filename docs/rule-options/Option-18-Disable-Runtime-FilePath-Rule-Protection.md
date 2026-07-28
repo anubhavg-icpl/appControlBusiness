@@ -1,10 +1,27 @@
+---
+type: Policy Rule Option
+title: "Option 18 — Disabled:Runtime FilePath Rule Protection"
+description: "What policy rule option 18 (Disabled:Runtime FilePath Rule Protection) does, why it exists, and how to configure it."
+tags: [app-control, wdac, rule-option]
+status: stable
+rule_index: 18
+policy_rule_value: "Disabled:Runtime FilePath Rule Protection"
+valid_for_supplemental: true
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-02T20:16:42+05:30
+sources:
+  - id: ms-appcontrol
+    resource: https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/
+    title: Microsoft Learn — App Control for Business documentation
+    author: team:microsoft-learn
+---
+
 # Option 18 — Disabled:Runtime FilePath Rule Protection
 
-**Author:** Anubhav Gain
-**Category:** Endpoint Security
-**Rule Option ID:** 18
-**Rule String:** `Disabled:Runtime FilePath Rule Protection`
-**Valid for Supplemental Policies:** Yes
 **Minimum OS Version:** Windows 10 version 1903 / Windows Server 2022
 
 ---

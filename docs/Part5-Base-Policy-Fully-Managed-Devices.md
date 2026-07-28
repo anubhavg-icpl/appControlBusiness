@@ -1,10 +1,25 @@
+---
+type: Guide
+title: "Part 5: Create a Base Policy for Fully Managed Devices"
+description: Building a base policy for fully managed devices.
+tags: [app-control, wdac, endpoint-security]
+status: stable
+generated:
+  by: human:anubhavg-icpl
+  at: 2026-05-01T21:03:22+05:30
+verified:
+  by: human:anubhavg-icpl
+  at: 2026-05-01T21:03:22+05:30
+sources:
+  - id: ctrlshiftenter
+    resource: https://ctrlshiftenter.cloud
+    title: ctrlshiftenter.cloud — Patrick Seltmann
+    author: human:patrick-seltmann
+---
+
 # Mastering App Control for Business
 ## Part 5: Create a Base Policy for Fully Managed Devices
 
-**Author:** Anubhav Gain  
-**Source:** ctrlshiftenter.cloud — Patrick Seltmann  
-**Status:** Corporate Reference Document  
-**Category:** Endpoint Security | Endpoint Management  
 
 ---
 
