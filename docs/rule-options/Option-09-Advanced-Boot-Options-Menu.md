@@ -394,7 +394,7 @@ flowchart TD
     Q_TYPE -- Supplemental --> INVALID([Do NOT set\nOption 9 is invalid\nfor supplemental])
     Q_TYPE -- Base --> Q1{What type of\ndevice is this policy for?}
 
-    Q1 -- "Corporate workstation / laptop" --> Q2{Do you have remote\nmanagement recovery\npath? (Intune/SCCM)}
+    Q1 -- "Corporate workstation / laptop" --> Q2{"Do you have remote\nmanagement recovery\npath? (Intune/SCCM)"}
     Q2 -- Yes --> Q3{High-security\nenvironment?\nThreat model includes\nphysical attacks?}
     Q3 -- Yes --> DISABLE[Omit Option 9\nF8 disabled\nRemote recovery only]
     Q3 -- No --> Q4{Have you had\nF8-recovery incidents\nin the past year?}

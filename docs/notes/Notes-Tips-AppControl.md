@@ -378,9 +378,9 @@ flowchart TD
     BaseAllow -->|Yes| ALLOW["✅ ALLOWED"]
     BaseAllow -->|No| SupplementalAllow{Explicit ALLOW\nin SUPPLEMENTAL\npolicy?}
     SupplementalAllow -->|Yes| ALLOW
-    SupplementalAllow -->|No| MICheck{Managed Installer\nEA (Extended\nAuthorization)?}
+    SupplementalAllow -->|No| MICheck{"Managed Installer\nEA (Extended\nAuthorization)?"}
     MICheck -->|Yes| ALLOW
-    MICheck -->|No| ISGCheck{ISG Extended\nAuthorization\n(cloud)?}
+    MICheck -->|No| ISGCheck{"ISG Extended\nAuthorization\n(cloud)?"}
     ISGCheck -->|Yes| ALLOW
     ISGCheck -->|No| ImplicitDeny["🚫 IMPLICIT DENY\n(default)"]
 
@@ -985,8 +985,8 @@ flowchart TD
 
     IsMSI -->|No| IsSigned{Is the file\nPE-signed?}
     IsSigned -->|No| HashOnly["Use: Hash\n(Unsigned files — only option)"]
-    IsSigned -->|Yes| NeedNarrow{Need fine-grained\ncontrol? (specific file,\nversion range)"}
-    NeedNarrow -->|Yes| HasVersion{Does file have\nVERSIONINFO resource?\n(OriginalFileName etc)}
+    IsSigned -->|Yes| NeedNarrow{"Need fine-grained\ncontrol? (specific file,\nversion range)"}
+    NeedNarrow -->|Yes| HasVersion{"Does file have\nVERSIONINFO resource?\n(OriginalFileName etc)"}
     HasVersion -->|Yes| UseFilePublisher["Use: FilePublisher\n(Most secure — publisher +\nfilename + version range)"]
     HasVersion -->|No| UsePub["Use: Publisher\n(No VERSIONINFO → can't use FilePublisher)"]
     NeedNarrow -->|No| TrustPublisher{Trust all files\nfrom this publisher?}
@@ -1490,7 +1490,7 @@ The Intelligent Security Graph is Microsoft's cloud-based file reputation servic
 flowchart TD
     FileExec["File execution request\n(not matched by explicit rules)"] --> ISGEnabled{Option 14\nEnabled:ISG\nactive?}
     ISGEnabled -->|No| ImplicitDeny["🚫 Implicit Deny"]
-    ISGEnabled -->|Yes| CacheCheck{ISG Extended\nAuthorization (EA)\nin local cache?}
+    ISGEnabled -->|Yes| CacheCheck{"ISG Extended\nAuthorization (EA)\nin local cache?"}
     CacheCheck -->|Yes, trusted| CacheAllow["✅ Allow (from cache)\nCache valid for some time"]
     CacheCheck -->|No| CloudQuery["Query Microsoft cloud\n(SmartScreen / ISG endpoint)"]
     CloudQuery --> CloudResult{Cloud\nreputation?}

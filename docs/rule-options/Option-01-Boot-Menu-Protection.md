@@ -354,7 +354,7 @@ sequenceDiagram
     Admin ->> bcdedit: bcdedit /timeout 0
     bcdedit -->> Admin: Zero-second boot timeout set
     Admin ->> BitLocker: Enable-BitLocker with TPM+PIN protector
-    BitLocker -->> Admin: Drive encrypted; PIN required at boot
+    BitLocker -->> Admin: Drive encrypted — PIN required at boot
     Admin ->> UEFI: Set UEFI administrator password
     UEFI -->> Admin: UEFI settings locked
     Admin ->> Endpoint: Verify: attempt F8 at next boot

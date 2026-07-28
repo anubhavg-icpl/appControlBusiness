@@ -309,11 +309,11 @@ flowchart TD
     end
 
     subgraph Layer2["Layer 2: Dynamic Trust — Option 13"]
-        MI_EA{KERNEL.SMARTLOCKER\n.ORIGINCLAIM EA\nbyte[4]==0x00?}
+        MI_EA{"KERNEL.SMARTLOCKER\n.ORIGINCLAIM EA\nbyte[4]==0x00?"}
     end
 
     subgraph Layer3["Layer 3: Dynamic Trust — Option 14"]
-        ISG_Cache{Local EA cache\nbyte[4]==0x01\nvalid & not expired?}
+        ISG_Cache{"Local EA cache\nbyte[4]==0x01\nvalid & not expired?"}
         ISG_Cloud{Cloud ISG query\nsp.oci.microsoft.com}
         ISG_Verdict{ISG verdict?}
     end
@@ -588,7 +588,7 @@ sequenceDiagram
     ISGClient->>NTFS: Write KERNEL.SMARTLOCKER.ORIGINCLAIM\nbyte[4]=0x01 (ISG authorized)
     ISGClient-->>CI: Verdict: Known Good
     CI->>CI: Audit mode: log authorization event
-    Note over Endpoint: Zoom runs; event 3086 logged
+    Note over Endpoint: Zoom runs — event 3086 logged
 
     Endpoint->>CI: User opens InternalCRM.exe\n(custom-built internal app)
     CI->>CI: No explicit rule for InternalCRM.exe

@@ -108,7 +108,7 @@ flowchart TD
     O13Check -- Yes --> EARead[ci.dll calls NtQueryEaFile\non the file being executed]
     EARead --> EAExists{EA name\nKERNEL.SMARTLOCKER.ORIGINCLAIM\npresent?}
     EAExists -- No --> Block
-    EAExists -- Yes --> EAByte{byte[4] of EA value\n== 0x00?}
+    EAExists -- Yes --> EAByte{"byte[4] of EA value\n== 0x00?"}
     EAByte -- No --> O14Path([Route to ISG check\nsee Option 14])
     EAByte -- Yes --> ValidateClaim[ci.dll validates EA integrity\nChecks claim is not spoofed]
     ValidateClaim --> ClaimValid{EA claim\ncryptographically valid?}
@@ -302,7 +302,7 @@ flowchart TD
         MDM([MDM / SCCM / Intune\nDesignated Managed Installer])
         FileWrite([Files written to disk\ne.g., C:\Program Files\MyApp\])
         AppLockerFltr([AppLockerFltr.sys intercepts write])
-        EAStamp([EA stamped on each file\nKERNEL.SMARTLOCKER.ORIGINCLAIM\nbyte[4]=0x00])
+        EAStamp(["EA stamped on each file\nKERNEL.SMARTLOCKER.ORIGINCLAIM\nbyte[4]=0x00"])
     end
 
     subgraph ExecutionPhase["Execution Phase"]
@@ -310,7 +310,7 @@ flowchart TD
         KernelCI([ci.dll invoked by kernel])
         PolicyRules{Explicit policy\nrule match?}
         OptionCheck{Option 13\nenabled?}
-        EACheck{EA present\nand byte[4]==0x00?}
+        EACheck{"EA present\nand byte[4]==0x00?"}
         IntegrityCheck{EA claim\ncryptographically valid?}
         Allow([Allow execution])
         Deny([Block execution])

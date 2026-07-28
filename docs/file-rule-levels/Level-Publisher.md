@@ -643,11 +643,6 @@ sequenceDiagram
     Fleet->>Fleet: ConfigCI checks: Leaf CN = "Intel Corporation"? YES
     Fleet-->>Fleet: ALLOWED — no policy update needed
 
-    style Admin fill:#162032,stroke:#1e3a5f,color:#e2e8f0
-    style Workstation fill:#162032,stroke:#1e3a5f,color:#e2e8f0
-    style PS fill:#1a0d2e,stroke:#6b21a8,color:#d8b4fe
-    style MDM fill:#162032,stroke:#1e3a5f,color:#e2e8f0
-    style Fleet fill:#0d1f12,stroke:#1a5c2a,color:#86efac
 ```
 
 ---

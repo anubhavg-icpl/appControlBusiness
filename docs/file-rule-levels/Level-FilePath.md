@@ -625,13 +625,13 @@ Option 18 (`Disabled:Runtime FilePath Rule Protection`) controls whether WDAC ch
 
 ```mermaid
 flowchart TD
-    subgraph With Option 18 NOT set (Default - Recommended)
+    subgraph OPT18_OFF["With Option 18 NOT set (Default - Recommended)"]
         D1([File load from\napproved path]) --> D2{Check for symlinks\nor junctions in\npath chain}
         D2 -- Symlink found --> D3([BLOCKED\nPath integrity check fails\nAttacker cannot redirect path])
         D2 -- No symlinks --> D4([ALLOWED\nPath is clean])
     end
 
-    subgraph With Option 18 SET (Not Recommended)
+    subgraph OPT18_ON["With Option 18 SET (Not Recommended)"]
         E1([File load from\napproved path]) --> E2{Path matches\nFilePath pattern?}
         E2 -- Yes --> E3([ALLOWED\nNo symlink check\nSymlink attacks possible])
         E2 -- No --> E4([BLOCKED])

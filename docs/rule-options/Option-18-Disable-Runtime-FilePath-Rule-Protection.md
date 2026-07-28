@@ -145,7 +145,7 @@ flowchart TD
     OPT18_CHECK -- "Option 18 ABSENT\n(protection active — default)" --> ACL_CHECK["Runtime ACL Check:\nEvaluate write permissions\non the target path"]
 
     ACL_CHECK --> ADMIN_ONLY{Path exclusively\nwritable by\nAdministrators?}
-    ADMIN_ONLY -- "YES" --> ALLOW_PROTECTED([Allow — FilePath rule honored\n(path is admin-controlled, safe)])
+    ADMIN_ONLY -- "YES" --> ALLOW_PROTECTED(["Allow — FilePath rule honored\n(path is admin-controlled, safe)"])
     ADMIN_ONLY -- "NO — users can write here" --> BLOCK_FILEPATH([Block — FilePath rule silently overridden\nPath is user-writable, unsafe])
 
     RULE_LOOKUP -- "No rule matches" --> BLOCK_DEFAULT([Block — Default deny])

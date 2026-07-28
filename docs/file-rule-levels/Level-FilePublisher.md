@@ -916,12 +916,6 @@ sequenceDiagram
     Fleet-->>Fleet: BLOCKED — version floor prevents rollback
     Fleet->>Fleet: Event 3077 logged to CodeIntegrity audit log
 
-    style Admin fill:#162032,stroke:#1e3a5f,color:#e2e8f0
-    style RefPC fill:#162032,stroke:#1e3a5f,color:#e2e8f0
-    style PS fill:#1a0d2e,stroke:#6b21a8,color:#d8b4fe
-    style SCCM fill:#162032,stroke:#1e3a5f,color:#e2e8f0
-    style Fleet fill:#0d1f12,stroke:#1a5c2a,color:#86efac
-    style SevenZip fill:#162032,stroke:#1e3a5f,color:#e2e8f0
 ```
 
 ---

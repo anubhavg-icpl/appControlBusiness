@@ -85,7 +85,7 @@ flowchart TD
         A1 --> A2 --> A3 --> A4 --> A5
     end
 
-    subgraph Legacy_Cross["Legacy Cross-Signed Driver"])"]
+    subgraph Legacy_Cross["Legacy Cross-Signed Driver"]
         direction TB
         B1([Vendor self-signs]):::weak
         B2([No HLK testing required]):::weak
@@ -404,7 +404,7 @@ sequenceDiagram
     AuditLog -->> Admin: List of 3 non-WHQL drivers found
     Admin ->> DriverStore: Check Windows Update catalog for WHQL versions
     DriverStore -->> Admin: 2 of 3 have WHQL updates available
-    Admin ->> PolicyXML: Update driver inventory; update hardware for 1 exception
+    Admin ->> PolicyXML: Update driver inventory — update hardware for 1 exception
     Admin ->> PolicyXML: Remove Option 3 (Audit) — keep Option 2 (WHQL)
     Admin ->> PolicyXML: ConvertFrom-CIPolicy → enforced_whql.cip
     Admin ->> ProdFleet: Staged rollout: 100 → 500 → 1000 endpoints

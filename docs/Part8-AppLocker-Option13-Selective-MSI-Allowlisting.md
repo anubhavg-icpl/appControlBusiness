@@ -1253,7 +1253,7 @@ flowchart TD
     PROBLEM["User reports: app won't run"]
     QUERY["Query CodeIntegrity log\nFilter: Id in 3076, 3077, 3090, 3091"]
     FOUND3077{"Event 3077 found\nfor app binary?"}
-    FOUND3090{"Event 3090 found?"]
+    FOUND3090{"Event 3090 found?"}
     CHECK_SUPP["Check supplemental policies\nIs app in approved-apps.json?\nWas supplemental deployed?"]
     RESCAN["Re-run New-SupplementalAllowPolicy.ps1\nfor this app\nRedeploy supplemental"]
     CHECK_EA["Check if MI is active\nRun 05-Verify-MITags.ps1"]

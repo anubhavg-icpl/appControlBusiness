@@ -758,12 +758,6 @@ sequenceDiagram
     SecTeam->>MDM: Remove old rule after all endpoints updated
     MDM->>Endpoints: Final policy with only new cert rule
 
-    style SecTeam fill:#162032,stroke:#1e3a5f,color:#e2e8f0
-    style InternalCA fill:#1a0d2e,stroke:#6b21a8,color:#d8b4fe
-    style BuildSys fill:#162032,stroke:#1e3a5f,color:#e2e8f0
-    style PS fill:#1a0d2e,stroke:#6b21a8,color:#d8b4fe
-    style MDM fill:#162032,stroke:#1e3a5f,color:#e2e8f0
-    style Endpoints fill:#0d1f12,stroke:#1a5c2a,color:#86efac
 ```
 
 ---

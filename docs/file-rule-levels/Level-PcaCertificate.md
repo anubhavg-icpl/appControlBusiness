@@ -823,11 +823,6 @@ sequenceDiagram
     Deploy->>Deploy: No Publisher rule for this vendor
     Deploy-->>Deploy: BLOCKED — expected behavior
 
-    style Admin fill:#162032,stroke:#1e3a5f,color:#e2e8f0
-    style PS fill:#1a0d2e,stroke:#6b21a8,color:#d8b4fe
-    style WinRef fill:#162032,stroke:#1e3a5f,color:#e2e8f0
-    style Policy fill:#162032,stroke:#1e3a5f,color:#e2e8f0
-    style Deploy fill:#0d1f12,stroke:#1a5c2a,color:#86efac
 ```
 
 ---
