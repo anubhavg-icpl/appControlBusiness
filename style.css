@@ -505,19 +505,14 @@ body {
 
 #author-signature {
   display: block;
-  width: 88px;
+  width: 96px;
+  height: auto;
   margin-bottom: 4px;
-  opacity: .8;
-  mix-blend-mode: multiply;
-  border-radius: 4px;
+  color: var(--accent);
+  opacity: .85;
   user-select: none;
   -webkit-user-select: none;
   pointer-events: none;
-}
-
-[data-theme="dark"] #author-signature {
-  mix-blend-mode: screen;
-  filter: invert(1) hue-rotate(180deg);
 }
 
 #copyright-line {

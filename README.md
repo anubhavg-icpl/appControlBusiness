@@ -69,5 +69,5 @@ HTML · CSS · Vanilla JS · [marked.js](https://marked.js.org) · [highlight.js
 Viewing and attributed referencing are permitted; reproduction, redistribution,
 commercial use, and derivative works require prior written permission.
 
-![Signature of Anubhav Gain](docs/references/signature-anubhav.webp)
+![Signature of Anubhav Gain](docs/references/signature-anubhav.svg)
 
