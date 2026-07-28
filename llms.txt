@@ -1,0 +1,70 @@
+# Mastering App Control for Business
+
+> A complete corporate reference for Microsoft App Control for Business (formerly Windows Defender Application Control, WDAC): an 8-part guide, deep-dive references for all 22 policy rule options and 12 file rule levels, and an advanced notes compendium. Authored by Anubhav Gain from source material by Patrick Seltmann (ctrlshiftenter.cloud) and Microsoft Learn.
+
+Important notes:
+
+- Every documentation page is plain Markdown with OKF v0.2 YAML frontmatter (`type`, `title`, `description`, `tags`, `status`, `generated`, `verified`, `sources`); the Markdown URLs below are directly fetchable.
+- App Control for Business enforces application allowlisting in the Windows kernel via `ci.dll` (Code Integrity); rule evaluation order is: explicit deny, explicit allow (base), allow (supplemental), Managed Installer EA, ISG reputation, implicit deny.
+- Content is © 2026 Anubhav Gain, All Rights Reserved; see the [license](https://anubhavg-icpl.github.io/appControlBusiness/LICENSE) for reuse terms.
+
+## Guide
+
+- [Part 1: Introduction & Key Concepts](https://anubhavg-icpl.github.io/appControlBusiness/docs/Part1-Introduction-KeyConcepts.md): Why application control matters, key concepts, licensing, and how App Control for Business compares to AppLocker.
+- [Part 2: Policy Templates & Rule Options](https://anubhavg-icpl.github.io/appControlBusiness/docs/Part2-Policy-Templates-Rule-Options.md): The built-in policy templates and the full set of policy rule options.
+- [Part 3: Application ID Tagging Policies & Managed Installer](https://anubhavg-icpl.github.io/appControlBusiness/docs/Part3-AppID-Tagging-Managed-Installer.md): AppID tagging policies and the managed installer feature.
+- [Part 4: Starter Base Policy for Lightly Managed Devices](https://anubhavg-icpl.github.io/appControlBusiness/docs/Part4-Starter-Base-Policy-Lightly-Managed.md): Building a starter base policy for lightly managed devices.
+- [Part 5: Create a Base Policy for Fully Managed Devices](https://anubhavg-icpl.github.io/appControlBusiness/docs/Part5-Base-Policy-Fully-Managed-Devices.md): Building a base policy for fully managed devices.
+- [Part 6: Sign, Apply and Remove Signed Policies](https://anubhavg-icpl.github.io/appControlBusiness/docs/Part6-Sign-Apply-Remove-Signed-Policies.md): Signing, applying, and removing signed App Control policies.
+- [Part 7: Maintaining Policies with Azure DevOps (or PowerShell)](https://anubhavg-icpl.github.io/appControlBusiness/docs/Part7-Maintaining-Policies-AzureDevOps-PowerShell.md): Maintaining App Control policies with Azure DevOps pipelines and PowerShell.
+- [Part 8: AppLocker, Managed Installer (Option 13) & Selective MSI Allowlisting — End-to-End](https://anubhavg-icpl.github.io/appControlBusiness/docs/Part8-AppLocker-Option13-Selective-MSI-Allowlisting.md): Using AppLocker alongside rule option 13 for selective MSI allowlisting.
+
+## Policy Rule Options
+
+- [Option 0 — Enabled:UMCI (User Mode Code Integrity)](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-00-UMCI.md): What policy rule option 0 (Enabled:UMCI) does, why it exists, and how to configure it.
+- [Option 1 — Enabled:Boot Menu Protection](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-01-Boot-Menu-Protection.md): What policy rule option 1 (Enabled:Boot Menu Protection) does, why it exists, and how to configure it.
+- [Option 2 — Required:WHQL (Windows Hardware Quality Labs Certification)](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-02-WHQL.md): What policy rule option 2 (Required:WHQL) does, why it exists, and how to configure it.
+- [Option 3 — Enabled:Audit Mode (Default)](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-03-Audit-Mode.md): What policy rule option 3 (Enabled:Audit Mode) does, why it exists, and how to configure it.
+- [Option 4 — Disabled:Flight Signing](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-04-Flight-Signing.md): What policy rule option 4 (Disabled:Flight Signing) does, why it exists, and how to configure it.
+- [Option 5 — Enabled:Inherit Default Policy](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-05-Inherit-Default-Policy.md): What policy rule option 5 (Enabled:Inherit Default Policy) does, why it exists, and how to configure it.
+- [Option 6 — Enabled:Unsigned System Integrity Policy](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-06-Unsigned-System-Integrity-Policy.md): What policy rule option 6 (Enabled:Unsigned System Integrity Policy) does, why it exists, and how to configure it.
+- [Option 7 — Allowed:Debug Policy Augmented](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-07-Debug-Policy-Augmented.md): What policy rule option 7 (Allowed:Debug Policy Augmented) does, why it exists, and how to configure it.
+- [Option 8 — Required:EV Signers](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-08-EV-Signers.md): What policy rule option 8 (Required:EV Signers) does, why it exists, and how to configure it.
+- [Option 9 — Enabled:Advanced Boot Options Menu](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-09-Advanced-Boot-Options-Menu.md): What policy rule option 9 (Enabled:Advanced Boot Options Menu) does, why it exists, and how to configure it.
+- [Option 10 — Enabled:Boot Audit on Failure](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-10-Boot-Audit-on-Failure.md): What policy rule option 10 (Enabled:Boot Audit on Failure) does, why it exists, and how to configure it.
+- [Option 11 — Disabled:Script Enforcement](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-11-Script-Enforcement-Disabled.md): What policy rule option 11 (Disabled:Script Enforcement) does, why it exists, and how to configure it.
+- [Option 12 — Required:Enforce Store Applications](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-12-Enforce-Store-Applications.md): What policy rule option 12 (Required:Enforce Store Applications) does, why it exists, and how to configure it.
+- [Option 13 — Enabled:Managed Installer](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-13-Managed-Installer.md): What policy rule option 13 (Enabled:Managed Installer) does, why it exists, and how to configure it.
+- [Option 14 — Enabled:Intelligent Security Graph Authorization](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-14-ISG-Authorization.md): What policy rule option 14 (Enabled:Intelligent Security Graph Authorization) does, why it exists, and how to configure it.
+- [Option 15 — Enabled:Invalidate EAs on Reboot](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-15-Invalidate-EAs-on-Reboot.md): What policy rule option 15 (Enabled:Invalidate EAs on Reboot) does, why it exists, and how to configure it.
+- [Option 16 — Enabled:Update Policy No Reboot](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-16-Update-Policy-No-Reboot.md): What policy rule option 16 (Enabled:Update Policy No Reboot) does, why it exists, and how to configure it.
+- [Option 17 — Enabled:Allow Supplemental Policies](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-17-Allow-Supplemental-Policies.md): What policy rule option 17 (Enabled:Allow Supplemental Policies) does, why it exists, and how to configure it.
+- [Option 18 — Disabled:Runtime FilePath Rule Protection](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-18-Disable-Runtime-FilePath-Rule-Protection.md): What policy rule option 18 (Disabled:Runtime FilePath Rule Protection) does, why it exists, and how to configure it.
+- [Option 19 — Enabled:Dynamic Code Security](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-19-Dynamic-Code-Security.md): What policy rule option 19 (Enabled:Dynamic Code Security) does, why it exists, and how to configure it.
+- [Option 20 — Enabled:Revoked Expired As Unsigned](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-20-Revoked-Expired-As-Unsigned.md): What policy rule option 20 (Enabled:Revoked Expired As Unsigned) does, why it exists, and how to configure it.
+- [Developer Mode Dynamic Code Trust](https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-DevMode-Dynamic-Code-Trust.md): What the Enabled:Developer Mode Dynamic Code Trust option does, why it exists, and how to configure it.
+
+## File Rule Levels
+
+- [WDAC File Rule Level: FileName](https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-FileName.md): How the FileName file rule level works, its attack resistance, and when to use it.
+- [WDAC File Rule Level: FilePath](https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-FilePath.md): How the FilePath file rule level works, its attack resistance, and when to use it.
+- [WDAC File Rule Level: FilePublisher](https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-FilePublisher.md): How the FilePublisher file rule level works, its attack resistance, and when to use it.
+- [WDAC File Rule Level: Hash](https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-Hash.md): How the Hash file rule level works, its attack resistance, and when to use it.
+- [WDAC File Rule Level: LeafCertificate](https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-LeafCertificate.md): How the LeafCertificate file rule level works, its attack resistance, and when to use it.
+- [WDAC File Rule Level: PcaCertificate](https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-PcaCertificate.md): How the PcaCertificate file rule level works, its attack resistance, and when to use it.
+- [WDAC File Rule Level: Publisher](https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-Publisher.md): How the Publisher file rule level works, its attack resistance, and when to use it.
+- [WDAC File Rule Level: RootCertificate](https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-RootCertificate.md): How the RootCertificate file rule level works, its attack resistance, and when to use it.
+- [WDAC File Rule Level: SignedVersion](https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-SignedVersion.md): How the SignedVersion file rule level works, its attack resistance, and when to use it.
+- [WDAC File Rule Level: WHQL](https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-WHQL.md): How the WHQL file rule level works, its attack resistance, and when to use it.
+- [WDAC File Rule Level: WHQLFilePublisher](https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-WHQLFilePublisher.md): How the WHQLFilePublisher file rule level works, its attack resistance, and when to use it.
+- [WDAC File Rule Level: WHQLPublisher](https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-WHQLPublisher.md): How the WHQLPublisher file rule level works, its attack resistance, and when to use it.
+
+## Notes & Tips
+
+- [App Control for Business — Complete Reference: Notes, Tips & Advanced Considerations](https://anubhavg-icpl.github.io/appControlBusiness/docs/notes/Notes-Tips-AppControl.md): Advanced notes, tips, and gotchas for managing App Control for Business policies.
+
+## Optional
+
+- [Bundle index](https://anubhavg-icpl.github.io/appControlBusiness/docs/index.md): OKF bundle root listing of all concepts
+- [Update log](https://anubhavg-icpl.github.io/appControlBusiness/docs/log.md): Chronological history of documentation changes
+- [OKF v0.2 specification](https://anubhavg-icpl.github.io/appControlBusiness/OKF-SPEC.md): The Open Knowledge Format spec this bundle conforms to

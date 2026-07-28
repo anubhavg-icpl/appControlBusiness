@@ -503,6 +503,29 @@ body {
   flex-shrink: 0;
 }
 
+#author-signature {
+  display: block;
+  width: 88px;
+  margin-bottom: 4px;
+  opacity: .8;
+  mix-blend-mode: multiply;
+  border-radius: 4px;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
+
+[data-theme="dark"] #author-signature {
+  mix-blend-mode: screen;
+  filter: invert(1) hue-rotate(180deg);
+}
+
+#copyright-line {
+  margin-top: 4px;
+  font-size: 9px;
+  color: var(--text-dim);
+}
+
 /* ── Backdrop (mobile sidebar overlay) ───────────────────────── */
 #backdrop {
   display: none;

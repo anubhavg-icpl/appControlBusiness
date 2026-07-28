@@ -62,3 +62,12 @@ HTML · CSS · Vanilla JS · [marked.js](https://marked.js.org) · [highlight.js
 ---
 
 *Source: ctrlshiftenter.cloud — Patrick Seltmann. For organizational reference use.*
+
+## License
+
+© 2026 **Anubhav Gain**. All Rights Reserved — see [LICENSE](LICENSE).
+Viewing and attributed referencing are permitted; reproduction, redistribution,
+commercial use, and derivative works require prior written permission.
+
+![Signature of Anubhav Gain](docs/references/signature-anubhav.webp)
+
