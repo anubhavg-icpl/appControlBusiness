@@ -363,3 +363,12 @@ Refer to the validation methods covered in Part 4 of this series for full troubl
 
 *Document compiled by Anubhav Gain from source material published at ctrlshiftenter.cloud.*  
 *Original author: Patrick Seltmann. For organizational reference use.*
+
+---
+
+## Architecture & Reference Illustrations
+
+![Diagram — staged rollout through three rings: IT audit, pilot, full fleet, with signoff gates and rollback path](references/images/arch-08-deployment-rings.webp)
+
+*How an enforced base policy actually reaches a fully managed fleet without breaking it: **Ring 1 (IT, audit ~2 weeks) → Ring 2 (10% pilot, audit→enforce) → Ring 3 (everyone, enforce)** across a roughly eight-week timeline. The checklist gates between rings — collect 3076 events, tune rules, verify LOB apps, signoff — are the difference between a rollout and an outage. The escape hatch stays boring by design: rollback is just redeploying the previous `.cip`.*
+

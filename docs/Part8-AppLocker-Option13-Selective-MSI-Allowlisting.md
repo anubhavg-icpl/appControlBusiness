@@ -1442,3 +1442,16 @@ The comparison table that settled the "AppLocker or App Control?" debate for thi
 ![Field notes — AppLocker vs App Control: use both for defense in depth](references/handwritten/hw-10-applocker-vs-wdac.webp)
 
 *Row by row: AppLocker enforces from a **user-mode service** while App Control enforces in the **kernel**; AppLocker is easier to bypass; AppLocker uniquely offers per-user rules; and strategically AppLocker is legacy while App Control is where Microsoft invests. The verdict box is the takeaway this whole part implements: **use BOTH** — AppLocker as the Managed Installer helper and per-user MSI gate, App Control as the real security boundary. The two overlapping shields in the margin say it best: defense in depth.*
+
+---
+
+## Architecture & Reference Illustrations
+
+![Diagram — AppLocker and App Control layered together: user-mode management convenience above the kernel enforcement backbone](references/images/arch-10-applocker-wdac-coexistence.webp)
+
+*The two engines drawn as the layers they actually are: **AppLocker** on top (user-mode; per-user/group rules, MSI and script control, Managed Installer feed) and **App Control** beneath (kernel `ci.dll`; the enforced security boundary). The right lane traces this part's MSI path across both layers: AppLocker's MSI allowlist admits the installer → MI stamps the EA → App Control honors it at launch. Caption sums up the division of labor: AppLocker is management convenience, WDAC is the enforcement backbone.*
+
+![Flowchart — app blocked triage: query CodeIntegrity log, branch on 3077 vs 3090, fix rule or MI path, re-test](references/images/ref-04-troubleshooting-flow.webp)
+
+*The triage path for the inevitable "app won't run" ticket, matching this part's troubleshooting section: query the CodeIntegrity log, branch on **3077 present?** (enforced block → identify the failing rule level → add a FilePublisher rule or supplemental → redeploy) versus **3090 with EA?** (Managed Installer path → check the MI service and EA stamping). Each decision carries its PowerShell one-liner. The crossed-out red node is the discipline reminder: never answer a single blocked app by disabling enforcement fleet-wide.*
+

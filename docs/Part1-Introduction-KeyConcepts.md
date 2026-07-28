@@ -425,3 +425,16 @@ A page from the engineering field notebook, sketched while working through the c
 ![Field notes — why application control matters: reactive AV vs earned trust, blocklist vs allowlist](references/handwritten/hw-01-why-appcontrol.webp)
 
 *The note captures the two ideas everything else in this series builds on: traditional antivirus is **reactive** (it detects after execution, when damage may already be done), while App Control flips the model to **trust must be earned**. The hand-drawn balance scale weighs blocklisting ("chase the bad") against allowlisting ("define the good") — with the allowlist side clearly heavier. The margin reminder "formerly WDAC!" and the sticky-note verdict "Zero trust for BINARIES" summarize the whole philosophy in one page: ransomware, unsigned tools, and LOLBins simply never get to run.*
+
+---
+
+## Architecture & Reference Illustrations
+
+![Architecture overview — App Control for Business end-to-end: author, convert and sign, deploy, kernel enforcement, event feedback loop](references/images/arch-01-acfb-overview.webp)
+
+*The full solution on one canvas: policies are **authored** (WDAC Wizard, PowerShell ConfigCI), **converted and optionally signed** (`.cip`), and **deployed** through Intune/MDM, SCCM, GPO, or script. Enforcement happens inside the endpoint's kernel, where `ci.dll` (Code Integrity) gatekeeps every launch — signed-and-allowed runs, unknown is blocked, audit-mode launches are logged. The bottom feedback loop is what makes this operational rather than set-and-forget: CodeIntegrity events 3076/3077 flow back to the author to refine the rules.*
+
+![Reference diagram — policy formats (XML to .cip, optionally signed) and the policy type taxonomy: base, supplemental, AppID tagging](references/images/ref-03-policy-formats.webp)
+
+*The left lane tracks a policy's physical life: editable **XML source** → `ConvertFrom-CIPolicy` → deployable **`.cip` binary** → optionally a **signed** variant. The right-side taxonomy answers the other recurring question — *what kinds of policies exist*: multiple **base** policies (Windows 10 1903+), **supplemental** policies that extend a base, and **AppID tagging** policies that label processes without blocking anything. Footer detail worth remembering: the legacy single-policy format lives as `SiPolicy.p7b` in the EFI partition.*
+

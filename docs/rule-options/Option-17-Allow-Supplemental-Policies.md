@@ -879,3 +879,12 @@ if ($Build -ge 18362) {
 | **PowerShell Disable** | `Remove-RuleOption -FilePath $BasePolicyPath -Option 17` |
 | **XML Tag** | `<Option>Enabled:Allow Supplemental Policies</Option>` |
 | **PolicyID link** | Supplemental's `<BasePolicyID>` must equal base's `<PolicyID>` |
+
+---
+
+## Architecture & Reference Illustrations
+
+![Diagram — base plus supplemental policy model: departmental supplementals docked to a base via PolicyID, additive-allow-only rule](../references/images/arch-06-supplemental-policies.webp)
+
+*What Option 17 unlocks, structurally: a **base policy** carrying `Enabled:Allow Supplemental Policies` with departmental supplementals (**Engineering, Finance, pilot ring**) docked to it, each linked by its own PolicyID to the base. The red rule is the entire security model in one line: supplementals can only **add allows** — never a deny, never a loosened base option. The crossed-out fourth box (a supplemental trying to carry Option 3) shows the validator doing its job.*
+

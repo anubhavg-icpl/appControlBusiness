@@ -535,3 +535,12 @@ This design ensures a consistent enforcement posture across the base + supplemen
 | Policy Generation from Audit | `New-CIPolicy -Audit -Level FilePublisher -Fallback Hash -UserPEs` |
 | Critical Warning | Leaving Audit Mode in production = zero enforcement |
 | Security Framework Alignment | NIST SP 800-167 (Phased deployment), CIS Controls (baseline scanning) |
+
+---
+
+## Architecture & Reference Illustrations
+
+![Dashboard-style diagram — CodeIntegrity event stream, key event ID reference, and forwarding into Log Analytics, Sentinel, and Advanced Hunting](../references/images/arch-09-event-monitoring.webp)
+
+*What audit mode produces and where it should flow: the endpoint emits the CodeIntegrity event stream — **3076** (audit: would block), **3077** (enforced block), **3082** (driver audit), **3086** (MI/ISG query), **3090** (allowed via EA), **3091/3092** (script audit/block) — which fans out to **Log Analytics / Sentinel** and **Advanced Hunting KQL**. The alert-bell note is the operational takeaway: a 3077 spike means either a broken app or an attack, and you want to know which within minutes, not days.*
+

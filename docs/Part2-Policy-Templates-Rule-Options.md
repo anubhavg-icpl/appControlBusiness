@@ -943,3 +943,12 @@ The following is a comprehensive example policy XML demonstrating all major rule
 
 *Document compiled by Anubhav Gain from source material published at ctrlshiftenter.cloud.*  
 *Original author: Patrick Seltmann. For organizational reference use.*
+
+---
+
+## Architecture & Reference Illustrations
+
+![Reference chart — policy rule options 0 through 20 plus Developer Mode Dynamic Code Trust, with purpose and supplemental validity](references/images/ref-02-rule-options-matrix.webp)
+
+*The entire option space in one chart — a visual companion to the reference table in this part. Color coding carries the analysis: **green** rows are security hardening (0 UMCI, 2 WHQL, 19 Dynamic Code Security, 20 Revoked/Expired As Unsigned), **amber** rows are audit and rollout aids (3 Audit Mode, 9 Advanced Boot Menu, 10 Boot Audit on Failure), and **grayed** rows are reserved or unsupported (5, 7, 8). The Supplemental column settles instantly whether an option may appear in a supplemental policy.*
+

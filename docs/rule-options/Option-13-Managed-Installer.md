@@ -722,3 +722,12 @@ The Managed Installer mechanism from this page, traced end-to-end in the field n
 ![Field notes — Option 13 Managed Installer: EA stamping flow and gotchas](../references/handwritten/hw-05-option13-managed-installer.webp)
 
 *The sequence shows the invisible plumbing: **Intune/SCCM (the designated MI) writes files → `AppLockerFltr.sys` intercepts the write → stamps the NTFS extended attribute `KERNEL.SMARTLOCKER.ORIGINCLAIM` with `byte[4]=0x00` → `ci.dll` reads the EA at launch and allows**. The red gotcha list is the operational gold: self-updating apps lose their EA, the EA vanishes if a file is copied to FAT32, and a local admin can abuse custom XML to designate arbitrary installers. The margin note — "AppLocker service must be RUNNING" — is the first thing to check when MI mysteriously stops working.*
+
+---
+
+## Architecture & Reference Illustrations
+
+![Sequence diagram — Managed Installer EA stamping: Intune/SCCM writes, AppLockerFltr.sys stamps the EA on NTFS, ci.dll allows at launch](../references/images/arch-04-managed-installer-flow.webp)
+
+*The mechanism from this page as a clean five-actor sequence: **Intune/SCCM (the MI)** writes the app → **`AppLockerFltr.sys`** intercepts the write → the **`KERNEL.SMARTLOCKER.ORIGINCLAIM` EA (`byte[4]=0x00`)** lands on NTFS → the **user** launches → **`ci.dll`** reads the EA and allows. The amber inset repeats the three ways the EA silently disappears — self-updates, copies to FAT32, rewrites by non-MI processes — which is where nearly every MI support ticket originates.*
+

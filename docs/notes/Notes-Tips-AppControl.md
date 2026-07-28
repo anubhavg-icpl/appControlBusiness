@@ -1942,3 +1942,16 @@ Three pages from the field notebook that compress the decision-making heart of t
 ![Field notes — CodeIntegrity event ID cheat sheet](../references/handwritten/hw-08-event-ids-cheatsheet.webp)
 
 *The on-call cheat sheet: **3076** audit-mode would-be block, **3077** enforced block (highlighted — the one that pages you), **3082** audit driver block, **3086** ISG/MI query, **3089** signature information, **3090** allowed via EA, **3091/3092** script audit/block. The margin points to where they all live: Applications and Services → CodeIntegrity → Operational.*
+
+---
+
+## Architecture & Reference Illustrations
+
+![Diagram — binary launch evaluation stack: explicit deny, base allow, supplemental allow, MI EA, ISG, implicit deny, with event IDs per layer](../references/images/arch-03-policy-evaluation-stack.webp)
+
+*The clean-room version of the handwritten precedence ladder above: a launch enters via `CreateProcess`/`LoadLibrary` and falls through **explicit DENY (terminal) → base ALLOW → supplemental ALLOW → Managed Installer EA (`byte[4]=0x00`) → ISG reputation (`byte[4]=0x01`) → implicit DENY**. The right margin makes it auditable — each layer annotated with the event it emits: 3077 on block, 3090 on allow-with-EA, 3086 on the query.*
+
+![Reference chart — file rule levels comparison matrix: specificity, update survival, signing requirement, attack resistance, recommended use](../references/images/ref-01-file-rule-levels-matrix.webp)
+
+*The decision-tree sketch above, industrialized into a matrix: all twelve levels from **Hash** to **WHQLFilePublisher** scored on specificity, update survival, signing requirement, and attack resistance. **FilePublisher** carries the blue outline and star — the recommended default this document keeps returning to — while **FilePath** is tinted red for the user-writable-path bypass risk. Print this one; it answers the level-selection question faster than any prose.*
+

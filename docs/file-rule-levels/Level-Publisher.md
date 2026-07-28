@@ -731,3 +731,12 @@ A Signer defined in `<Signers>` only takes effect when referenced in an `<Allowe
 | **XML Elements** | `<Signer>` + `<CertRoot Type="TBS">` + `<CertPublisher>` |
 | **PowerShell Parameter** | `-Level Publisher` |
 | **Introduced** | Windows 10 1507 |
+
+---
+
+## Architecture & Reference Illustrations
+
+![Diagram — certificate chain (root, PCA, leaf, signed file) mapped tier-by-tier to the file rule levels that pin each tier](../references/images/arch-02-trust-chain.webp)
+
+*Where every certificate-based rule level actually anchors: the chain runs **Root CA → intermediate/PCA → leaf (publisher) → the signed file** with its version info, and the brackets map each tier to its rule levels — **RootCertificate** at the top (broadest, risky), **PcaCertificate** at the intermediate, **Publisher/LeafCertificate** at the leaf this page covers, and **FilePublisher/FileName/SignedVersion** adding file attributes on top (the recommended zone). **Hash** sits below the chain entirely — it trusts bytes, not certificates.*
+

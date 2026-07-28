@@ -1,6 +1,7 @@
 # Directory Update Log
 
 ## 2026-07-28
+* **Update**: Added 14 architecture and reference illustrations under [references/images](references/images/) (WebP) and embedded them with showcase captions across the Parts, rule options, file rule levels, and notes.
 * **Update**: Added 10 scanned handwritten field-note pages under [references/handwritten](references/handwritten/) (WebP) and embedded them in the relevant concepts.
 * **Update**: Migrated the entire bundle to OKF v0.2 — every concept now carries YAML frontmatter with `type`, `title`, `description`, `tags`, `status`, `generated`, `verified`, and `sources`; legacy inline metadata removed.
 * **Creation**: Added `index.md` listings for the bundle root, [rule-options](rule-options/), [file-rule-levels](file-rule-levels/), and [notes](notes/).

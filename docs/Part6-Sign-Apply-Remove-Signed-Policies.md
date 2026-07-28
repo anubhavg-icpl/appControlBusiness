@@ -510,3 +510,12 @@ A warning page written after the first encounter with a signed policy that could
 ![Field notes — signed policies are tamper-proof; removal requires a signed empty-ish policy and two reboots](references/handwritten/hw-07-signed-policies.webp)
 
 *The flow reads: **sign the `.cip` with a code-signing cert → deploy → the policy is locked by anti-tamper**. The red warning box is the part everyone learns the hard way: removal needs a **signed** empty-ish policy plus **two reboots** — a local admin cannot just delete the file. The checklist calls out `UpdatePolicySigners` (the cert authorized to replace the policy) and the fact that an unsigned rollback attempt is simply blocked. The margin arrow "EFI partition copy!" notes where the enforced copy actually lives.*
+
+---
+
+## Architecture & Reference Illustrations
+
+![Diagram — signed policy anti-tamper chain: code-signing cert, EFI partition storage, Secure Boot validation, and the correct removal procedure](references/images/arch-07-signed-policy-antitamper.webp)
+
+*The tamper-resistance story as a chain: policy XML signed with the **`UpdatePolicySigners` cert**, stored in the **EFI System Partition**, validated at boot by **Secure Boot + Code Integrity**. The red lane shows why signed policies are a real boundary — a local admin deleting the `.cip` gets a restored/fail-safe boot, not a disabled policy. The amber lane is the procedure this part documents: proper removal means deploying a signed policy **without** `UpdatePolicySigners`, rebooting, then removing.*
+

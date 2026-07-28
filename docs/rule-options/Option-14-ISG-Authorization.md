@@ -872,3 +872,12 @@ The ISG decision flow from this page, reduced to one notebook sketch.
 ![Field notes — Option 14 ISG cloud trust: query flow, EA cache, fail-closed behavior](../references/handwritten/hw-06-option14-isg.webp)
 
 *An unknown file triggers a query to the **Microsoft ISG / SmartScreen cloud**, which returns good, bad, or unknown — and the note underlines the security-critical default: **unknown = DENY (fail closed)**. The highlighted cache box records the detail that distinguishes ISG from Managed Installer on disk: the cached verdict lives in the same EA but with **`byte[4]=0x01`** (MI uses `0x00`). The pulled-plug doodle covers the offline story — no connectivity means cached EAs only — and the blunt margin verdict: air-gapped networks get nothing from ISG.*
+
+---
+
+## Architecture & Reference Illustrations
+
+![Flow diagram — ISG authorization: local EA cache check, cloud reputation query, three verdict lanes, fail-closed on unknown](../references/images/arch-05-isg-flow.webp)
+
+*The ISG decision path rendered end-to-end: an unknown file first hits the **local EA cache (`byte[4]=0x01`)** — a hit allows immediately; a miss queries the **Microsoft cloud (ISG/SmartScreen)**, which returns one of three lanes: **known good → allow + cache EA**, **unknown → deny (fail-closed)**, **known bad → block**. The corner panel lists the three operational caveats this page elaborates: internet required, no driver blocklist coverage, and the cache expires.*
+
