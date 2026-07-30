@@ -1,0 +1,196 @@
+{
+  "id": "docs/Part6-Sign-Apply-Remove-Signed-Policies",
+  "path": "docs/Part6-Sign-Apply-Remove-Signed-Policies.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/Part6-Sign-Apply-Remove-Signed-Policies.md",
+  "title": "Part 6: Sign, Apply and Remove Signed Policies",
+  "frontmatter": {
+    "type": "Guide",
+    "title": "Part 6: Sign, Apply and Remove Signed Policies",
+    "description": "Signing, applying, and removing signed App Control policies.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "endpoint-security"
+    ],
+    "status": "stable",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-01 21:08:16 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-01 21:08:16 +0530"
+    },
+    "sources": [
+      {
+        "id": "ctrlshiftenter",
+        "resource": "https://ctrlshiftenter.cloud",
+        "title": "ctrlshiftenter.cloud — Patrick Seltmann",
+        "author": "human:patrick-seltmann"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Mastering App Control for Business"
+    },
+    {
+      "level": 2,
+      "title": "Part 6: Sign, Apply and Remove Signed Policies"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. Overview"
+    },
+    {
+      "level": 2,
+      "title": "2. Requirements"
+    },
+    {
+      "level": 3,
+      "title": "Code Signing Certificate"
+    },
+    {
+      "level": 3,
+      "title": "System Requirements"
+    },
+    {
+      "level": 3,
+      "title": "Tooling"
+    },
+    {
+      "level": 3,
+      "title": "Create Self-Signed Certificate (Testing Only)"
+    },
+    {
+      "level": 1,
+      "title": "Parameters"
+    },
+    {
+      "level": 1,
+      "title": "Create self-signed certificate"
+    },
+    {
+      "level": 1,
+      "title": "Export as PFX (includes private key)"
+    },
+    {
+      "level": 1,
+      "title": "Export certificate as CRT (DER format — public key only)"
+    },
+    {
+      "level": 3,
+      "title": "Important Certificate Security Notes"
+    },
+    {
+      "level": 2,
+      "title": "3. Signing the Policy"
+    },
+    {
+      "level": 3,
+      "title": "Preparation — PowerShell"
+    },
+    {
+      "level": 1,
+      "title": "Option 9: Enabled:Advanced Boot Options Menu (F8 menu)"
+    },
+    {
+      "level": 1,
+      "title": "Option 10: Enabled:Boot Audit on Failure"
+    },
+    {
+      "level": 1,
+      "title": "Note: Omit -Supplemental if your policy does not allow supplemental policies"
+    },
+    {
+      "level": 3,
+      "title": "Preparation — App Control Wizard"
+    },
+    {
+      "level": 1,
+      "title": "Note: Omit -Supplemental if your policy does not allow supplemental policies"
+    },
+    {
+      "level": 2,
+      "title": "4. Convert to Binary and Sign"
+    },
+    {
+      "level": 3,
+      "title": "SignTool Parameters Explained"
+    },
+    {
+      "level": 3,
+      "title": "Verify the Signed Policy"
+    },
+    {
+      "level": 1,
+      "title": "Using certutil"
+    },
+    {
+      "level": 1,
+      "title": "Using PowerShell for additional signature info"
+    },
+    {
+      "level": 2,
+      "title": "5. Apply the Signed Policy"
+    },
+    {
+      "level": 2,
+      "title": "6. What Happens When Someone Tries to Delete a Signed Policy"
+    },
+    {
+      "level": 3,
+      "title": "Deleting from the Windows File System"
+    },
+    {
+      "level": 3,
+      "title": "Deleting from the EFI Partition"
+    },
+    {
+      "level": 3,
+      "title": "Why UEFI/BIOS Password Is Critical"
+    },
+    {
+      "level": 2,
+      "title": "7. Removing a Signed Policy"
+    },
+    {
+      "level": 3,
+      "title": "Step 1: Create a Replacement Policy"
+    },
+    {
+      "level": 3,
+      "title": "Step 2: Stop the Old Policy from Being Re-deployed"
+    },
+    {
+      "level": 3,
+      "title": "Step 3: Deploy the Replacement Policy"
+    },
+    {
+      "level": 3,
+      "title": "Step 4: Remove the Replacement Policy"
+    },
+    {
+      "level": 3,
+      "title": "Step 5: Delete Policy Files from Disk"
+    },
+    {
+      "level": 2,
+      "title": "Series Navigation"
+    },
+    {
+      "level": 2,
+      "title": "Field Notes (Handwritten)"
+    },
+    {
+      "level": 2,
+      "title": "Architecture & Reference Illustrations"
+    }
+  ],
+  "kind": "guide"
+}

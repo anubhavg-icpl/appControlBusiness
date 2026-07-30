@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>App Control for Business Updates</title>
+  <id>https://anubhavg-icpl.github.io/appControlBusiness/ai/atom.xml</id>
+  <updated>2026-07-30T16:50:23Z</updated>
+  <link href="https://anubhavg-icpl.github.io/appControlBusiness/" rel="alternate" />
+  <link href="https://anubhavg-icpl.github.io/appControlBusiness/ai/atom.xml" rel="self" />
+  <subtitle>Machine-readable change feed for the App Control for Business documentation bundle.</subtitle>
+<entry>
+  <title>Directory Update Log — 2026-07-30</title>
+  <id>https://anubhavg-icpl.github.io/appControlBusiness/docs/log.md#2026-07-30</id>
+  <updated>2026-07-30T00:00:00Z</updated>
+  <link href="https://anubhavg-icpl.github.io/appControlBusiness/docs/log.md" />
+  <summary>**Update**: Added `/ai/search-index.json` as a full-text search index across the Markdown corpus.
+**Update**: Added `/ai/llms-full.txt` as a single offline bundle for agent ingestion.
+**Update**: Added `/ai/frontmatter/index.json` plus per-page JSON exports under `/ai/frontmatter/` for OKF frontmatter tooling.
+**Update**: Added `/ai/updates.json` and `/ai/atom.xml` as machine-readable change feeds.
+**Update**: Added `scripts/generate_agent_assets.rb` to regenerate all AI-facing static assets from source Markdown.</summary>
+</entry>
+<entry>
+  <title>Directory Update Log — 2026-07-28</title>
+  <id>https://anubhavg-icpl.github.io/appControlBusiness/docs/log.md#2026-07-28</id>
+  <updated>2026-07-28T00:00:00Z</updated>
+  <link href="https://anubhavg-icpl.github.io/appControlBusiness/docs/log.md" />
+  <summary>**Update**: Added a dedicated [AI / MCP-ready index](/ai/) page and [/ai/resources.json](/ai/resources.json) manifest for coding agents on GitHub Pages.
+**Update**: Added author signature mark, repository LICENSE (All Rights Reserved), and a root [llms.txt](/llms.txt) index for LLM consumers.
+**Update**: Added 14 architecture and reference illustrations under [references/images](references/images/) (WebP) and embedded them with showcase captions across the Parts, rule options, file rule levels, and notes.
+**Update**: Added 10 scanned handwritten field-note pages under [references/handwritten](references/handwritten/) (WebP) and embedded them in the relevant concepts.
+**Update**: Migrated the entire bundle to OKF v0.2 — every concept now carries YAML frontmatter with `type`, `title`, `description`, `tags`, `status`, `generated`, `verified`, and `sources`; legacy inline metadata removed.
+**Creation**: Added `index.md` listings for the bundle root, [rule-options](rule-options/), [file-rule-levels](file-rule-levels/), and [notes](notes/).</summary>
+</entry>
+<entry>
+  <title>Directory Update Log — 2026-05-02</title>
+  <id>https://anubhavg-icpl.github.io/appControlBusiness/docs/log.md#2026-05-02</id>
+  <updated>2026-05-02T00:00:00Z</updated>
+  <link href="https://anubhavg-icpl.github.io/appControlBusiness/docs/log.md" />
+  <summary>**Creation**: Added 22 policy rule option references, 12 file rule level references, and the Notes &amp; Tips compendium.</summary>
+</entry>
+<entry>
+  <title>Directory Update Log — 2026-05-01</title>
+  <id>https://anubhavg-icpl.github.io/appControlBusiness/docs/log.md#2026-05-01</id>
+  <updated>2026-05-01T00:00:00Z</updated>
+  <link href="https://anubhavg-icpl.github.io/appControlBusiness/docs/log.md" />
+  <summary>**Initialization**: Established the eight-part App Control for Business reference series.</summary>
+</entry>
+</feed>

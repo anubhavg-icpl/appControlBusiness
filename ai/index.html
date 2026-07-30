@@ -304,24 +304,27 @@
 
       <article class="card span-6">
         <h2>Machine-readable manifest</h2>
-        <p>The companion JSON file is easier for tools to parse than HTML navigation.</p>
+        <p>The companion JSON file is easier for tools to parse than HTML navigation and now advertises the generated assets too.</p>
         <pre>{
   "baseUrl": "https://anubhavg-icpl.github.io/appControlBusiness/",
   "agentIndex": "https://anubhavg-icpl.github.io/appControlBusiness/ai/",
   "llmsTxt": "https://anubhavg-icpl.github.io/appControlBusiness/llms.txt",
   "docsIndex": "https://anubhavg-icpl.github.io/appControlBusiness/docs/index.md",
-  "sitemap": "https://anubhavg-icpl.github.io/appControlBusiness/sitemap.xml"
+  "searchIndex": "https://anubhavg-icpl.github.io/appControlBusiness/ai/search-index.json",
+  "llmsFull": "https://anubhavg-icpl.github.io/appControlBusiness/ai/llms-full.txt",
+  "frontmatterIndex": "https://anubhavg-icpl.github.io/appControlBusiness/ai/frontmatter/index.json",
+  "updatesFeed": "https://anubhavg-icpl.github.io/appControlBusiness/ai/updates.json"
 }</pre>
       </article>
 
       <article class="card span-6">
-        <h2>Good next features</h2>
-        <p>These are the most useful upgrades if you want the site to be even more agent-friendly.</p>
+        <h2>Available agent assets</h2>
+        <p>These are now generated from the Markdown corpus and deployed as static files.</p>
         <ul class="list">
-          <li>Add a full-text search index for docs and rule options.</li>
-          <li>Add a downloadable llms-full.txt bundle for offline agents.</li>
-          <li>Add per-page frontmatter exports as JSON for tooling.</li>
-          <li>Add a change-log feed so agents can detect updates quickly.</li>
+          <li><a href="./search-index.json">search-index.json</a> for full-text lookup across the 51 Markdown documents.</li>
+          <li><a href="./llms-full.txt">llms-full.txt</a> as a single offline bundle for agent ingestion.</li>
+          <li><a href="./frontmatter/index.json">frontmatter/index.json</a> plus per-page JSON exports under <a href="./frontmatter/">/ai/frontmatter/</a>.</li>
+          <li><a href="./updates.json">updates.json</a> and <a href="./atom.xml">atom.xml</a> for machine-readable change detection.</li>
         </ul>
       </article>
 
@@ -331,7 +334,7 @@
           This page is static and deploys cleanly through the existing GitHub Pages workflow. If you later want a real MCP server, deploy it on a separate runtime such as Cloudflare Workers, Fly.io, Render, or Vercel, then have that server expose or proxy these same resource URLs.
         </p>
         <p class="footer">
-          Last updated for agent discovery on <code>2026-07-30</code>. The page is intentionally simple so browsers, indexing bots, and coding agents can all consume it without JavaScript.
+          Last updated for agent discovery on <code>2026-07-30</code>. Regenerate the static assets with <code>ruby scripts/generate_agent_assets.rb</code>. The page is intentionally simple so browsers, indexing bots, and coding agents can all consume it without JavaScript.
         </p>
       </article>
     </section>

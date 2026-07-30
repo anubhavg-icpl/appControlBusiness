@@ -1,0 +1,289 @@
+{
+  "id": "docs/file-rule-levels/Level-PcaCertificate",
+  "path": "docs/file-rule-levels/Level-PcaCertificate.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-PcaCertificate.md",
+  "title": "WDAC File Rule Level: PcaCertificate",
+  "frontmatter": {
+    "type": "File Rule Level",
+    "title": "WDAC File Rule Level: PcaCertificate",
+    "description": "How the PcaCertificate file rule level works, its attack resistance, and when to use it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "file-rule-level"
+    ],
+    "status": "stable",
+    "file_rule_level": "PcaCertificate",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "WDAC File Rule Level: PcaCertificate"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. Overview"
+    },
+    {
+      "level": 2,
+      "title": "2. How It Works"
+    },
+    {
+      "level": 3,
+      "title": "ConfigCI's Chain Walking Logic"
+    },
+    {
+      "level": 3,
+      "title": "Identifying the PCA Certificate"
+    },
+    {
+      "level": 1,
+      "title": "Which cert will ConfigCI use for PcaCertificate level?"
+    },
+    {
+      "level": 1,
+      "title": "Example usage"
+    },
+    {
+      "level": 3,
+      "title": "The TBS Hash"
+    },
+    {
+      "level": 2,
+      "title": "3. What \"PCA\" Means and Why Not the Root"
+    },
+    {
+      "level": 3,
+      "title": "The Name \"PCA\""
+    },
+    {
+      "level": 3,
+      "title": "Why ConfigCI Stops at the Intermediate CA and Not the Root"
+    },
+    {
+      "level": 3,
+      "title": "Microsoft's Own PCA Certs"
+    },
+    {
+      "level": 2,
+      "title": "4. Certificate Chain Anatomy"
+    },
+    {
+      "level": 3,
+      "title": "Trust Surface Comparison Across Levels"
+    },
+    {
+      "level": 2,
+      "title": "5. Where in the Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "6. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "PcaCertificate Rule XML"
+    },
+    {
+      "level": 3,
+      "title": "XML Element Summary for PcaCertificate"
+    },
+    {
+      "level": 3,
+      "title": "How to Tell PcaCertificate from LeafCertificate in XML"
+    },
+    {
+      "level": 2,
+      "title": "7. PowerShell Examples"
+    },
+    {
+      "level": 3,
+      "title": "Generate PcaCertificate Rules"
+    },
+    {
+      "level": 1,
+      "title": "Generate PcaCertificate rules from Windows system files"
+    },
+    {
+      "level": 1,
+      "title": "WARNING: Scanning C:\\Windows\\System32 with PcaCertificate level will produce"
+    },
+    {
+      "level": 1,
+      "title": "very few rules (because many MS components share the same intermediate CAs)"
+    },
+    {
+      "level": 1,
+      "title": "but those rules will be VERY broad."
+    },
+    {
+      "level": 3,
+      "title": "Generate PcaCertificate Rule for a Specific File"
+    },
+    {
+      "level": 1,
+      "title": "Single file PcaCertificate rule"
+    },
+    {
+      "level": 3,
+      "title": "Inspect What PcaCertificate Rule Will Trust"
+    },
+    {
+      "level": 1,
+      "title": "See the scope of trust for different files"
+    },
+    {
+      "level": 3,
+      "title": "Creating a Policy from Internal CA Files Only"
+    },
+    {
+      "level": 1,
+      "title": "For internal/private CA use case:"
+    },
+    {
+      "level": 1,
+      "title": "Generate PcaCertificate rules from internally-signed tools"
+    },
+    {
+      "level": 1,
+      "title": "First, verify the cert is from your internal CA"
+    },
+    {
+      "level": 1,
+      "title": "Should show: CN=YourCompany Internal Code Signing CA"
+    },
+    {
+      "level": 1,
+      "title": "Then generate policy — appropriate if issuer is truly your internal CA"
+    },
+    {
+      "level": 2,
+      "title": "8. Trust Surface: The Breadth Problem"
+    },
+    {
+      "level": 3,
+      "title": "Public CA Trust Surface — A Concrete Example"
+    },
+    {
+      "level": 3,
+      "title": "The Contrast: Private CA Trust Surface"
+    },
+    {
+      "level": 3,
+      "title": "Trust Surface Comparison Diagram"
+    },
+    {
+      "level": 2,
+      "title": "9. Pros and Cons"
+    },
+    {
+      "level": 3,
+      "title": "Pros"
+    },
+    {
+      "level": 3,
+      "title": "Cons"
+    },
+    {
+      "level": 2,
+      "title": "10. Attack Resistance Analysis"
+    },
+    {
+      "level": 3,
+      "title": "Key Risk: The \"Legitimate Cert\" Attack"
+    },
+    {
+      "level": 2,
+      "title": "11. When to Use vs When to Avoid"
+    },
+    {
+      "level": 3,
+      "title": "Specific Appropriate Use Cases for PcaCertificate"
+    },
+    {
+      "level": 2,
+      "title": "12. Double-Signed File Behavior"
+    },
+    {
+      "level": 2,
+      "title": "13. Real-World Scenario"
+    },
+    {
+      "level": 2,
+      "title": "14. OS Version and Compatibility Notes"
+    },
+    {
+      "level": 3,
+      "title": "ConfigCI Default Behavior"
+    },
+    {
+      "level": 3,
+      "title": "Default Windows Policy Templates"
+    },
+    {
+      "level": 2,
+      "title": "15. Common Mistakes and Gotchas"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 1: Using PcaCertificate for Public CA Without Understanding Scope"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 2: Thinking PcaCertificate is \"PCA + CN\" (Confusing with Publisher)"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 3: Using PcaCertificate in the Fallback Chain Without Realizing the Broadness"
+    },
+    {
+      "level": 1,
+      "title": "DANGEROUS — if a file fails FilePublisher and Publisher,"
+    },
+    {
+      "level": 1,
+      "title": "it falls back to PcaCertificate, which is extremely broad"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 4: Not Documenting Which Files Generated Which PcaCertificate Rules"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 5: Using PcaCertificate for WHQL-Signed Drivers When WHQL Level Exists"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 6: Confusing XML Structure with LeafCertificate"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 7: Assuming PcaCertificate Rules Never Need Updating"
+    },
+    {
+      "level": 2,
+      "title": "16. Summary Table"
+    }
+  ],
+  "kind": "file-rule-level"
+}

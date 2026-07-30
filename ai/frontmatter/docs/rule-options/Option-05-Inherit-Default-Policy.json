@@ -1,0 +1,179 @@
+{
+  "id": "docs/rule-options/Option-05-Inherit-Default-Policy",
+  "path": "docs/rule-options/Option-05-Inherit-Default-Policy.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-05-Inherit-Default-Policy.md",
+  "title": "Option 5 — Enabled:Inherit Default Policy",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 5 — Enabled:Inherit Default Policy",
+    "description": "What policy rule option 5 (Enabled:Inherit Default Policy) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 5,
+    "policy_rule_value": "Enabled:Inherit Default Policy",
+    "valid_for_supplemental": true,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 5 — Enabled:Inherit Default Policy"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. What It Does"
+    },
+    {
+      "level": 2,
+      "title": "2. Why It Exists"
+    },
+    {
+      "level": 3,
+      "title": "The Reservation Pattern in WDAC Policy Design"
+    },
+    {
+      "level": 2,
+      "title": "3. Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "4. How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Enable Option 5"
+    },
+    {
+      "level": 1,
+      "title": "Enable:Inherit Default Policy on a base policy"
+    },
+    {
+      "level": 1,
+      "title": "Enable on a supplemental policy"
+    },
+    {
+      "level": 3,
+      "title": "Disable / Remove Option 5"
+    },
+    {
+      "level": 1,
+      "title": "Remove the option (return to default — absent from XML)"
+    },
+    {
+      "level": 3,
+      "title": "Verify Current State"
+    },
+    {
+      "level": 1,
+      "title": "Read back all options present in a policy file"
+    },
+    {
+      "level": 3,
+      "title": "Full Scripted Example with Conversion"
+    },
+    {
+      "level": 1,
+      "title": "1. Set option 5 (reserved, no current effect)"
+    },
+    {
+      "level": 1,
+      "title": "2. Confirm it was written"
+    },
+    {
+      "level": 1,
+      "title": "3. Compile to binary"
+    },
+    {
+      "level": 1,
+      "title": "4. (Optional) Deploy via CiTool"
+    },
+    {
+      "level": 2,
+      "title": "5. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Option Present in Policy XML"
+    },
+    {
+      "level": 3,
+      "title": "Option Absent from Policy XML"
+    },
+    {
+      "level": 3,
+      "title": "Bitmask Position"
+    },
+    {
+      "level": 2,
+      "title": "6. Interaction with Other Options"
+    },
+    {
+      "level": 3,
+      "title": "Compatibility Matrix"
+    },
+    {
+      "level": 2,
+      "title": "7. When to Enable vs Disable"
+    },
+    {
+      "level": 2,
+      "title": "8. Real-World Scenario / End-to-End Walkthrough"
+    },
+    {
+      "level": 3,
+      "title": "Scenario: Enterprise Prepares Policies for an Upcoming Windows Feature Release"
+    },
+    {
+      "level": 2,
+      "title": "9. What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Potential Future Risk"
+    },
+    {
+      "level": 3,
+      "title": "Misconfiguration Consequence Matrix (Current + Future Projection)"
+    },
+    {
+      "level": 2,
+      "title": "10. Valid for Supplemental Policies?"
+    },
+    {
+      "level": 3,
+      "title": "Supplemental Policy Constraints Context"
+    },
+    {
+      "level": 2,
+      "title": "11. OS Version Requirements"
+    },
+    {
+      "level": 2,
+      "title": "12. Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

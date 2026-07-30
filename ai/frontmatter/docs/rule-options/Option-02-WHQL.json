@@ -1,0 +1,207 @@
+{
+  "id": "docs/rule-options/Option-02-WHQL",
+  "path": "docs/rule-options/Option-02-WHQL.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-02-WHQL.md",
+  "title": "Option 2 — Required:WHQL (Windows Hardware Quality Labs Certification)",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 2 — Required:WHQL (Windows Hardware Quality Labs Certification)",
+    "description": "What policy rule option 2 (Required:WHQL) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 2,
+    "policy_rule_value": "Required:WHQL",
+    "valid_for_supplemental": false,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 2 — Required:WHQL (Windows Hardware Quality Labs Certification)"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. What It Does"
+    },
+    {
+      "level": 2,
+      "title": "2. Why It Exists"
+    },
+    {
+      "level": 3,
+      "title": "The Driver Supply-Chain Problem"
+    },
+    {
+      "level": 3,
+      "title": "Why the Legacy Cross-Signing System Is a Risk"
+    },
+    {
+      "level": 3,
+      "title": "WHQL Security Properties"
+    },
+    {
+      "level": 2,
+      "title": "3. Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 3,
+      "title": "Driver Signing Hierarchy"
+    },
+    {
+      "level": 2,
+      "title": "4. How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Enable WHQL Requirement"
+    },
+    {
+      "level": 1,
+      "title": "Require WHQL certification for all kernel drivers"
+    },
+    {
+      "level": 3,
+      "title": "Remove WHQL Requirement (Revert to Any Microsoft-Signed)"
+    },
+    {
+      "level": 1,
+      "title": "Allow any Microsoft-signed driver (including cross-signed legacy)"
+    },
+    {
+      "level": 3,
+      "title": "Audit Drivers Before Enabling WHQL Requirement"
+    },
+    {
+      "level": 1,
+      "title": "Find all currently loaded drivers and check for WHQL certification"
+    },
+    {
+      "level": 3,
+      "title": "Identify Non-WHQL Drivers That Would Be Blocked"
+    },
+    {
+      "level": 1,
+      "title": "Check for drivers NOT bearing the WHQL certificate chain"
+    },
+    {
+      "level": 3,
+      "title": "Full Policy Creation with WHQL Enforcement"
+    },
+    {
+      "level": 1,
+      "title": "Copy the DefaultWindows base"
+    },
+    {
+      "level": 1,
+      "title": "Enable UMCI (Option 0) and WHQL (Option 2)"
+    },
+    {
+      "level": 1,
+      "title": "Set policy identity"
+    },
+    {
+      "level": 1,
+      "title": "Compile and deploy"
+    },
+    {
+      "level": 1,
+      "title": "Deploy to test systems first"
+    },
+    {
+      "level": 2,
+      "title": "5. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Option 2 Enabled in Policy XML"
+    },
+    {
+      "level": 3,
+      "title": "WHQL Signer Entry (For Reference)"
+    },
+    {
+      "level": 2,
+      "title": "6. Interaction with Other Options"
+    },
+    {
+      "level": 3,
+      "title": "Option Relationship Matrix"
+    },
+    {
+      "level": 3,
+      "title": "WHQL and UMCI Layered Enforcement"
+    },
+    {
+      "level": 2,
+      "title": "7. When to Enable vs Disable"
+    },
+    {
+      "level": 3,
+      "title": "Decision Reference Table"
+    },
+    {
+      "level": 2,
+      "title": "8. Real-World Scenario — End-to-End Walkthrough"
+    },
+    {
+      "level": 3,
+      "title": "Scenario: BYOVD Attack Blocked by WHQL Requirement"
+    },
+    {
+      "level": 3,
+      "title": "WHQL Rollout Sequence"
+    },
+    {
+      "level": 2,
+      "title": "9. What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: Enable WHQL Without Audit Phase"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: Disable WHQL on High-Security Asset"
+    },
+    {
+      "level": 3,
+      "title": "Misconfig Consequences Summary"
+    },
+    {
+      "level": 2,
+      "title": "10. Valid for Supplemental Policies?"
+    },
+    {
+      "level": 2,
+      "title": "11. OS Version Requirements"
+    },
+    {
+      "level": 2,
+      "title": "12. Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

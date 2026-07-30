@@ -1,0 +1,229 @@
+{
+  "id": "docs/file-rule-levels/Level-RootCertificate",
+  "path": "docs/file-rule-levels/Level-RootCertificate.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-RootCertificate.md",
+  "title": "WDAC File Rule Level: RootCertificate",
+  "frontmatter": {
+    "type": "File Rule Level",
+    "title": "WDAC File Rule Level: RootCertificate",
+    "description": "How the RootCertificate file rule level works, its attack resistance, and when to use it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "file-rule-level"
+    ],
+    "status": "stable",
+    "file_rule_level": "RootCertificate",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "WDAC File Rule Level: RootCertificate"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. Overview"
+    },
+    {
+      "level": 2,
+      "title": "2. Why RootCertificate Is Not Supported"
+    },
+    {
+      "level": 3,
+      "title": "The Core Problem: Catastrophically Broad Trust"
+    },
+    {
+      "level": 3,
+      "title": "The Specific Example: Microsoft Root CA"
+    },
+    {
+      "level": 3,
+      "title": "The Contoso Example"
+    },
+    {
+      "level": 2,
+      "title": "3. The Trust Surface Explosion Problem"
+    },
+    {
+      "level": 2,
+      "title": "4. Certificate Chain Anatomy"
+    },
+    {
+      "level": 2,
+      "title": "5. Where in the Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "6. What Happens If You Try It"
+    },
+    {
+      "level": 3,
+      "title": "Attempting with PowerShell"
+    },
+    {
+      "level": 3,
+      "title": "Attempting with Direct XML Authoring"
+    },
+    {
+      "level": 2,
+      "title": "7. XML Representation (Attempted vs. Correct)"
+    },
+    {
+      "level": 3,
+      "title": "Incorrect Approach (Root Level — Do NOT Use)"
+    },
+    {
+      "level": 3,
+      "title": "Correct Approach (PCA Level — Use This)"
+    },
+    {
+      "level": 3,
+      "title": "The TBS (To-Be-Signed) Hash"
+    },
+    {
+      "level": 1,
+      "title": "Get the TBS hash of a certificate from a signed file"
+    },
+    {
+      "level": 1,
+      "title": "Walk the chain to find the intermediate CA"
+    },
+    {
+      "level": 1,
+      "title": "Display the TBS hash (used in WDAC XML)"
+    },
+    {
+      "level": 2,
+      "title": "8. PowerShell Examples"
+    },
+    {
+      "level": 3,
+      "title": "Scanning and Generating Rules (Correct Level)"
+    },
+    {
+      "level": 1,
+      "title": "Generate a policy using PcaCertificate level (the correct alternative to RootCertificate)"
+    },
+    {
+      "level": 1,
+      "title": "This creates Signer rules for intermediate CAs — not root CAs"
+    },
+    {
+      "level": 1,
+      "title": "Output: Signer elements referencing intermediate CA certs, Hash rules for unsigned files"
+    },
+    {
+      "level": 1,
+      "title": "What happens if you accidentally specify RootCertificate:"
+    },
+    {
+      "level": 1,
+      "title": "Result: WDAC tooling silently promotes to PcaCertificate level"
+    },
+    {
+      "level": 1,
+      "title": "The output XML will contain intermediate CA signers, not root CA signers"
+    },
+    {
+      "level": 1,
+      "title": "No error is raised — this is a silent behavior change"
+    },
+    {
+      "level": 3,
+      "title": "Inspecting the Certificate Chain of a Signed File"
+    },
+    {
+      "level": 1,
+      "title": "Example usage:"
+    },
+    {
+      "level": 3,
+      "title": "Verifying That a Policy Has No Root-Level Rules"
+    },
+    {
+      "level": 2,
+      "title": "9. The Correct Alternative: PcaCertificate"
+    },
+    {
+      "level": 3,
+      "title": "When to Choose Which PCA"
+    },
+    {
+      "level": 2,
+      "title": "10. Pros & Cons Table"
+    },
+    {
+      "level": 2,
+      "title": "11. Attack Resistance Analysis"
+    },
+    {
+      "level": 2,
+      "title": "12. When to Use vs. When to Avoid — Decision Flowchart"
+    },
+    {
+      "level": 2,
+      "title": "13. Real-World Scenario: End-to-End Sequence"
+    },
+    {
+      "level": 2,
+      "title": "14. OS Version & Compatibility"
+    },
+    {
+      "level": 2,
+      "title": "15. Common Mistakes & Gotchas"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 1: Assuming RootCertificate Will Work Like Other Levels"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 2: Confusing the TBS Hash of Root vs. Intermediate"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 3: Trying to Use RootCertificate to \"Trust Everything\" from a Vendor"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 4: No Error Message from WDAC Tooling"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 5: Believing RootCertificate Exists in WDAC Documentation"
+    },
+    {
+      "level": 2,
+      "title": "16. Historical Context"
+    },
+    {
+      "level": 3,
+      "title": "Why Was RootCertificate Explicitly Excluded?"
+    },
+    {
+      "level": 2,
+      "title": "17. Summary Table"
+    }
+  ],
+  "kind": "file-rule-level"
+}

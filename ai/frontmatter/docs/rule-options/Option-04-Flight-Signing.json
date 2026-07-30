@@ -1,0 +1,223 @@
+{
+  "id": "docs/rule-options/Option-04-Flight-Signing",
+  "path": "docs/rule-options/Option-04-Flight-Signing.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-04-Flight-Signing.md",
+  "title": "Option 4 — Disabled:Flight Signing",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 4 — Disabled:Flight Signing",
+    "description": "What policy rule option 4 (Disabled:Flight Signing) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 4,
+    "policy_rule_value": "Disabled:Flight Signing",
+    "valid_for_supplemental": false,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 4 — Disabled:Flight Signing"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. What It Does"
+    },
+    {
+      "level": 2,
+      "title": "2. Why It Exists"
+    },
+    {
+      "level": 3,
+      "title": "Windows Insider Program and Flight Signing"
+    },
+    {
+      "level": 3,
+      "title": "The Security Rationale"
+    },
+    {
+      "level": 3,
+      "title": "Why Organizations Want This"
+    },
+    {
+      "level": 2,
+      "title": "3. Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 3,
+      "title": "Certificate Trust Hierarchy with Option 4"
+    },
+    {
+      "level": 2,
+      "title": "4. How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Enable the Option (Disable Flight Signing Trust)"
+    },
+    {
+      "level": 1,
+      "title": "Disable trust for Windows Insider / Flight-signed binaries"
+    },
+    {
+      "level": 1,
+      "title": "NOTE: The option is named \"Disabled:Flight Signing\""
+    },
+    {
+      "level": 1,
+      "title": "Setting it = flight signing is DISABLED (trust removed)"
+    },
+    {
+      "level": 3,
+      "title": "Remove the Option (Restore Default Flight Signing Trust)"
+    },
+    {
+      "level": 1,
+      "title": "Remove Option 4 = flight signing is TRUSTED again (default behavior)"
+    },
+    {
+      "level": 3,
+      "title": "Verify Option State"
+    },
+    {
+      "level": 3,
+      "title": "Check Whether Any Running Processes Use Flight-Signed Binaries"
+    },
+    {
+      "level": 1,
+      "title": "Scan loaded modules for Insider/Flight signatures"
+    },
+    {
+      "level": 3,
+      "title": "Determine If Device Is Enrolled in Windows Insider Program"
+    },
+    {
+      "level": 1,
+      "title": "Check Insider Program enrollment"
+    },
+    {
+      "level": 3,
+      "title": "Full Policy with Option 4 (Production-Locked Environment)"
+    },
+    {
+      "level": 1,
+      "title": "Start from DefaultWindows template"
+    },
+    {
+      "level": 1,
+      "title": "Configure production-locked options"
+    },
+    {
+      "level": 1,
+      "title": "Set identity"
+    },
+    {
+      "level": 1,
+      "title": "Compile"
+    },
+    {
+      "level": 2,
+      "title": "5. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Option 4 Set (Flight Signing Disabled)"
+    },
+    {
+      "level": 3,
+      "title": "Option 4 Absent (Default — Flight Signing Trusted)"
+    },
+    {
+      "level": 2,
+      "title": "6. Interaction with Other Options"
+    },
+    {
+      "level": 3,
+      "title": "Option Relationship Matrix"
+    },
+    {
+      "level": 3,
+      "title": "Naming Convention Diagram"
+    },
+    {
+      "level": 2,
+      "title": "7. When to Enable vs Disable"
+    },
+    {
+      "level": 3,
+      "title": "Decision Reference Table"
+    },
+    {
+      "level": 2,
+      "title": "8. Real-World Scenario — End-to-End Walkthrough"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: Employee Accidentally Enrolls Corporate Laptop in Insider Program"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: Financial Institution Production-Locking Policy Deployment"
+    },
+    {
+      "level": 3,
+      "title": "Scenario C: Identifying Impact Before Setting Option 4"
+    },
+    {
+      "level": 2,
+      "title": "9. What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: Set Option 4 on Windows Insider Program Devices"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: Fail to Set Option 4 on Production-Locked Environment"
+    },
+    {
+      "level": 3,
+      "title": "Misconfig Consequences Summary"
+    },
+    {
+      "level": 2,
+      "title": "10. Valid for Supplemental Policies?"
+    },
+    {
+      "level": 2,
+      "title": "11. OS Version Requirements"
+    },
+    {
+      "level": 3,
+      "title": "Flight Signing Certificate Characteristics"
+    },
+    {
+      "level": 2,
+      "title": "12. Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

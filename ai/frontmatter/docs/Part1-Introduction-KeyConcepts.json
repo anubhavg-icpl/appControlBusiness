@@ -1,0 +1,176 @@
+{
+  "id": "docs/Part1-Introduction-KeyConcepts",
+  "path": "docs/Part1-Introduction-KeyConcepts.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/Part1-Introduction-KeyConcepts.md",
+  "title": "Part 1: Introduction & Key Concepts",
+  "frontmatter": {
+    "type": "Guide",
+    "title": "Part 1: Introduction & Key Concepts",
+    "description": "Why application control matters, key concepts, licensing, and how App Control for Business compares to AppLocker.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "endpoint-security"
+    ],
+    "status": "stable",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-01 21:08:16 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-01 21:08:16 +0530"
+    },
+    "sources": [
+      {
+        "id": "ctrlshiftenter",
+        "resource": "https://ctrlshiftenter.cloud",
+        "title": "ctrlshiftenter.cloud — Patrick Seltmann",
+        "author": "human:patrick-seltmann"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Mastering App Control for Business"
+    },
+    {
+      "level": 2,
+      "title": "Part 1: Introduction & Key Concepts"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. Why Application Control Matters"
+    },
+    {
+      "level": 3,
+      "title": "Implications"
+    },
+    {
+      "level": 3,
+      "title": "Implementation Recommendations"
+    },
+    {
+      "level": 2,
+      "title": "2. Key Use Cases"
+    },
+    {
+      "level": 2,
+      "title": "3. How to Deploy App Control for Business"
+    },
+    {
+      "level": 3,
+      "title": "Smart App Control (SAC) — Built-in, Unmanaged"
+    },
+    {
+      "level": 3,
+      "title": "Managed Deployment Options"
+    },
+    {
+      "level": 3,
+      "title": "Rule Criteria Supported"
+    },
+    {
+      "level": 2,
+      "title": "4. Licensing & Device Requirements"
+    },
+    {
+      "level": 3,
+      "title": "Supported Windows Editions"
+    },
+    {
+      "level": 3,
+      "title": "License Entitlements"
+    },
+    {
+      "level": 3,
+      "title": "Supported Device Configurations (via Intune)"
+    },
+    {
+      "level": 2,
+      "title": "5. App Control for Business vs. AppLocker"
+    },
+    {
+      "level": 2,
+      "title": "6. Key Features"
+    },
+    {
+      "level": 3,
+      "title": "Execution Control"
+    },
+    {
+      "level": 3,
+      "title": "Virtualization-Based Security (VBS) Integration"
+    },
+    {
+      "level": 2,
+      "title": "7. Benefits"
+    },
+    {
+      "level": 3,
+      "title": "Defense Against Advanced Threats and Zero-Days"
+    },
+    {
+      "level": 3,
+      "title": "Regulatory Compliance Support"
+    },
+    {
+      "level": 2,
+      "title": "8. Policy Formats"
+    },
+    {
+      "level": 3,
+      "title": "Single Policy Format"
+    },
+    {
+      "level": 3,
+      "title": "Multiple Policy Format"
+    },
+    {
+      "level": 3,
+      "title": "Signed Policies"
+    },
+    {
+      "level": 2,
+      "title": "9. Policy Types"
+    },
+    {
+      "level": 3,
+      "title": "Base Policy"
+    },
+    {
+      "level": 3,
+      "title": "Supplemental Policy"
+    },
+    {
+      "level": 3,
+      "title": "AppID Tagging Policy"
+    },
+    {
+      "level": 3,
+      "title": "Comparison Matrix"
+    },
+    {
+      "level": 2,
+      "title": "10. Core Terminology"
+    },
+    {
+      "level": 2,
+      "title": "Series Navigation"
+    },
+    {
+      "level": 2,
+      "title": "Field Notes (Handwritten)"
+    },
+    {
+      "level": 2,
+      "title": "Architecture & Reference Illustrations"
+    }
+  ],
+  "kind": "guide"
+}

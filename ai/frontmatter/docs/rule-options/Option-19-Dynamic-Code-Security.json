@@ -1,0 +1,251 @@
+{
+  "id": "docs/rule-options/Option-19-Dynamic-Code-Security",
+  "path": "docs/rule-options/Option-19-Dynamic-Code-Security.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-19-Dynamic-Code-Security.md",
+  "title": "Option 19 — Enabled:Dynamic Code Security",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 19 — Enabled:Dynamic Code Security",
+    "description": "What policy rule option 19 (Enabled:Dynamic Code Security) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 19,
+    "policy_rule_value": "Enabled:Dynamic Code Security",
+    "valid_for_supplemental": false,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 19 — Enabled:Dynamic Code Security"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. What It Does"
+    },
+    {
+      "level": 2,
+      "title": "2. Why It Exists"
+    },
+    {
+      "level": 3,
+      "title": "The Problem: .NET as a Policy Bypass Surface"
+    },
+    {
+      "level": 3,
+      "title": "The Attack Pattern It Defeats"
+    },
+    {
+      "level": 2,
+      "title": "3. Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 3,
+      "title": "Where Option 19 Operates in the Enforcement Stack"
+    },
+    {
+      "level": 3,
+      "title": "The CLR / ci.dll Interface"
+    },
+    {
+      "level": 2,
+      "title": "4. How to Set It"
+    },
+    {
+      "level": 3,
+      "title": "Enable Option 19"
+    },
+    {
+      "level": 1,
+      "title": "Enable Dynamic Code Security on an existing policy XML"
+    },
+    {
+      "level": 1,
+      "title": "Verify the option was added"
+    },
+    {
+      "level": 3,
+      "title": "Remove (Disable) Option 19"
+    },
+    {
+      "level": 1,
+      "title": "Remove Dynamic Code Security enforcement"
+    },
+    {
+      "level": 1,
+      "title": "Confirm removal"
+    },
+    {
+      "level": 1,
+      "title": "Should return no output if successfully removed"
+    },
+    {
+      "level": 3,
+      "title": "Create a New Policy with Option 19 Enabled"
+    },
+    {
+      "level": 1,
+      "title": "Start from the DefaultWindows template and add Option 19"
+    },
+    {
+      "level": 1,
+      "title": "Copy the DefaultWindows base template"
+    },
+    {
+      "level": 1,
+      "title": "Enable Dynamic Code Security"
+    },
+    {
+      "level": 1,
+      "title": "Also enable UMCI if not already set (Option 0)"
+    },
+    {
+      "level": 1,
+      "title": "Review all current rule options"
+    },
+    {
+      "level": 3,
+      "title": "Full Production Deployment Workflow"
+    },
+    {
+      "level": 1,
+      "title": "1. Build and configure the policy"
+    },
+    {
+      "level": 1,
+      "title": "2. Apply required rule options"
+    },
+    {
+      "level": 1,
+      "title": "3. Audit mode — deploy and test"
+    },
+    {
+      "level": 1,
+      "title": "Deploy $BinaryPath, monitor Event ID 3076 (audit block)"
+    },
+    {
+      "level": 1,
+      "title": "4. After audit validation, remove audit mode and deploy enforced"
+    },
+    {
+      "level": 1,
+      "title": "Redeploy in enforced mode"
+    },
+    {
+      "level": 2,
+      "title": "5. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Single Option"
+    },
+    {
+      "level": 3,
+      "title": "Full Policy Context (Relevant Sections)"
+    },
+    {
+      "level": 3,
+      "title": "Verifying in a Deployed Binary Policy"
+    },
+    {
+      "level": 1,
+      "title": "Inspect a compiled .p7b policy for Option 19"
+    },
+    {
+      "level": 1,
+      "title": "(requires CIPolicyParser or manual inspection via certutil)"
+    },
+    {
+      "level": 2,
+      "title": "6. Interaction with Other Options"
+    },
+    {
+      "level": 3,
+      "title": "Compatibility and Dependency Matrix"
+    },
+    {
+      "level": 3,
+      "title": "Interaction Diagram"
+    },
+    {
+      "level": 2,
+      "title": "7. When to Enable vs Disable"
+    },
+    {
+      "level": 3,
+      "title": "Key Guidance"
+    },
+    {
+      "level": 2,
+      "title": "8. Real-World Scenario — End-to-End Walkthrough"
+    },
+    {
+      "level": 3,
+      "title": "Scenario: Defeating a Fileless .NET Loader Attack on a Corporate Workstation"
+    },
+    {
+      "level": 3,
+      "title": "Legitimate App Compatibility Scenario"
+    },
+    {
+      "level": 2,
+      "title": "9. What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Enabling Option 19 Without Proper Testing"
+    },
+    {
+      "level": 3,
+      "title": "Omitting Option 19 from a UMCI Policy"
+    },
+    {
+      "level": 3,
+      "title": "Assuming Audit Mode Suppresses Option 19"
+    },
+    {
+      "level": 2,
+      "title": "10. Valid for Supplemental Policies"
+    },
+    {
+      "level": 2,
+      "title": "11. OS Version Requirements"
+    },
+    {
+      "level": 3,
+      "title": "Detection Script — Verify OS Compatibility"
+    },
+    {
+      "level": 1,
+      "title": "Check if the current OS supports Option 19"
+    },
+    {
+      "level": 2,
+      "title": "12. Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

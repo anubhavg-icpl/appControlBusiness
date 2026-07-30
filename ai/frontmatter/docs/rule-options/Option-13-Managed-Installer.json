@@ -1,0 +1,315 @@
+{
+  "id": "docs/rule-options/Option-13-Managed-Installer",
+  "path": "docs/rule-options/Option-13-Managed-Installer.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-13-Managed-Installer.md",
+  "title": "Option 13 — Enabled:Managed Installer",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 13 — Enabled:Managed Installer",
+    "description": "What policy rule option 13 (Enabled:Managed Installer) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 13,
+    "policy_rule_value": "Enabled:Managed Installer",
+    "valid_for_supplemental": true,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 13 — Enabled:Managed Installer"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "What It Does"
+    },
+    {
+      "level": 2,
+      "title": "Why It Exists"
+    },
+    {
+      "level": 2,
+      "title": "The Kernel EA Mechanism — Deep Dive"
+    },
+    {
+      "level": 3,
+      "title": "What Is an Extended Attribute (EA)?"
+    },
+    {
+      "level": 3,
+      "title": "The KERNEL.SMARTLOCKER.ORIGINCLAIM EA"
+    },
+    {
+      "level": 3,
+      "title": "How ci.dll Uses the EA at Execution Time"
+    },
+    {
+      "level": 3,
+      "title": "Inspecting the EA on a File"
+    },
+    {
+      "level": 1,
+      "title": "Check if a file has the Managed Installer EA"
+    },
+    {
+      "level": 1,
+      "title": "Using fsutil (requires admin)"
+    },
+    {
+      "level": 1,
+      "title": "PowerShell alternative using P/Invoke to NtQueryEaFile"
+    },
+    {
+      "level": 1,
+      "title": "(No built-in cmdlet; requires low-level API call)"
+    },
+    {
+      "level": 1,
+      "title": "The presence of KERNEL.SMARTLOCKER.ORIGINCLAIM indicates MI-stamped file"
+    },
+    {
+      "level": 3,
+      "title": "EA Persistence and Inheritance"
+    },
+    {
+      "level": 2,
+      "title": "AppLockerFltr.sys — The Bridge Between AppLocker and App Control"
+    },
+    {
+      "level": 3,
+      "title": "Architecture Overview"
+    },
+    {
+      "level": 3,
+      "title": "What AppLockerFltr.sys Does"
+    },
+    {
+      "level": 3,
+      "title": "Verifying AppLockerFltr.sys is Loaded"
+    },
+    {
+      "level": 1,
+      "title": "Verify the AppLocker filter driver is loaded"
+    },
+    {
+      "level": 1,
+      "title": "Should be: Running, Automatic"
+    },
+    {
+      "level": 1,
+      "title": "Check the kernel module directly"
+    },
+    {
+      "level": 1,
+      "title": "or"
+    },
+    {
+      "level": 3,
+      "title": "AppLocker ManagedInstaller Rule Collection"
+    },
+    {
+      "level": 3,
+      "title": "Configuring AppLocker Managed Installer via PowerShell"
+    },
+    {
+      "level": 1,
+      "title": "Get current AppLocker policy"
+    },
+    {
+      "level": 1,
+      "title": "Create a new ManagedInstaller rule for SCCM"
+    },
+    {
+      "level": 1,
+      "title": "Note: AppLocker ManagedInstaller rules require manual XML editing"
+    },
+    {
+      "level": 1,
+      "title": "as PowerShell cmdlets don't directly expose the ManagedInstaller collection type."
+    },
+    {
+      "level": 1,
+      "title": "Use Set-AppLockerPolicy with a manually crafted XML:"
+    },
+    {
+      "level": 1,
+      "title": "Verify the AppID service is running (required for MI stamping)"
+    },
+    {
+      "level": 2,
+      "title": "Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Step 1: Configure AppLocker Managed Installer Rule"
+    },
+    {
+      "level": 1,
+      "title": "Step 1: Enable the AppID Service (required for AppLockerFltr.sys)"
+    },
+    {
+      "level": 1,
+      "title": "Step 2: Verify AppLockerFltr is loaded as a file system filter"
+    },
+    {
+      "level": 1,
+      "title": "Step 3: Create and apply AppLocker ManagedInstaller policy"
+    },
+    {
+      "level": 1,
+      "title": "(must be done via XML — no direct PS cmdlet for ManagedInstaller collection)"
+    },
+    {
+      "level": 3,
+      "title": "Step 2: Enable Option 13 in WDAC Policy"
+    },
+    {
+      "level": 1,
+      "title": "Enable Managed Installer in the WDAC policy"
+    },
+    {
+      "level": 1,
+      "title": "Verify"
+    },
+    {
+      "level": 1,
+      "title": "Convert to binary and deploy"
+    },
+    {
+      "level": 3,
+      "title": "Step 3: Verify MI Stamping is Working"
+    },
+    {
+      "level": 1,
+      "title": "After deploying software via the designated MI tool,"
+    },
+    {
+      "level": 1,
+      "title": "verify the EA stamp was written"
+    },
+    {
+      "level": 1,
+      "title": "Method 1: fsutil (requires admin)"
+    },
+    {
+      "level": 1,
+      "title": "Method 2: Check Code Integrity event log for MI authorization events"
+    },
+    {
+      "level": 3,
+      "title": "Disable Option 13"
+    },
+    {
+      "level": 1,
+      "title": "Remove Managed Installer from WDAC policy"
+    },
+    {
+      "level": 2,
+      "title": "XML Representation"
+    },
+    {
+      "level": 2,
+      "title": "Interaction With Other Options"
+    },
+    {
+      "level": 2,
+      "title": "When to Enable vs Disable"
+    },
+    {
+      "level": 2,
+      "title": "Real-World Scenario — End-to-End Walkthrough"
+    },
+    {
+      "level": 2,
+      "title": "What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: Option 13 enabled but AppIDSvc not running"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: AppLocker MI rules not configured (only Option 13 in WDAC policy)"
+    },
+    {
+      "level": 3,
+      "title": "Scenario C: File copied from NTFS to FAT32 and back"
+    },
+    {
+      "level": 3,
+      "title": "Scenario D: Attacker exploits an MI-designated process"
+    },
+    {
+      "level": 3,
+      "title": "Scenario E: Pre-existing files (installed before MI was configured)"
+    },
+    {
+      "level": 3,
+      "title": "Event IDs to Monitor"
+    },
+    {
+      "level": 2,
+      "title": "Valid for Supplemental Policies?"
+    },
+    {
+      "level": 2,
+      "title": "OS Version Requirements"
+    },
+    {
+      "level": 2,
+      "title": "Security Considerations and Limitations"
+    },
+    {
+      "level": 3,
+      "title": "Trust Chain Security"
+    },
+    {
+      "level": 3,
+      "title": "Known Limitations"
+    },
+    {
+      "level": 3,
+      "title": "EA Spoofing Defense"
+    },
+    {
+      "level": 2,
+      "title": "Summary Table"
+    },
+    {
+      "level": 2,
+      "title": "Field Notes (Handwritten)"
+    },
+    {
+      "level": 2,
+      "title": "Architecture & Reference Illustrations"
+    }
+  ],
+  "kind": "rule-option"
+}

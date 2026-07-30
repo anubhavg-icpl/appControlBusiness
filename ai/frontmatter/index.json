@@ -1,0 +1,414 @@
+{
+  "generatedAt": "2026-07-30T16:50:23Z",
+  "totalDocuments": 51,
+  "documents": [
+    {
+      "id": "docs/Part1-Introduction-KeyConcepts",
+      "path": "docs/Part1-Introduction-KeyConcepts.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/Part1-Introduction-KeyConcepts.md",
+      "title": "Part 1: Introduction & Key Concepts",
+      "kind": "guide",
+      "export": "ai/frontmatter/docs/Part1-Introduction-KeyConcepts.json"
+    },
+    {
+      "id": "docs/Part2-Policy-Templates-Rule-Options",
+      "path": "docs/Part2-Policy-Templates-Rule-Options.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/Part2-Policy-Templates-Rule-Options.md",
+      "title": "Part 2: Policy Templates & Rule Options",
+      "kind": "guide",
+      "export": "ai/frontmatter/docs/Part2-Policy-Templates-Rule-Options.json"
+    },
+    {
+      "id": "docs/Part3-AppID-Tagging-Managed-Installer",
+      "path": "docs/Part3-AppID-Tagging-Managed-Installer.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/Part3-AppID-Tagging-Managed-Installer.md",
+      "title": "Part 3: Application ID Tagging Policies & Managed Installer",
+      "kind": "guide",
+      "export": "ai/frontmatter/docs/Part3-AppID-Tagging-Managed-Installer.json"
+    },
+    {
+      "id": "docs/Part4-Starter-Base-Policy-Lightly-Managed",
+      "path": "docs/Part4-Starter-Base-Policy-Lightly-Managed.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/Part4-Starter-Base-Policy-Lightly-Managed.md",
+      "title": "Part 4: Starter Base Policy for Lightly Managed Devices",
+      "kind": "guide",
+      "export": "ai/frontmatter/docs/Part4-Starter-Base-Policy-Lightly-Managed.json"
+    },
+    {
+      "id": "docs/Part5-Base-Policy-Fully-Managed-Devices",
+      "path": "docs/Part5-Base-Policy-Fully-Managed-Devices.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/Part5-Base-Policy-Fully-Managed-Devices.md",
+      "title": "Part 5: Create a Base Policy for Fully Managed Devices",
+      "kind": "guide",
+      "export": "ai/frontmatter/docs/Part5-Base-Policy-Fully-Managed-Devices.json"
+    },
+    {
+      "id": "docs/Part6-Sign-Apply-Remove-Signed-Policies",
+      "path": "docs/Part6-Sign-Apply-Remove-Signed-Policies.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/Part6-Sign-Apply-Remove-Signed-Policies.md",
+      "title": "Part 6: Sign, Apply and Remove Signed Policies",
+      "kind": "guide",
+      "export": "ai/frontmatter/docs/Part6-Sign-Apply-Remove-Signed-Policies.json"
+    },
+    {
+      "id": "docs/Part7-Maintaining-Policies-AzureDevOps-PowerShell",
+      "path": "docs/Part7-Maintaining-Policies-AzureDevOps-PowerShell.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/Part7-Maintaining-Policies-AzureDevOps-PowerShell.md",
+      "title": "Part 7: Maintaining Policies with Azure DevOps (or PowerShell)",
+      "kind": "guide",
+      "export": "ai/frontmatter/docs/Part7-Maintaining-Policies-AzureDevOps-PowerShell.json"
+    },
+    {
+      "id": "docs/Part8-AppLocker-Option13-Selective-MSI-Allowlisting",
+      "path": "docs/Part8-AppLocker-Option13-Selective-MSI-Allowlisting.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/Part8-AppLocker-Option13-Selective-MSI-Allowlisting.md",
+      "title": "Part 8: AppLocker, Managed Installer (Option 13) & Selective MSI Allowlisting — End-to-End",
+      "kind": "guide",
+      "export": "ai/frontmatter/docs/Part8-AppLocker-Option13-Selective-MSI-Allowlisting.json"
+    },
+    {
+      "id": "docs/file-rule-levels/Level-FileName",
+      "path": "docs/file-rule-levels/Level-FileName.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-FileName.md",
+      "title": "WDAC File Rule Level: FileName",
+      "kind": "file-rule-level",
+      "export": "ai/frontmatter/docs/file-rule-levels/Level-FileName.json"
+    },
+    {
+      "id": "docs/file-rule-levels/Level-FilePath",
+      "path": "docs/file-rule-levels/Level-FilePath.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-FilePath.md",
+      "title": "WDAC File Rule Level: FilePath",
+      "kind": "file-rule-level",
+      "export": "ai/frontmatter/docs/file-rule-levels/Level-FilePath.json"
+    },
+    {
+      "id": "docs/file-rule-levels/Level-FilePublisher",
+      "path": "docs/file-rule-levels/Level-FilePublisher.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-FilePublisher.md",
+      "title": "WDAC File Rule Level: FilePublisher",
+      "kind": "file-rule-level",
+      "export": "ai/frontmatter/docs/file-rule-levels/Level-FilePublisher.json"
+    },
+    {
+      "id": "docs/file-rule-levels/Level-Hash",
+      "path": "docs/file-rule-levels/Level-Hash.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-Hash.md",
+      "title": "WDAC File Rule Level: Hash",
+      "kind": "file-rule-level",
+      "export": "ai/frontmatter/docs/file-rule-levels/Level-Hash.json"
+    },
+    {
+      "id": "docs/file-rule-levels/Level-LeafCertificate",
+      "path": "docs/file-rule-levels/Level-LeafCertificate.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-LeafCertificate.md",
+      "title": "WDAC File Rule Level: LeafCertificate",
+      "kind": "file-rule-level",
+      "export": "ai/frontmatter/docs/file-rule-levels/Level-LeafCertificate.json"
+    },
+    {
+      "id": "docs/file-rule-levels/Level-PcaCertificate",
+      "path": "docs/file-rule-levels/Level-PcaCertificate.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-PcaCertificate.md",
+      "title": "WDAC File Rule Level: PcaCertificate",
+      "kind": "file-rule-level",
+      "export": "ai/frontmatter/docs/file-rule-levels/Level-PcaCertificate.json"
+    },
+    {
+      "id": "docs/file-rule-levels/Level-Publisher",
+      "path": "docs/file-rule-levels/Level-Publisher.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-Publisher.md",
+      "title": "WDAC File Rule Level: Publisher",
+      "kind": "file-rule-level",
+      "export": "ai/frontmatter/docs/file-rule-levels/Level-Publisher.json"
+    },
+    {
+      "id": "docs/file-rule-levels/Level-RootCertificate",
+      "path": "docs/file-rule-levels/Level-RootCertificate.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-RootCertificate.md",
+      "title": "WDAC File Rule Level: RootCertificate",
+      "kind": "file-rule-level",
+      "export": "ai/frontmatter/docs/file-rule-levels/Level-RootCertificate.json"
+    },
+    {
+      "id": "docs/file-rule-levels/Level-SignedVersion",
+      "path": "docs/file-rule-levels/Level-SignedVersion.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-SignedVersion.md",
+      "title": "WDAC File Rule Level: SignedVersion",
+      "kind": "file-rule-level",
+      "export": "ai/frontmatter/docs/file-rule-levels/Level-SignedVersion.json"
+    },
+    {
+      "id": "docs/file-rule-levels/Level-WHQL",
+      "path": "docs/file-rule-levels/Level-WHQL.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-WHQL.md",
+      "title": "WDAC File Rule Level: WHQL",
+      "kind": "file-rule-level",
+      "export": "ai/frontmatter/docs/file-rule-levels/Level-WHQL.json"
+    },
+    {
+      "id": "docs/file-rule-levels/Level-WHQLFilePublisher",
+      "path": "docs/file-rule-levels/Level-WHQLFilePublisher.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-WHQLFilePublisher.md",
+      "title": "WDAC File Rule Level: WHQLFilePublisher",
+      "kind": "file-rule-level",
+      "export": "ai/frontmatter/docs/file-rule-levels/Level-WHQLFilePublisher.json"
+    },
+    {
+      "id": "docs/file-rule-levels/Level-WHQLPublisher",
+      "path": "docs/file-rule-levels/Level-WHQLPublisher.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-WHQLPublisher.md",
+      "title": "WDAC File Rule Level: WHQLPublisher",
+      "kind": "file-rule-level",
+      "export": "ai/frontmatter/docs/file-rule-levels/Level-WHQLPublisher.json"
+    },
+    {
+      "id": "docs/file-rule-levels/index",
+      "path": "docs/file-rule-levels/index.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/index.md",
+      "title": "File Rule Levels",
+      "kind": "file-rule-level",
+      "export": "ai/frontmatter/docs/file-rule-levels/index.json"
+    },
+    {
+      "id": "docs/index",
+      "path": "docs/index.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/index.md",
+      "title": "App Control for Business — Reference Series",
+      "kind": "index",
+      "export": "ai/frontmatter/docs/index.json"
+    },
+    {
+      "id": "docs/log",
+      "path": "docs/log.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/log.md",
+      "title": "Directory Update Log",
+      "kind": "log",
+      "export": "ai/frontmatter/docs/log.json"
+    },
+    {
+      "id": "docs/notes/Notes-Tips-AppControl",
+      "path": "docs/notes/Notes-Tips-AppControl.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/notes/Notes-Tips-AppControl.md",
+      "title": "App Control for Business — Complete Reference: Notes, Tips & Advanced Considerations",
+      "kind": "note",
+      "export": "ai/frontmatter/docs/notes/Notes-Tips-AppControl.json"
+    },
+    {
+      "id": "docs/notes/index",
+      "path": "docs/notes/index.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/notes/index.md",
+      "title": "Notes & Tips",
+      "kind": "note",
+      "export": "ai/frontmatter/docs/notes/index.json"
+    },
+    {
+      "id": "docs/references/handwritten/index",
+      "path": "docs/references/handwritten/index.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/references/handwritten/index.md",
+      "title": "Handwritten Notes",
+      "kind": "reference",
+      "export": "ai/frontmatter/docs/references/handwritten/index.json"
+    },
+    {
+      "id": "docs/references/images/index",
+      "path": "docs/references/images/index.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/references/images/index.md",
+      "title": "Architecture & Reference Images",
+      "kind": "reference",
+      "export": "ai/frontmatter/docs/references/images/index.json"
+    },
+    {
+      "id": "docs/references/index",
+      "path": "docs/references/index.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/references/index.md",
+      "title": "References",
+      "kind": "reference",
+      "export": "ai/frontmatter/docs/references/index.json"
+    },
+    {
+      "id": "docs/rule-options/Option-00-UMCI",
+      "path": "docs/rule-options/Option-00-UMCI.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-00-UMCI.md",
+      "title": "Option 0 — Enabled:UMCI (User Mode Code Integrity)",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-00-UMCI.json"
+    },
+    {
+      "id": "docs/rule-options/Option-01-Boot-Menu-Protection",
+      "path": "docs/rule-options/Option-01-Boot-Menu-Protection.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-01-Boot-Menu-Protection.md",
+      "title": "Option 1 — Enabled:Boot Menu Protection",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-01-Boot-Menu-Protection.json"
+    },
+    {
+      "id": "docs/rule-options/Option-02-WHQL",
+      "path": "docs/rule-options/Option-02-WHQL.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-02-WHQL.md",
+      "title": "Option 2 — Required:WHQL (Windows Hardware Quality Labs Certification)",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-02-WHQL.json"
+    },
+    {
+      "id": "docs/rule-options/Option-03-Audit-Mode",
+      "path": "docs/rule-options/Option-03-Audit-Mode.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-03-Audit-Mode.md",
+      "title": "Option 3 — Enabled:Audit Mode (Default)",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-03-Audit-Mode.json"
+    },
+    {
+      "id": "docs/rule-options/Option-04-Flight-Signing",
+      "path": "docs/rule-options/Option-04-Flight-Signing.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-04-Flight-Signing.md",
+      "title": "Option 4 — Disabled:Flight Signing",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-04-Flight-Signing.json"
+    },
+    {
+      "id": "docs/rule-options/Option-05-Inherit-Default-Policy",
+      "path": "docs/rule-options/Option-05-Inherit-Default-Policy.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-05-Inherit-Default-Policy.md",
+      "title": "Option 5 — Enabled:Inherit Default Policy",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-05-Inherit-Default-Policy.json"
+    },
+    {
+      "id": "docs/rule-options/Option-06-Unsigned-System-Integrity-Policy",
+      "path": "docs/rule-options/Option-06-Unsigned-System-Integrity-Policy.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-06-Unsigned-System-Integrity-Policy.md",
+      "title": "Option 6 — Enabled:Unsigned System Integrity Policy",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-06-Unsigned-System-Integrity-Policy.json"
+    },
+    {
+      "id": "docs/rule-options/Option-07-Debug-Policy-Augmented",
+      "path": "docs/rule-options/Option-07-Debug-Policy-Augmented.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-07-Debug-Policy-Augmented.md",
+      "title": "Option 7 — Allowed:Debug Policy Augmented",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-07-Debug-Policy-Augmented.json"
+    },
+    {
+      "id": "docs/rule-options/Option-08-EV-Signers",
+      "path": "docs/rule-options/Option-08-EV-Signers.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-08-EV-Signers.md",
+      "title": "Option 8 — Required:EV Signers",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-08-EV-Signers.json"
+    },
+    {
+      "id": "docs/rule-options/Option-09-Advanced-Boot-Options-Menu",
+      "path": "docs/rule-options/Option-09-Advanced-Boot-Options-Menu.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-09-Advanced-Boot-Options-Menu.md",
+      "title": "Option 9 — Enabled:Advanced Boot Options Menu",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-09-Advanced-Boot-Options-Menu.json"
+    },
+    {
+      "id": "docs/rule-options/Option-10-Boot-Audit-on-Failure",
+      "path": "docs/rule-options/Option-10-Boot-Audit-on-Failure.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-10-Boot-Audit-on-Failure.md",
+      "title": "Option 10 — Enabled:Boot Audit on Failure",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-10-Boot-Audit-on-Failure.json"
+    },
+    {
+      "id": "docs/rule-options/Option-11-Script-Enforcement-Disabled",
+      "path": "docs/rule-options/Option-11-Script-Enforcement-Disabled.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-11-Script-Enforcement-Disabled.md",
+      "title": "Option 11 — Disabled:Script Enforcement",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-11-Script-Enforcement-Disabled.json"
+    },
+    {
+      "id": "docs/rule-options/Option-12-Enforce-Store-Applications",
+      "path": "docs/rule-options/Option-12-Enforce-Store-Applications.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-12-Enforce-Store-Applications.md",
+      "title": "Option 12 — Required:Enforce Store Applications",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-12-Enforce-Store-Applications.json"
+    },
+    {
+      "id": "docs/rule-options/Option-13-Managed-Installer",
+      "path": "docs/rule-options/Option-13-Managed-Installer.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-13-Managed-Installer.md",
+      "title": "Option 13 — Enabled:Managed Installer",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-13-Managed-Installer.json"
+    },
+    {
+      "id": "docs/rule-options/Option-14-ISG-Authorization",
+      "path": "docs/rule-options/Option-14-ISG-Authorization.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-14-ISG-Authorization.md",
+      "title": "Option 14 — Enabled:Intelligent Security Graph Authorization",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-14-ISG-Authorization.json"
+    },
+    {
+      "id": "docs/rule-options/Option-15-Invalidate-EAs-on-Reboot",
+      "path": "docs/rule-options/Option-15-Invalidate-EAs-on-Reboot.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-15-Invalidate-EAs-on-Reboot.md",
+      "title": "Option 15 — Enabled:Invalidate EAs on Reboot",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-15-Invalidate-EAs-on-Reboot.json"
+    },
+    {
+      "id": "docs/rule-options/Option-16-Update-Policy-No-Reboot",
+      "path": "docs/rule-options/Option-16-Update-Policy-No-Reboot.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-16-Update-Policy-No-Reboot.md",
+      "title": "Option 16 — Enabled:Update Policy No Reboot",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-16-Update-Policy-No-Reboot.json"
+    },
+    {
+      "id": "docs/rule-options/Option-17-Allow-Supplemental-Policies",
+      "path": "docs/rule-options/Option-17-Allow-Supplemental-Policies.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-17-Allow-Supplemental-Policies.md",
+      "title": "Option 17 — Enabled:Allow Supplemental Policies",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-17-Allow-Supplemental-Policies.json"
+    },
+    {
+      "id": "docs/rule-options/Option-18-Disable-Runtime-FilePath-Rule-Protection",
+      "path": "docs/rule-options/Option-18-Disable-Runtime-FilePath-Rule-Protection.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-18-Disable-Runtime-FilePath-Rule-Protection.md",
+      "title": "Option 18 — Disabled:Runtime FilePath Rule Protection",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-18-Disable-Runtime-FilePath-Rule-Protection.json"
+    },
+    {
+      "id": "docs/rule-options/Option-19-Dynamic-Code-Security",
+      "path": "docs/rule-options/Option-19-Dynamic-Code-Security.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-19-Dynamic-Code-Security.md",
+      "title": "Option 19 — Enabled:Dynamic Code Security",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-19-Dynamic-Code-Security.json"
+    },
+    {
+      "id": "docs/rule-options/Option-20-Revoked-Expired-As-Unsigned",
+      "path": "docs/rule-options/Option-20-Revoked-Expired-As-Unsigned.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-20-Revoked-Expired-As-Unsigned.md",
+      "title": "Option 20 — Enabled:Revoked Expired As Unsigned",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-20-Revoked-Expired-As-Unsigned.json"
+    },
+    {
+      "id": "docs/rule-options/Option-DevMode-Dynamic-Code-Trust",
+      "path": "docs/rule-options/Option-DevMode-Dynamic-Code-Trust.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-DevMode-Dynamic-Code-Trust.md",
+      "title": "Developer Mode Dynamic Code Trust",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/Option-DevMode-Dynamic-Code-Trust.json"
+    },
+    {
+      "id": "docs/rule-options/index",
+      "path": "docs/rule-options/index.md",
+      "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/index.md",
+      "title": "Policy Rule Options",
+      "kind": "rule-option",
+      "export": "ai/frontmatter/docs/rule-options/index.json"
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "id": "docs/rule-options/Option-16-Update-Policy-No-Reboot",
+  "path": "docs/rule-options/Option-16-Update-Policy-No-Reboot.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-16-Update-Policy-No-Reboot.md",
+  "title": "Option 16 — Enabled:Update Policy No Reboot",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 16 — Enabled:Update Policy No Reboot",
+    "description": "What policy rule option 16 (Enabled:Update Policy No Reboot) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 16,
+    "policy_rule_value": "Enabled:Update Policy No Reboot",
+    "valid_for_supplemental": false,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 16 — Enabled:Update Policy No Reboot"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "What It Does"
+    },
+    {
+      "level": 2,
+      "title": "Why It Exists"
+    },
+    {
+      "level": 2,
+      "title": "Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 3,
+      "title": "Deep Dive: How the Hot-Reload Works"
+    },
+    {
+      "level": 2,
+      "title": "How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Enable Option 16 (Add the Rule)"
+    },
+    {
+      "level": 1,
+      "title": "Define the path to your base policy XML"
+    },
+    {
+      "level": 1,
+      "title": "Enable no-reboot policy updates"
+    },
+    {
+      "level": 1,
+      "title": "Verify it was added"
+    },
+    {
+      "level": 3,
+      "title": "Disable Option 16 (Remove the Rule)"
+    },
+    {
+      "level": 1,
+      "title": "Remove Option 16 — future updates will require a reboot to take effect"
+    },
+    {
+      "level": 3,
+      "title": "Complete Workflow: Create, Enable Option 16, Deploy, Then Update Without Reboot"
+    },
+    {
+      "level": 1,
+      "title": "INITIAL POLICY CREATION"
+    },
+    {
+      "level": 1,
+      "title": "Start from a known-good base template"
+    },
+    {
+      "level": 1,
+      "title": "Assign unique GUID"
+    },
+    {
+      "level": 1,
+      "title": "Enable no-reboot updates (Option 16)"
+    },
+    {
+      "level": 1,
+      "title": "Start in audit mode for initial deployment (Option 3)"
+    },
+    {
+      "level": 1,
+      "title": "Compile and deploy"
+    },
+    {
+      "level": 1,
+      "title": "LATER: UPDATE THE POLICY (e.g., switch from Audit to Enforce)"
+    },
+    {
+      "level": 1,
+      "title": "WITHOUT REBOOTING"
+    },
+    {
+      "level": 1,
+      "title": "Remove audit mode"
+    },
+    {
+      "level": 1,
+      "title": "Recompile the updated binary"
+    },
+    {
+      "level": 1,
+      "title": "Drop the updated binary in the active folder — takes effect immediately"
+    },
+    {
+      "level": 3,
+      "title": "Check Whether Option 16 Is Active on a Running System"
+    },
+    {
+      "level": 1,
+      "title": "List all active CI policies and check for Option 16"
+    },
+    {
+      "level": 1,
+      "title": "To decode a binary policy back to XML (for inspection):"
+    },
+    {
+      "level": 1,
+      "title": "There is no built-in cmdlet for this; use CiTool.exe (Windows 11) or"
+    },
+    {
+      "level": 1,
+      "title": "the PowerShell module from the MSFT App Control team"
+    },
+    {
+      "level": 1,
+      "title": "CiTool.exe --list-policies  (Windows 11 22H2+)"
+    },
+    {
+      "level": 3,
+      "title": "Using CiTool.exe (Windows 11 22H2+ and newer)"
+    },
+    {
+      "level": 1,
+      "title": "List all currently loaded policies with their attributes"
+    },
+    {
+      "level": 1,
+      "title": "Update a policy using CiTool (respects Option 16 for live reload)"
+    },
+    {
+      "level": 2,
+      "title": "XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Version Tracking in XML"
+    },
+    {
+      "level": 2,
+      "title": "Interaction with Other Options"
+    },
+    {
+      "level": 3,
+      "title": "Option Compatibility Matrix"
+    },
+    {
+      "level": 2,
+      "title": "When to Enable vs Disable"
+    },
+    {
+      "level": 2,
+      "title": "Real-World Scenario / End-to-End Walkthrough"
+    },
+    {
+      "level": 3,
+      "title": "Comparison: With vs Without Option 16"
+    },
+    {
+      "level": 2,
+      "title": "What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: Option 16 absent — you expect live updates but get stale policy"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: Option 16 on OS version older than Windows 10 1709"
+    },
+    {
+      "level": 3,
+      "title": "Scenario C: ACL misconfiguration on CiPolicies\\Active\\ folder"
+    },
+    {
+      "level": 3,
+      "title": "Scenario D: Policy downgrade via live update"
+    },
+    {
+      "level": 2,
+      "title": "Valid for Supplemental Policies?"
+    },
+    {
+      "level": 2,
+      "title": "OS Version Requirements"
+    },
+    {
+      "level": 3,
+      "title": "Checking OS Version in PowerShell"
+    },
+    {
+      "level": 1,
+      "title": "Check Windows build to confirm Option 16 support"
+    },
+    {
+      "level": 2,
+      "title": "Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

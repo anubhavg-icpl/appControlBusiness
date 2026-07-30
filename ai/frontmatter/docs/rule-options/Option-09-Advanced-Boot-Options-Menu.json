@@ -1,0 +1,207 @@
+{
+  "id": "docs/rule-options/Option-09-Advanced-Boot-Options-Menu",
+  "path": "docs/rule-options/Option-09-Advanced-Boot-Options-Menu.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-09-Advanced-Boot-Options-Menu.md",
+  "title": "Option 9 — Enabled:Advanced Boot Options Menu",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 9 — Enabled:Advanced Boot Options Menu",
+    "description": "What policy rule option 9 (Enabled:Advanced Boot Options Menu) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 9,
+    "policy_rule_value": "Enabled:Advanced Boot Options Menu",
+    "valid_for_supplemental": false,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 9 — Enabled:Advanced Boot Options Menu"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. What It Does"
+    },
+    {
+      "level": 2,
+      "title": "2. Why It Exists"
+    },
+    {
+      "level": 3,
+      "title": "The Physical Access Attack Vector"
+    },
+    {
+      "level": 3,
+      "title": "Why Option 9 Exists as an Explicit Enable"
+    },
+    {
+      "level": 3,
+      "title": "The \"Physically Present User\" Requirement"
+    },
+    {
+      "level": 2,
+      "title": "3. Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 3,
+      "title": "Boot Flow with Option 9 Disabled (Default)"
+    },
+    {
+      "level": 3,
+      "title": "Security Posture Comparison"
+    },
+    {
+      "level": 2,
+      "title": "4. How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Enable Option 9 (Allow F8 Menu)"
+    },
+    {
+      "level": 1,
+      "title": "Allow F8 preboot menu access on this policy"
+    },
+    {
+      "level": 3,
+      "title": "Remove Option 9 (Disable F8 Menu — Default / Most Secure)"
+    },
+    {
+      "level": 1,
+      "title": "Disable F8 menu (recommended for production — this is also the default)"
+    },
+    {
+      "level": 3,
+      "title": "Check Current F8 State"
+    },
+    {
+      "level": 3,
+      "title": "Full Hardening Script: Ensure F8 is Disabled Across All Policies"
+    },
+    {
+      "level": 1,
+      "title": "Audit all policy XML files and report/fix Option 9 presence"
+    },
+    {
+      "level": 1,
+      "title": "Summary"
+    },
+    {
+      "level": 2,
+      "title": "5. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Option 9 Present (F8 Menu Enabled)"
+    },
+    {
+      "level": 3,
+      "title": "Option 9 Absent (F8 Menu Disabled — Secure Default)"
+    },
+    {
+      "level": 3,
+      "title": "Invalid: Option 9 in Supplemental Policy"
+    },
+    {
+      "level": 3,
+      "title": "Bitmask Position"
+    },
+    {
+      "level": 2,
+      "title": "6. Interaction with Other Options"
+    },
+    {
+      "level": 3,
+      "title": "Critical Security Interaction: Option 9 Bypasses Signed Policies"
+    },
+    {
+      "level": 3,
+      "title": "Interaction Table"
+    },
+    {
+      "level": 2,
+      "title": "7. When to Enable vs Disable"
+    },
+    {
+      "level": 2,
+      "title": "8. Real-World Scenario / End-to-End Walkthrough"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: Enterprise Security — F8 Disabled (Default / Recommended)"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: Remote Deployment — F8 Enabled (Operational Requirement)"
+    },
+    {
+      "level": 3,
+      "title": "Scenario C: Attacker Exploiting Option 9"
+    },
+    {
+      "level": 2,
+      "title": "9. What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Mistake A: Leaving Option 9 Set in High-Security Environment"
+    },
+    {
+      "level": 3,
+      "title": "Mistake B: Not Setting Option 9 in Isolated Remote Environment"
+    },
+    {
+      "level": 3,
+      "title": "Mistake C: Option 9 on a Supplemental Policy"
+    },
+    {
+      "level": 3,
+      "title": "Consequence Matrix"
+    },
+    {
+      "level": 2,
+      "title": "10. Valid for Supplemental Policies?"
+    },
+    {
+      "level": 3,
+      "title": "Why the Restriction Makes Sense"
+    },
+    {
+      "level": 2,
+      "title": "11. OS Version Requirements"
+    },
+    {
+      "level": 3,
+      "title": "Boot Mode vs. WDAC Enforcement Status"
+    },
+    {
+      "level": 2,
+      "title": "12. Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

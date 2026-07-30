@@ -1,0 +1,20 @@
+{
+  "id": "docs/index",
+  "path": "docs/index.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/index.md",
+  "title": "App Control for Business — Reference Series",
+  "frontmatter": {
+    "okf_version": "0.2"
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "App Control for Business — Reference Series"
+    },
+    {
+      "level": 1,
+      "title": "Subdirectories"
+    }
+  ],
+  "kind": "index"
+}

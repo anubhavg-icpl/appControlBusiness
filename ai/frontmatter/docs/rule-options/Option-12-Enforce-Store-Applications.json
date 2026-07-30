@@ -1,0 +1,175 @@
+{
+  "id": "docs/rule-options/Option-12-Enforce-Store-Applications",
+  "path": "docs/rule-options/Option-12-Enforce-Store-Applications.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-12-Enforce-Store-Applications.md",
+  "title": "Option 12 — Required:Enforce Store Applications",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 12 — Required:Enforce Store Applications",
+    "description": "What policy rule option 12 (Required:Enforce Store Applications) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 12,
+    "policy_rule_value": "Required:Enforce Store Applications",
+    "valid_for_supplemental": false,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 12 — Required:Enforce Store Applications"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "What It Does"
+    },
+    {
+      "level": 2,
+      "title": "Why It Exists"
+    },
+    {
+      "level": 2,
+      "title": "Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Enable Store Application Enforcement (Set Option 12)"
+    },
+    {
+      "level": 1,
+      "title": "Enable enforcement for UWP/Store applications"
+    },
+    {
+      "level": 3,
+      "title": "Disable Store Application Enforcement (Remove Option 12)"
+    },
+    {
+      "level": 1,
+      "title": "Remove enforcement for UWP/Store applications (default — Store apps bypass policy)"
+    },
+    {
+      "level": 3,
+      "title": "Full Example — Policy with Store App Enforcement"
+    },
+    {
+      "level": 1,
+      "title": "Enable Store app enforcement"
+    },
+    {
+      "level": 1,
+      "title": "Add a rule to allow all Store-signed UWP apps"
+    },
+    {
+      "level": 1,
+      "title": "(Without this, ALL UWP apps will be blocked once Option 12 is set)"
+    },
+    {
+      "level": 1,
+      "title": "The Microsoft Store signing certificate covers all genuine Store apps"
+    },
+    {
+      "level": 1,
+      "title": "Get the Store app signer info for rule generation"
+    },
+    {
+      "level": 1,
+      "title": "Typically use: Publisher = \"CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US\""
+    },
+    {
+      "level": 1,
+      "title": "Or use New-CIPolicy to automatically generate rules from installed UWP apps:"
+    },
+    {
+      "level": 1,
+      "title": "Merge the UWP rules into the main policy"
+    },
+    {
+      "level": 1,
+      "title": "Convert to binary"
+    },
+    {
+      "level": 3,
+      "title": "Identify Package Family Names for UWP Rules"
+    },
+    {
+      "level": 1,
+      "title": "List all installed UWP apps with their Package Family Name (PFN)"
+    },
+    {
+      "level": 1,
+      "title": "Get the signing certificate for a specific app (for writing a Signer rule)"
+    },
+    {
+      "level": 2,
+      "title": "XML Representation"
+    },
+    {
+      "level": 2,
+      "title": "Interaction With Other Options"
+    },
+    {
+      "level": 2,
+      "title": "When to Enable vs Disable"
+    },
+    {
+      "level": 2,
+      "title": "Real-World Scenario — End-to-End Walkthrough"
+    },
+    {
+      "level": 2,
+      "title": "What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: Option 12 set without UWP signer rules"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: Option 12 not set on developer-mode machines"
+    },
+    {
+      "level": 3,
+      "title": "Key UWP-Specific Events"
+    },
+    {
+      "level": 2,
+      "title": "Valid for Supplemental Policies?"
+    },
+    {
+      "level": 2,
+      "title": "OS Version Requirements"
+    },
+    {
+      "level": 2,
+      "title": "Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

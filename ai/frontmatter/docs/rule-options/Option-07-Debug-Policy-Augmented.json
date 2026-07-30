@@ -1,0 +1,171 @@
+{
+  "id": "docs/rule-options/Option-07-Debug-Policy-Augmented",
+  "path": "docs/rule-options/Option-07-Debug-Policy-Augmented.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-07-Debug-Policy-Augmented.md",
+  "title": "Option 7 — Allowed:Debug Policy Augmented",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 7 — Allowed:Debug Policy Augmented",
+    "description": "What policy rule option 7 (Allowed:Debug Policy Augmented) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 7,
+    "policy_rule_value": "Allowed:Debug Policy Augmented",
+    "valid_for_supplemental": true,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 7 — Allowed:Debug Policy Augmented"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. What It Does"
+    },
+    {
+      "level": 2,
+      "title": "2. Why It Exists"
+    },
+    {
+      "level": 3,
+      "title": "Debug and Diagnostic Tooling as a First-Class Concern"
+    },
+    {
+      "level": 3,
+      "title": "The \"Allowed\" Prefix Semantic"
+    },
+    {
+      "level": 2,
+      "title": "3. Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 3,
+      "title": "Projected Architecture (Future Implementation)"
+    },
+    {
+      "level": 2,
+      "title": "4. How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Enable Option 7"
+    },
+    {
+      "level": 1,
+      "title": "Set Option 7 on a base policy"
+    },
+    {
+      "level": 1,
+      "title": "Set Option 7 on a supplemental policy"
+    },
+    {
+      "level": 3,
+      "title": "Remove Option 7"
+    },
+    {
+      "level": 1,
+      "title": "Remove the option"
+    },
+    {
+      "level": 3,
+      "title": "Inspect All Current Options"
+    },
+    {
+      "level": 3,
+      "title": "Batch Policy Audit Script"
+    },
+    {
+      "level": 1,
+      "title": "Scan all policy XML files in a directory for Option 7 presence"
+    },
+    {
+      "level": 2,
+      "title": "5. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Option 7 Present"
+    },
+    {
+      "level": 3,
+      "title": "Option 7 Absent (Default)"
+    },
+    {
+      "level": 3,
+      "title": "Bitmask Position"
+    },
+    {
+      "level": 2,
+      "title": "6. Interaction with Other Options"
+    },
+    {
+      "level": 3,
+      "title": "Current Interaction Matrix"
+    },
+    {
+      "level": 2,
+      "title": "7. When to Enable vs Disable"
+    },
+    {
+      "level": 2,
+      "title": "8. Real-World Scenario / End-to-End Walkthrough"
+    },
+    {
+      "level": 3,
+      "title": "Scenario: Driver Development Team Prepares for Future Debug Augmentation"
+    },
+    {
+      "level": 2,
+      "title": "9. What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Current Risk Profile (No-Op Era)"
+    },
+    {
+      "level": 3,
+      "title": "Projected Future Risk Scenarios"
+    },
+    {
+      "level": 3,
+      "title": "Misconfiguration Consequence Table"
+    },
+    {
+      "level": 2,
+      "title": "10. Valid for Supplemental Policies?"
+    },
+    {
+      "level": 2,
+      "title": "11. OS Version Requirements"
+    },
+    {
+      "level": 2,
+      "title": "12. Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

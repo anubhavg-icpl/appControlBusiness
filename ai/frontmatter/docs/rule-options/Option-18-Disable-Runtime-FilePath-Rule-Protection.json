@@ -1,0 +1,243 @@
+{
+  "id": "docs/rule-options/Option-18-Disable-Runtime-FilePath-Rule-Protection",
+  "path": "docs/rule-options/Option-18-Disable-Runtime-FilePath-Rule-Protection.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-18-Disable-Runtime-FilePath-Rule-Protection.md",
+  "title": "Option 18 — Disabled:Runtime FilePath Rule Protection",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 18 — Disabled:Runtime FilePath Rule Protection",
+    "description": "What policy rule option 18 (Disabled:Runtime FilePath Rule Protection) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 18,
+    "policy_rule_value": "Disabled:Runtime FilePath Rule Protection",
+    "valid_for_supplemental": true,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 18 — Disabled:Runtime FilePath Rule Protection"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "What It Does"
+    },
+    {
+      "level": 2,
+      "title": "Why It Exists"
+    },
+    {
+      "level": 3,
+      "title": "The Default Protection — The Problem It Solves"
+    },
+    {
+      "level": 3,
+      "title": "Why Option 18 Exists — The Operational Escape Hatch"
+    },
+    {
+      "level": 2,
+      "title": "Understanding Runtime FilePath Rule Protection (The Default)"
+    },
+    {
+      "level": 3,
+      "title": "What \"Admin-Writable Only\" Means"
+    },
+    {
+      "level": 3,
+      "title": "What \"Admin-Writable\" Means in Practice"
+    },
+    {
+      "level": 2,
+      "title": "Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "The Naming Convention Warning"
+    },
+    {
+      "level": 3,
+      "title": "Disable the Runtime Protection (Turn Option 18 ON)"
+    },
+    {
+      "level": 1,
+      "title": "DISABLES the runtime FilePath protection (allows FilePath rules on user-writable paths)"
+    },
+    {
+      "level": 1,
+      "title": "Use this when you NEED FilePath rules to work on non-admin-writable directories"
+    },
+    {
+      "level": 3,
+      "title": "Re-Enable the Runtime Protection (Turn Option 18 OFF)"
+    },
+    {
+      "level": 1,
+      "title": "ENABLES the runtime FilePath protection (restores default safe behavior)"
+    },
+    {
+      "level": 1,
+      "title": "Use this to return to secure defaults"
+    },
+    {
+      "level": 3,
+      "title": "Complete Workflow: Supplemental Policy with Option 18 for ProgramData Paths"
+    },
+    {
+      "level": 1,
+      "title": "Scenario: Legacy app installs to C:\\ProgramData\\LegacyApp\\"
+    },
+    {
+      "level": 1,
+      "title": "Standard users can write to this directory (log files written there)"
+    },
+    {
+      "level": 1,
+      "title": "FilePath rule needed but default protection would block it"
+    },
+    {
+      "level": 1,
+      "title": "Solution: Supplemental policy with Option 18 scoped to this app only"
+    },
+    {
+      "level": 1,
+      "title": "Get base policy ID for the link"
+    },
+    {
+      "level": 1,
+      "title": "Create a new supplemental policy"
+    },
+    {
+      "level": 1,
+      "title": "Link supplemental to base policy"
+    },
+    {
+      "level": 1,
+      "title": "Option 18: Disable runtime FilePath protection"
+    },
+    {
+      "level": 1,
+      "title": "This allows the FilePath rule to work even though C:\\ProgramData\\ is user-writable"
+    },
+    {
+      "level": 1,
+      "title": "Compile and deploy supplemental"
+    },
+    {
+      "level": 3,
+      "title": "Verifying Option 18 Status in a Policy"
+    },
+    {
+      "level": 1,
+      "title": "Check if Option 18 is set (i.e., runtime protection is DISABLED)"
+    },
+    {
+      "level": 2,
+      "title": "XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Policy WITHOUT Option 18 (Default — Protection Active)"
+    },
+    {
+      "level": 3,
+      "title": "Policy WITH Option 18 (Runtime Protection Disabled)"
+    },
+    {
+      "level": 2,
+      "title": "Interaction with Other Options"
+    },
+    {
+      "level": 3,
+      "title": "FilePath Rule Security Spectrum"
+    },
+    {
+      "level": 3,
+      "title": "Option Compatibility Matrix"
+    },
+    {
+      "level": 2,
+      "title": "When to Enable vs Disable"
+    },
+    {
+      "level": 3,
+      "title": "Decision Priority Order"
+    },
+    {
+      "level": 2,
+      "title": "Real-World Scenario / End-to-End Walkthrough"
+    },
+    {
+      "level": 3,
+      "title": "Attack Attempt Under This Configuration"
+    },
+    {
+      "level": 2,
+      "title": "What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: Wildcard FilePath rules with Option 18 — write-anywhere exploit"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: Option 18 in base policy instead of supplemental — overly broad scope"
+    },
+    {
+      "level": 3,
+      "title": "Scenario C: Forgetting to add compensating controls"
+    },
+    {
+      "level": 3,
+      "title": "Scenario D: Option 18 set on OS versions prior to Windows 10 1903"
+    },
+    {
+      "level": 3,
+      "title": "Scenario E: Relying on Option 18 when Hash rules would suffice"
+    },
+    {
+      "level": 2,
+      "title": "Valid for Supplemental Policies?"
+    },
+    {
+      "level": 2,
+      "title": "OS Version Requirements"
+    },
+    {
+      "level": 1,
+      "title": "Check OS build for Option 18 support"
+    },
+    {
+      "level": 2,
+      "title": "Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

@@ -1,0 +1,239 @@
+{
+  "id": "docs/rule-options/Option-00-UMCI",
+  "path": "docs/rule-options/Option-00-UMCI.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-00-UMCI.md",
+  "title": "Option 0 — Enabled:UMCI (User Mode Code Integrity)",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 0 — Enabled:UMCI (User Mode Code Integrity)",
+    "description": "What policy rule option 0 (Enabled:UMCI) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 0,
+    "policy_rule_value": "Enabled:UMCI",
+    "valid_for_supplemental": false,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 0 — Enabled:UMCI (User Mode Code Integrity)"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. What It Does"
+    },
+    {
+      "level": 2,
+      "title": "2. Why It Exists"
+    },
+    {
+      "level": 3,
+      "title": "The Security Problem It Solves"
+    },
+    {
+      "level": 2,
+      "title": "3. Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 3,
+      "title": "Where Option 0 Sits in the Stack"
+    },
+    {
+      "level": 2,
+      "title": "4. How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Prerequisites"
+    },
+    {
+      "level": 1,
+      "title": "Requires the ConfigCI module (Windows 10/11 Enterprise or Education)"
+    },
+    {
+      "level": 1,
+      "title": "Must run as Administrator"
+    },
+    {
+      "level": 3,
+      "title": "Enable UMCI on an Existing Policy File"
+    },
+    {
+      "level": 1,
+      "title": "Enable Option 0 (adds Enabled:UMCI to the policy)"
+    },
+    {
+      "level": 3,
+      "title": "Remove UMCI (Revert to Kernel-Only Enforcement)"
+    },
+    {
+      "level": 1,
+      "title": "Remove Option 0 (policy reverts to kernel-mode-only enforcement)"
+    },
+    {
+      "level": 3,
+      "title": "Create a New Policy with UMCI Enabled from the Start"
+    },
+    {
+      "level": 1,
+      "title": "Start from the DefaultWindows template (already includes UMCI)"
+    },
+    {
+      "level": 1,
+      "title": "Verify Option 0 is present"
+    },
+    {
+      "level": 1,
+      "title": "Set the policy GUID and version"
+    },
+    {
+      "level": 3,
+      "title": "Compile and Deploy"
+    },
+    {
+      "level": 1,
+      "title": "Compile XML to binary"
+    },
+    {
+      "level": 1,
+      "title": "Deploy (SiPolicy.p7 for legacy single-policy)"
+    },
+    {
+      "level": 1,
+      "title": "For GUID-based multi-policy deployment"
+    },
+    {
+      "level": 1,
+      "title": "Refresh (no reboot required for update, reboot required for first enable)"
+    },
+    {
+      "level": 3,
+      "title": "Audit First Workflow"
+    },
+    {
+      "level": 1,
+      "title": "Step 1 — Enable Option 3 (Audit Mode) alongside Option 0"
+    },
+    {
+      "level": 1,
+      "title": "Step 2 — Deploy, collect logs, review 3076 events"
+    },
+    {
+      "level": 1,
+      "title": "Step 3 — Build supplemental from audit log"
+    },
+    {
+      "level": 1,
+      "title": "Step 4 — Remove Audit Mode, leave UMCI"
+    },
+    {
+      "level": 2,
+      "title": "5. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Option 0 Present in Policy XML"
+    },
+    {
+      "level": 3,
+      "title": "Option 0 Absent (Kernel-Only Mode)"
+    },
+    {
+      "level": 3,
+      "title": "Verifying Presence via PowerShell"
+    },
+    {
+      "level": 1,
+      "title": "Parse the XML and check for the option"
+    },
+    {
+      "level": 2,
+      "title": "6. Interaction with Other Options"
+    },
+    {
+      "level": 3,
+      "title": "Option Relationship Matrix"
+    },
+    {
+      "level": 3,
+      "title": "Interaction Diagram"
+    },
+    {
+      "level": 3,
+      "title": "The UMCI + Audit Mode Lifecycle"
+    },
+    {
+      "level": 2,
+      "title": "7. When to Enable vs Disable"
+    },
+    {
+      "level": 3,
+      "title": "Decision Reference Table"
+    },
+    {
+      "level": 2,
+      "title": "8. Real-World Scenario — End-to-End Walkthrough"
+    },
+    {
+      "level": 3,
+      "title": "Scenario: Ransomware Lateral Movement Blocked by UMCI"
+    },
+    {
+      "level": 3,
+      "title": "Policy Preparation Walkthrough"
+    },
+    {
+      "level": 2,
+      "title": "9. What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: UMCI Enabled Without Audit Phase"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: UMCI Disabled on Critical Asset"
+    },
+    {
+      "level": 3,
+      "title": "Misconfig Consequences Summary"
+    },
+    {
+      "level": 2,
+      "title": "10. Valid for Supplemental Policies?"
+    },
+    {
+      "level": 2,
+      "title": "11. OS Version Requirements"
+    },
+    {
+      "level": 2,
+      "title": "12. Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

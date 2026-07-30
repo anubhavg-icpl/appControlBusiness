@@ -1,0 +1,255 @@
+{
+  "id": "docs/rule-options/Option-20-Revoked-Expired-As-Unsigned",
+  "path": "docs/rule-options/Option-20-Revoked-Expired-As-Unsigned.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-20-Revoked-Expired-As-Unsigned.md",
+  "title": "Option 20 — Enabled:Revoked Expired As Unsigned",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 20 — Enabled:Revoked Expired As Unsigned",
+    "description": "What policy rule option 20 (Enabled:Revoked Expired As Unsigned) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 20,
+    "policy_rule_value": "Enabled:Revoked Expired As Unsigned",
+    "valid_for_supplemental": false,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 20 — Enabled:Revoked Expired As Unsigned"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. What It Does"
+    },
+    {
+      "level": 2,
+      "title": "2. Why It Exists"
+    },
+    {
+      "level": 3,
+      "title": "Understanding Authenticode Signature Validity"
+    },
+    {
+      "level": 3,
+      "title": "The Problem: Revoked Certificates"
+    },
+    {
+      "level": 3,
+      "title": "The Problem: Lifetime Signing EKU"
+    },
+    {
+      "level": 3,
+      "title": "The Enterprise PKI Scenario"
+    },
+    {
+      "level": 2,
+      "title": "3. Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 3,
+      "title": "Certificate Validation Decision Tree"
+    },
+    {
+      "level": 3,
+      "title": "The Lifetime Signing EKU — What It Looks Like in a Certificate"
+    },
+    {
+      "level": 2,
+      "title": "4. How to Set It"
+    },
+    {
+      "level": 3,
+      "title": "Enable Option 20"
+    },
+    {
+      "level": 1,
+      "title": "Enable Revoked/Expired-as-Unsigned on an existing policy"
+    },
+    {
+      "level": 1,
+      "title": "Confirm the rule was added"
+    },
+    {
+      "level": 3,
+      "title": "Remove (Disable) Option 20"
+    },
+    {
+      "level": 1,
+      "title": "Remove the option (revert to default Authenticode timestamp behavior)"
+    },
+    {
+      "level": 3,
+      "title": "Create an Enterprise Policy with Option 20 and Enterprise PKI Signing"
+    },
+    {
+      "level": 1,
+      "title": "Full enterprise PKI policy configuration with Option 20"
+    },
+    {
+      "level": 1,
+      "title": "Start from a base template"
+    },
+    {
+      "level": 1,
+      "title": "Core options"
+    },
+    {
+      "level": 1,
+      "title": "Add your enterprise CA as a trusted signer"
+    },
+    {
+      "level": 1,
+      "title": "(First extract CA cert thumbprint from your PKI)"
+    },
+    {
+      "level": 1,
+      "title": "Reference the signer in the policy via New-CIPolicyRule"
+    },
+    {
+      "level": 1,
+      "title": "Merge signer rule into policy"
+    },
+    {
+      "level": 1,
+      "title": "Review final policy options"
+    },
+    {
+      "level": 3,
+      "title": "Check Whether a Binary Would Be Affected by Option 20"
+    },
+    {
+      "level": 1,
+      "title": "Inspect a binary's signing certificate for revocation and Lifetime Signing EKU"
+    },
+    {
+      "level": 2,
+      "title": "5. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Option in Policy XML"
+    },
+    {
+      "level": 3,
+      "title": "Full Policy Context"
+    },
+    {
+      "level": 2,
+      "title": "6. Interaction with Other Options"
+    },
+    {
+      "level": 3,
+      "title": "Compatibility Matrix"
+    },
+    {
+      "level": 3,
+      "title": "Interaction Diagram"
+    },
+    {
+      "level": 2,
+      "title": "7. When to Enable vs Disable"
+    },
+    {
+      "level": 3,
+      "title": "Key Guidance"
+    },
+    {
+      "level": 2,
+      "title": "8. Real-World Scenario — End-to-End Walkthrough"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: Compromised Enterprise Code Signing Certificate"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: Enterprise PKI Renewal Governance with Lifetime Signing EKU"
+    },
+    {
+      "level": 2,
+      "title": "9. What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Enabling Option 20 Without Auditing First"
+    },
+    {
+      "level": 3,
+      "title": "Omitting Option 20 When Lifetime Signing EKU Is Present in Your PKI"
+    },
+    {
+      "level": 3,
+      "title": "Air-Gapped Environment: CRL Accessibility Issue"
+    },
+    {
+      "level": 1,
+      "title": "For air-gapped scenarios: add revoked cert directly to DisallowedCertificates"
+    },
+    {
+      "level": 1,
+      "title": "rather than relying solely on Option 20 + CRL"
+    },
+    {
+      "level": 1,
+      "title": "Or import the revoked cert thumbprint directly into the policy's denied signers"
+    },
+    {
+      "level": 2,
+      "title": "10. Valid for Supplemental Policies"
+    },
+    {
+      "level": 2,
+      "title": "11. OS Version Requirements"
+    },
+    {
+      "level": 3,
+      "title": "Verify CRL Infrastructure Readiness"
+    },
+    {
+      "level": 1,
+      "title": "Check that CRL distribution points are accessible from the endpoint"
+    },
+    {
+      "level": 1,
+      "title": "(Important for revocation checking to work correctly with Option 20)"
+    },
+    {
+      "level": 1,
+      "title": "Get all CDP URLs from code signing certs on the machine"
+    },
+    {
+      "level": 1,
+      "title": "Test connectivity to a specific CDP (replace with your CA's CDP URL)"
+    },
+    {
+      "level": 2,
+      "title": "12. Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

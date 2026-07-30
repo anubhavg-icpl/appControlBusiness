@@ -1,0 +1,215 @@
+{
+  "id": "docs/rule-options/Option-15-Invalidate-EAs-on-Reboot",
+  "path": "docs/rule-options/Option-15-Invalidate-EAs-on-Reboot.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-15-Invalidate-EAs-on-Reboot.md",
+  "title": "Option 15 — Enabled:Invalidate EAs on Reboot",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 15 — Enabled:Invalidate EAs on Reboot",
+    "description": "What policy rule option 15 (Enabled:Invalidate EAs on Reboot) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 15,
+    "policy_rule_value": "Enabled:Invalidate EAs on Reboot",
+    "valid_for_supplemental": false,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 15 — Enabled:Invalidate EAs on Reboot"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "What It Does"
+    },
+    {
+      "level": 2,
+      "title": "Why It Exists"
+    },
+    {
+      "level": 2,
+      "title": "Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Prerequisites"
+    },
+    {
+      "level": 3,
+      "title": "Enable Option 15 (Add the Rule)"
+    },
+    {
+      "level": 1,
+      "title": "Step 1: Define your policy XML path"
+    },
+    {
+      "level": 1,
+      "title": "Step 2: Ensure Option 14 is already enabled (prerequisite)"
+    },
+    {
+      "level": 1,
+      "title": "Step 3: Enable Option 15 — Invalidate EAs on Reboot"
+    },
+    {
+      "level": 1,
+      "title": "Step 4: Verify the rule was added"
+    },
+    {
+      "level": 3,
+      "title": "Disable Option 15 (Remove the Rule)"
+    },
+    {
+      "level": 1,
+      "title": "Remove Option 15 — revert to persistent EA caching (EA tokens never expire)"
+    },
+    {
+      "level": 3,
+      "title": "Full Policy Build with Option 15 Enabled"
+    },
+    {
+      "level": 1,
+      "title": "Complete workflow: create policy, add ISG + invalidation, deploy"
+    },
+    {
+      "level": 1,
+      "title": "Start from the default Windows template"
+    },
+    {
+      "level": 1,
+      "title": "Set a unique policy ID"
+    },
+    {
+      "level": 1,
+      "title": "Enable ISG (Option 14) + EA Invalidation on Reboot (Option 15)"
+    },
+    {
+      "level": 1,
+      "title": "Optionally enable audit mode for testing before enforcement"
+    },
+    {
+      "level": 1,
+      "title": "Set-RuleOption -FilePath $PolicyPath -Option 3"
+    },
+    {
+      "level": 1,
+      "title": "Convert to binary and deploy"
+    },
+    {
+      "level": 1,
+      "title": "Deploy to the standard location"
+    },
+    {
+      "level": 3,
+      "title": "Verify Current Rule Options on an Existing Policy"
+    },
+    {
+      "level": 1,
+      "title": "Parse and display all current rule options"
+    },
+    {
+      "level": 2,
+      "title": "XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "What the EA Looks Like at the File System Level"
+    },
+    {
+      "level": 1,
+      "title": "View extended attributes on a file (requires Sysinternals streams or direct WinAPI)"
+    },
+    {
+      "level": 1,
+      "title": "The EA name is typically: $KERNEL.PURGE.ESBCACHE"
+    },
+    {
+      "level": 1,
+      "title": "With streams.exe (Sysinternals):"
+    },
+    {
+      "level": 1,
+      "title": "streams.exe C:\\SomeApp\\app.exe"
+    },
+    {
+      "level": 2,
+      "title": "Interaction with Other Options"
+    },
+    {
+      "level": 3,
+      "title": "Option Compatibility Matrix"
+    },
+    {
+      "level": 2,
+      "title": "When to Enable vs Disable"
+    },
+    {
+      "level": 3,
+      "title": "Guidance Summary"
+    },
+    {
+      "level": 2,
+      "title": "Real-World Scenario / End-to-End Walkthrough"
+    },
+    {
+      "level": 2,
+      "title": "What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: You enable Option 15 WITHOUT Option 14"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: You enable Option 14 but NOT Option 15"
+    },
+    {
+      "level": 3,
+      "title": "Scenario C: Option 15 enabled, endpoint has no internet access on reboot"
+    },
+    {
+      "level": 3,
+      "title": "Scenario D: You remove Option 14 but leave Option 15"
+    },
+    {
+      "level": 2,
+      "title": "Valid for Supplemental Policies?"
+    },
+    {
+      "level": 2,
+      "title": "OS Version Requirements"
+    },
+    {
+      "level": 2,
+      "title": "Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

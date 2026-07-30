@@ -3,9 +3,15 @@
   "baseUrl": "https://anubhavg-icpl.github.io/appControlBusiness/",
   "agentIndex": "https://anubhavg-icpl.github.io/appControlBusiness/ai/",
   "llmsTxt": "https://anubhavg-icpl.github.io/appControlBusiness/llms.txt",
+  "llmsFull": "https://anubhavg-icpl.github.io/appControlBusiness/ai/llms-full.txt",
   "docsIndex": "https://anubhavg-icpl.github.io/appControlBusiness/docs/index.md",
+  "searchIndex": "https://anubhavg-icpl.github.io/appControlBusiness/ai/search-index.json",
+  "frontmatterIndex": "https://anubhavg-icpl.github.io/appControlBusiness/ai/frontmatter/index.json",
+  "updatesJson": "https://anubhavg-icpl.github.io/appControlBusiness/ai/updates.json",
+  "updatesAtom": "https://anubhavg-icpl.github.io/appControlBusiness/ai/atom.xml",
   "sitemap": "https://anubhavg-icpl.github.io/appControlBusiness/sitemap.xml",
   "bundleSpec": "https://anubhavg-icpl.github.io/appControlBusiness/OKF-SPEC.md",
+  "generator": "https://anubhavg-icpl.github.io/appControlBusiness/scripts/generate_agent_assets.rb",
   "recommendedStart": [
     "https://anubhavg-icpl.github.io/appControlBusiness/llms.txt",
     "https://anubhavg-icpl.github.io/appControlBusiness/docs/index.md",
@@ -18,8 +24,16 @@
     "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/",
     "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/"
   ],
+  "generatedAssets": [
+    "https://anubhavg-icpl.github.io/appControlBusiness/ai/search-index.json",
+    "https://anubhavg-icpl.github.io/appControlBusiness/ai/llms-full.txt",
+    "https://anubhavg-icpl.github.io/appControlBusiness/ai/frontmatter/index.json",
+    "https://anubhavg-icpl.github.io/appControlBusiness/ai/updates.json",
+    "https://anubhavg-icpl.github.io/appControlBusiness/ai/atom.xml"
+  ],
   "notes": [
     "GitHub Pages serves static files only; this is an MCP-style discovery surface, not a live MCP server.",
-    "The static agent page is meant to be stable, cacheable, and easy for coding agents to parse."
+    "The static agent page is meant to be stable, cacheable, and easy for coding agents to parse.",
+    "Generated assets are refreshed from source Markdown with ruby scripts/generate_agent_assets.rb."
   ]
 }

@@ -1,0 +1,228 @@
+{
+  "id": "docs/Part2-Policy-Templates-Rule-Options",
+  "path": "docs/Part2-Policy-Templates-Rule-Options.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/Part2-Policy-Templates-Rule-Options.md",
+  "title": "Part 2: Policy Templates & Rule Options",
+  "frontmatter": {
+    "type": "Guide",
+    "title": "Part 2: Policy Templates & Rule Options",
+    "description": "The built-in policy templates and the full set of policy rule options.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "endpoint-security"
+    ],
+    "status": "stable",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-01 20:54:41 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-01 20:54:41 +0530"
+    },
+    "sources": [
+      {
+        "id": "ctrlshiftenter",
+        "resource": "https://ctrlshiftenter.cloud",
+        "title": "ctrlshiftenter.cloud — Patrick Seltmann",
+        "author": "human:patrick-seltmann"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Mastering App Control for Business"
+    },
+    {
+      "level": 2,
+      "title": "Part 2: Policy Templates & Rule Options"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. Policy Templates"
+    },
+    {
+      "level": 3,
+      "title": "Base Policy Reference Table"
+    },
+    {
+      "level": 2,
+      "title": "2. Block Header Information"
+    },
+    {
+      "level": 3,
+      "title": "XML Header Attributes"
+    },
+    {
+      "level": 2,
+      "title": "3. Rule (Security) Options"
+    },
+    {
+      "level": 3,
+      "title": "User Mode vs. Kernel Mode"
+    },
+    {
+      "level": 4,
+      "title": "User Mode"
+    },
+    {
+      "level": 4,
+      "title": "Kernel Mode"
+    },
+    {
+      "level": 4,
+      "title": "Key Differentiator from AppLocker"
+    },
+    {
+      "level": 3,
+      "title": "Verify UMCI / KMCI Status"
+    },
+    {
+      "level": 3,
+      "title": "Rule Options Reference Table"
+    },
+    {
+      "level": 3,
+      "title": "Setting and Removing Rule Options via PowerShell"
+    },
+    {
+      "level": 1,
+      "title": "Set options (add to policy)"
+    },
+    {
+      "level": 1,
+      "title": "Remove options (delete from policy)"
+    },
+    {
+      "level": 2,
+      "title": "4. EKU — Enhanced Key Usages"
+    },
+    {
+      "level": 3,
+      "title": "EKU Attributes"
+    },
+    {
+      "level": 3,
+      "title": "How EKUs Work with Signer Rules"
+    },
+    {
+      "level": 3,
+      "title": "OID Namespace"
+    },
+    {
+      "level": 3,
+      "title": "OID Encoding Process"
+    },
+    {
+      "level": 3,
+      "title": "PowerShell Encode / Decode Scripts"
+    },
+    {
+      "level": 2,
+      "title": "5. File Rules & Signer Rules"
+    },
+    {
+      "level": 3,
+      "title": "File Rules Overview"
+    },
+    {
+      "level": 4,
+      "title": "File Rule Attributes"
+    },
+    {
+      "level": 4,
+      "title": "File Version Range Logic"
+    },
+    {
+      "level": 3,
+      "title": "File Rule Levels"
+    },
+    {
+      "level": 3,
+      "title": "Hash-Based Rule"
+    },
+    {
+      "level": 3,
+      "title": "File Name-Based Rule"
+    },
+    {
+      "level": 3,
+      "title": "File Path-Based Rule"
+    },
+    {
+      "level": 3,
+      "title": "Signed Version-Based Rule"
+    },
+    {
+      "level": 3,
+      "title": "Publisher-Based Rule"
+    },
+    {
+      "level": 3,
+      "title": "File Publisher Rule"
+    },
+    {
+      "level": 3,
+      "title": "Leaf Certificate-Based Rule"
+    },
+    {
+      "level": 3,
+      "title": "PCA Certificate-Based Rule"
+    },
+    {
+      "level": 3,
+      "title": "WHQL-Signed Rule"
+    },
+    {
+      "level": 3,
+      "title": "WHQL Publisher Rule"
+    },
+    {
+      "level": 2,
+      "title": "6. Signing Scenarios"
+    },
+    {
+      "level": 3,
+      "title": "Kernel Mode Code Integrity (KMCI) — Value=\"131\""
+    },
+    {
+      "level": 3,
+      "title": "User Mode Code Integrity (UMCI) — Value=\"12\""
+    },
+    {
+      "level": 2,
+      "title": "7. Update Policy Signers"
+    },
+    {
+      "level": 2,
+      "title": "8. Allow vs. Deny Rule Processing Order"
+    },
+    {
+      "level": 3,
+      "title": "Processing Sequence"
+    },
+    {
+      "level": 3,
+      "title": "Operational Recommendation"
+    },
+    {
+      "level": 2,
+      "title": "9. Complete Example Policy XML"
+    },
+    {
+      "level": 2,
+      "title": "Series Navigation"
+    },
+    {
+      "level": 2,
+      "title": "Architecture & Reference Illustrations"
+    }
+  ],
+  "kind": "guide"
+}

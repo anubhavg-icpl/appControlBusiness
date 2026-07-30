@@ -1,0 +1,144 @@
+{
+  "id": "docs/Part5-Base-Policy-Fully-Managed-Devices",
+  "path": "docs/Part5-Base-Policy-Fully-Managed-Devices.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/Part5-Base-Policy-Fully-Managed-Devices.md",
+  "title": "Part 5: Create a Base Policy for Fully Managed Devices",
+  "frontmatter": {
+    "type": "Guide",
+    "title": "Part 5: Create a Base Policy for Fully Managed Devices",
+    "description": "Building a base policy for fully managed devices.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "endpoint-security"
+    ],
+    "status": "stable",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-01 21:03:22 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-01 21:03:22 +0530"
+    },
+    "sources": [
+      {
+        "id": "ctrlshiftenter",
+        "resource": "https://ctrlshiftenter.cloud",
+        "title": "ctrlshiftenter.cloud — Patrick Seltmann",
+        "author": "human:patrick-seltmann"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Mastering App Control for Business"
+    },
+    {
+      "level": 2,
+      "title": "Part 5: Create a Base Policy for Fully Managed Devices"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. Overview"
+    },
+    {
+      "level": 3,
+      "title": "Key Deployment Principles"
+    },
+    {
+      "level": 2,
+      "title": "2. Approach 1: Creating a Base Policy from Scratch with PowerShell"
+    },
+    {
+      "level": 3,
+      "title": "Prerequisites"
+    },
+    {
+      "level": 3,
+      "title": "Run the Scan"
+    },
+    {
+      "level": 3,
+      "title": "Set Policy Metadata"
+    },
+    {
+      "level": 3,
+      "title": "Set Security Options"
+    },
+    {
+      "level": 3,
+      "title": "Post-Scan Notes"
+    },
+    {
+      "level": 2,
+      "title": "3. New-CIPolicy Parameters Explained"
+    },
+    {
+      "level": 2,
+      "title": "4. Fallback Levels: Security & Maintenance Comparison"
+    },
+    {
+      "level": 2,
+      "title": "5. Approach 2: App Control Policy Wizard with Custom Rules"
+    },
+    {
+      "level": 3,
+      "title": "Steps"
+    },
+    {
+      "level": 3,
+      "title": "Wizard Output"
+    },
+    {
+      "level": 2,
+      "title": "6. Apply Policy Locally"
+    },
+    {
+      "level": 3,
+      "title": "If Policy Was Created with New-CIPolicy"
+    },
+    {
+      "level": 3,
+      "title": "If Policy Was Created with App Control Policy Wizard"
+    },
+    {
+      "level": 3,
+      "title": "Apply the Policy"
+    },
+    {
+      "level": 2,
+      "title": "7. User Experience with Enforced Policies"
+    },
+    {
+      "level": 3,
+      "title": "Error Notifications"
+    },
+    {
+      "level": 2,
+      "title": "8. Troubleshooting Policies"
+    },
+    {
+      "level": 3,
+      "title": "Quick Reference: Key Tools"
+    },
+    {
+      "level": 3,
+      "title": "Key Event IDs"
+    },
+    {
+      "level": 2,
+      "title": "Series Navigation"
+    },
+    {
+      "level": 2,
+      "title": "Architecture & Reference Illustrations"
+    }
+  ],
+  "kind": "guide"
+}

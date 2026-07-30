@@ -1,0 +1,445 @@
+{
+  "id": "docs/file-rule-levels/Level-FilePublisher",
+  "path": "docs/file-rule-levels/Level-FilePublisher.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-FilePublisher.md",
+  "title": "WDAC File Rule Level: FilePublisher",
+  "frontmatter": {
+    "type": "File Rule Level",
+    "title": "WDAC File Rule Level: FilePublisher",
+    "description": "How the FilePublisher file rule level works, its attack resistance, and when to use it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "file-rule-level"
+    ],
+    "status": "stable",
+    "file_rule_level": "FilePublisher",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "WDAC File Rule Level: FilePublisher"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. Overview"
+    },
+    {
+      "level": 2,
+      "title": "2. How It Works"
+    },
+    {
+      "level": 3,
+      "title": "Step-by-Step: What ConfigCI Does When Generating FilePublisher Rules"
+    },
+    {
+      "level": 2,
+      "title": "3. The Triple-Binding Deep Dive"
+    },
+    {
+      "level": 3,
+      "title": "Binding 1: OriginalFileName (Anti-Rename Protection)"
+    },
+    {
+      "level": 1,
+      "title": "Read OriginalFileName from a PE file"
+    },
+    {
+      "level": 3,
+      "title": "Binding 2: Publisher (PCA + Leaf CN)"
+    },
+    {
+      "level": 3,
+      "title": "Binding 3: MinimumFileVersion (Anti-Downgrade Protection)"
+    },
+    {
+      "level": 2,
+      "title": "4. Certificate Chain Anatomy"
+    },
+    {
+      "level": 3,
+      "title": "FilePublisher vs Other Levels — What Each Checks"
+    },
+    {
+      "level": 2,
+      "title": "5. Where in the Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "6. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Complete FilePublisher Rule XML"
+    },
+    {
+      "level": 3,
+      "title": "XML Element Reference for FilePublisher"
+    },
+    {
+      "level": 3,
+      "title": "How the Link Works: Signer + FileAttribRef = FilePublisher"
+    },
+    {
+      "level": 2,
+      "title": "7. PowerShell Examples"
+    },
+    {
+      "level": 3,
+      "title": "Generate FilePublisher Policy from a Directory"
+    },
+    {
+      "level": 1,
+      "title": "Primary command: generate FilePublisher rules for all PE files in a directory"
+    },
+    {
+      "level": 1,
+      "title": "Parameters explained:"
+    },
+    {
+      "level": 1,
+      "title": "-Level FilePublisher   : Primary rule level"
+    },
+    {
+      "level": 1,
+      "title": "-ScanPath              : Directory to scan recursively"
+    },
+    {
+      "level": 1,
+      "title": "-UserPEs               : Include user-mode executables (not just drivers)"
+    },
+    {
+      "level": 1,
+      "title": "-Fallback Publisher, Hash :"
+    },
+    {
+      "level": 1,
+      "title": "If FilePublisher cannot be created (e.g., no VERSIONINFO),"
+    },
+    {
+      "level": 1,
+      "title": "first try Publisher level;"
+    },
+    {
+      "level": 1,
+      "title": "if Publisher also fails (unsigned), use Hash"
+    },
+    {
+      "level": 1,
+      "title": "-OutputFilePath        : Output XML file"
+    },
+    {
+      "level": 3,
+      "title": "Generate FilePublisher Rule for a Single File"
+    },
+    {
+      "level": 1,
+      "title": "Single file, FilePublisher level"
+    },
+    {
+      "level": 1,
+      "title": "Inspect what was generated"
+    },
+    {
+      "level": 1,
+      "title": "The rule object will contain:"
+    },
+    {
+      "level": 1,
+      "title": "- Signer with CertRoot (PCA TBS hash)"
+    },
+    {
+      "level": 1,
+      "title": "- Signer with CertPublisher (leaf CN)"
+    },
+    {
+      "level": 1,
+      "title": "- FileAttrib with FileName (OriginalFileName) and MinimumFileVersion"
+    },
+    {
+      "level": 1,
+      "title": "- FileAttribRef linking the Signer to the FileAttrib"
+    },
+    {
+      "level": 3,
+      "title": "Inspect What FilePublisher Will Generate Before Running"
+    },
+    {
+      "level": 1,
+      "title": "Usage"
+    },
+    {
+      "level": 3,
+      "title": "Merging FilePublisher Rules into a Base Policy"
+    },
+    {
+      "level": 1,
+      "title": "Create rules for multiple applications"
+    },
+    {
+      "level": 1,
+      "title": "Combine all rules"
+    },
+    {
+      "level": 1,
+      "title": "Generate a policy from combined rules"
+    },
+    {
+      "level": 1,
+      "title": "Convert to binary for deployment"
+    },
+    {
+      "level": 3,
+      "title": "Updating MinimumFileVersion After an App Update"
+    },
+    {
+      "level": 1,
+      "title": "Scenario: 7-Zip updated from 24.08 to 24.09"
+    },
+    {
+      "level": 1,
+      "title": "Existing policy has MinimumFileVersion=\"24.08.0.0\""
+    },
+    {
+      "level": 1,
+      "title": "New version is 24.09.0.0 — this PASSES the existing rule (>= 24.08)"
+    },
+    {
+      "level": 1,
+      "title": "No policy update needed for upgrades!"
+    },
+    {
+      "level": 1,
+      "title": "BUT: if you want to RAISE the floor (require 24.09+ to block 24.08):"
+    },
+    {
+      "level": 1,
+      "title": "1. Rescan with the new version installed"
+    },
+    {
+      "level": 1,
+      "title": "2. The new rule will have MinimumFileVersion=\"24.09.0.0\""
+    },
+    {
+      "level": 1,
+      "title": "3. Deploy the updated policy — now v24.08 is blocked"
+    },
+    {
+      "level": 2,
+      "title": "8. The -SpecificFileNameLevel Option"
+    },
+    {
+      "level": 1,
+      "title": "Use ProductName instead of OriginalFileName"
+    },
+    {
+      "level": 3,
+      "title": "Available -SpecificFileNameLevel Values"
+    },
+    {
+      "level": 3,
+      "title": "ProductName Example: Covering Entire Office Suite"
+    },
+    {
+      "level": 1,
+      "title": "Instead of individual rules for winword.exe, excel.exe, powerpoint.exe..."
+    },
+    {
+      "level": 1,
+      "title": "One FileAttrib per VERSIONINFO field value covers all Office binaries"
+    },
+    {
+      "level": 1,
+      "title": "With -SpecificFileNameLevel ProductName:"
+    },
+    {
+      "level": 1,
+      "title": "FileAttrib FileName=\"Microsoft Office\" covers ALL Office executables"
+    },
+    {
+      "level": 1,
+      "title": "that have ProductName=\"Microsoft Office\" in their VERSIONINFO"
+    },
+    {
+      "level": 3,
+      "title": "Security Trade-offs of -SpecificFileNameLevel"
+    },
+    {
+      "level": 2,
+      "title": "9. Pros and Cons"
+    },
+    {
+      "level": 3,
+      "title": "Pros"
+    },
+    {
+      "level": 3,
+      "title": "Cons"
+    },
+    {
+      "level": 2,
+      "title": "10. Attack Resistance Analysis"
+    },
+    {
+      "level": 3,
+      "title": "Residual Risks Summary"
+    },
+    {
+      "level": 2,
+      "title": "11. When to Use vs When to Avoid"
+    },
+    {
+      "level": 2,
+      "title": "12. Double-Signed File Behavior"
+    },
+    {
+      "level": 2,
+      "title": "13. MSI and Non-PE File Exception"
+    },
+    {
+      "level": 3,
+      "title": "Why MSI Files Cannot Use FilePublisher"
+    },
+    {
+      "level": 3,
+      "title": "What to Use Instead for MSI Files"
+    },
+    {
+      "level": 3,
+      "title": "Handling MSI in a FilePublisher Policy"
+    },
+    {
+      "level": 1,
+      "title": "Scan a directory containing both PE files and MSI installers"
+    },
+    {
+      "level": 1,
+      "title": "-Fallback Publisher handles MSI (and other non-VERSIONINFO files)"
+    },
+    {
+      "level": 1,
+      "title": "The resulting XML will contain:"
+    },
+    {
+      "level": 1,
+      "title": "- FilePublisher rules for .exe and .dll files (have VERSIONINFO)"
+    },
+    {
+      "level": 1,
+      "title": "- Publisher rules for .msi files (no VERSIONINFO, fallback to Publisher)"
+    },
+    {
+      "level": 1,
+      "title": "- Hash rules for truly unsigned files (final fallback)"
+    },
+    {
+      "level": 2,
+      "title": "14. Real-World Scenario"
+    },
+    {
+      "level": 2,
+      "title": "15. OS Version and Compatibility Notes"
+    },
+    {
+      "level": 3,
+      "title": "Minimum Version for FilePublisher"
+    },
+    {
+      "level": 2,
+      "title": "16. Common Mistakes and Gotchas"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 1: Forgetting FilePublisher Does NOT Check File Path"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 2: Expecting Version Downgrades to Be Blocked When Using Publisher Fallback"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 3: OriginalFileName vs On-Disk Filename Confusion"
+    },
+    {
+      "level": 1,
+      "title": "Confusing scenario:"
+    },
+    {
+      "level": 1,
+      "title": "File on disk: C:\\Tools\\compression-tool.exe"
+    },
+    {
+      "level": 1,
+      "title": "VERSIONINFO OriginalFileName: 7z.exe"
+    },
+    {
+      "level": 1,
+      "title": "VERSIONINFO FileVersion: 24.08.0.0"
+    },
+    {
+      "level": 1,
+      "title": "Signed by: Igor Pavlov cert chain"
+    },
+    {
+      "level": 1,
+      "title": "FilePublisher rule has FileName=\"7z.exe\""
+    },
+    {
+      "level": 1,
+      "title": "Even though file is named \"compression-tool.exe\" on disk,"
+    },
+    {
+      "level": 1,
+      "title": "it WILL match the FilePublisher rule because OriginalFileName=\"7z.exe\""
+    },
+    {
+      "level": 1,
+      "title": "This is by design — prevents bypass by renaming"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 4: Version String Format Mismatches"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 5: MSI Silently Falls Back to Publisher"
+    },
+    {
+      "level": 1,
+      "title": "After generating policy, inspect what levels were actually used"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 6: The \"Pinned Publisher\" Problem After Cert Renewal"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 7: Ignoring the FileVersion vs ProductVersion Distinction"
+    },
+    {
+      "level": 2,
+      "title": "17. Summary Table"
+    }
+  ],
+  "kind": "file-rule-level"
+}

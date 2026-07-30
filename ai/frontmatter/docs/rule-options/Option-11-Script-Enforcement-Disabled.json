@@ -1,0 +1,159 @@
+{
+  "id": "docs/rule-options/Option-11-Script-Enforcement-Disabled",
+  "path": "docs/rule-options/Option-11-Script-Enforcement-Disabled.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-11-Script-Enforcement-Disabled.md",
+  "title": "Option 11 — Disabled:Script Enforcement",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 11 — Disabled:Script Enforcement",
+    "description": "What policy rule option 11 (Disabled:Script Enforcement) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 11,
+    "policy_rule_value": "Disabled:Script Enforcement",
+    "valid_for_supplemental": false,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 11 — Disabled:Script Enforcement"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "What It Does"
+    },
+    {
+      "level": 2,
+      "title": "Why It Exists"
+    },
+    {
+      "level": 2,
+      "title": "Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Disable Script Enforcement (Set Option 11)"
+    },
+    {
+      "level": 1,
+      "title": "Setting Option 11 DISABLES script enforcement"
+    },
+    {
+      "level": 3,
+      "title": "Re-enable Script Enforcement (Remove Option 11)"
+    },
+    {
+      "level": 1,
+      "title": "Removing Option 11 RE-ENABLES script enforcement (default state)"
+    },
+    {
+      "level": 3,
+      "title": "Full Example — Policy with Script Enforcement Disabled"
+    },
+    {
+      "level": 1,
+      "title": "Start from default Windows template"
+    },
+    {
+      "level": 1,
+      "title": "Disable script enforcement"
+    },
+    {
+      "level": 1,
+      "title": "Confirm the option is present"
+    },
+    {
+      "level": 1,
+      "title": "Convert to binary for deployment"
+    },
+    {
+      "level": 3,
+      "title": "Verify Current Script Enforcement State in PowerShell"
+    },
+    {
+      "level": 1,
+      "title": "Check if PowerShell is running in Constrained Language Mode"
+    },
+    {
+      "level": 1,
+      "title": "(CLM is enforced by App Control when Option 11 is NOT set)"
+    },
+    {
+      "level": 1,
+      "title": "Returns: \"ConstrainedLanguage\" (enforced) or \"FullLanguage\" (not enforced / Option 11 set)"
+    },
+    {
+      "level": 2,
+      "title": "XML Representation"
+    },
+    {
+      "level": 2,
+      "title": "Interaction With Other Options"
+    },
+    {
+      "level": 2,
+      "title": "When to Enable vs Disable"
+    },
+    {
+      "level": 2,
+      "title": "Real-World Scenario — End-to-End Walkthrough"
+    },
+    {
+      "level": 2,
+      "title": "What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: Option 11 absent, legacy script breaks"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: Option 11 set permanently with no remediation plan"
+    },
+    {
+      "level": 3,
+      "title": "Audit Mode Caveat"
+    },
+    {
+      "level": 2,
+      "title": "Valid for Supplemental Policies?"
+    },
+    {
+      "level": 2,
+      "title": "OS Version Requirements"
+    },
+    {
+      "level": 2,
+      "title": "Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

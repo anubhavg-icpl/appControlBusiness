@@ -1,0 +1,147 @@
+{
+  "id": "docs/rule-options/Option-10-Boot-Audit-on-Failure",
+  "path": "docs/rule-options/Option-10-Boot-Audit-on-Failure.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-10-Boot-Audit-on-Failure.md",
+  "title": "Option 10 — Enabled:Boot Audit on Failure",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 10 — Enabled:Boot Audit on Failure",
+    "description": "What policy rule option 10 (Enabled:Boot Audit on Failure) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 10,
+    "policy_rule_value": "Enabled:Boot Audit on Failure",
+    "valid_for_supplemental": false,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 10 — Enabled:Boot Audit on Failure"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "What It Does"
+    },
+    {
+      "level": 2,
+      "title": "Why It Exists"
+    },
+    {
+      "level": 2,
+      "title": "Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Enable Option 10"
+    },
+    {
+      "level": 1,
+      "title": "Enable Boot Audit on Failure in an existing policy XML"
+    },
+    {
+      "level": 3,
+      "title": "Remove (Disable) Option 10"
+    },
+    {
+      "level": 1,
+      "title": "Remove Boot Audit on Failure (system will BSOD if boot driver is blocked)"
+    },
+    {
+      "level": 3,
+      "title": "Full Example — Creating a Policy with Option 10 Enabled"
+    },
+    {
+      "level": 1,
+      "title": "Start from the DefaultWindows template"
+    },
+    {
+      "level": 1,
+      "title": "Ensure enforcement mode"
+    },
+    {
+      "level": 1,
+      "title": "Enable Boot Audit on Failure"
+    },
+    {
+      "level": 1,
+      "title": "Convert to binary"
+    },
+    {
+      "level": 3,
+      "title": "Verify the Option is Set"
+    },
+    {
+      "level": 2,
+      "title": "XML Representation"
+    },
+    {
+      "level": 2,
+      "title": "Interaction With Other Options"
+    },
+    {
+      "level": 2,
+      "title": "When to Enable vs Disable"
+    },
+    {
+      "level": 2,
+      "title": "Real-World Scenario — End-to-End Walkthrough"
+    },
+    {
+      "level": 2,
+      "title": "What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: Option 10 absent, boot driver blocked"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: Option 10 present but forgotten — never removing it after full validation"
+    },
+    {
+      "level": 3,
+      "title": "Event IDs to Monitor"
+    },
+    {
+      "level": 2,
+      "title": "Valid for Supplemental Policies?"
+    },
+    {
+      "level": 2,
+      "title": "OS Version Requirements"
+    },
+    {
+      "level": 2,
+      "title": "Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

@@ -1,0 +1,290 @@
+{
+  "id": "docs/rule-options/Option-DevMode-Dynamic-Code-Trust",
+  "path": "docs/rule-options/Option-DevMode-Dynamic-Code-Trust.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-DevMode-Dynamic-Code-Trust.md",
+  "title": "Developer Mode Dynamic Code Trust",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Developer Mode Dynamic Code Trust",
+    "description": "What the Enabled:Developer Mode Dynamic Code Trust option does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "policy_rule_value": "Enabled:Developer Mode Dynamic Code Trust",
+    "valid_for_supplemental": false,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Developer Mode Dynamic Code Trust"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. What It Does"
+    },
+    {
+      "level": 2,
+      "title": "2. Why It Exists"
+    },
+    {
+      "level": 3,
+      "title": "The Fundamental Tension: Security vs Developer Productivity"
+    },
+    {
+      "level": 3,
+      "title": "Why Standard UMCI Enforcement Breaks Development Workflows"
+    },
+    {
+      "level": 3,
+      "title": "The Solution: Tie Trust to Developer Mode"
+    },
+    {
+      "level": 3,
+      "title": "What \"Dynamic Code Trust\" Means Here"
+    },
+    {
+      "level": 2,
+      "title": "3. Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 3,
+      "title": "Where Developer Mode Dynamic Code Trust Operates"
+    },
+    {
+      "level": 3,
+      "title": "The Dual-Gate Architecture"
+    },
+    {
+      "level": 3,
+      "title": "Developer Mode System State in Windows Settings"
+    },
+    {
+      "level": 2,
+      "title": "4. How to Set It"
+    },
+    {
+      "level": 3,
+      "title": "Enable Developer Mode Dynamic Code Trust"
+    },
+    {
+      "level": 1,
+      "title": "The option is identified by its string token, not a numeric ID"
+    },
+    {
+      "level": 1,
+      "title": "Use Set-RuleOption with the appropriate option value"
+    },
+    {
+      "level": 1,
+      "title": "Note: The option token for this rule is listed differently in PowerShell"
+    },
+    {
+      "level": 1,
+      "title": "Check the available options list to get the exact numeric value or use the string form"
+    },
+    {
+      "level": 1,
+      "title": "Method 1: View all available options to confirm the token"
+    },
+    {
+      "level": 1,
+      "title": "Method 2: Add the rule directly via XML manipulation (reliable approach)"
+    },
+    {
+      "level": 1,
+      "title": "Check if Rules element exists"
+    },
+    {
+      "level": 1,
+      "title": "Add the Developer Mode Dynamic Code Trust rule"
+    },
+    {
+      "level": 1,
+      "title": "Method 3: Via Set-RuleOption (if numeric option is available in your PS module version)"
+    },
+    {
+      "level": 1,
+      "title": "Set-RuleOption -FilePath $PolicyPath -Option <check your module for the number>"
+    },
+    {
+      "level": 3,
+      "title": "Remove (Disable) Developer Mode Dynamic Code Trust"
+    },
+    {
+      "level": 1,
+      "title": "Via XML manipulation"
+    },
+    {
+      "level": 3,
+      "title": "Verify Developer Mode State on Target System"
+    },
+    {
+      "level": 1,
+      "title": "Check if Developer Mode is currently enabled"
+    },
+    {
+      "level": 1,
+      "title": "Also check via WMI for enterprise environments"
+    },
+    {
+      "level": 3,
+      "title": "Full Development Workstation Policy Setup"
+    },
+    {
+      "level": 1,
+      "title": "Build a policy suitable for development workstations"
+    },
+    {
+      "level": 1,
+      "title": "where developers need the VS/Device Portal workflow"
+    },
+    {
+      "level": 1,
+      "title": "Start from DefaultWindows enforced template"
+    },
+    {
+      "level": 1,
+      "title": "Enable UMCI"
+    },
+    {
+      "level": 1,
+      "title": "Enable Audit Mode for initial testing"
+    },
+    {
+      "level": 1,
+      "title": "Enable Developer Mode Dynamic Code Trust"
+    },
+    {
+      "level": 1,
+      "title": "(Safe on developer machines — gated by Developer Mode toggle)"
+    },
+    {
+      "level": 1,
+      "title": "Add via XML as shown above, or use Set-RuleOption with correct option number"
+    },
+    {
+      "level": 1,
+      "title": "Do NOT add Option 19 (Dynamic Code Security) to dev workstations"
+    },
+    {
+      "level": 1,
+      "title": "if the development workflow requires unsigned dynamic code generation"
+    },
+    {
+      "level": 1,
+      "title": "Set-RuleOption -FilePath $DevPolicyPath -Option 19  # OMIT for dev machines"
+    },
+    {
+      "level": 1,
+      "title": "Compile to binary"
+    },
+    {
+      "level": 2,
+      "title": "5. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Option in Policy XML"
+    },
+    {
+      "level": 3,
+      "title": "Full Development Workstation Policy Context"
+    },
+    {
+      "level": 2,
+      "title": "6. Interaction with Other Options"
+    },
+    {
+      "level": 3,
+      "title": "Compatibility Matrix"
+    },
+    {
+      "level": 3,
+      "title": "Interaction Diagram"
+    },
+    {
+      "level": 2,
+      "title": "7. When to Enable vs Disable"
+    },
+    {
+      "level": 3,
+      "title": "Deployment Strategy by Device Tier"
+    },
+    {
+      "level": 2,
+      "title": "8. Real-World Scenario — End-to-End Walkthrough"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: Developer Debugging a UWP App on a Managed Workstation"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: Device Portal Deployment for Hardware Testing"
+    },
+    {
+      "level": 3,
+      "title": "Scenario C: MDM-Controlled Developer Mode on Enterprise Fleet"
+    },
+    {
+      "level": 2,
+      "title": "9. What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Enabling This Option Without MDM Control of Developer Mode"
+    },
+    {
+      "level": 3,
+      "title": "Leaving This Option in Production Policies"
+    },
+    {
+      "level": 3,
+      "title": "Enabling Option 19 (Dynamic Code Security) Alongside This Option on Developer Machines"
+    },
+    {
+      "level": 2,
+      "title": "10. Valid for Supplemental Policies"
+    },
+    {
+      "level": 2,
+      "title": "11. OS Version Requirements"
+    },
+    {
+      "level": 3,
+      "title": "Checking Developer Mode Availability and State"
+    },
+    {
+      "level": 1,
+      "title": "Comprehensive Developer Mode state check"
+    },
+    {
+      "level": 2,
+      "title": "12. Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

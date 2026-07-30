@@ -1,0 +1,203 @@
+{
+  "id": "docs/rule-options/Option-06-Unsigned-System-Integrity-Policy",
+  "path": "docs/rule-options/Option-06-Unsigned-System-Integrity-Policy.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-06-Unsigned-System-Integrity-Policy.md",
+  "title": "Option 6 — Enabled:Unsigned System Integrity Policy",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 6 — Enabled:Unsigned System Integrity Policy",
+    "description": "What policy rule option 6 (Enabled:Unsigned System Integrity Policy) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 6,
+    "policy_rule_value": "Enabled:Unsigned System Integrity Policy",
+    "valid_for_supplemental": true,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 6 — Enabled:Unsigned System Integrity Policy"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. What It Does"
+    },
+    {
+      "level": 2,
+      "title": "2. Why It Exists"
+    },
+    {
+      "level": 3,
+      "title": "The Trust Escalation Problem"
+    },
+    {
+      "level": 3,
+      "title": "The Default-On Design Choice"
+    },
+    {
+      "level": 2,
+      "title": "3. Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 3,
+      "title": "Unsigned vs Signed Policy Mode Side-by-Side"
+    },
+    {
+      "level": 2,
+      "title": "4. How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Enable Option 6 (Unsigned Mode — Default)"
+    },
+    {
+      "level": 1,
+      "title": "Restore unsigned mode (if it was previously removed)"
+    },
+    {
+      "level": 3,
+      "title": "Remove Option 6 (Enable Signed-Policy Mode)"
+    },
+    {
+      "level": 1,
+      "title": "CAUTION: After removing, you MUST sign the policy before deploying"
+    },
+    {
+      "level": 1,
+      "title": "or the OS will refuse to load it."
+    },
+    {
+      "level": 3,
+      "title": "Full Signed Policy Workflow"
+    },
+    {
+      "level": 1,
+      "title": "Step 1: Configure UpdatePolicySigners (certificate that can update this policy)"
+    },
+    {
+      "level": 1,
+      "title": "The certificate must be in your local cert store as a code-signing cert"
+    },
+    {
+      "level": 1,
+      "title": "Step 2: Configure SupplementalPolicySigners (certs that can sign supplementals)"
+    },
+    {
+      "level": 1,
+      "title": "Step 3: Remove Option 6 — switch to signed mode"
+    },
+    {
+      "level": 1,
+      "title": "Step 4: Compile to binary"
+    },
+    {
+      "level": 1,
+      "title": "Step 5: Sign the binary using SignTool (requires Windows SDK)"
+    },
+    {
+      "level": 1,
+      "title": "Step 6: Deploy (the .p7 file is the final signed binary)"
+    },
+    {
+      "level": 3,
+      "title": "Check Current Option 6 State"
+    },
+    {
+      "level": 2,
+      "title": "5. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Option 6 Present (Unsigned Mode)"
+    },
+    {
+      "level": 3,
+      "title": "Option 6 Removed (Signed Mode) — Required Sections"
+    },
+    {
+      "level": 2,
+      "title": "6. Interaction with Other Options"
+    },
+    {
+      "level": 3,
+      "title": "Conflict and Dependency Table"
+    },
+    {
+      "level": 2,
+      "title": "7. When to Enable vs Disable"
+    },
+    {
+      "level": 2,
+      "title": "8. Real-World Scenario / End-to-End Walkthrough"
+    },
+    {
+      "level": 3,
+      "title": "Scenario: Transitioning an Enterprise from Unsigned to Signed Policies"
+    },
+    {
+      "level": 3,
+      "title": "Key Operational Constraint"
+    },
+    {
+      "level": 2,
+      "title": "9. What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: Remove Option 6 Without Setting UpdatePolicySigners"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: Remove Option 6, Lose the Signing Certificate"
+    },
+    {
+      "level": 3,
+      "title": "Scenario C: Leave Option 6 in Production (Under-hardening)"
+    },
+    {
+      "level": 3,
+      "title": "Misconfiguration Consequence Matrix"
+    },
+    {
+      "level": 2,
+      "title": "10. Valid for Supplemental Policies?"
+    },
+    {
+      "level": 3,
+      "title": "Supplemental Signing Matrix"
+    },
+    {
+      "level": 2,
+      "title": "11. OS Version Requirements"
+    },
+    {
+      "level": 2,
+      "title": "12. Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

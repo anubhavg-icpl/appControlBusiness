@@ -1,0 +1,257 @@
+{
+  "id": "docs/file-rule-levels/Level-SignedVersion",
+  "path": "docs/file-rule-levels/Level-SignedVersion.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-SignedVersion.md",
+  "title": "WDAC File Rule Level: SignedVersion",
+  "frontmatter": {
+    "type": "File Rule Level",
+    "title": "WDAC File Rule Level: SignedVersion",
+    "description": "How the SignedVersion file rule level works, its attack resistance, and when to use it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "file-rule-level"
+    ],
+    "status": "stable",
+    "file_rule_level": "SignedVersion",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "WDAC File Rule Level: SignedVersion"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "Overview"
+    },
+    {
+      "level": 2,
+      "title": "How It Works"
+    },
+    {
+      "level": 3,
+      "title": "The Two-Part Check"
+    },
+    {
+      "level": 3,
+      "title": "Version Format Deep Dive"
+    },
+    {
+      "level": 3,
+      "title": "Publisher Identity: PcaCertificate vs Leaf Certificate"
+    },
+    {
+      "level": 3,
+      "title": "How SignedVersion Differs from FilePublisher in XML"
+    },
+    {
+      "level": 3,
+      "title": "Version Source: FileVersion vs ProductVersion"
+    },
+    {
+      "level": 1,
+      "title": "Inspect both version fields to understand what WDAC will use"
+    },
+    {
+      "level": 2,
+      "title": "Where in the Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Understanding the Dual XML Structure"
+    },
+    {
+      "level": 3,
+      "title": "FileAttrib for SignedVersion (Version Only)"
+    },
+    {
+      "level": 3,
+      "title": "Signer Entry with FileAttribRef"
+    },
+    {
+      "level": 3,
+      "title": "SigningScenario Wiring"
+    },
+    {
+      "level": 3,
+      "title": "Side-by-Side: SignedVersion vs FilePublisher XML"
+    },
+    {
+      "level": 2,
+      "title": "PowerShell Usage"
+    },
+    {
+      "level": 3,
+      "title": "Generate a SignedVersion Policy"
+    },
+    {
+      "level": 1,
+      "title": "Scan a directory and create SignedVersion rules for signed files"
+    },
+    {
+      "level": 1,
+      "title": "Files without version info or unsigned files fall back to Hash"
+    },
+    {
+      "level": 3,
+      "title": "SignedVersion with Explicit Version Setting"
+    },
+    {
+      "level": 1,
+      "title": "The -Level SignedVersion cmdlet automatically reads the FileVersion"
+    },
+    {
+      "level": 1,
+      "title": "from each binary and sets MinimumFileVersion to that value."
+    },
+    {
+      "level": 1,
+      "title": "To use a different (lower) version floor, you must edit the XML manually"
+    },
+    {
+      "level": 1,
+      "title": "or merge with a custom rule:"
+    },
+    {
+      "level": 1,
+      "title": "First, generate the policy"
+    },
+    {
+      "level": 1,
+      "title": "Then, lower the version floor in the FileAttrib elements if desired"
+    },
+    {
+      "level": 1,
+      "title": "(Must be done via XML manipulation — no PowerShell cmdlet parameter for this)"
+    },
+    {
+      "level": 1,
+      "title": "Find all FileAttrib elements and lower their MinimumFileVersion"
+    },
+    {
+      "level": 3,
+      "title": "Generate Individual SignedVersion Rules"
+    },
+    {
+      "level": 1,
+      "title": "Create a SignedVersion rule for a single signed file"
+    },
+    {
+      "level": 1,
+      "title": "Inspect the generated rules"
+    },
+    {
+      "level": 1,
+      "title": "Merge into an existing policy"
+    },
+    {
+      "level": 3,
+      "title": "Verify Signing Certificate Information Before Rule Creation"
+    },
+    {
+      "level": 1,
+      "title": "Inspect the certificate chain that WDAC will use to build the rule"
+    },
+    {
+      "level": 3,
+      "title": "Comparing Rule Coverage: SignedVersion vs FilePublisher"
+    },
+    {
+      "level": 1,
+      "title": "This script shows how many rules are generated at each level"
+    },
+    {
+      "level": 1,
+      "title": "to help you choose between SignedVersion and FilePublisher"
+    },
+    {
+      "level": 1,
+      "title": "Count rules at FilePublisher level"
+    },
+    {
+      "level": 1,
+      "title": "Count rules at SignedVersion level"
+    },
+    {
+      "level": 1,
+      "title": "SignedVersion should produce fewer rules — one FileAttrib per publisher+version"
+    },
+    {
+      "level": 1,
+      "title": "instead of one FileAttrib per file per publisher+version"
+    },
+    {
+      "level": 2,
+      "title": "Pros and Cons"
+    },
+    {
+      "level": 2,
+      "title": "Attack Resistance Analysis"
+    },
+    {
+      "level": 3,
+      "title": "Version Floor as a Security Feature"
+    },
+    {
+      "level": 2,
+      "title": "When to Use vs When to Avoid"
+    },
+    {
+      "level": 3,
+      "title": "When SignedVersion is Better than FilePublisher"
+    },
+    {
+      "level": 3,
+      "title": "When SignedVersion is Worse than FilePublisher"
+    },
+    {
+      "level": 2,
+      "title": "Interaction with Other Levels"
+    },
+    {
+      "level": 3,
+      "title": "Specificity Hierarchy"
+    },
+    {
+      "level": 2,
+      "title": "Real-World Scenario"
+    },
+    {
+      "level": 2,
+      "title": "OS Version and Compatibility Notes"
+    },
+    {
+      "level": 2,
+      "title": "Common Mistakes and Gotchas"
+    },
+    {
+      "level": 2,
+      "title": "Summary Table"
+    }
+  ],
+  "kind": "file-rule-level"
+}

@@ -1,0 +1,249 @@
+{
+  "id": "docs/file-rule-levels/Level-WHQL",
+  "path": "docs/file-rule-levels/Level-WHQL.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-WHQL.md",
+  "title": "WDAC File Rule Level: WHQL",
+  "frontmatter": {
+    "type": "File Rule Level",
+    "title": "WDAC File Rule Level: WHQL",
+    "description": "How the WHQL file rule level works, its attack resistance, and when to use it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "file-rule-level"
+    ],
+    "status": "stable",
+    "file_rule_level": "WHQL",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "WDAC File Rule Level: WHQL"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. Overview"
+    },
+    {
+      "level": 2,
+      "title": "2. What WHQL Is — Background"
+    },
+    {
+      "level": 3,
+      "title": "Windows Hardware Quality Lab"
+    },
+    {
+      "level": 3,
+      "title": "Why WHQL Matters to WDAC"
+    },
+    {
+      "level": 2,
+      "title": "3. The WHQL Certification Process"
+    },
+    {
+      "level": 2,
+      "title": "4. How the WHQL Level Works Technically"
+    },
+    {
+      "level": 3,
+      "title": "Step 1: Is the file kernel-mode?"
+    },
+    {
+      "level": 3,
+      "title": "Step 2: Does the certificate chain contain the WHQL EKU?"
+    },
+    {
+      "level": 3,
+      "title": "Step 3: Does the chain root in a trusted WHQL root?"
+    },
+    {
+      "level": 3,
+      "title": "Step 4: WDAC Policy Rule Match"
+    },
+    {
+      "level": 2,
+      "title": "5. The WHQL EKU — OID and Hex Encoding"
+    },
+    {
+      "level": 2,
+      "title": "6. Certificate Chain / Trust Anatomy"
+    },
+    {
+      "level": 2,
+      "title": "7. Where in the Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "8. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Full XML Example"
+    },
+    {
+      "level": 3,
+      "title": "Signing Scenario Values"
+    },
+    {
+      "level": 2,
+      "title": "9. PowerShell Examples"
+    },
+    {
+      "level": 3,
+      "title": "Generating a WHQL Policy"
+    },
+    {
+      "level": 1,
+      "title": "Generate a policy that allows all WHQL-certified kernel drivers"
+    },
+    {
+      "level": 1,
+      "title": "New-CIPolicy with Level WHQL creates WHQL EKU-based Signer rules"
+    },
+    {
+      "level": 1,
+      "title": "Output: EKU element for WHQL OID + Signer elements for WHQL intermediate CAs"
+    },
+    {
+      "level": 1,
+      "title": "Plus Hash rules for any non-WHQL-signed drivers found during scan"
+    },
+    {
+      "level": 3,
+      "title": "Checking If a Driver Is WHQL-Signed"
+    },
+    {
+      "level": 1,
+      "title": "Test a specific driver"
+    },
+    {
+      "level": 3,
+      "title": "Scanning System32\\drivers for WHQL Status"
+    },
+    {
+      "level": 1,
+      "title": "Audit all drivers on the system — identify which are WHQL-signed"
+    },
+    {
+      "level": 3,
+      "title": "Creating a Combined WHQL + Recommended Block Rules Policy"
+    },
+    {
+      "level": 1,
+      "title": "Microsoft-recommended approach: allow WHQL drivers BUT apply the vulnerable driver block rules"
+    },
+    {
+      "level": 1,
+      "title": "Step 1: Generate base WHQL policy"
+    },
+    {
+      "level": 1,
+      "title": "Step 2: Download Microsoft's recommended block rules (driver blocklist)"
+    },
+    {
+      "level": 1,
+      "title": "Source: https://aka.ms/VulnerableDriverBlockList"
+    },
+    {
+      "level": 1,
+      "title": "These block known vulnerable drivers that ARE WHQL-signed but have CVEs"
+    },
+    {
+      "level": 1,
+      "title": "Step 3: Merge base policy with block rules"
+    },
+    {
+      "level": 1,
+      "title": "Step 4: Compile to binary"
+    },
+    {
+      "level": 2,
+      "title": "10. WHQL vs. Option 02 (Required:WHQL)"
+    },
+    {
+      "level": 3,
+      "title": "Option 02 Explained"
+    },
+    {
+      "level": 2,
+      "title": "11. Pros & Cons Table"
+    },
+    {
+      "level": 2,
+      "title": "12. Attack Resistance Analysis — BYOVD Context"
+    },
+    {
+      "level": 3,
+      "title": "Bring Your Own Vulnerable Driver (BYOVD)"
+    },
+    {
+      "level": 3,
+      "title": "Mitigating BYOVD When Using WHQL Level"
+    },
+    {
+      "level": 2,
+      "title": "13. When to Use vs. When to Avoid — Decision Flowchart"
+    },
+    {
+      "level": 2,
+      "title": "14. Real-World Scenario: End-to-End Sequence"
+    },
+    {
+      "level": 2,
+      "title": "15. OS Version & Compatibility"
+    },
+    {
+      "level": 2,
+      "title": "16. Common Mistakes & Gotchas"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 1: Believing WHQL Means the Driver Is Secure"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 2: Forgetting the Fallback"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 3: Confusing WHQL Level with Option 02"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 4: Not Updating the Block List"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 5: Applying WHQL Rules to User-Mode Scenario"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 6: The EKU Hex Value Encoding"
+    },
+    {
+      "level": 2,
+      "title": "17. Summary Table"
+    }
+  ],
+  "kind": "file-rule-level"
+}

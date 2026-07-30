@@ -1,5 +1,12 @@
 # Directory Update Log
 
+## 2026-07-30
+* **Update**: Added `/ai/search-index.json` as a full-text search index across the Markdown corpus.
+* **Update**: Added `/ai/llms-full.txt` as a single offline bundle for agent ingestion.
+* **Update**: Added `/ai/frontmatter/index.json` plus per-page JSON exports under `/ai/frontmatter/` for OKF frontmatter tooling.
+* **Update**: Added `/ai/updates.json` and `/ai/atom.xml` as machine-readable change feeds.
+* **Update**: Added `scripts/generate_agent_assets.rb` to regenerate all AI-facing static assets from source Markdown.
+
 ## 2026-07-28
 * **Update**: Added a dedicated [AI / MCP-ready index](/ai/) page and [/ai/resources.json](/ai/resources.json) manifest for coding agents on GitHub Pages.
 * **Update**: Added author signature mark, repository LICENSE (All Rights Reserved), and a root [llms.txt](/llms.txt) index for LLM consumers.

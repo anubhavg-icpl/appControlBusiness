@@ -1,0 +1,245 @@
+{
+  "id": "docs/file-rule-levels/Level-FilePath",
+  "path": "docs/file-rule-levels/Level-FilePath.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-FilePath.md",
+  "title": "WDAC File Rule Level: FilePath",
+  "frontmatter": {
+    "type": "File Rule Level",
+    "title": "WDAC File Rule Level: FilePath",
+    "description": "How the FilePath file rule level works, its attack resistance, and when to use it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "file-rule-level"
+    ],
+    "status": "stable",
+    "file_rule_level": "FilePath",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "WDAC File Rule Level: FilePath"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "Overview"
+    },
+    {
+      "level": 2,
+      "title": "How It Works"
+    },
+    {
+      "level": 3,
+      "title": "The Runtime Path Check"
+    },
+    {
+      "level": 3,
+      "title": "Path Matching and Wildcards"
+    },
+    {
+      "level": 3,
+      "title": "Symlink and Junction Attack Vector"
+    },
+    {
+      "level": 3,
+      "title": "Admin-Write-Only Path Requirement"
+    },
+    {
+      "level": 1,
+      "title": "Check ACL on a path before creating a FilePath rule"
+    },
+    {
+      "level": 3,
+      "title": "UNC Path Considerations"
+    },
+    {
+      "level": 1,
+      "title": "Enable UNC path hardening (required for UNC FilePath rules to be safe)"
+    },
+    {
+      "level": 1,
+      "title": "Set via Group Policy: Computer Configuration → Administrative Templates →"
+    },
+    {
+      "level": 1,
+      "title": "MS Security Guide → Enable UNC Hardened Access"
+    },
+    {
+      "level": 2,
+      "title": "Where in the Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Basic FilePath Allow Rule"
+    },
+    {
+      "level": 3,
+      "title": "FilePath Allow with Environment Variable"
+    },
+    {
+      "level": 3,
+      "title": "FilePath Deny Rule"
+    },
+    {
+      "level": 3,
+      "title": "Signing Scenario Wiring"
+    },
+    {
+      "level": 3,
+      "title": "Complete Example with Option 18"
+    },
+    {
+      "level": 2,
+      "title": "PowerShell Usage"
+    },
+    {
+      "level": 3,
+      "title": "Create a FilePath Policy from a Directory Scan"
+    },
+    {
+      "level": 1,
+      "title": "Generate a FilePath policy by scanning a directory"
+    },
+    {
+      "level": 1,
+      "title": "WDAC cmdlets will check that C:\\Tools is admin-writable"
+    },
+    {
+      "level": 3,
+      "title": "Create an Individual FilePath Rule"
+    },
+    {
+      "level": 1,
+      "title": "Create a single FilePath rule for a specific directory"
+    },
+    {
+      "level": 1,
+      "title": "The rule will capture the directory, not just the single file"
+    },
+    {
+      "level": 1,
+      "title": "Inspect what was generated"
+    },
+    {
+      "level": 1,
+      "title": "Merge into an existing policy"
+    },
+    {
+      "level": 3,
+      "title": "Add Option 18 (Disable Runtime FilePath Rule Protection) via PowerShell"
+    },
+    {
+      "level": 1,
+      "title": "Set Option 18 using Set-RuleOption"
+    },
+    {
+      "level": 1,
+      "title": "This DISABLES the symlink protection — use with extreme caution"
+    },
+    {
+      "level": 1,
+      "title": "To REMOVE Option 18 (re-enable symlink protection):"
+    },
+    {
+      "level": 3,
+      "title": "Check Current Policy Options"
+    },
+    {
+      "level": 1,
+      "title": "Read the current options set in a policy"
+    },
+    {
+      "level": 3,
+      "title": "Create FilePath Rules with Environment Variables"
+    },
+    {
+      "level": 1,
+      "title": "Manually craft a FilePath rule using environment variables"
+    },
+    {
+      "level": 1,
+      "title": "(The PowerShell cmdlets may not auto-substitute env vars — manual XML edit may be needed)"
+    },
+    {
+      "level": 3,
+      "title": "Audit Path Permissions Before Creating Rules"
+    },
+    {
+      "level": 1,
+      "title": "Verify that a path is admin-write-only (required for FilePath rules)"
+    },
+    {
+      "level": 2,
+      "title": "Pros and Cons"
+    },
+    {
+      "level": 2,
+      "title": "Attack Resistance Analysis"
+    },
+    {
+      "level": 3,
+      "title": "Security Summary for FilePath Rules"
+    },
+    {
+      "level": 2,
+      "title": "When to Use vs When to Avoid"
+    },
+    {
+      "level": 2,
+      "title": "Interaction with Other Levels"
+    },
+    {
+      "level": 2,
+      "title": "Real-World Scenario"
+    },
+    {
+      "level": 2,
+      "title": "Option 18 — Disable Runtime FilePath Rule Protection"
+    },
+    {
+      "level": 3,
+      "title": "When Might You Set Option 18?"
+    },
+    {
+      "level": 3,
+      "title": "When Should You NOT Set Option 18?"
+    },
+    {
+      "level": 2,
+      "title": "OS Version and Compatibility Notes"
+    },
+    {
+      "level": 2,
+      "title": "Common Mistakes and Gotchas"
+    },
+    {
+      "level": 2,
+      "title": "Summary Table"
+    }
+  ],
+  "kind": "file-rule-level"
+}

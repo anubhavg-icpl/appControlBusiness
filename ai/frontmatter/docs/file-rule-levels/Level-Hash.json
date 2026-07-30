@@ -1,0 +1,233 @@
+{
+  "id": "docs/file-rule-levels/Level-Hash",
+  "path": "docs/file-rule-levels/Level-Hash.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-Hash.md",
+  "title": "WDAC File Rule Level: Hash",
+  "frontmatter": {
+    "type": "File Rule Level",
+    "title": "WDAC File Rule Level: Hash",
+    "description": "How the Hash file rule level works, its attack resistance, and when to use it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "file-rule-level"
+    ],
+    "status": "stable",
+    "file_rule_level": "Hash",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "WDAC File Rule Level: Hash"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "Overview"
+    },
+    {
+      "level": 2,
+      "title": "How It Works"
+    },
+    {
+      "level": 3,
+      "title": "The AuthentiHash — Not a Plain File Hash"
+    },
+    {
+      "level": 3,
+      "title": "SHA-1 vs SHA-256"
+    },
+    {
+      "level": 3,
+      "title": "Where ci.dll Performs the Check"
+    },
+    {
+      "level": 3,
+      "title": "What Changes Break a Hash Rule"
+    },
+    {
+      "level": 3,
+      "title": "Dual-Signed Files"
+    },
+    {
+      "level": 3,
+      "title": "Get-FileHash vs AuthentiHash"
+    },
+    {
+      "level": 1,
+      "title": "This gives you the RAW SHA-256 hash of the entire file bytes"
+    },
+    {
+      "level": 1,
+      "title": "This is NOT what WDAC uses"
+    },
+    {
+      "level": 1,
+      "title": "To see the Authenticode hash (close to AuthentiHash concept):"
+    },
+    {
+      "level": 1,
+      "title": "The actual AuthentiHash as WDAC will record it can be extracted via:"
+    },
+    {
+      "level": 2,
+      "title": "Where in the Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "FileRules Section — Allow"
+    },
+    {
+      "level": 3,
+      "title": "FileRules Section — Deny"
+    },
+    {
+      "level": 3,
+      "title": "Signing Scenarios — FileRulesRef"
+    },
+    {
+      "level": 3,
+      "title": "Complete Minimal Example"
+    },
+    {
+      "level": 2,
+      "title": "PowerShell Usage"
+    },
+    {
+      "level": 3,
+      "title": "Generate a Policy Using Hash Level"
+    },
+    {
+      "level": 1,
+      "title": "Scan a single file and create a Hash-based policy"
+    },
+    {
+      "level": 3,
+      "title": "Scan a Directory with Hash as Primary Level"
+    },
+    {
+      "level": 1,
+      "title": "Scan an entire directory; use Hash for all files (signed and unsigned)"
+    },
+    {
+      "level": 3,
+      "title": "Hash as Fallback (Typical Production Pattern)"
+    },
+    {
+      "level": 1,
+      "title": "Primary: FilePublisher for signed files"
+    },
+    {
+      "level": 1,
+      "title": "Fallback: Hash for unsigned files or files without version info"
+    },
+    {
+      "level": 3,
+      "title": "Generate Hash Rules for Individual Files"
+    },
+    {
+      "level": 1,
+      "title": "Create individual rules (returns CimInstance objects, not a full policy)"
+    },
+    {
+      "level": 1,
+      "title": "Inspect the generated rule"
+    },
+    {
+      "level": 1,
+      "title": "Merge into an existing policy"
+    },
+    {
+      "level": 3,
+      "title": "Bulk Hash Extraction via Get-AppLockerFileInformation"
+    },
+    {
+      "level": 1,
+      "title": "Get hash info for all EXEs in a folder (useful for auditing)"
+    },
+    {
+      "level": 3,
+      "title": "Comparing AuthentiHash to Get-FileHash Output"
+    },
+    {
+      "level": 1,
+      "title": "Plain file hash (NOT what WDAC uses)"
+    },
+    {
+      "level": 1,
+      "title": "WDAC AuthentiHash (via policy generation)"
+    },
+    {
+      "level": 1,
+      "title": "These values WILL differ if the file is signed"
+    },
+    {
+      "level": 1,
+      "title": "They are IDENTICAL if the file is unsigned (no signature blob to exclude)"
+    },
+    {
+      "level": 2,
+      "title": "Pros and Cons"
+    },
+    {
+      "level": 2,
+      "title": "Attack Resistance Analysis"
+    },
+    {
+      "level": 3,
+      "title": "What Hash Rules Stop"
+    },
+    {
+      "level": 3,
+      "title": "What Hash Rules Do NOT Stop"
+    },
+    {
+      "level": 2,
+      "title": "When to Use vs When to Avoid"
+    },
+    {
+      "level": 2,
+      "title": "Interaction with Other Levels"
+    },
+    {
+      "level": 2,
+      "title": "Real-World Scenario"
+    },
+    {
+      "level": 2,
+      "title": "OS Version and Compatibility Notes"
+    },
+    {
+      "level": 2,
+      "title": "Common Mistakes and Gotchas"
+    },
+    {
+      "level": 2,
+      "title": "Summary Table"
+    }
+  ],
+  "kind": "file-rule-level"
+}

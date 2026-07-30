@@ -1,0 +1,199 @@
+{
+  "id": "docs/rule-options/Option-08-EV-Signers",
+  "path": "docs/rule-options/Option-08-EV-Signers.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-08-EV-Signers.md",
+  "title": "Option 8 — Required:EV Signers",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 8 — Required:EV Signers",
+    "description": "What policy rule option 8 (Required:EV Signers) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 8,
+    "policy_rule_value": "Required:EV Signers",
+    "valid_for_supplemental": false,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 8 — Required:EV Signers"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. What It Does"
+    },
+    {
+      "level": 2,
+      "title": "2. Why It Exists"
+    },
+    {
+      "level": 3,
+      "title": "The Code Signing Trust Problem"
+    },
+    {
+      "level": 3,
+      "title": "Why \"Required\" Prefix"
+    },
+    {
+      "level": 3,
+      "title": "EV vs OV vs DV in Context"
+    },
+    {
+      "level": 2,
+      "title": "3. Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 3,
+      "title": "EV Certificate OID Structure (Reference)"
+    },
+    {
+      "level": 2,
+      "title": "4. How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Enable Option 8"
+    },
+    {
+      "level": 1,
+      "title": "Set Option 8 on a base policy"
+    },
+    {
+      "level": 1,
+      "title": "Note: No runtime effect on current Windows releases"
+    },
+    {
+      "level": 3,
+      "title": "Remove Option 8"
+    },
+    {
+      "level": 3,
+      "title": "Check EV Certificate Status of a Signed Binary"
+    },
+    {
+      "level": 1,
+      "title": "Usage"
+    },
+    {
+      "level": 3,
+      "title": "Audit Existing Policy File for EV Readiness"
+    },
+    {
+      "level": 1,
+      "title": "Check if a policy has Option 8 set"
+    },
+    {
+      "level": 2,
+      "title": "5. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Option 8 Present in Base Policy"
+    },
+    {
+      "level": 3,
+      "title": "Invalid: Option 8 in Supplemental Policy"
+    },
+    {
+      "level": 3,
+      "title": "Bitmask Position"
+    },
+    {
+      "level": 2,
+      "title": "6. Interaction with Other Options"
+    },
+    {
+      "level": 3,
+      "title": "Interaction Table"
+    },
+    {
+      "level": 3,
+      "title": "Why Not Valid for Supplemental Policies?"
+    },
+    {
+      "level": 2,
+      "title": "7. When to Enable vs Disable"
+    },
+    {
+      "level": 2,
+      "title": "8. Real-World Scenario / End-to-End Walkthrough"
+    },
+    {
+      "level": 3,
+      "title": "Scenario: Financial Institution Prepares for Maximum-Assurance Code Signing"
+    },
+    {
+      "level": 3,
+      "title": "EV Certificate Procurement Timeline"
+    },
+    {
+      "level": 2,
+      "title": "9. What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Current (No-Op Era) — Minimal Risk"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: Option 8 on Supplemental Policy (Invalid)"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: Enable Option 8 (When Implemented) Without EV-Signing All Code"
+    },
+    {
+      "level": 3,
+      "title": "Risk Matrix"
+    },
+    {
+      "level": 2,
+      "title": "10. Valid for Supplemental Policies?"
+    },
+    {
+      "level": 3,
+      "title": "Why This Restriction Exists"
+    },
+    {
+      "level": 3,
+      "title": "Enforcement of This Restriction"
+    },
+    {
+      "level": 2,
+      "title": "11. OS Version Requirements"
+    },
+    {
+      "level": 3,
+      "title": "EV Certificate Standards Reference"
+    },
+    {
+      "level": 2,
+      "title": "12. Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

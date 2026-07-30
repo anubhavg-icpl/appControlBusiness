@@ -1,0 +1,140 @@
+{
+  "id": "docs/Part3-AppID-Tagging-Managed-Installer",
+  "path": "docs/Part3-AppID-Tagging-Managed-Installer.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/Part3-AppID-Tagging-Managed-Installer.md",
+  "title": "Part 3: Application ID Tagging Policies & Managed Installer",
+  "frontmatter": {
+    "type": "Guide",
+    "title": "Part 3: Application ID Tagging Policies & Managed Installer",
+    "description": "AppID tagging policies and the managed installer feature.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "endpoint-security"
+    ],
+    "status": "stable",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-01 21:03:22 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-01 21:03:22 +0530"
+    },
+    "sources": [
+      {
+        "id": "ctrlshiftenter",
+        "resource": "https://ctrlshiftenter.cloud",
+        "title": "ctrlshiftenter.cloud — Patrick Seltmann",
+        "author": "human:patrick-seltmann"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Mastering App Control for Business"
+    },
+    {
+      "level": 2,
+      "title": "Part 3: Application ID Tagging Policies & Managed Installer"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. Application ID Tagging Policy"
+    },
+    {
+      "level": 2,
+      "title": "2. Platform Requirements"
+    },
+    {
+      "level": 3,
+      "title": "Client"
+    },
+    {
+      "level": 3,
+      "title": "Server"
+    },
+    {
+      "level": 2,
+      "title": "3. Supported Rule Types"
+    },
+    {
+      "level": 2,
+      "title": "4. Creating a Tagging Policy via PowerShell"
+    },
+    {
+      "level": 2,
+      "title": "5. Example Tagging Policy XML Output"
+    },
+    {
+      "level": 3,
+      "title": "XML Structure Highlights"
+    },
+    {
+      "level": 2,
+      "title": "6. Windows Firewall and Application ID Tagging"
+    },
+    {
+      "level": 3,
+      "title": "Key Capability"
+    },
+    {
+      "level": 3,
+      "title": "Firewall + AppID Tagging Architecture"
+    },
+    {
+      "level": 2,
+      "title": "7. Block Outbound Traffic by Default — Allow Only Tagged Processes"
+    },
+    {
+      "level": 3,
+      "title": "Deployment Guidance"
+    },
+    {
+      "level": 2,
+      "title": "8. Managed Installer"
+    },
+    {
+      "level": 2,
+      "title": "9. How Managed Installer Works"
+    },
+    {
+      "level": 3,
+      "title": "Rule Option Reference"
+    },
+    {
+      "level": 2,
+      "title": "10. Security Considerations"
+    },
+    {
+      "level": 3,
+      "title": "Best Fit Profile"
+    },
+    {
+      "level": 3,
+      "title": "Risk Register"
+    },
+    {
+      "level": 2,
+      "title": "11. Enabling Managed Installer in Intune"
+    },
+    {
+      "level": 3,
+      "title": "Navigation Path"
+    },
+    {
+      "level": 3,
+      "title": "Step-by-Step"
+    },
+    {
+      "level": 2,
+      "title": "Series Navigation"
+    }
+  ],
+  "kind": "guide"
+}

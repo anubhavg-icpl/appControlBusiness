@@ -1,0 +1,205 @@
+{
+  "id": "docs/file-rule-levels/Level-WHQLPublisher",
+  "path": "docs/file-rule-levels/Level-WHQLPublisher.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-WHQLPublisher.md",
+  "title": "WDAC File Rule Level: WHQLPublisher",
+  "frontmatter": {
+    "type": "File Rule Level",
+    "title": "WDAC File Rule Level: WHQLPublisher",
+    "description": "How the WHQLPublisher file rule level works, its attack resistance, and when to use it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "file-rule-level"
+    ],
+    "status": "stable",
+    "file_rule_level": "WHQLPublisher",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "WDAC File Rule Level: WHQLPublisher"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. Overview"
+    },
+    {
+      "level": 2,
+      "title": "2. How WHQLPublisher Differs from WHQL"
+    },
+    {
+      "level": 3,
+      "title": "The Critical Difference"
+    },
+    {
+      "level": 3,
+      "title": "Why the WHQL Signing Model Makes This Possible"
+    },
+    {
+      "level": 2,
+      "title": "3. The Dual Trust Check"
+    },
+    {
+      "level": 2,
+      "title": "4. Certificate Chain / Trust Anatomy"
+    },
+    {
+      "level": 2,
+      "title": "5. Where in the Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "6. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Key XML Elements Explained"
+    },
+    {
+      "level": 2,
+      "title": "7. PowerShell Examples"
+    },
+    {
+      "level": 3,
+      "title": "Generating WHQLPublisher Rules"
+    },
+    {
+      "level": 1,
+      "title": "Generate WHQLPublisher rules by scanning a specific vendor's drivers"
+    },
+    {
+      "level": 1,
+      "title": "ConfigCI will extract the leaf CN and create WHQLPublisher rules"
+    },
+    {
+      "level": 1,
+      "title": "The output XML will contain Signer elements with CertPublisher child elements"
+    },
+    {
+      "level": 1,
+      "title": "Each unique vendor CN found in WHQL-signed drivers gets its own Signer rule"
+    },
+    {
+      "level": 1,
+      "title": "Scan only NVIDIA drivers specifically"
+    },
+    {
+      "level": 1,
+      "title": "Useful for building a policy that explicitly covers only one vendor"
+    },
+    {
+      "level": 1,
+      "title": "Build policy from just those files"
+    },
+    {
+      "level": 3,
+      "title": "Inspecting the Leaf CN of a WHQL-Signed Driver"
+    },
+    {
+      "level": 1,
+      "title": "Examples"
+    },
+    {
+      "level": 3,
+      "title": "Building a Multi-Vendor WHQLPublisher Policy for a Dell Enterprise Fleet"
+    },
+    {
+      "level": 1,
+      "title": "Scenario: Dell workstation fleet with NVIDIA GPU, Intel NIC, Realtek audio"
+    },
+    {
+      "level": 1,
+      "title": "Build a policy allowing only these specific vendors' WHQL drivers"
+    },
+    {
+      "level": 1,
+      "title": "Create a temp directory with just these representative drivers"
+    },
+    {
+      "level": 1,
+      "title": "Generate WHQLPublisher rules from these representative drivers"
+    },
+    {
+      "level": 1,
+      "title": "Clean up"
+    },
+    {
+      "level": 3,
+      "title": "Validating WHQLPublisher XML Output"
+    },
+    {
+      "level": 2,
+      "title": "8. Comparison Table: WHQL vs. WHQLPublisher vs. WHQLFilePublisher"
+    },
+    {
+      "level": 2,
+      "title": "9. Pros & Cons Table"
+    },
+    {
+      "level": 2,
+      "title": "10. Attack Resistance Analysis"
+    },
+    {
+      "level": 2,
+      "title": "11. When to Use vs. When to Avoid — Decision Flowchart"
+    },
+    {
+      "level": 2,
+      "title": "12. Real-World Scenario: OEM-Specific Driver Allowlisting"
+    },
+    {
+      "level": 2,
+      "title": "13. OS Version & Compatibility"
+    },
+    {
+      "level": 2,
+      "title": "14. Common Mistakes & Gotchas"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 1: Vendor Name Mismatch — Exact String Match Required"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 2: Company Rebrand / Acquisition Breaking Rules"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 3: Using WHQLPublisher for Broad Trust (Should Use WHQL)"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 4: Forgetting That WHQL Level Rules and WHQLPublisher Rules Coexist"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 5: WHQLPublisher in User-Mode Scenario"
+    },
+    {
+      "level": 2,
+      "title": "15. Summary Table"
+    }
+  ],
+  "kind": "file-rule-level"
+}

@@ -1,0 +1,311 @@
+{
+  "id": "docs/rule-options/Option-17-Allow-Supplemental-Policies",
+  "path": "docs/rule-options/Option-17-Allow-Supplemental-Policies.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-17-Allow-Supplemental-Policies.md",
+  "title": "Option 17 — Enabled:Allow Supplemental Policies",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 17 — Enabled:Allow Supplemental Policies",
+    "description": "What policy rule option 17 (Enabled:Allow Supplemental Policies) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 17,
+    "policy_rule_value": "Enabled:Allow Supplemental Policies",
+    "valid_for_supplemental": false,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 17 — Enabled:Allow Supplemental Policies"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "What It Does"
+    },
+    {
+      "level": 2,
+      "title": "Why It Exists"
+    },
+    {
+      "level": 3,
+      "title": "The Problem Without Supplemental Policies"
+    },
+    {
+      "level": 3,
+      "title": "What Supplemental Policies Enable"
+    },
+    {
+      "level": 3,
+      "title": "Additional Benefits"
+    },
+    {
+      "level": 2,
+      "title": "The Base / Supplemental Policy Architecture — Deep Dive"
+    },
+    {
+      "level": 3,
+      "title": "Conceptual Model"
+    },
+    {
+      "level": 3,
+      "title": "What Supplemental Policies Can and Cannot Do"
+    },
+    {
+      "level": 2,
+      "title": "Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Step 1: Enable Option 17 in the Base Policy"
+    },
+    {
+      "level": 1,
+      "title": "Enable supplemental policy support"
+    },
+    {
+      "level": 1,
+      "title": "Verify"
+    },
+    {
+      "level": 3,
+      "title": "Step 2: Create a Supplemental Policy"
+    },
+    {
+      "level": 1,
+      "title": "Create a new supplemental policy (starts from scratch or from another policy)"
+    },
+    {
+      "level": 1,
+      "title": "Method 1: Create a minimal supplemental from scratch"
+    },
+    {
+      "level": 1,
+      "title": "Method 2: Create supplemental from existing policy (extract rules from an existing XML)"
+    },
+    {
+      "level": 1,
+      "title": "Then trim it down to only the rules you want to add"
+    },
+    {
+      "level": 1,
+      "title": "Set the policy as Supplemental type and link to base"
+    },
+    {
+      "level": 3,
+      "title": "Step 3: Configure Supplemental Policy Options"
+    },
+    {
+      "level": 1,
+      "title": "Supplemental policies must NOT have Option 17 set"
+    },
+    {
+      "level": 1,
+      "title": "Remove it if accidentally present"
+    },
+    {
+      "level": 1,
+      "title": "Option 18 (Disable Runtime FilePath Protection) is valid in supplementals"
+    },
+    {
+      "level": 1,
+      "title": "Set it if you have FilePath rules that target non-admin-exclusive paths"
+    },
+    {
+      "level": 1,
+      "title": "Set-RuleOption -FilePath $SupplementalPath -Option 18"
+    },
+    {
+      "level": 1,
+      "title": "Supplementals should NOT have Option 3 (Audit Mode) — it's ignored"
+    },
+    {
+      "level": 1,
+      "title": "Remove-RuleOption -FilePath $SupplementalPath -Option 3"
+    },
+    {
+      "level": 3,
+      "title": "Step 4: Compile and Deploy Both Policies"
+    },
+    {
+      "level": 1,
+      "title": "Get the base policy ID for file naming"
+    },
+    {
+      "level": 1,
+      "title": "Compile base policy"
+    },
+    {
+      "level": 1,
+      "title": "Compile supplemental policy"
+    },
+    {
+      "level": 1,
+      "title": "Deploy base policy"
+    },
+    {
+      "level": 1,
+      "title": "Deploy supplemental (use its own PolicyID for the filename)"
+    },
+    {
+      "level": 3,
+      "title": "Removing a Supplemental Policy"
+    },
+    {
+      "level": 1,
+      "title": "To remove a supplemental policy, simply delete its binary from the active folder"
+    },
+    {
+      "level": 1,
+      "title": "With CiTool (Windows 11 22H2+):"
+    },
+    {
+      "level": 3,
+      "title": "Inspecting Policy Relationships"
+    },
+    {
+      "level": 1,
+      "title": "List all active policies and their types"
+    },
+    {
+      "level": 1,
+      "title": "Or parse the XML directly"
+    },
+    {
+      "level": 1,
+      "title": "Inspect base policy ID from XML"
+    },
+    {
+      "level": 1,
+      "title": "Inspect supplemental's link to base"
+    },
+    {
+      "level": 2,
+      "title": "XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Base Policy (must contain Option 17)"
+    },
+    {
+      "level": 3,
+      "title": "Supplemental Policy (references the base via BasePolicyID)"
+    },
+    {
+      "level": 2,
+      "title": "PolicyID Linking — How the Kernel Connects Base to Supplemental"
+    },
+    {
+      "level": 3,
+      "title": "The GUID Chain — Why It Cannot Be Forged (Signed Policies)"
+    },
+    {
+      "level": 2,
+      "title": "How ci.dll Loads and Evaluates Both Policies"
+    },
+    {
+      "level": 3,
+      "title": "Boot-Time Policy Loading"
+    },
+    {
+      "level": 3,
+      "title": "Rule Merging Logic at Evaluation Time"
+    },
+    {
+      "level": 2,
+      "title": "Interaction with Other Options"
+    },
+    {
+      "level": 3,
+      "title": "Option Compatibility Matrix"
+    },
+    {
+      "level": 2,
+      "title": "When to Enable vs Disable"
+    },
+    {
+      "level": 2,
+      "title": "Real-World Scenario / End-to-End Walkthrough"
+    },
+    {
+      "level": 3,
+      "title": "Governance Structure Achieved"
+    },
+    {
+      "level": 2,
+      "title": "What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: Option 17 absent in base — supplemental policies silently rejected"
+    },
+    {
+      "level": 1,
+      "title": "Check if Option 17 is in the base policy XML"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: Wrong BasePolicyID in supplemental"
+    },
+    {
+      "level": 3,
+      "title": "Scenario C: Option 17 set on a supplemental policy"
+    },
+    {
+      "level": 3,
+      "title": "Scenario D: Supplemental policy with deny rules — rules silently ignored"
+    },
+    {
+      "level": 3,
+      "title": "Scenario E: Unsigned base policy with Option 17 — supplemental injection attack"
+    },
+    {
+      "level": 2,
+      "title": "Valid for Supplemental Policies?"
+    },
+    {
+      "level": 2,
+      "title": "OS Version Requirements"
+    },
+    {
+      "level": 3,
+      "title": "Checking OS Version"
+    },
+    {
+      "level": 2,
+      "title": "Summary Table"
+    },
+    {
+      "level": 2,
+      "title": "Architecture & Reference Illustrations"
+    }
+  ],
+  "kind": "rule-option"
+}

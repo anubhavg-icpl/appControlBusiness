@@ -1,0 +1,1013 @@
+{
+  "id": "docs/notes/Notes-Tips-AppControl",
+  "path": "docs/notes/Notes-Tips-AppControl.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/notes/Notes-Tips-AppControl.md",
+  "title": "App Control for Business — Complete Reference: Notes, Tips & Advanced Considerations",
+  "frontmatter": {
+    "type": "Reference",
+    "title": "App Control for Business — Complete Reference: Notes, Tips & Advanced Considerations",
+    "description": "Advanced notes, tips, and gotchas for managing App Control for Business policies.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "notes",
+      "tips"
+    ],
+    "status": "stable",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "App Control for Business — Complete Reference: Notes, Tips & Advanced Considerations"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. Branding & Background"
+    },
+    {
+      "level": 3,
+      "title": "Key Points"
+    },
+    {
+      "level": 3,
+      "title": "Primary Use Cases"
+    },
+    {
+      "level": 2,
+      "title": "2. Core Architecture: Allow-list, Not Deny-list"
+    },
+    {
+      "level": 3,
+      "title": "Allow All Rules"
+    },
+    {
+      "level": 3,
+      "title": "Multiple Base Policies Interaction"
+    },
+    {
+      "level": 2,
+      "title": "3. Policy Types: Base vs. Supplemental"
+    },
+    {
+      "level": 3,
+      "title": "Checking Policy Type"
+    },
+    {
+      "level": 1,
+      "title": "Returns: \"Base Policy\" or \"Supplemental Policy\""
+    },
+    {
+      "level": 3,
+      "title": "Converting Base → Supplemental"
+    },
+    {
+      "level": 2,
+      "title": "4. Supplemental Policy — Deep Dive"
+    },
+    {
+      "level": 3,
+      "title": "4.1 Stripping Invalid Policy Options"
+    },
+    {
+      "level": 1,
+      "title": "Remove all options that are NOT valid in supplemental policies"
+    },
+    {
+      "level": 3,
+      "title": "4.2 Valid Options in Supplemental Policies"
+    },
+    {
+      "level": 3,
+      "title": "4.3 Decision Tree: Is This Option Valid in a Supplemental?"
+    },
+    {
+      "level": 3,
+      "title": "4.4 Deny Rules in Supplemental Policies Are Silently Ignored"
+    },
+    {
+      "level": 3,
+      "title": "4.5 Signing a Supplemental Policy"
+    },
+    {
+      "level": 1,
+      "title": "Add supplemental signer to the BASE policy (correct)"
+    },
+    {
+      "level": 1,
+      "title": "Do NOT do this on the supplemental policy itself (causes BOOT FAILURE)"
+    },
+    {
+      "level": 1,
+      "title": "Add-SignerRule -FilePath .\\SupplementalPolicy.xml -CertificatePath .\\MyCert.cer -Supplemental"
+    },
+    {
+      "level": 3,
+      "title": "4.6 Removing Supplemental Policies"
+    },
+    {
+      "level": 1,
+      "title": "Get current policies and their IDs"
+    },
+    {
+      "level": 1,
+      "title": "Remove a supplemental policy by its Policy ID"
+    },
+    {
+      "level": 3,
+      "title": "4.7 Unsigned Supplemental for a Signed Base"
+    },
+    {
+      "level": 2,
+      "title": "5. Deny Rules — File Rules and Signer Rules"
+    },
+    {
+      "level": 3,
+      "title": "5.1 File Deny Rules — XML Anatomy"
+    },
+    {
+      "level": 3,
+      "title": "5.2 Denied Certificates/Signers — XML Anatomy"
+    },
+    {
+      "level": 2,
+      "title": "6. Rule Precedence Chain"
+    },
+    {
+      "level": 3,
+      "title": "Key Precedence Rules"
+    },
+    {
+      "level": 2,
+      "title": "7. SigningScenarios Node"
+    },
+    {
+      "level": 3,
+      "title": "Critical Facts"
+    },
+    {
+      "level": 3,
+      "title": "What Happens with Wrong Value?"
+    },
+    {
+      "level": 2,
+      "title": "8. Verifying Enforcement Status"
+    },
+    {
+      "level": 3,
+      "title": "8.1 PowerShell — CIM Query"
+    },
+    {
+      "level": 3,
+      "title": "8.2 System Information (msinfo32)"
+    },
+    {
+      "level": 3,
+      "title": "8.3 Status Meanings and Actions"
+    },
+    {
+      "level": 3,
+      "title": "8.4 Relevant Event IDs"
+    },
+    {
+      "level": 2,
+      "title": "9. Refreshing Policies"
+    },
+    {
+      "level": 3,
+      "title": "9.1 Modern Method — CITool (Windows 11 22H2+)"
+    },
+    {
+      "level": 1,
+      "title": "Refresh all deployed policies"
+    },
+    {
+      "level": 1,
+      "title": "List all currently deployed policies"
+    },
+    {
+      "level": 1,
+      "title": "Update a specific policy from a .cip file"
+    },
+    {
+      "level": 1,
+      "title": "Remove a policy by GUID"
+    },
+    {
+      "level": 3,
+      "title": "9.2 Legacy Method — RefreshPolicy.exe"
+    },
+    {
+      "level": 1,
+      "title": "Download from Microsoft, then run:"
+    },
+    {
+      "level": 3,
+      "title": "9.3 Policy Refresh Flow"
+    },
+    {
+      "level": 3,
+      "title": "9.4 Important Refresh Behavior"
+    },
+    {
+      "level": 2,
+      "title": "10. Merging Policies"
+    },
+    {
+      "level": 3,
+      "title": "10.1 Basic Merge"
+    },
+    {
+      "level": 1,
+      "title": "Merge two policies into one output file"
+    },
+    {
+      "level": 1,
+      "title": "Merge a policy with itself (useful for cleanup — removes duplicate EKUs)"
+    },
+    {
+      "level": 3,
+      "title": "10.2 Merge Behavior Details"
+    },
+    {
+      "level": 3,
+      "title": "10.3 Self-Merge Cleanup"
+    },
+    {
+      "level": 1,
+      "title": "Clean up duplicate/redundant EKUs"
+    },
+    {
+      "level": 3,
+      "title": "10.4 Pre-Merge Checklist"
+    },
+    {
+      "level": 2,
+      "title": "11. Microsoft Recommended Block Rules"
+    },
+    {
+      "level": 3,
+      "title": "11.1 Obtaining and Using Block Rules"
+    },
+    {
+      "level": 1,
+      "title": "Download the latest block rules (check Microsoft docs for current URL)"
+    },
+    {
+      "level": 1,
+      "title": "Then:"
+    },
+    {
+      "level": 1,
+      "title": "1. Copy the XML into a new file"
+    },
+    {
+      "level": 1,
+      "title": "2. Remove the Allow All rules (ID_ALLOW_A_1, ID_ALLOW_A_2)"
+    },
+    {
+      "level": 1,
+      "title": "3. Set a new unique Policy ID"
+    },
+    {
+      "level": 1,
+      "title": "4. If merging into your allow-list policy:"
+    },
+    {
+      "level": 3,
+      "title": "11.2 The Allow All Rules Problem (Detailed)"
+    },
+    {
+      "level": 3,
+      "title": "11.3 Multiple Policy Format Requirement"
+    },
+    {
+      "level": 1,
+      "title": "This sets a new GUID-based PolicyID, enabling multiple policy support"
+    },
+    {
+      "level": 3,
+      "title": "11.4 How Allow All + Multiple Base Policies Work"
+    },
+    {
+      "level": 2,
+      "title": "12. Microsoft Recommended Driver Block Rules"
+    },
+    {
+      "level": 3,
+      "title": "12.1 Overview"
+    },
+    {
+      "level": 3,
+      "title": "12.2 Windows 11 22H2+ Behavior"
+    },
+    {
+      "level": 1,
+      "title": "Check what driver block list version is deployed"
+    },
+    {
+      "level": 3,
+      "title": "12.3 Updating Driver Block Rules"
+    },
+    {
+      "level": 1,
+      "title": "Deploy the driver block rules as a separate policy"
+    },
+    {
+      "level": 1,
+      "title": "Download from: https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/design/microsoft-recommended-driver-block-rules"
+    },
+    {
+      "level": 1,
+      "title": "Copy to C:\\Windows\\System32\\CodeIntegrity\\CiPolicies\\Active\\"
+    },
+    {
+      "level": 2,
+      "title": "13. Signing Policies (Signed Policy Infrastructure)"
+    },
+    {
+      "level": 3,
+      "title": "13.1 Why Sign a Policy?"
+    },
+    {
+      "level": 3,
+      "title": "13.2 Signing Workflow"
+    },
+    {
+      "level": 1,
+      "title": "Step 1: Add signer rules to the policy (do HVCI AFTER this step)"
+    },
+    {
+      "level": 1,
+      "title": "Step 2: Set HVCI AFTER Add-SignerRule (important — Add-SignerRule resets HvciOptions to 0)"
+    },
+    {
+      "level": 1,
+      "title": "Step 3: Compile to binary"
+    },
+    {
+      "level": 1,
+      "title": "Step 4: Sign the binary"
+    },
+    {
+      "level": 1,
+      "title": "Note: -fd certHash defaults to the algorithm of the signing certificate"
+    },
+    {
+      "level": 3,
+      "title": "13.3 EFI Partition Behavior"
+    },
+    {
+      "level": 3,
+      "title": "13.4 CMS v1 Workaround"
+    },
+    {
+      "level": 2,
+      "title": "14. Removing Flight Signing Certificates"
+    },
+    {
+      "level": 3,
+      "title": "14.1 Safety"
+    },
+    {
+      "level": 3,
+      "title": "14.2 Full Removal Commands"
+    },
+    {
+      "level": 1,
+      "title": "Remove all flight signing certificate rules from a policy"
+    },
+    {
+      "level": 2,
+      "title": "15. Removing App Control Policy Refresh Tool Certificates"
+    },
+    {
+      "level": 3,
+      "title": "15.1 Why Remove?"
+    },
+    {
+      "level": 3,
+      "title": "15.2 ORDER MATTERS"
+    },
+    {
+      "level": 1,
+      "title": "Step 1: Remove FileAttrib rule FIRST"
+    },
+    {
+      "level": 1,
+      "title": "Step 2: Remove Signer rule SECOND"
+    },
+    {
+      "level": 2,
+      "title": "16. Certificate Chain Facts"
+    },
+    {
+      "level": 3,
+      "title": "Chain Rules"
+    },
+    {
+      "level": 3,
+      "title": "WDAC Rule Levels from Chain"
+    },
+    {
+      "level": 2,
+      "title": "17. Double-Signed Files"
+    },
+    {
+      "level": 3,
+      "title": "17.1 What Generates Double-Signed Rules"
+    },
+    {
+      "level": 3,
+      "title": "17.2 Double-Signed Rule XML Example"
+    },
+    {
+      "level": 3,
+      "title": "17.3 CertRoot TBS vs. CertPublisher CN"
+    },
+    {
+      "level": 2,
+      "title": "18. File Rule Levels — Selection Guide"
+    },
+    {
+      "level": 3,
+      "title": "Rule Level Security Spectrum"
+    },
+    {
+      "level": 3,
+      "title": "File Extensions Supported"
+    },
+    {
+      "level": 2,
+      "title": "19. MSI Files and Rule Levels"
+    },
+    {
+      "level": 3,
+      "title": "The Core Limitation"
+    },
+    {
+      "level": 3,
+      "title": "Valid Options for MSI Rules"
+    },
+    {
+      "level": 3,
+      "title": "PowerShell Example for MSI Publisher Rule"
+    },
+    {
+      "level": 1,
+      "title": "Generate Publisher-level rule for an MSI file"
+    },
+    {
+      "level": 2,
+      "title": "20. Blocking Individual Windows Components"
+    },
+    {
+      "level": 1,
+      "title": "Example: Block the Microsoft Store"
+    },
+    {
+      "level": 1,
+      "title": "Example: Block Microsoft Teams (inbox)"
+    },
+    {
+      "level": 1,
+      "title": "Example: Block Xbox Game Bar"
+    },
+    {
+      "level": 3,
+      "title": "Blocking by Folder (Package Family Name)"
+    },
+    {
+      "level": 1,
+      "title": "Deny an entire folder of applications"
+    },
+    {
+      "level": 3,
+      "title": "Notes on Blocking Windows Components"
+    },
+    {
+      "level": 2,
+      "title": "21. Required: EV Signers (Option 8)"
+    },
+    {
+      "level": 3,
+      "title": "Behavior When Option 8 is Enabled"
+    },
+    {
+      "level": 3,
+      "title": "EV vs. Standard Code Signing"
+    },
+    {
+      "level": 3,
+      "title": "Setting Option 8"
+    },
+    {
+      "level": 1,
+      "title": "Enables: Required:EV Signers"
+    },
+    {
+      "level": 3,
+      "title": "When to Use Option 8"
+    },
+    {
+      "level": 2,
+      "title": "22. User-Mode-Only Policy Rule Options"
+    },
+    {
+      "level": 3,
+      "title": "Options Specific to User Mode"
+    },
+    {
+      "level": 3,
+      "title": "Kernel-Only Policy Construction"
+    },
+    {
+      "level": 3,
+      "title": "Required EKUs for Kernel-Only Policy"
+    },
+    {
+      "level": 2,
+      "title": "23. Pirated Software and Hash Mismatch"
+    },
+    {
+      "level": 3,
+      "title": "The Technical Reality"
+    },
+    {
+      "level": 3,
+      "title": "What This Means for App Control"
+    },
+    {
+      "level": 3,
+      "title": "Detecting HashMismatch Files"
+    },
+    {
+      "level": 1,
+      "title": "Scan a folder for files with tampered signatures"
+    },
+    {
+      "level": 3,
+      "title": "Signature Status Values"
+    },
+    {
+      "level": 2,
+      "title": "24. Signed Policy + System Reset Danger"
+    },
+    {
+      "level": 3,
+      "title": "Key Takeaways"
+    },
+    {
+      "level": 3,
+      "title": "Pre-Reset Procedure for Signed Policy"
+    },
+    {
+      "level": 1,
+      "title": "Step 1: List all deployed policies"
+    },
+    {
+      "level": 1,
+      "title": "Step 2: Remove the signed base policy"
+    },
+    {
+      "level": 1,
+      "title": "Note: You must have the signing certificate available"
+    },
+    {
+      "level": 1,
+      "title": "Re-sign and deploy an updated policy with the policy set to \"no enforcement\""
+    },
+    {
+      "level": 1,
+      "title": "OR boot from external media to remove from EFI partition manually"
+    },
+    {
+      "level": 1,
+      "title": "Step 3: Verify removal"
+    },
+    {
+      "level": 1,
+      "title": "Verify your signed policy is no longer listed"
+    },
+    {
+      "level": 1,
+      "title": "Step 4: Reboot to confirm"
+    },
+    {
+      "level": 1,
+      "title": "Step 5: Proceed with Reset"
+    },
+    {
+      "level": 2,
+      "title": "25. CIP Binary File Naming"
+    },
+    {
+      "level": 3,
+      "title": "Windows 11 22621+ (22H2+)"
+    },
+    {
+      "level": 1,
+      "title": "All of these work on 22621+"
+    },
+    {
+      "level": 3,
+      "title": "Legacy Convention (Pre-22621)"
+    },
+    {
+      "level": 1,
+      "title": "Get the Policy ID from the XML"
+    },
+    {
+      "level": 1,
+      "title": "Name the cip file with the GUID"
+    },
+    {
+      "level": 3,
+      "title": "Deployment Path"
+    },
+    {
+      "level": 2,
+      "title": "26. XML ID Length vs. CIP File Size"
+    },
+    {
+      "level": 3,
+      "title": "The Facts"
+    },
+    {
+      "level": 1,
+      "title": "These produce identical .cip binaries:"
+    },
+    {
+      "level": 1,
+      "title": "Short ID style"
+    },
+    {
+      "level": 1,
+      "title": "Generates: ID_ALLOW_A_1, etc."
+    },
+    {
+      "level": 1,
+      "title": "Long GUID ID style (equally valid)"
+    },
+    {
+      "level": 1,
+      "title": "Manual XML edit to use: ID=\"{550ac00d-e432-4b04-a3ba-77826a5ed33f}\""
+    },
+    {
+      "level": 1,
+      "title": "The .cip output will be byte-for-byte identical to the short ID version"
+    },
+    {
+      "level": 1,
+      "title": "(assuming identical rules)"
+    },
+    {
+      "level": 3,
+      "title": "Practical Implication"
+    },
+    {
+      "level": 2,
+      "title": "27. Flight Signing and Windows Insider Channels"
+    },
+    {
+      "level": 3,
+      "title": "What Disabled:Flight Signing Does"
+    },
+    {
+      "level": 3,
+      "title": "Restoring Insider Channel Access"
+    },
+    {
+      "level": 1,
+      "title": "Step 1: Remove the Disabled:Flight Signing option from your policy"
+    },
+    {
+      "level": 1,
+      "title": "Step 2: Recompile and deploy"
+    },
+    {
+      "level": 1,
+      "title": "Step 3: Reboot"
+    },
+    {
+      "level": 1,
+      "title": "After reboot, Insider channel options reappear in Settings"
+    },
+    {
+      "level": 3,
+      "title": "Boot Failure Risk from Insider + Flight Cert Removal"
+    },
+    {
+      "level": 2,
+      "title": "28. Policy ID Setting for Event Log Details"
+    },
+    {
+      "level": 3,
+      "title": "XML Setting"
+    },
+    {
+      "level": 3,
+      "title": "Why This Matters"
+    },
+    {
+      "level": 3,
+      "title": "PowerShell to Add PolicyInfo Settings"
+    },
+    {
+      "level": 1,
+      "title": "There's no built-in cmdlet for this — use direct XML manipulation"
+    },
+    {
+      "level": 1,
+      "title": "Create Settings element if it doesn't exist"
+    },
+    {
+      "level": 1,
+      "title": "Save modified policy"
+    },
+    {
+      "level": 2,
+      "title": "29. ISG (Intelligent Security Graph) Trust Flow"
+    },
+    {
+      "level": 3,
+      "title": "ISG Limitations and Gotchas"
+    },
+    {
+      "level": 2,
+      "title": "30. Managed Installer (MI) Trust Flow"
+    },
+    {
+      "level": 3,
+      "title": "How MI Works"
+    },
+    {
+      "level": 3,
+      "title": "MI Caveats"
+    },
+    {
+      "level": 2,
+      "title": "31. Unsafe Practices"
+    },
+    {
+      "level": 3,
+      "title": "31.1 FilePath or FileName Rules in Signed Policies"
+    },
+    {
+      "level": 3,
+      "title": "31.2 FilePath Rules with UNC Paths"
+    },
+    {
+      "level": 1,
+      "title": "Enable UNC path hardening (via AppLocker policy)"
+    },
+    {
+      "level": 1,
+      "title": "This is a Group Policy setting: Computer Configuration\\Windows Settings\\Security Settings\\"
+    },
+    {
+      "level": 1,
+      "title": "Application Control Policies\\AppLocker\\Properties"
+    },
+    {
+      "level": 3,
+      "title": "31.3 Managed Installer + ISG in High-Security Environments"
+    },
+    {
+      "level": 3,
+      "title": "31.4 Signer-Only Rules Without FileAttrib (Overly Broad)"
+    },
+    {
+      "level": 2,
+      "title": "32. Miscellaneous Tips & Edge Cases"
+    },
+    {
+      "level": 3,
+      "title": "32.1 HVCI Must Be Set AFTER Add-SignerRule"
+    },
+    {
+      "level": 1,
+      "title": "WRONG ORDER — HvciOptions gets reset to 0 by Add-SignerRule"
+    },
+    {
+      "level": 1,
+      "title": "CORRECT ORDER"
+    },
+    {
+      "level": 3,
+      "title": "32.2 signtool -fd certHash Behavior"
+    },
+    {
+      "level": 3,
+      "title": "32.3 New-CIPolicy Double Rule for .sys Files"
+    },
+    {
+      "level": 3,
+      "title": "32.4 Strict BYOVD Kernel-Only Policy"
+    },
+    {
+      "level": 3,
+      "title": "32.5 Policy Versioning"
+    },
+    {
+      "level": 3,
+      "title": "32.6 Testing Policy Before Enforcement"
+    },
+    {
+      "level": 1,
+      "title": "Enable Audit mode (Option 3 = Enabled:Audit Mode)"
+    },
+    {
+      "level": 1,
+      "title": "After testing, switch to Enforce by removing Audit option"
+    },
+    {
+      "level": 1,
+      "title": "Watch for blocks in Audit mode"
+    },
+    {
+      "level": 3,
+      "title": "32.7 Policy Deployment via Intune (MEM/MDM)"
+    },
+    {
+      "level": 3,
+      "title": "32.8 Script Enforcement Considerations"
+    },
+    {
+      "level": 2,
+      "title": "33. Quick PowerShell Cheat-Sheet"
+    },
+    {
+      "level": 1,
+      "title": "─── CREATE NEW POLICY ─────────────────────────────────────────────────────────"
+    },
+    {
+      "level": 1,
+      "title": "Scan a folder and create a policy based on found files"
+    },
+    {
+      "level": 1,
+      "title": "Create from a running system snapshot"
+    },
+    {
+      "level": 1,
+      "title": "─── CONFIGURE POLICY OPTIONS ──────────────────────────────────────────────────"
+    },
+    {
+      "level": 1,
+      "title": "Set policy to Audit mode"
+    },
+    {
+      "level": 1,
+      "title": "Set policy to Enforce mode (remove Audit option)"
+    },
+    {
+      "level": 1,
+      "title": "Enable UMCI (User Mode Code Integrity)"
+    },
+    {
+      "level": 1,
+      "title": "Disable script enforcement"
+    },
+    {
+      "level": 1,
+      "title": "Disable flight signing (Insider builds)"
+    },
+    {
+      "level": 1,
+      "title": "For flight signing: use Remove-CIPolicyRule for flight cert IDs (Section 14)"
+    },
+    {
+      "level": 1,
+      "title": "OR: Set-RuleOption -Option 10  (Disabled:Boot Menu Protection — different)"
+    },
+    {
+      "level": 1,
+      "title": "─── MANAGE POLICY IDs ─────────────────────────────────────────────────────────"
+    },
+    {
+      "level": 1,
+      "title": "Reset policy ID (generates new GUID — required for multiple policy format)"
+    },
+    {
+      "level": 1,
+      "title": "Set a human-readable policy name"
+    },
+    {
+      "level": 1,
+      "title": "Convert base policy to supplemental"
+    },
+    {
+      "level": 1,
+      "title": "─── COMPILE & DEPLOY ──────────────────────────────────────────────────────────"
+    },
+    {
+      "level": 1,
+      "title": "Compile XML to binary"
+    },
+    {
+      "level": 1,
+      "title": "Deploy via CITool (22H2+)"
+    },
+    {
+      "level": 1,
+      "title": "Refresh all policies"
+    },
+    {
+      "level": 1,
+      "title": "List deployed policies"
+    },
+    {
+      "level": 1,
+      "title": "Remove a policy"
+    },
+    {
+      "level": 1,
+      "title": "─── MERGE POLICIES ────────────────────────────────────────────────────────────"
+    },
+    {
+      "level": 1,
+      "title": "Merge two policies"
+    },
+    {
+      "level": 1,
+      "title": "Self-merge to clean up duplicates"
+    },
+    {
+      "level": 1,
+      "title": "─── ADD/REMOVE SIGNERS ────────────────────────────────────────────────────────"
+    },
+    {
+      "level": 1,
+      "title": "Add signer (for signed policy — base update, also allows supplemental policies)"
+    },
+    {
+      "level": 1,
+      "title": "Remove a specific rule by ID"
+    },
+    {
+      "level": 1,
+      "title": "─── SET HVCI ──────────────────────────────────────────────────────────────────"
+    },
+    {
+      "level": 1,
+      "title": "Set HVCI to Strict (always after Add-SignerRule)"
+    },
+    {
+      "level": 1,
+      "title": "─── VERIFY STATUS ─────────────────────────────────────────────────────────────"
+    },
+    {
+      "level": 1,
+      "title": "Check enforcement status"
+    },
+    {
+      "level": 1,
+      "title": "Check for audit blocks (last 24 hours)"
+    },
+    {
+      "level": 1,
+      "title": "Check for enforcement blocks"
+    },
+    {
+      "level": 1,
+      "title": "Check deployed policy versions (event 3099)"
+    },
+    {
+      "level": 2,
+      "title": "34. Appendix: Valid Supplemental Policy Options Table"
+    },
+    {
+      "level": 2,
+      "title": "Quick Reference Card"
+    },
+    {
+      "level": 2,
+      "title": "Field Notes (Handwritten)"
+    },
+    {
+      "level": 2,
+      "title": "Architecture & Reference Illustrations"
+    }
+  ],
+  "kind": "note"
+}

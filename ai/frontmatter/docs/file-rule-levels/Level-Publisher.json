@@ -1,0 +1,293 @@
+{
+  "id": "docs/file-rule-levels/Level-Publisher",
+  "path": "docs/file-rule-levels/Level-Publisher.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-Publisher.md",
+  "title": "WDAC File Rule Level: Publisher",
+  "frontmatter": {
+    "type": "File Rule Level",
+    "title": "WDAC File Rule Level: Publisher",
+    "description": "How the Publisher file rule level works, its attack resistance, and when to use it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "file-rule-level"
+    ],
+    "status": "stable",
+    "file_rule_level": "Publisher",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "WDAC File Rule Level: Publisher"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. Overview"
+    },
+    {
+      "level": 2,
+      "title": "2. How It Works"
+    },
+    {
+      "level": 3,
+      "title": "The PCA Concept: What Does \"PCA\" Mean in WDAC?"
+    },
+    {
+      "level": 3,
+      "title": "TBS Hash: What Is It?"
+    },
+    {
+      "level": 3,
+      "title": "Leaf CN Matching: Case Sensitivity"
+    },
+    {
+      "level": 3,
+      "title": "How ConfigCI Identifies the PCA Certificate"
+    },
+    {
+      "level": 1,
+      "title": "Step 1: Get the signer certificate from the file"
+    },
+    {
+      "level": 1,
+      "title": "Step 2: Build the full chain"
+    },
+    {
+      "level": 1,
+      "title": "Step 3: List all certs in the chain (index 0 = leaf, last = root)"
+    },
+    {
+      "level": 1,
+      "title": "Step 4: The PCA is typically index 1 (chain[1]) — one above the leaf"
+    },
+    {
+      "level": 3,
+      "title": "Trust Scope"
+    },
+    {
+      "level": 2,
+      "title": "3. Certificate Chain Anatomy"
+    },
+    {
+      "level": 2,
+      "title": "4. Where in the Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "5. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Full Publisher Rule XML Structure"
+    },
+    {
+      "level": 3,
+      "title": "Key XML Elements Explained"
+    },
+    {
+      "level": 3,
+      "title": "What Makes a Publisher Rule vs a PcaCertificate Rule"
+    },
+    {
+      "level": 2,
+      "title": "6. PowerShell Examples"
+    },
+    {
+      "level": 3,
+      "title": "Creating a Publisher Policy from Existing Files"
+    },
+    {
+      "level": 1,
+      "title": "Generate a policy at Publisher level from a directory of files"
+    },
+    {
+      "level": 1,
+      "title": "Explanation of parameters:"
+    },
+    {
+      "level": 1,
+      "title": "-Level Publisher        : Use Publisher as the primary rule level"
+    },
+    {
+      "level": 1,
+      "title": "-ScanPath               : Directory to scan for PE files"
+    },
+    {
+      "level": 1,
+      "title": "-UserPEs                : Include user-mode executables (not just kernel drivers)"
+    },
+    {
+      "level": 1,
+      "title": "-Fallback Hash          : If Publisher level cannot be created (unsigned file),"
+    },
+    {
+      "level": 1,
+      "title": "fall back to Hash level"
+    },
+    {
+      "level": 1,
+      "title": "-OutputFilePath         : Where to write the resulting policy XML"
+    },
+    {
+      "level": 3,
+      "title": "Creating a Publisher Rule for a Single File"
+    },
+    {
+      "level": 1,
+      "title": "Create a Publisher rule from one specific file"
+    },
+    {
+      "level": 1,
+      "title": "Inspect the rule object"
+    },
+    {
+      "level": 1,
+      "title": "Add the rule to an existing policy"
+    },
+    {
+      "level": 3,
+      "title": "Inspecting Publisher Information Before Creating Rules"
+    },
+    {
+      "level": 1,
+      "title": "Full inspection workflow — understand what Publisher rule will be created"
+    },
+    {
+      "level": 1,
+      "title": "Usage"
+    },
+    {
+      "level": 3,
+      "title": "Converting a Policy to Binary and Deploying"
+    },
+    {
+      "level": 1,
+      "title": "After generating the XML policy, convert to binary"
+    },
+    {
+      "level": 1,
+      "title": "Copy to enforcement location (kernel reads from this path)"
+    },
+    {
+      "level": 1,
+      "title": "Restart required for policy to take effect (or use CiTool.exe on Win11)"
+    },
+    {
+      "level": 1,
+      "title": "CiTool.exe --update-policy $policyBin  (Windows 11 22H2+ only)"
+    },
+    {
+      "level": 2,
+      "title": "7. Pros and Cons"
+    },
+    {
+      "level": 3,
+      "title": "Pros"
+    },
+    {
+      "level": 3,
+      "title": "Cons"
+    },
+    {
+      "level": 2,
+      "title": "8. Attack Resistance Analysis"
+    },
+    {
+      "level": 3,
+      "title": "Attack Surface Summary"
+    },
+    {
+      "level": 2,
+      "title": "9. When to Use vs When to Avoid"
+    },
+    {
+      "level": 3,
+      "title": "Decision Summary"
+    },
+    {
+      "level": 2,
+      "title": "10. Double-Signed File Behavior"
+    },
+    {
+      "level": 2,
+      "title": "11. Real-World Scenario"
+    },
+    {
+      "level": 2,
+      "title": "12. OS Version and Compatibility Notes"
+    },
+    {
+      "level": 3,
+      "title": "ConfigCI Module Availability"
+    },
+    {
+      "level": 2,
+      "title": "13. Common Mistakes and Gotchas"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 1: Assuming PCA = Root CA"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 2: Case-Sensitive CN Mismatch"
+    },
+    {
+      "level": 1,
+      "title": "WRONG — slightly different spacing or capitalization"
+    },
+    {
+      "level": 1,
+      "title": "CORRECT — must exactly match SubjectCN from the certificate"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 3: Publisher Rule for MSI Files with No PE Signature"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 4: Publisher Rule Breaks When Vendor Switches CAs"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 5: Expecting Publisher to Block Old Vulnerable Versions"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 6: Not Testing in Audit Mode First"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 7: Forgetting SigningScenario Scope"
+    },
+    {
+      "level": 2,
+      "title": "14. Summary Table"
+    },
+    {
+      "level": 2,
+      "title": "Architecture & Reference Illustrations"
+    }
+  ],
+  "kind": "file-rule-level"
+}

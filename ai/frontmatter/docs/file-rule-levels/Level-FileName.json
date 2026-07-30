@@ -1,0 +1,229 @@
+{
+  "id": "docs/file-rule-levels/Level-FileName",
+  "path": "docs/file-rule-levels/Level-FileName.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-FileName.md",
+  "title": "WDAC File Rule Level: FileName",
+  "frontmatter": {
+    "type": "File Rule Level",
+    "title": "WDAC File Rule Level: FileName",
+    "description": "How the FileName file rule level works, its attack resistance, and when to use it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "file-rule-level"
+    ],
+    "status": "stable",
+    "file_rule_level": "FileName",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "WDAC File Rule Level: FileName"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "Overview"
+    },
+    {
+      "level": 2,
+      "title": "How It Works"
+    },
+    {
+      "level": 3,
+      "title": "The VERSIONINFO Resource and OriginalFileName"
+    },
+    {
+      "level": 3,
+      "title": "SpecificFileNameLevel Options"
+    },
+    {
+      "level": 3,
+      "title": "How WDAC Reads These Fields at Runtime"
+    },
+    {
+      "level": 3,
+      "title": "Inspecting OriginalFileName on a Live File"
+    },
+    {
+      "level": 1,
+      "title": "Method 1: VersionInfo property"
+    },
+    {
+      "level": 1,
+      "title": "Method 2: Shell.Application COM object (shows exact embedded values)"
+    },
+    {
+      "level": 1,
+      "title": "Property 34 = Product Version, 33 = File Version"
+    },
+    {
+      "level": 1,
+      "title": "Method 3: Win32 API via P/Invoke (most accurate)"
+    },
+    {
+      "level": 3,
+      "title": "Version Comparison Mechanics"
+    },
+    {
+      "level": 2,
+      "title": "Where in the Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "FileRules Section — Allow by OriginalFileName"
+    },
+    {
+      "level": 3,
+      "title": "Allow by ProductName (Covers Entire Product Suite)"
+    },
+    {
+      "level": 3,
+      "title": "Deny by FileName"
+    },
+    {
+      "level": 3,
+      "title": "Full Signing Scenario Wiring"
+    },
+    {
+      "level": 3,
+      "title": "Comparison: FileName vs FilePublisher XML"
+    },
+    {
+      "level": 2,
+      "title": "PowerShell Usage"
+    },
+    {
+      "level": 3,
+      "title": "Basic FileName Rule Generation (OriginalFileName Default)"
+    },
+    {
+      "level": 1,
+      "title": "Create a FileName-level policy for a specific file"
+    },
+    {
+      "level": 1,
+      "title": "Defaults to OriginalFileName sub-level"
+    },
+    {
+      "level": 3,
+      "title": "Using SpecificFileNameLevel"
+    },
+    {
+      "level": 1,
+      "title": "Use ProductName as the matching field instead of OriginalFileName"
+    },
+    {
+      "level": 1,
+      "title": "This allows ALL 7-Zip files by product name, across any version"
+    },
+    {
+      "level": 1,
+      "title": "Use InternalName as the matching field"
+    },
+    {
+      "level": 1,
+      "title": "Use FileDescription as the matching field"
+    },
+    {
+      "level": 3,
+      "title": "FileName with Hash Fallback"
+    },
+    {
+      "level": 1,
+      "title": "Use FileName as primary; fall back to Hash for files without VERSIONINFO"
+    },
+    {
+      "level": 3,
+      "title": "Generate Individual Rules"
+    },
+    {
+      "level": 1,
+      "title": "Create a rule object for a single file"
+    },
+    {
+      "level": 1,
+      "title": "Inspect the generated rule to see what OriginalFileName was found"
+    },
+    {
+      "level": 1,
+      "title": "Add to existing policy"
+    },
+    {
+      "level": 3,
+      "title": "Audit Version Info Before Creating Rules"
+    },
+    {
+      "level": 1,
+      "title": "Audit all EXEs in a folder for their VERSIONINFO fields"
+    },
+    {
+      "level": 1,
+      "title": "Helps understand what FileName rules will be created"
+    },
+    {
+      "level": 2,
+      "title": "Pros and Cons"
+    },
+    {
+      "level": 2,
+      "title": "Attack Resistance Analysis"
+    },
+    {
+      "level": 3,
+      "title": "Critical Security Note"
+    },
+    {
+      "level": 2,
+      "title": "When to Use vs When to Avoid"
+    },
+    {
+      "level": 2,
+      "title": "Interaction with Other Levels"
+    },
+    {
+      "level": 3,
+      "title": "FileName vs FilePublisher: Side-by-Side"
+    },
+    {
+      "level": 2,
+      "title": "Real-World Scenario"
+    },
+    {
+      "level": 2,
+      "title": "OS Version and Compatibility Notes"
+    },
+    {
+      "level": 2,
+      "title": "Common Mistakes and Gotchas"
+    },
+    {
+      "level": 2,
+      "title": "Summary Table"
+    }
+  ],
+  "kind": "file-rule-level"
+}

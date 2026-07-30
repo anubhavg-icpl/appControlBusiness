@@ -1,0 +1,355 @@
+{
+  "id": "docs/rule-options/Option-14-ISG-Authorization",
+  "path": "docs/rule-options/Option-14-ISG-Authorization.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-14-ISG-Authorization.md",
+  "title": "Option 14 — Enabled:Intelligent Security Graph Authorization",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 14 — Enabled:Intelligent Security Graph Authorization",
+    "description": "What policy rule option 14 (Enabled:Intelligent Security Graph Authorization) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 14,
+    "policy_rule_value": "Enabled:Intelligent Security Graph Authorization",
+    "valid_for_supplemental": true,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 14 — Enabled:Intelligent Security Graph Authorization"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "What It Does"
+    },
+    {
+      "level": 2,
+      "title": "Why It Exists"
+    },
+    {
+      "level": 2,
+      "title": "The ISG Reputation System — Deep Dive"
+    },
+    {
+      "level": 3,
+      "title": "How ISG Assigns Reputation"
+    },
+    {
+      "level": 3,
+      "title": "What \"Known Good\" Actually Means"
+    },
+    {
+      "level": 3,
+      "title": "ISG Limitations by File Type"
+    },
+    {
+      "level": 2,
+      "title": "The Kernel EA Mechanism for ISG"
+    },
+    {
+      "level": 3,
+      "title": "How ISG Caching Works"
+    },
+    {
+      "level": 3,
+      "title": "The EA Value for ISG"
+    },
+    {
+      "level": 3,
+      "title": "Inspecting the ISG EA"
+    },
+    {
+      "level": 1,
+      "title": "Check EA on a file (requires admin)"
+    },
+    {
+      "level": 1,
+      "title": "Look for: KERNEL.SMARTLOCKER.ORIGINCLAIM"
+    },
+    {
+      "level": 1,
+      "title": "byte[4] = 0x01 indicates ISG authorization"
+    },
+    {
+      "level": 1,
+      "title": "Check ISG service status"
+    },
+    {
+      "level": 2,
+      "title": "Cloud Reputation Query Flow — Detailed Architecture"
+    },
+    {
+      "level": 3,
+      "title": "Network Requirements"
+    },
+    {
+      "level": 3,
+      "title": "ISG Service Architecture on Endpoint"
+    },
+    {
+      "level": 1,
+      "title": "Verify ISG service infrastructure is running"
+    },
+    {
+      "level": 1,
+      "title": "Required: Status = Running, StartType = Automatic"
+    },
+    {
+      "level": 1,
+      "title": "Check appidtel process"
+    },
+    {
+      "level": 1,
+      "title": "Test ISG connectivity (the endpoint used by ISG)"
+    },
+    {
+      "level": 1,
+      "title": "Should return: TcpTestSucceeded = True"
+    },
+    {
+      "level": 3,
+      "title": "ISG API Communication"
+    },
+    {
+      "level": 2,
+      "title": "Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Prerequisites"
+    },
+    {
+      "level": 1,
+      "title": "1. Ensure AppID Service is running"
+    },
+    {
+      "level": 1,
+      "title": "2. Verify ISG endpoint connectivity"
+    },
+    {
+      "level": 1,
+      "title": "3. Verify Windows Defender (Antivirus) is running"
+    },
+    {
+      "level": 1,
+      "title": "ISG leverages Defender's reputation infrastructure"
+    },
+    {
+      "level": 3,
+      "title": "Enable ISG Authorization (Set Option 14)"
+    },
+    {
+      "level": 1,
+      "title": "Enable ISG in the WDAC policy"
+    },
+    {
+      "level": 1,
+      "title": "Verify"
+    },
+    {
+      "level": 1,
+      "title": "Convert to binary"
+    },
+    {
+      "level": 3,
+      "title": "Disable ISG Authorization (Remove Option 14)"
+    },
+    {
+      "level": 3,
+      "title": "Full Example — Policy with Both MI and ISG"
+    },
+    {
+      "level": 1,
+      "title": "Enable both dynamic trust mechanisms"
+    },
+    {
+      "level": 1,
+      "title": "Verify both options are set"
+    },
+    {
+      "level": 3,
+      "title": "Monitor ISG Activity"
+    },
+    {
+      "level": 1,
+      "title": "Watch for ISG authorization events in real time"
+    },
+    {
+      "level": 1,
+      "title": "ISG Event ID meanings:"
+    },
+    {
+      "level": 1,
+      "title": "3080 = ISG check initiated"
+    },
+    {
+      "level": 1,
+      "title": "3082 = ISG authorized file (known good)"
+    },
+    {
+      "level": 1,
+      "title": "3083 = ISG blocked file (not known good)"
+    },
+    {
+      "level": 1,
+      "title": "3084 = ISG query failed (connectivity issue)"
+    },
+    {
+      "level": 1,
+      "title": "3085 = ISG cache hit (used cached verdict)"
+    },
+    {
+      "level": 1,
+      "title": "3086 = ISG authorization in audit mode"
+    },
+    {
+      "level": 2,
+      "title": "XML Representation"
+    },
+    {
+      "level": 2,
+      "title": "Interaction With Other Options"
+    },
+    {
+      "level": 2,
+      "title": "When to Enable vs Disable"
+    },
+    {
+      "level": 2,
+      "title": "Real-World Scenario — End-to-End Walkthrough"
+    },
+    {
+      "level": 2,
+      "title": "What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Scenario A: ISG enabled, AppIDSvc not running"
+    },
+    {
+      "level": 3,
+      "title": "Scenario B: ISG enabled, no network connectivity to sp.oci.microsoft.com"
+    },
+    {
+      "level": 3,
+      "title": "Scenario C: ISG treated as primary trust mechanism for internal apps"
+    },
+    {
+      "level": 3,
+      "title": "Scenario D: ISG + unsigned policy combination"
+    },
+    {
+      "level": 3,
+      "title": "Scenario E: Malicious file achieves \"Known Good\" ISG verdict"
+    },
+    {
+      "level": 3,
+      "title": "Event IDs to Monitor"
+    },
+    {
+      "level": 2,
+      "title": "Offline Behavior and Caching"
+    },
+    {
+      "level": 3,
+      "title": "Offline Cache Strategy"
+    },
+    {
+      "level": 1,
+      "title": "Simulate offline scenario: temporarily block ISG endpoint"
+    },
+    {
+      "level": 1,
+      "title": "(for testing purposes in a lab environment)"
+    },
+    {
+      "level": 1,
+      "title": "Run application — should use cached EA"
+    },
+    {
+      "level": 1,
+      "title": "Then check event log for 3085 (cache hit) vs 3084 (failed query)"
+    },
+    {
+      "level": 1,
+      "title": "Re-enable connectivity"
+    },
+    {
+      "level": 2,
+      "title": "Privacy and Data Transmission"
+    },
+    {
+      "level": 3,
+      "title": "What ISG Transmits to Microsoft"
+    },
+    {
+      "level": 3,
+      "title": "Organizational Considerations"
+    },
+    {
+      "level": 2,
+      "title": "Valid for Supplemental Policies?"
+    },
+    {
+      "level": 2,
+      "title": "OS Version Requirements"
+    },
+    {
+      "level": 2,
+      "title": "Security Considerations and Limitations"
+    },
+    {
+      "level": 3,
+      "title": "ISG Is Not a Replacement for Explicit Rules"
+    },
+    {
+      "level": 3,
+      "title": "Supply Chain Attacks and ISG"
+    },
+    {
+      "level": 3,
+      "title": "ISG + Defender Integration"
+    },
+    {
+      "level": 2,
+      "title": "Summary Table"
+    },
+    {
+      "level": 2,
+      "title": "Field Notes (Handwritten)"
+    },
+    {
+      "level": 2,
+      "title": "Architecture & Reference Illustrations"
+    }
+  ],
+  "kind": "rule-option"
+}

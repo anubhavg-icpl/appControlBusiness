@@ -1,0 +1,192 @@
+{
+  "id": "docs/Part7-Maintaining-Policies-AzureDevOps-PowerShell",
+  "path": "docs/Part7-Maintaining-Policies-AzureDevOps-PowerShell.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/Part7-Maintaining-Policies-AzureDevOps-PowerShell.md",
+  "title": "Part 7: Maintaining Policies with Azure DevOps (or PowerShell)",
+  "frontmatter": {
+    "type": "Guide",
+    "title": "Part 7: Maintaining Policies with Azure DevOps (or PowerShell)",
+    "description": "Maintaining App Control policies with Azure DevOps pipelines and PowerShell.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "endpoint-security"
+    ],
+    "status": "stable",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-01 20:54:41 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-01 20:54:41 +0530"
+    },
+    "sources": [
+      {
+        "id": "ctrlshiftenter",
+        "resource": "https://ctrlshiftenter.cloud",
+        "title": "ctrlshiftenter.cloud — Patrick Seltmann",
+        "author": "human:patrick-seltmann"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Mastering App Control for Business"
+    },
+    {
+      "level": 2,
+      "title": "Part 7: Maintaining Policies with Azure DevOps (or PowerShell)"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. Overview"
+    },
+    {
+      "level": 2,
+      "title": "2. Azure DevOps Setup"
+    },
+    {
+      "level": 3,
+      "title": "Organization & Project Requirements"
+    },
+    {
+      "level": 2,
+      "title": "3. Workload Identity Federation"
+    },
+    {
+      "level": 3,
+      "title": "How It Works"
+    },
+    {
+      "level": 2,
+      "title": "4. Create Service Connection for Workload Identity Federation"
+    },
+    {
+      "level": 3,
+      "title": "Navigation Path"
+    },
+    {
+      "level": 3,
+      "title": "Scope Configuration"
+    },
+    {
+      "level": 2,
+      "title": "5. Grant API Permissions to the Service Principal"
+    },
+    {
+      "level": 2,
+      "title": "6. Azure DevOps Repository Structure"
+    },
+    {
+      "level": 2,
+      "title": "7. Azure DevOps Pipeline"
+    },
+    {
+      "level": 3,
+      "title": "Build Service Permissions"
+    },
+    {
+      "level": 3,
+      "title": "Create the Pipeline"
+    },
+    {
+      "level": 2,
+      "title": "8. Pipeline YAML Reference"
+    },
+    {
+      "level": 1,
+      "title": "Pipeline: Build & Publish ACfB Policies"
+    },
+    {
+      "level": 1,
+      "title": "One-script approach: sign the XML and upload it"
+    },
+    {
+      "level": 1,
+      "title": "Service connection to Entra ID / Graph: 'AC4B' (OIDC / workload identity)"
+    },
+    {
+      "level": 1,
+      "title": "Script file lives in the repo: Publish-ACFBPolicy.ps1"
+    },
+    {
+      "level": 1,
+      "title": "Certificates must be stored under Certs\\*.cer or *.crt"
+    },
+    {
+      "level": 1,
+      "title": "Step 1: Get Microsoft Graph access token using OIDC"
+    },
+    {
+      "level": 1,
+      "title": "Step 2: Run the script that signs and uploads the policies"
+    },
+    {
+      "level": 1,
+      "title": "Step 3: Commit signed output back to repo (skip for PRs)"
+    },
+    {
+      "level": 3,
+      "title": "Pipeline Task Summary"
+    },
+    {
+      "level": 2,
+      "title": "9. PowerShell Script: Publish-ACFBPolicy.ps1"
+    },
+    {
+      "level": 3,
+      "title": "Script Parameters"
+    },
+    {
+      "level": 3,
+      "title": "Script Logic"
+    },
+    {
+      "level": 3,
+      "title": "Version Comparison Logic"
+    },
+    {
+      "level": 3,
+      "title": "Template Families"
+    },
+    {
+      "level": 3,
+      "title": "Authentication Modes"
+    },
+    {
+      "level": 3,
+      "title": "Module Requirements"
+    },
+    {
+      "level": 3,
+      "title": "Example Usage"
+    },
+    {
+      "level": 2,
+      "title": "10. Workflow: Commit to Pipeline to Intune"
+    },
+    {
+      "level": 3,
+      "title": "Key Design Decisions"
+    },
+    {
+      "level": 2,
+      "title": "11. Microsoft Graph API Details"
+    },
+    {
+      "level": 2,
+      "title": "Series Navigation"
+    },
+    {
+      "level": 2,
+      "title": "Field Notes (Handwritten)"
+    }
+  ],
+  "kind": "guide"
+}

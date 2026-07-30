@@ -1,0 +1,207 @@
+{
+  "id": "docs/rule-options/Option-01-Boot-Menu-Protection",
+  "path": "docs/rule-options/Option-01-Boot-Menu-Protection.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/Option-01-Boot-Menu-Protection.md",
+  "title": "Option 1 — Enabled:Boot Menu Protection",
+  "frontmatter": {
+    "type": "Policy Rule Option",
+    "title": "Option 1 — Enabled:Boot Menu Protection",
+    "description": "What policy rule option 1 (Enabled:Boot Menu Protection) does, why it exists, and how to configure it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "rule-option"
+    ],
+    "status": "stable",
+    "rule_index": 1,
+    "policy_rule_value": "Enabled:Boot Menu Protection",
+    "valid_for_supplemental": false,
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:16:42 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Option 1 — Enabled:Boot Menu Protection"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. What It Does"
+    },
+    {
+      "level": 2,
+      "title": "2. Why It Exists"
+    },
+    {
+      "level": 3,
+      "title": "The Boot-Time Attack Vector"
+    },
+    {
+      "level": 3,
+      "title": "The Threat Model"
+    },
+    {
+      "level": 3,
+      "title": "Why a Dedicated Option Is Needed"
+    },
+    {
+      "level": 2,
+      "title": "3. Visual Anatomy — Policy Evaluation Stack"
+    },
+    {
+      "level": 3,
+      "title": "Current Reality vs Intended Design"
+    },
+    {
+      "level": 2,
+      "title": "4. How to Set It (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Set Option 1 (No-Op Today)"
+    },
+    {
+      "level": 1,
+      "title": "Enable Option 1 — no effect on current Windows versions"
+    },
+    {
+      "level": 3,
+      "title": "Remove Option 1"
+    },
+    {
+      "level": 1,
+      "title": "Remove Option 1"
+    },
+    {
+      "level": 3,
+      "title": "Verify the Option Is Present in Policy XML"
+    },
+    {
+      "level": 3,
+      "title": "Compensating Controls (Current Best Practice)"
+    },
+    {
+      "level": 1,
+      "title": "1. Disable F8 boot menu via bcdedit (disables Advanced Options prompt)"
+    },
+    {
+      "level": 1,
+      "title": "2. Set a short boot timeout (prevents F8 window)"
+    },
+    {
+      "level": 1,
+      "title": "3. Require BitLocker PIN at boot (physical access attack mitigated)"
+    },
+    {
+      "level": 1,
+      "title": "Enable BitLocker with TPM+PIN:"
+    },
+    {
+      "level": 1,
+      "title": "4. Lock UEFI settings with administrator password (prevent boot order change)"
+    },
+    {
+      "level": 1,
+      "title": "(Done via UEFI firmware interface — no PowerShell API)"
+    },
+    {
+      "level": 1,
+      "title": "5. Verify HVCI is enabled (makes kernel CI tamper-resistant)"
+    },
+    {
+      "level": 2,
+      "title": "5. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "Option 1 Present in Policy XML"
+    },
+    {
+      "level": 3,
+      "title": "XML Schema Reference"
+    },
+    {
+      "level": 2,
+      "title": "6. Interaction with Other Options"
+    },
+    {
+      "level": 3,
+      "title": "Option Relationship Matrix"
+    },
+    {
+      "level": 3,
+      "title": "Interaction with Option 9"
+    },
+    {
+      "level": 2,
+      "title": "7. When to Enable vs Disable"
+    },
+    {
+      "level": 3,
+      "title": "Decision Reference Table"
+    },
+    {
+      "level": 2,
+      "title": "8. Real-World Scenario — End-to-End Walkthrough"
+    },
+    {
+      "level": 3,
+      "title": "Scenario: Insider Threat Attempts Safe Mode Bypass"
+    },
+    {
+      "level": 3,
+      "title": "Current Compensating Control Walkthrough"
+    },
+    {
+      "level": 2,
+      "title": "9. What Happens If You Get It Wrong"
+    },
+    {
+      "level": 3,
+      "title": "Misunderstanding: Assuming Option 1 Works Today"
+    },
+    {
+      "level": 3,
+      "title": "Misunderstanding: Not Knowing It Is Non-Functional"
+    },
+    {
+      "level": 3,
+      "title": "Misconfig Consequences Summary"
+    },
+    {
+      "level": 2,
+      "title": "10. Valid for Supplemental Policies?"
+    },
+    {
+      "level": 2,
+      "title": "11. OS Version Requirements"
+    },
+    {
+      "level": 3,
+      "title": "Why It Appears in Tooling Despite Being Unsupported"
+    },
+    {
+      "level": 2,
+      "title": "12. Summary Table"
+    }
+  ],
+  "kind": "rule-option"
+}

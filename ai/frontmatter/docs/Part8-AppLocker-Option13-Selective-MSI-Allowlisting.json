@@ -1,0 +1,332 @@
+{
+  "id": "docs/Part8-AppLocker-Option13-Selective-MSI-Allowlisting",
+  "path": "docs/Part8-AppLocker-Option13-Selective-MSI-Allowlisting.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/Part8-AppLocker-Option13-Selective-MSI-Allowlisting.md",
+  "title": "Part 8: AppLocker, Managed Installer (Option 13) & Selective MSI Allowlisting — End-to-End",
+  "frontmatter": {
+    "type": "Guide",
+    "title": "Part 8: AppLocker, Managed Installer (Option 13) & Selective MSI Allowlisting — End-to-End",
+    "description": "Using AppLocker alongside rule option 13 for selective MSI allowlisting.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "endpoint-security"
+    ],
+    "status": "stable",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:04:47 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:04:47 +0530"
+    },
+    "sources": [
+      {
+        "id": "ctrlshiftenter",
+        "resource": "https://ctrlshiftenter.cloud",
+        "title": "ctrlshiftenter.cloud — Patrick Seltmann",
+        "author": "human:patrick-seltmann"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Mastering App Control for Business"
+    },
+    {
+      "level": 2,
+      "title": "Part 8: AppLocker, Managed Installer (Option 13) & Selective MSI Allowlisting — End-to-End"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. What is AppLocker — and Why It Matters for WDAC"
+    },
+    {
+      "level": 3,
+      "title": "AppLocker vs WDAC — Key Differences"
+    },
+    {
+      "level": 2,
+      "title": "2. AppLocker Rule Collections Deep Dive"
+    },
+    {
+      "level": 3,
+      "title": "Enforcement Modes"
+    },
+    {
+      "level": 3,
+      "title": "Rule Types Within Collections"
+    },
+    {
+      "level": 3,
+      "title": "Services Enforcement Tracking"
+    },
+    {
+      "level": 2,
+      "title": "3. The ManagedInstaller Rule Collection"
+    },
+    {
+      "level": 3,
+      "title": "What It Does"
+    },
+    {
+      "level": 3,
+      "title": "Structure of the ManagedInstaller Collection"
+    },
+    {
+      "level": 3,
+      "title": "Key Rules — Why They Are Structured This Way"
+    },
+    {
+      "level": 3,
+      "title": "The \"Safe Merge\" Design Pattern"
+    },
+    {
+      "level": 3,
+      "title": "Activating MI Tracking — `appidtel start -mionly`"
+    },
+    {
+      "level": 2,
+      "title": "4. AppLockerFltr.sys — The Kernel Filter Driver"
+    },
+    {
+      "level": 3,
+      "title": "What a Minifilter Driver Is"
+    },
+    {
+      "level": 3,
+      "title": "How Process Tracking Works"
+    },
+    {
+      "level": 3,
+      "title": "Critical Ordering Requirement"
+    },
+    {
+      "level": 2,
+      "title": "5. KERNEL.SMARTLOCKER.ORIGINCLAIM — The EA Stamp"
+    },
+    {
+      "level": 3,
+      "title": "What is an EA?"
+    },
+    {
+      "level": 3,
+      "title": "EA Structure"
+    },
+    {
+      "level": 3,
+      "title": "Reading the EA — P/Invoke NtQueryEaFile"
+    },
+    {
+      "level": 1,
+      "title": "Read the raw EA from a file's inode"
+    },
+    {
+      "level": 3,
+      "title": "EA Persistence Behaviour"
+    },
+    {
+      "level": 2,
+      "title": "6. WDAC Option 13 — Enabled:Managed Installer"
+    },
+    {
+      "level": 1,
+      "title": "Results in this XML element:"
+    },
+    {
+      "level": 1,
+      "title": "<Rule><Option>Enabled:Managed Installer</Option></Rule>"
+    },
+    {
+      "level": 3,
+      "title": "What it Does Inside ci.dll"
+    },
+    {
+      "level": 3,
+      "title": "What Option 13 Does NOT Do"
+    },
+    {
+      "level": 2,
+      "title": "7. File Evaluation Precedence Order"
+    },
+    {
+      "level": 2,
+      "title": "8. Trust Model A — Blanket MI Trust (WITH Option 13)"
+    },
+    {
+      "level": 3,
+      "title": "Full End-to-End Flow"
+    },
+    {
+      "level": 3,
+      "title": "Architecture Diagram"
+    },
+    {
+      "level": 3,
+      "title": "When to Use Trust Model A"
+    },
+    {
+      "level": 2,
+      "title": "9. Trust Model B — Selective Allowlisting (WITHOUT Option 13)"
+    },
+    {
+      "level": 3,
+      "title": "How It Differs"
+    },
+    {
+      "level": 3,
+      "title": "Full End-to-End Flow"
+    },
+    {
+      "level": 3,
+      "title": "Architecture Diagram"
+    },
+    {
+      "level": 2,
+      "title": "10. Side-by-Side Trust Model Comparison"
+    },
+    {
+      "level": 2,
+      "title": "11. FilePublisher vs Hash vs Publisher Rules"
+    },
+    {
+      "level": 3,
+      "title": "How New-CIPolicy Chooses the Rule Level"
+    },
+    {
+      "level": 2,
+      "title": "12. Our PoC Architecture — End-to-End"
+    },
+    {
+      "level": 3,
+      "title": "Repository Layout"
+    },
+    {
+      "level": 3,
+      "title": "Component Interaction Map"
+    },
+    {
+      "level": 2,
+      "title": "13. Selective Allowlist Workflow — Step by Step"
+    },
+    {
+      "level": 3,
+      "title": "Prerequisites"
+    },
+    {
+      "level": 3,
+      "title": "Full Step-by-Step Workflow"
+    },
+    {
+      "level": 2,
+      "title": "14. approved-apps.json — The Allowlist Contract"
+    },
+    {
+      "level": 3,
+      "title": "Schema"
+    },
+    {
+      "level": 3,
+      "title": "Example"
+    },
+    {
+      "level": 3,
+      "title": "How 00-Approve-MSI.ps1 Uses It"
+    },
+    {
+      "level": 2,
+      "title": "15. Supplemental Policy Lifecycle"
+    },
+    {
+      "level": 3,
+      "title": "Per-App Policy File Naming"
+    },
+    {
+      "level": 3,
+      "title": "Supplemental Policy Limits"
+    },
+    {
+      "level": 2,
+      "title": "16. What Happens at Execution Time"
+    },
+    {
+      "level": 3,
+      "title": "Scenario 1 — Approved App (7-Zip) Runs"
+    },
+    {
+      "level": 3,
+      "title": "Scenario 2 — Non-Approved App Blocked"
+    },
+    {
+      "level": 3,
+      "title": "Scenario 3 — App Updated, Hash Rule Stale"
+    },
+    {
+      "level": 2,
+      "title": "17. CodeIntegrity Event Log Reference"
+    },
+    {
+      "level": 3,
+      "title": "Event IDs"
+    },
+    {
+      "level": 3,
+      "title": "Diagnosis Workflow Using Events"
+    },
+    {
+      "level": 2,
+      "title": "18. Known Limitations — Both Trust Models"
+    },
+    {
+      "level": 3,
+      "title": "Trust Model A (Option 13 / MI) Limitations"
+    },
+    {
+      "level": 3,
+      "title": "Trust Model B (Selective / Our PoC) Limitations"
+    },
+    {
+      "level": 2,
+      "title": "19. Decision Guide — When to Use MI vs Explicit Rules"
+    },
+    {
+      "level": 2,
+      "title": "20. Security Considerations"
+    },
+    {
+      "level": 3,
+      "title": "Trust Model A Security Model"
+    },
+    {
+      "level": 3,
+      "title": "Trust Model B Security Model"
+    },
+    {
+      "level": 3,
+      "title": "Comparing Attack Surfaces"
+    },
+    {
+      "level": 3,
+      "title": "Common Hardening Additions"
+    },
+    {
+      "level": 2,
+      "title": "21. Glossary"
+    },
+    {
+      "level": 2,
+      "title": "Field Notes (Handwritten)"
+    },
+    {
+      "level": 2,
+      "title": "Architecture & Reference Illustrations"
+    }
+  ],
+  "kind": "guide"
+}

@@ -1,0 +1,277 @@
+{
+  "id": "docs/file-rule-levels/Level-LeafCertificate",
+  "path": "docs/file-rule-levels/Level-LeafCertificate.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-LeafCertificate.md",
+  "title": "WDAC File Rule Level: LeafCertificate",
+  "frontmatter": {
+    "type": "File Rule Level",
+    "title": "WDAC File Rule Level: LeafCertificate",
+    "description": "How the LeafCertificate file rule level works, its attack resistance, and when to use it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "file-rule-level"
+    ],
+    "status": "stable",
+    "file_rule_level": "LeafCertificate",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "WDAC File Rule Level: LeafCertificate"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. Overview"
+    },
+    {
+      "level": 2,
+      "title": "2. How It Works"
+    },
+    {
+      "level": 3,
+      "title": "How ConfigCI Generates a LeafCertificate Rule"
+    },
+    {
+      "level": 3,
+      "title": "The TBS Hash Mechanism"
+    },
+    {
+      "level": 1,
+      "title": "How to get the TBS hash of a leaf certificate"
+    },
+    {
+      "level": 1,
+      "title": "The TBS hash is computed over the to-be-signed portion of the cert"
+    },
+    {
+      "level": 1,
+      "title": "ConfigCI uses SHA-256 for TBS hash on modern systems"
+    },
+    {
+      "level": 1,
+      "title": "The actual TBS hash is available after New-CIPolicyRule generates the rule"
+    },
+    {
+      "level": 3,
+      "title": "ConfigCI Chain Walking for LeafCertificate"
+    },
+    {
+      "level": 2,
+      "title": "3. Certificate Chain Anatomy"
+    },
+    {
+      "level": 2,
+      "title": "4. Leaf Certificate vs Publisher vs PcaCertificate — The Key Differences"
+    },
+    {
+      "level": 3,
+      "title": "Specificity vs Maintenance Comparison Table"
+    },
+    {
+      "level": 2,
+      "title": "5. Where in the Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "6. XML Representation"
+    },
+    {
+      "level": 3,
+      "title": "LeafCertificate Rule XML"
+    },
+    {
+      "level": 3,
+      "title": "XML Differentiator: LeafCertificate vs Publisher vs PcaCertificate"
+    },
+    {
+      "level": 2,
+      "title": "7. PowerShell Examples"
+    },
+    {
+      "level": 3,
+      "title": "Generate a LeafCertificate Policy"
+    },
+    {
+      "level": 1,
+      "title": "Generate LeafCertificate rules from a directory of signed PE files"
+    },
+    {
+      "level": 1,
+      "title": "Parameters:"
+    },
+    {
+      "level": 1,
+      "title": "-Level LeafCertificate  : Use leaf cert TBS hash as the trust anchor"
+    },
+    {
+      "level": 1,
+      "title": "-Fallback Publisher, Hash : If LeafCert fails (shouldn't for signed files),"
+    },
+    {
+      "level": 1,
+      "title": "try Publisher, then Hash"
+    },
+    {
+      "level": 3,
+      "title": "Generate LeafCertificate Rule for a Single File"
+    },
+    {
+      "level": 1,
+      "title": "Single file LeafCertificate rule"
+    },
+    {
+      "level": 3,
+      "title": "Inspecting a File's Leaf Certificate for LeafCertificate Context"
+    },
+    {
+      "level": 1,
+      "title": "Usage"
+    },
+    {
+      "level": 3,
+      "title": "Monitoring Upcoming LeafCertificate Rule Expirations"
+    },
+    {
+      "level": 1,
+      "title": "Scan a deployed policy XML and report upcoming cert expirations"
+    },
+    {
+      "level": 2,
+      "title": "8. Pros and Cons"
+    },
+    {
+      "level": 3,
+      "title": "Pros"
+    },
+    {
+      "level": 3,
+      "title": "Cons"
+    },
+    {
+      "level": 2,
+      "title": "9. The Maintenance Problem: Leaf Cert Validity Periods"
+    },
+    {
+      "level": 3,
+      "title": "Typical Leaf Cert Lifetimes"
+    },
+    {
+      "level": 3,
+      "title": "The Expiry Timeline Problem"
+    },
+    {
+      "level": 3,
+      "title": "Maintenance Calendar"
+    },
+    {
+      "level": 3,
+      "title": "Comparison: Maintenance Burden by Rule Level"
+    },
+    {
+      "level": 2,
+      "title": "10. Attack Resistance Analysis"
+    },
+    {
+      "level": 3,
+      "title": "LeafCertificate vs Publisher: Attack Resistance Comparison"
+    },
+    {
+      "level": 2,
+      "title": "11. When to Use vs When to Avoid"
+    },
+    {
+      "level": 3,
+      "title": "Scenarios Where LeafCertificate Makes Sense"
+    },
+    {
+      "level": 3,
+      "title": "Scenarios Where LeafCertificate Should Be Avoided"
+    },
+    {
+      "level": 2,
+      "title": "12. Double-Signed File Behavior"
+    },
+    {
+      "level": 2,
+      "title": "13. Real-World Scenario"
+    },
+    {
+      "level": 2,
+      "title": "14. OS Version and Compatibility Notes"
+    },
+    {
+      "level": 3,
+      "title": "ConfigCI Module Note"
+    },
+    {
+      "level": 2,
+      "title": "15. Common Mistakes and Gotchas"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 1: Confusing Leaf TBS Hash with Thumbprint"
+    },
+    {
+      "level": 1,
+      "title": "DO NOT use thumbprint:"
+    },
+    {
+      "level": 1,
+      "title": "The TBS hash is computed by ConfigCI internally"
+    },
+    {
+      "level": 1,
+      "title": "To verify, generate the rule and inspect the XML:"
+    },
+    {
+      "level": 1,
+      "title": "Inspect $rule to see the actual TBS hash used"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 2: Not Tracking Cert Expiry Dates"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 3: Removing the Old Rule Too Soon During Cert Rotation"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 4: Using LeafCertificate When Publisher Provides Equal Security"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 5: Not Understanding That Expiry ≠ Trust Loss for Timestamped Files"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 6: Assuming XML Structure Alone Tells You the Level"
+    },
+    {
+      "level": 2,
+      "title": "16. Summary Table"
+    }
+  ],
+  "kind": "file-rule-level"
+}

@@ -1,0 +1,253 @@
+{
+  "id": "docs/file-rule-levels/Level-WHQLFilePublisher",
+  "path": "docs/file-rule-levels/Level-WHQLFilePublisher.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/Level-WHQLFilePublisher.md",
+  "title": "WDAC File Rule Level: WHQLFilePublisher",
+  "frontmatter": {
+    "type": "File Rule Level",
+    "title": "WDAC File Rule Level: WHQLFilePublisher",
+    "description": "How the WHQLFilePublisher file rule level works, its attack resistance, and when to use it.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "file-rule-level"
+    ],
+    "status": "stable",
+    "file_rule_level": "WHQLFilePublisher",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-02 20:43:14 +0530"
+    },
+    "sources": [
+      {
+        "id": "ms-appcontrol",
+        "resource": "https://learn.microsoft.com/windows/security/application-security/application-control/app-control-for-business/",
+        "title": "Microsoft Learn — App Control for Business documentation",
+        "author": "team:microsoft-learn"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "WDAC File Rule Level: WHQLFilePublisher"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. Overview"
+    },
+    {
+      "level": 2,
+      "title": "2. The Triple Binding Concept"
+    },
+    {
+      "level": 2,
+      "title": "3. How WHQLFilePublisher Works Technically"
+    },
+    {
+      "level": 3,
+      "title": "Step 1: Kernel-Mode Context Check"
+    },
+    {
+      "level": 3,
+      "title": "Step 2: WHQL EKU Scan"
+    },
+    {
+      "level": 3,
+      "title": "Step 3: Chain Integrity Check"
+    },
+    {
+      "level": 3,
+      "title": "Step 4: Leaf CN Match"
+    },
+    {
+      "level": 3,
+      "title": "Step 5: OriginalFileName Match"
+    },
+    {
+      "level": 3,
+      "title": "Step 6: Minimum Version Check"
+    },
+    {
+      "level": 2,
+      "title": "4. The WHQLFilePublisher Trust Check Flow"
+    },
+    {
+      "level": 2,
+      "title": "5. OriginalFileName and -SpecificFileNameLevel"
+    },
+    {
+      "level": 3,
+      "title": "Renaming Attack Resistance"
+    },
+    {
+      "level": 2,
+      "title": "6. Certificate Chain / Trust Anatomy"
+    },
+    {
+      "level": 2,
+      "title": "7. Where in the Evaluation Stack"
+    },
+    {
+      "level": 2,
+      "title": "8. XML Representation — Full Example"
+    },
+    {
+      "level": 3,
+      "title": "XML Structure Summary"
+    },
+    {
+      "level": 2,
+      "title": "9. PowerShell Examples"
+    },
+    {
+      "level": 3,
+      "title": "Generating WHQLFilePublisher Rules"
+    },
+    {
+      "level": 1,
+      "title": "Default: generates WHQLFilePublisher rules using OriginalFileName from PE VERSIONINFO"
+    },
+    {
+      "level": 1,
+      "title": "Output XML will contain:"
+    },
+    {
+      "level": 1,
+      "title": "- EKU element for WHQL OID"
+    },
+    {
+      "level": 1,
+      "title": "- FileAttrib elements for each unique driver filename found during scan"
+    },
+    {
+      "level": 1,
+      "title": "- Signer elements combining PCA cert + EKU ref + vendor CN + FileAttribRef(s)"
+    },
+    {
+      "level": 1,
+      "title": "Using -SpecificFileNameLevel to match on InternalName instead of OriginalFileName"
+    },
+    {
+      "level": 1,
+      "title": "Useful when OriginalFileName is inconsistent across driver versions"
+    },
+    {
+      "level": 3,
+      "title": "Extracting PE VERSIONINFO from a Driver"
+    },
+    {
+      "level": 1,
+      "title": "Usage"
+    },
+    {
+      "level": 3,
+      "title": "Scanning All WHQL Drivers and Generating a Complete Report"
+    },
+    {
+      "level": 1,
+      "title": "Audit all drivers in System32\\drivers — build inventory for WHQLFilePublisher policy"
+    },
+    {
+      "level": 1,
+      "title": "Display results"
+    },
+    {
+      "level": 1,
+      "title": "Export for review"
+    },
+    {
+      "level": 3,
+      "title": "Building a Policy from Scanned Driver Inventory"
+    },
+    {
+      "level": 1,
+      "title": "After scanning, generate the WHQLFilePublisher policy from the inventory"
+    },
+    {
+      "level": 1,
+      "title": "Convert to binary for deployment"
+    },
+    {
+      "level": 2,
+      "title": "10. All Four WHQL Levels — Trust Surface Comparison"
+    },
+    {
+      "level": 2,
+      "title": "11. Pros & Cons Table"
+    },
+    {
+      "level": 2,
+      "title": "12. Attack Resistance Analysis"
+    },
+    {
+      "level": 2,
+      "title": "13. When to Use vs. When to Avoid — Decision Flowchart"
+    },
+    {
+      "level": 2,
+      "title": "14. Real-World Scenario: Intel NIC Driver Allowlisting"
+    },
+    {
+      "level": 2,
+      "title": "15. Policy Maintenance: Driver Updates"
+    },
+    {
+      "level": 3,
+      "title": "Automatic Pass: Same Filename, Same Vendor, Higher Version"
+    },
+    {
+      "level": 3,
+      "title": "Manual Update Required: Driver Filename Changes"
+    },
+    {
+      "level": 3,
+      "title": "Handling Version Rollouts"
+    },
+    {
+      "level": 2,
+      "title": "16. OS Version & Compatibility"
+    },
+    {
+      "level": 2,
+      "title": "17. Common Mistakes & Gotchas"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 1: OriginalFileName vs. File-on-Disk Name"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 2: Version Format Errors"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 3: Missing FileAttribRef in Signer"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 4: One Signer per Vendor (Not per File)"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 5: Forgetting Deny Rules Take Precedence"
+    },
+    {
+      "level": 3,
+      "title": "Mistake 6: Not Testing in Audit Mode First"
+    },
+    {
+      "level": 2,
+      "title": "18. Summary Table"
+    }
+  ],
+  "kind": "file-rule-level"
+}

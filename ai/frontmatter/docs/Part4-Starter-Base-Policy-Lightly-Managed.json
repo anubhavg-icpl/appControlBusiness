@@ -1,0 +1,176 @@
+{
+  "id": "docs/Part4-Starter-Base-Policy-Lightly-Managed",
+  "path": "docs/Part4-Starter-Base-Policy-Lightly-Managed.md",
+  "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/Part4-Starter-Base-Policy-Lightly-Managed.md",
+  "title": "Part 4: Starter Base Policy for Lightly Managed Devices",
+  "frontmatter": {
+    "type": "Guide",
+    "title": "Part 4: Starter Base Policy for Lightly Managed Devices",
+    "description": "Building a starter base policy for lightly managed devices.",
+    "tags": [
+      "app-control",
+      "wdac",
+      "endpoint-security"
+    ],
+    "status": "stable",
+    "generated": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-01 20:54:41 +0530"
+    },
+    "verified": {
+      "by": "human:anubhavg-icpl",
+      "at": "2026-05-01 20:54:41 +0530"
+    },
+    "sources": [
+      {
+        "id": "ctrlshiftenter",
+        "resource": "https://ctrlshiftenter.cloud",
+        "title": "ctrlshiftenter.cloud — Patrick Seltmann",
+        "author": "human:patrick-seltmann"
+      }
+    ]
+  },
+  "headings": [
+    {
+      "level": 1,
+      "title": "Mastering App Control for Business"
+    },
+    {
+      "level": 2,
+      "title": "Part 4: Starter Base Policy for Lightly Managed Devices"
+    },
+    {
+      "level": 2,
+      "title": "Table of Contents"
+    },
+    {
+      "level": 2,
+      "title": "1. Overview"
+    },
+    {
+      "level": 3,
+      "title": "Template: Smart App Control Policy"
+    },
+    {
+      "level": 3,
+      "title": "Deployment Recommendation"
+    },
+    {
+      "level": 2,
+      "title": "2. Scenario"
+    },
+    {
+      "level": 3,
+      "title": "Approach"
+    },
+    {
+      "level": 3,
+      "title": "Template Selected"
+    },
+    {
+      "level": 2,
+      "title": "3. Requirements Identified"
+    },
+    {
+      "level": 2,
+      "title": "4. Method 1: Manual Processing (PowerShell)"
+    },
+    {
+      "level": 3,
+      "title": "Step 1: Copy Template"
+    },
+    {
+      "level": 3,
+      "title": "Step 2: Remove Unsupported Code Snippets"
+    },
+    {
+      "level": 3,
+      "title": "Step 3: Set Basic Policy Information"
+    },
+    {
+      "level": 1,
+      "title": "Set version"
+    },
+    {
+      "level": 1,
+      "title": "Set policy name"
+    },
+    {
+      "level": 1,
+      "title": "Generate and set new Policy ID"
+    },
+    {
+      "level": 3,
+      "title": "Step 4: Set Security Options"
+    },
+    {
+      "level": 4,
+      "title": "Option 2 — Require WHQL"
+    },
+    {
+      "level": 4,
+      "title": "Option 3 — Enable Audit Mode"
+    },
+    {
+      "level": 4,
+      "title": "Option 6 — Enable Unsigned System Integrity Policy"
+    },
+    {
+      "level": 4,
+      "title": "Option 13 — Enable Managed Installer"
+    },
+    {
+      "level": 4,
+      "title": "Option 16 — Enable Update Policy No Reboot"
+    },
+    {
+      "level": 4,
+      "title": "Security Options Summary"
+    },
+    {
+      "level": 2,
+      "title": "5. Method 2: App Control Policy Wizard"
+    },
+    {
+      "level": 3,
+      "title": "Steps in the Wizard"
+    },
+    {
+      "level": 2,
+      "title": "6. Convert XML to Binary"
+    },
+    {
+      "level": 3,
+      "title": "Deploy Locally with PowerShell (Testing Only)"
+    },
+    {
+      "level": 2,
+      "title": "7. Validate Policy Deployment"
+    },
+    {
+      "level": 3,
+      "title": "Method 1: citool"
+    },
+    {
+      "level": 3,
+      "title": "Method 2: CodeIntegrity Folder"
+    },
+    {
+      "level": 3,
+      "title": "Method 3: Event Log"
+    },
+    {
+      "level": 3,
+      "title": "Next Step: Enable Enforcement Mode"
+    },
+    {
+      "level": 2,
+      "title": "Series Navigation"
+    },
+    {
+      "level": 2,
+      "title": "Field Notes (Handwritten)"
+    }
+  ],
+  "kind": "guide"
+}
