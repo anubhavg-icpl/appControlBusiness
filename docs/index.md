@@ -4,6 +4,8 @@ okf_version: "0.2"
 
 # App Control for Business — Reference Series
 
+> For coding agents and automated consumers, start with [the AI index](/ai/) and [resources.json](/ai/resources.json) before browsing individual documents.
+
 * [Part 1: Introduction & Key Concepts](Part1-Introduction-KeyConcepts.md) - Why application control matters, key concepts, licensing, and how App Control for Business compares to AppLocker.
 * [Part 2: Policy Templates & Rule Options](Part2-Policy-Templates-Rule-Options.md) - The built-in policy templates and the full set of policy rule options.
 * [Part 3: Application ID Tagging Policies & Managed Installer](Part3-AppID-Tagging-Managed-Installer.md) - AppID tagging policies and the managed installer feature.
@@ -18,4 +20,6 @@ okf_version: "0.2"
 * [Policy Rule Options](rule-options/) - Deep dives on every WDAC policy rule option (0–20 plus Developer Mode Dynamic Code Trust).
 * [File Rule Levels](file-rule-levels/) - Deep dives on every WDAC file rule level, from Hash to WHQLFilePublisher.
 * [Notes & Tips](notes/) - Advanced notes, tips, and gotchas for managing App Control policies.
+
+* [AI / MCP-ready index](/ai/) - Static discovery page for agents plus a machine-readable manifest.
 * [References](references/) - Handwritten field notes and supporting reference material.

@@ -1,0 +1,25 @@
+{
+  "name": "App Control for Business AI Resource Manifest",
+  "baseUrl": "https://anubhavg-icpl.github.io/appControlBusiness/",
+  "agentIndex": "https://anubhavg-icpl.github.io/appControlBusiness/ai/",
+  "llmsTxt": "https://anubhavg-icpl.github.io/appControlBusiness/llms.txt",
+  "docsIndex": "https://anubhavg-icpl.github.io/appControlBusiness/docs/index.md",
+  "sitemap": "https://anubhavg-icpl.github.io/appControlBusiness/sitemap.xml",
+  "bundleSpec": "https://anubhavg-icpl.github.io/appControlBusiness/OKF-SPEC.md",
+  "recommendedStart": [
+    "https://anubhavg-icpl.github.io/appControlBusiness/llms.txt",
+    "https://anubhavg-icpl.github.io/appControlBusiness/docs/index.md",
+    "https://anubhavg-icpl.github.io/appControlBusiness/sitemap.xml"
+  ],
+  "highValuePaths": [
+    "https://anubhavg-icpl.github.io/appControlBusiness/README.md",
+    "https://anubhavg-icpl.github.io/appControlBusiness/docs/log.md",
+    "https://anubhavg-icpl.github.io/appControlBusiness/docs/notes/Notes-Tips-AppControl.md",
+    "https://anubhavg-icpl.github.io/appControlBusiness/docs/rule-options/",
+    "https://anubhavg-icpl.github.io/appControlBusiness/docs/file-rule-levels/"
+  ],
+  "notes": [
+    "GitHub Pages serves static files only; this is an MCP-style discovery surface, not a live MCP server.",
+    "The static agent page is meant to be stable, cacheable, and easy for coding agents to parse."
+  ]
+}

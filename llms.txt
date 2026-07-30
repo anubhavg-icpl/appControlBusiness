@@ -2,10 +2,13 @@
 
 > A complete corporate reference for Microsoft App Control for Business (formerly Windows Defender Application Control, WDAC): an 8-part guide, deep-dive references for all 22 policy rule options and 12 file rule levels, and an advanced notes compendium. Authored by Anubhav Gain from source material by Patrick Seltmann (ctrlshiftenter.cloud) and Microsoft Learn.
 
+> Agent entry point: start at [AI / MCP-ready index](/ai/) for a static discovery page, then use [resources.json](/ai/resources.json), [docs/index.md](/docs/index.md), and [sitemap.xml](/sitemap.xml).
+
 Important notes:
 
 - Every documentation page is plain Markdown with OKF v0.2 YAML frontmatter (`type`, `title`, `description`, `tags`, `status`, `generated`, `verified`, `sources`); the Markdown URLs below are directly fetchable.
 - App Control for Business enforces application allowlisting in the Windows kernel via `ci.dll` (Code Integrity); rule evaluation order is: explicit deny, explicit allow (base), allow (supplemental), Managed Installer EA, ISG reputation, implicit deny.
+- GitHub Pages cannot host a live MCP transport by itself; the static `/ai/` page and `/ai/resources.json` are the recommended agent-facing discovery layer for this repo.
 - Content is © 2026 Anubhav Gain, All Rights Reserved; see the [license](https://anubhavg-icpl.github.io/appControlBusiness/LICENSE) for reuse terms.
 
 ## Guide
@@ -68,3 +71,4 @@ Important notes:
 - [Bundle index](https://anubhavg-icpl.github.io/appControlBusiness/docs/index.md): OKF bundle root listing of all concepts
 - [Update log](https://anubhavg-icpl.github.io/appControlBusiness/docs/log.md): Chronological history of documentation changes
 - [OKF v0.2 specification](https://anubhavg-icpl.github.io/appControlBusiness/OKF-SPEC.md): The Open Knowledge Format spec this bundle conforms to
+- [AI / MCP-ready index](https://anubhavg-icpl.github.io/appControlBusiness/ai/): Static discovery page for coding agents

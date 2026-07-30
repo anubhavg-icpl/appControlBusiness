@@ -12,6 +12,21 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- AI / Agent Index -->
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/ai/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://anubhavg-icpl.github.io/appControlBusiness/ai/resources.json</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Part 1: Introduction & Key Concepts -->
   <url>
     <loc>https://anubhavg-icpl.github.io/appControlBusiness/#part1</loc>

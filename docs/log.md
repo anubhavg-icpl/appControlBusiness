@@ -1,6 +1,7 @@
 # Directory Update Log
 
 ## 2026-07-28
+* **Update**: Added a dedicated [AI / MCP-ready index](/ai/) page and [/ai/resources.json](/ai/resources.json) manifest for coding agents on GitHub Pages.
 * **Update**: Added author signature mark, repository LICENSE (All Rights Reserved), and a root [llms.txt](/llms.txt) index for LLM consumers.
 * **Update**: Added 14 architecture and reference illustrations under [references/images](references/images/) (WebP) and embedded them with showcase captions across the Parts, rule options, file rule levels, and notes.
 * **Update**: Added 10 scanned handwritten field-note pages under [references/handwritten](references/handwritten/) (WebP) and embedded them in the relevant concepts.

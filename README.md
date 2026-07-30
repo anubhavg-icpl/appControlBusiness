@@ -32,6 +32,12 @@ python3 -m http.server 8080
 
 Features: dark/light theme · part search · reading progress · syntax-highlighted code · copy buttons · keyboard navigation (`←` / `→`).
 
+## AI / Agent Entry Point
+
+For coding agents and other automated consumers, start with [the AI index](ai/) and [its machine-readable manifest](ai/resources.json). That page points to the bundle root, [llms.txt](llms.txt), [docs/index.md](docs/index.md), and [sitemap.xml](sitemap.xml).
+
+GitHub Pages cannot run a live MCP server on its own, so the repo uses a static agent-discovery page instead. If you want a true MCP endpoint later, host it separately and have it point at the same static URLs.
+
 ## Series Overview
 
 | Part | Topic |
@@ -49,6 +55,7 @@ Features: dark/light theme · part search · reading progress · syntax-highligh
 ```
 appControlBusiness/
 ├── index.html       ← viewer entry point
+├── ai/              ← static AI/agent discovery page + manifest
 ├── style.css
 ├── app.js
 └── docs/
