@@ -42,6 +42,8 @@ cd mcp-server
 npm start
 ```
 
+The primary server entrypoint is `server.js`. `index.mjs` remains as a compatibility shim.
+
 ## Example Claude Desktop config
 
 ```json
@@ -50,7 +52,7 @@ npm start
     "app-control-business": {
       "command": "node",
       "args": [
-        "/absolute/path/to/appControlBusiness/mcp-server/index.mjs"
+        "/absolute/path/to/appControlBusiness/mcp-server/server.js"
       ],
       "env": {
         "ACFB_SOURCE_MODE": "remote",
