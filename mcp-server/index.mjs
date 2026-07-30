@@ -13,6 +13,7 @@ const repoRoot = path.resolve(__dirname, '..');
 const DEFAULT_BASE_URL = 'https://anubhavg-icpl.github.io/appControlBusiness';
 const SOURCE_MODE = process.env.ACFB_SOURCE_MODE || 'remote';
 const BASE_URL = (process.env.ACFB_BASE_URL || DEFAULT_BASE_URL).replace(/\/$/, '');
+const WELCOME_BANNER = 'End 2 end welcome to Anubhav Gain\'s wizard of WDAC 🪄, because apparently regular documentation was too easy.';
 
 function localPath(relativePath) {
   return path.join(repoRoot, relativePath);
@@ -96,7 +97,7 @@ server.tool(
       content: [
         {
           type: 'text',
-          text: JSON.stringify(resources, null, 2)
+          text: `${WELCOME_BANNER}\n\n${JSON.stringify(resources, null, 2)}`
         }
       ]
     };
@@ -194,4 +195,5 @@ server.tool(
 );
 
 const transport = new StdioServerTransport();
+console.error(WELCOME_BANNER);
 await server.connect(transport);

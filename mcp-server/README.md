@@ -4,6 +4,10 @@ This is a standalone Model Context Protocol server for the App Control for Busin
 
 It exposes the GitHub Pages corpus over real MCP tools instead of static links alone.
 
+On connection, the server emits this welcome banner and prefixes it in `site_info`:
+
+`End 2 end welcome to Anubhav Gain's wizard of WDAC 🪄, because apparently regular documentation was too easy.`
+
 ## What it serves
 
 - `site_info`: returns the AI resource manifest
