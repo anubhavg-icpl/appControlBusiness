@@ -1,7 +1,7 @@
 # Mastering App Control for Business — Full Offline Bundle
 
 Source site: https://anubhavg-icpl.github.io/appControlBusiness/
-Generated at: 2026-07-30T16:50:23Z
+Generated at: 2026-07-30T16:55:44Z
 
 This bundle concatenates the root llms.txt guide with the full Markdown corpus so offline agents can reason over one fetchable text file.
 
@@ -19,6 +19,8 @@ Important notes:
 - App Control for Business enforces application allowlisting in the Windows kernel via `ci.dll` (Code Integrity); rule evaluation order is: explicit deny, explicit allow (base), allow (supplemental), Managed Installer EA, ISG reputation, implicit deny.
 - GitHub Pages cannot host a live MCP transport by itself; the static `/ai/` page and `/ai/resources.json` are the recommended agent-facing discovery layer for this repo.
 - Generated assets for agents are available at `/ai/search-index.json`, `/ai/llms-full.txt`, `/ai/frontmatter/index.json`, `/ai/updates.json`, and `/ai/atom.xml`.
+- Browser search is available at `/ai/search.html`, backed by `/ai/search-index.json`.
+- A real MCP server scaffold is available in `/mcp-server/` for agents that need protocol-level integration instead of static file fetches.
 - Content is © 2026 Anubhav Gain, All Rights Reserved; see the [license](https://anubhavg-icpl.github.io/appControlBusiness/LICENSE) for reuse terms.
 
 ## Guide
@@ -86,6 +88,7 @@ Important notes:
 - [Search index](https://anubhavg-icpl.github.io/appControlBusiness/ai/search-index.json): Full-text index across the Markdown corpus
 - [Frontmatter exports](https://anubhavg-icpl.github.io/appControlBusiness/ai/frontmatter/index.json): Per-page OKF frontmatter as JSON
 - [Updates feed](https://anubhavg-icpl.github.io/appControlBusiness/ai/updates.json): JSON feed for machine-readable change detection
+- [Browser search](https://anubhavg-icpl.github.io/appControlBusiness/ai/search.html): Static full-text search UI powered by the generated index
 
 ---
 ## Part 1: Introduction & Key Concepts
@@ -14747,6 +14750,8 @@ Tags:
 * **Update**: Added `/ai/frontmatter/index.json` plus per-page JSON exports under `/ai/frontmatter/` for OKF frontmatter tooling.
 * **Update**: Added `/ai/updates.json` and `/ai/atom.xml` as machine-readable change feeds.
 * **Update**: Added `scripts/generate_agent_assets.rb` to regenerate all AI-facing static assets from source Markdown.
+* **Update**: Added `/ai/search.html` as a browser-side full-text search UI powered by the generated search index.
+* **Update**: Added `/mcp-server/` as a standalone Node MCP server scaffold for protocol-level access to the corpus.
 
 ## 2026-07-28
 * **Update**: Added a dedicated [AI / MCP-ready index](/ai/) page and [/ai/resources.json](/ai/resources.json) manifest for coding agents on GitHub Pages.

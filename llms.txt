@@ -10,6 +10,8 @@ Important notes:
 - App Control for Business enforces application allowlisting in the Windows kernel via `ci.dll` (Code Integrity); rule evaluation order is: explicit deny, explicit allow (base), allow (supplemental), Managed Installer EA, ISG reputation, implicit deny.
 - GitHub Pages cannot host a live MCP transport by itself; the static `/ai/` page and `/ai/resources.json` are the recommended agent-facing discovery layer for this repo.
 - Generated assets for agents are available at `/ai/search-index.json`, `/ai/llms-full.txt`, `/ai/frontmatter/index.json`, `/ai/updates.json`, and `/ai/atom.xml`.
+- Browser search is available at `/ai/search.html`, backed by `/ai/search-index.json`.
+- A real MCP server scaffold is available in `/mcp-server/` for agents that need protocol-level integration instead of static file fetches.
 - Content is © 2026 Anubhav Gain, All Rights Reserved; see the [license](https://anubhavg-icpl.github.io/appControlBusiness/LICENSE) for reuse terms.
 
 ## Guide
@@ -77,3 +79,4 @@ Important notes:
 - [Search index](https://anubhavg-icpl.github.io/appControlBusiness/ai/search-index.json): Full-text index across the Markdown corpus
 - [Frontmatter exports](https://anubhavg-icpl.github.io/appControlBusiness/ai/frontmatter/index.json): Per-page OKF frontmatter as JSON
 - [Updates feed](https://anubhavg-icpl.github.io/appControlBusiness/ai/updates.json): JSON feed for machine-readable change detection
+- [Browser search](https://anubhavg-icpl.github.io/appControlBusiness/ai/search.html): Static full-text search UI powered by the generated index

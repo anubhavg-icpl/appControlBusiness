@@ -258,6 +258,7 @@
           <span class="chip">Canonical site: <a href="https://anubhavg-icpl.github.io/appControlBusiness/">/appControlBusiness/</a></span>
           <span class="chip">Agent page: <a href="./">/ai/</a></span>
           <span class="chip">Machine file: <a href="./resources.json">resources.json</a></span>
+          <span class="chip">Search UI: <a href="./search.html">search.html</a></span>
         </div>
         <div class="badge">Best practice: start with llms.txt, then hop to the manifest or docs index.</div>
       </article>
@@ -294,6 +295,7 @@
         <h2>High-value paths</h2>
         <p>These are the pages an LLM will usually want first.</p>
         <ul class="list">
+          <li><a href="./search.html">/ai/search.html</a></li>
           <li><a href="/appControlBusiness/llms.txt">/llms.txt</a></li>
           <li><a href="/appControlBusiness/docs/index.md">/docs/index.md</a></li>
           <li><a href="/appControlBusiness/docs/log.md">/docs/log.md</a></li>
@@ -332,6 +334,9 @@
         <h2>Deployment note</h2>
         <p class="small">
           This page is static and deploys cleanly through the existing GitHub Pages workflow. If you later want a real MCP server, deploy it on a separate runtime such as Cloudflare Workers, Fly.io, Render, or Vercel, then have that server expose or proxy these same resource URLs.
+        </p>
+        <p class="small" style="margin-top:10px;">
+          A standalone Node MCP scaffold now lives in <code>/mcp-server</code> and reads from either the deployed GitHub Pages site or the local checkout.
         </p>
         <p class="footer">
           Last updated for agent discovery on <code>2026-07-30</code>. Regenerate the static assets with <code>ruby scripts/generate_agent_assets.rb</code>. The page is intentionally simple so browsers, indexing bots, and coding agents can all consume it without JavaScript.

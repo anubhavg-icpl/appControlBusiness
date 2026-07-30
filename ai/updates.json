@@ -10,7 +10,7 @@
       "url": "https://anubhavg-icpl.github.io/appControlBusiness/docs/log.md",
       "title": "Directory Update Log — 2026-07-30",
       "date_published": "2026-07-30T00:00:00Z",
-      "content_text": "**Update**: Added `/ai/search-index.json` as a full-text search index across the Markdown corpus.\n**Update**: Added `/ai/llms-full.txt` as a single offline bundle for agent ingestion.\n**Update**: Added `/ai/frontmatter/index.json` plus per-page JSON exports under `/ai/frontmatter/` for OKF frontmatter tooling.\n**Update**: Added `/ai/updates.json` and `/ai/atom.xml` as machine-readable change feeds.\n**Update**: Added `scripts/generate_agent_assets.rb` to regenerate all AI-facing static assets from source Markdown.",
+      "content_text": "**Update**: Added `/ai/search-index.json` as a full-text search index across the Markdown corpus.\n**Update**: Added `/ai/llms-full.txt` as a single offline bundle for agent ingestion.\n**Update**: Added `/ai/frontmatter/index.json` plus per-page JSON exports under `/ai/frontmatter/` for OKF frontmatter tooling.\n**Update**: Added `/ai/updates.json` and `/ai/atom.xml` as machine-readable change feeds.\n**Update**: Added `scripts/generate_agent_assets.rb` to regenerate all AI-facing static assets from source Markdown.\n**Update**: Added `/ai/search.html` as a browser-side full-text search UI powered by the generated search index.\n**Update**: Added `/mcp-server/` as a standalone Node MCP server scaffold for protocol-level access to the corpus.",
       "tags": [
         "updates",
         "changelog"

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>App Control for Business Updates</title>
   <id>https://anubhavg-icpl.github.io/appControlBusiness/ai/atom.xml</id>
-  <updated>2026-07-30T16:50:23Z</updated>
+  <updated>2026-07-30T16:55:44Z</updated>
   <link href="https://anubhavg-icpl.github.io/appControlBusiness/" rel="alternate" />
   <link href="https://anubhavg-icpl.github.io/appControlBusiness/ai/atom.xml" rel="self" />
   <subtitle>Machine-readable change feed for the App Control for Business documentation bundle.</subtitle>
@@ -15,7 +15,9 @@
 **Update**: Added `/ai/llms-full.txt` as a single offline bundle for agent ingestion.
 **Update**: Added `/ai/frontmatter/index.json` plus per-page JSON exports under `/ai/frontmatter/` for OKF frontmatter tooling.
 **Update**: Added `/ai/updates.json` and `/ai/atom.xml` as machine-readable change feeds.
-**Update**: Added `scripts/generate_agent_assets.rb` to regenerate all AI-facing static assets from source Markdown.</summary>
+**Update**: Added `scripts/generate_agent_assets.rb` to regenerate all AI-facing static assets from source Markdown.
+**Update**: Added `/ai/search.html` as a browser-side full-text search UI powered by the generated search index.
+**Update**: Added `/mcp-server/` as a standalone Node MCP server scaffold for protocol-level access to the corpus.</summary>
 </entry>
 <entry>
   <title>Directory Update Log — 2026-07-28</title>

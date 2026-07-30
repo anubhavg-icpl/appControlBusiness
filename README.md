@@ -40,6 +40,8 @@ GitHub Pages cannot run a live MCP server on its own, so the repo uses a static 
 
 The generated agent assets live under [ai/search-index.json](ai/search-index.json), [ai/llms-full.txt](ai/llms-full.txt), [ai/frontmatter/index.json](ai/frontmatter/index.json), [ai/updates.json](ai/updates.json), and [ai/atom.xml](ai/atom.xml). Regenerate them from source Markdown with `ruby scripts/generate_agent_assets.rb`.
 
+There is also a browser-side search interface at [ai/search.html](ai/search.html) and a standalone MCP server scaffold under [mcp-server/README.md](mcp-server/README.md) for real MCP tool access to the corpus.
+
 ## Series Overview
 
 | Part | Topic |
@@ -58,6 +60,7 @@ The generated agent assets live under [ai/search-index.json](ai/search-index.jso
 appControlBusiness/
 ├── index.html       ← viewer entry point
 ├── ai/              ← static AI/agent discovery page + manifest
+├── mcp-server/      ← standalone MCP server scaffold for the corpus
 ├── scripts/         ← generator for search index, llms-full, frontmatter, feeds
 ├── style.css
 ├── app.js

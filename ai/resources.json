@@ -2,6 +2,7 @@
   "name": "App Control for Business AI Resource Manifest",
   "baseUrl": "https://anubhavg-icpl.github.io/appControlBusiness/",
   "agentIndex": "https://anubhavg-icpl.github.io/appControlBusiness/ai/",
+  "browserSearch": "https://anubhavg-icpl.github.io/appControlBusiness/ai/search.html",
   "llmsTxt": "https://anubhavg-icpl.github.io/appControlBusiness/llms.txt",
   "llmsFull": "https://anubhavg-icpl.github.io/appControlBusiness/ai/llms-full.txt",
   "docsIndex": "https://anubhavg-icpl.github.io/appControlBusiness/docs/index.md",
@@ -12,6 +13,7 @@
   "sitemap": "https://anubhavg-icpl.github.io/appControlBusiness/sitemap.xml",
   "bundleSpec": "https://anubhavg-icpl.github.io/appControlBusiness/OKF-SPEC.md",
   "generator": "https://anubhavg-icpl.github.io/appControlBusiness/scripts/generate_agent_assets.rb",
+  "mcpServerReadme": "https://anubhavg-icpl.github.io/appControlBusiness/mcp-server/README.md",
   "recommendedStart": [
     "https://anubhavg-icpl.github.io/appControlBusiness/llms.txt",
     "https://anubhavg-icpl.github.io/appControlBusiness/docs/index.md",

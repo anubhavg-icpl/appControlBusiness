@@ -6,6 +6,8 @@
 * **Update**: Added `/ai/frontmatter/index.json` plus per-page JSON exports under `/ai/frontmatter/` for OKF frontmatter tooling.
 * **Update**: Added `/ai/updates.json` and `/ai/atom.xml` as machine-readable change feeds.
 * **Update**: Added `scripts/generate_agent_assets.rb` to regenerate all AI-facing static assets from source Markdown.
+* **Update**: Added `/ai/search.html` as a browser-side full-text search UI powered by the generated search index.
+* **Update**: Added `/mcp-server/` as a standalone Node MCP server scaffold for protocol-level access to the corpus.
 
 ## 2026-07-28
 * **Update**: Added a dedicated [AI / MCP-ready index](/ai/) page and [/ai/resources.json](/ai/resources.json) manifest for coding agents on GitHub Pages.
