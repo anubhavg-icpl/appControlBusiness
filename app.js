@@ -1060,6 +1060,208 @@ function mountAiSearch() {
   );
 }
 
+/* ── Chatbot — retrieval + extract over the WDAC corpus ───────────
+   Reuses the ONNX ranker (aiPredict) to pick the right doc, then scores
+   that doc's H2 sections by TF-IDF cosine to the query and returns the
+   first 1–2 sentences of the best section as a concise answer. No LLM,
+   no API key, fully static — answers are drawn verbatim from the docs.
+   ───────────────────────────────────────────────────────────────── */
+const CHAT = { _mdCache: {} };
+
+async function chatFetchMd(file) {
+  if (CHAT._mdCache[file]) return CHAT._mdCache[file];
+  const res = await fetch(file);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const raw = await res.text();
+  return (CHAT._mdCache[file] = raw.replace(/^---[\s\S]*?---\s*\n/, ''));
+}
+
+function chatSplitH2(md) {
+  return md.split(/\n(?=#{2,3}\s)/)
+    .map(s => s.trim()).filter(Boolean);
+}
+
+/** Strip markdown to plain prose; drop code fences, tables, images. */
+function chatClean(t) {
+  return t
+    .replace(/```[\s\S]*?```/g, ' ')          // fenced code
+    .replace(/`[^`\n]*`/g, ' ')               // inline code
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')    // images
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')  // links → text
+    .replace(/^\s*\|.*$/gm, ' ')              // any table row / separator
+    .replace(/^\s*[-*+]\s+/gm, '')            // bullets
+    .replace(/^\s*\d+\.\s+/gm, '')            // numbered lists
+    .replace(/^#{1,6}\s+/gm, '')              // headers
+    .replace(/^\s*>.+\s*$/gm, ' ')            // blockquotes
+    .replace(/\*\*([^*]+)\*\*/g, '$1')        // bold
+    .replace(/__([^_]+)__/g, '$1')
+    .replace(/\*([^*]+)\*/g, '$1')            // italic
+    .replace(/[*_~|#>]/g, ' ')                // leftover symbols
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/** First 1–2 real prose sentences only; returns '' if none (table/list stubs). */
+function chatFirstSentences(text, maxWords = 48) {
+  const clean = chatClean(text);
+  const sents = clean.match(/[A-Z][^.|!?]{15,240}[.!?](?=\s|$)/g) || [];
+  let out = '', words = 0;
+  for (const s of sents) {
+    const w = s.trim().split(/\s+/);
+    if (w.length > 60) continue;              // too long → not a clean sentence
+    if (words + w.length > maxWords && out) break;
+    out += (out ? ' ' : '') + s.trim();
+    words += w.length;
+    if (words >= Math.floor(maxWords * 0.6)) break;
+  }
+  return out;
+}
+
+function chatCosine(a, b) {
+  let dot = 0;
+  for (let i = 0; i < a.length; i++) if (a[i] && b[i]) dot += a[i] * b[i];
+  return dot;                               // both vectors are L2-normalized
+}
+
+/** Find the best concise answer for a query. Returns {text, idx, label, prob}. */
+async function aiAnswer(query) {
+  const top = await aiPredict(query, 5);    // candidate docs from the ONNX model
+  const qv = aiVectorize(aiTokenize(query));
+  const cands = [];
+  for (const r of top) {
+    const part = PARTS[r.idx];
+    if (!part) continue;
+    let md;
+    try { md = await chatFetchMd(part.file); } catch (_) { continue; }
+    for (const sec of chatSplitH2(md)) {
+      if (chatClean(sec).split(/\s+/).length < 30) continue;   // skip stubs / code-heavy
+      cands.push({ idx: r.idx, label: r.label, sec, sim: chatCosine(qv, aiVectorize(aiTokenize(sec))) });
+    }
+  }
+  cands.sort((a, b) => b.sim - a.sim);
+  for (const c of cands) {                   // first section with a real prose sentence
+    const ans = chatFirstSentences(c.sec);
+    if (ans) {
+      const t = top.find(x => x.idx === c.idx);
+      return { text: ans, idx: c.idx, label: c.label, prob: t ? t.prob : c.sim };
+    }
+  }
+  const r = top[0];
+  return { text: "I couldn't extract a clean answer for that — open the top match below for the full page.",
+           idx: r.idx, label: r.label, prob: r.prob };
+}
+
+/** Build + wire the floating chat widget once (idempotent). */
+function mountChatbot() {
+  if (document.getElementById('chat-fab')) return;
+
+  const fab = document.createElement('button');
+  fab.id = 'chat-fab';
+  fab.className = 'chat-fab';
+  fab.setAttribute('aria-label', 'Open App Control AI chat');
+  fab.innerHTML = '<span class="chat-fab-icon">?</span>';
+
+  const panel = document.createElement('div');
+  panel.id = 'chat-panel';
+  panel.className = 'chat-panel chat-panel--hidden';
+  panel.setAttribute('role', 'dialog');
+  panel.setAttribute('aria-label', 'App Control AI chat');
+  panel.innerHTML = `
+    <div class="chat-head">
+      <div class="chat-head-title">
+        <span class="chat-head-dot"></span> App Control AI
+        <span class="chat-head-sub">answers from the WDAC docs · on-device</span>
+      </div>
+      <button id="chat-close" class="chat-close" aria-label="Close chat">✕</button>
+    </div>
+    <div id="chat-body" class="chat-body" aria-live="polite"></div>
+    <div id="chat-suggestions" class="chat-suggestions"></div>
+    <div class="chat-input-row">
+      <input id="chat-input" type="text" autocomplete="off" placeholder="Ask about any WDAC rule…"
+             aria-label="Type your question" />
+      <button id="chat-send" aria-label="Send">Send</button>
+    </div>`;
+
+  document.body.appendChild(fab);
+  document.body.appendChild(panel);
+
+  const body = panel.querySelector('#chat-body');
+  const input = panel.querySelector('#chat-input');
+  const send = panel.querySelector('#chat-send');
+  const closeBtn = panel.querySelector('#chat-close');
+  const sugg = panel.querySelector('#chat-suggestions');
+
+  const SUGGESTIONS = [
+    'What is UMCI?',
+    'How do I enable audit mode?',
+    'Block unsigned kernel drivers',
+    'What does a managed installer do?',
+  ];
+
+  const pushMsg = (who, html) => {
+    const row = document.createElement('div');
+    row.className = 'chat-msg chat-msg--' + who;
+    row.innerHTML = `<div class="chat-bubble">${html}</div>`;
+    body.appendChild(row);
+    body.scrollTop = body.scrollHeight;
+    return row;
+  };
+
+  const greet = () => {
+    body.innerHTML = '';
+    pushMsg('bot', "Hi — ask me anything about App Control for Business / WDAC and I'll answer from the docs.");
+    sugg.innerHTML = SUGGESTIONS
+      .map(q => `<button class="chat-chip" type="button">${q}</button>`).join('');
+    sugg.querySelectorAll('.chat-chip').forEach(c =>
+      c.addEventListener('click', () => { input.value = c.textContent; ask(); }));
+  };
+
+  const open = () => {
+    panel.classList.remove('chat-panel--hidden');
+    fab.classList.add('chat-fab--hidden');
+    if (!body.hasChildNodes()) greet();
+    setTimeout(() => input.focus(), 50);
+  };
+  const close = () => {
+    panel.classList.add('chat-panel--hidden');
+    fab.classList.remove('chat-fab--hidden');
+  };
+
+  const ask = async () => {
+    const q = input.value.trim();
+    if (!q) return;
+    pushMsg('user', escapeHtml(q));
+    input.value = '';
+    sugg.innerHTML = '';
+    const typing = pushMsg('bot', '<span class="chat-typing"><span></span><span></span><span></span></span>');
+    try {
+      const a = await aiAnswer(q);
+      typing.querySelector('.chat-bubble').innerHTML =
+        `${escapeHtml(a.text)}<button class="chat-link" data-idx="${a.idx}">Read more: ${escapeHtml(a.label)} →</button>`;
+      typing.querySelector('.chat-link').addEventListener('click', () => {
+        loadPart(parseInt(a.idx, 10));
+        close();
+      });
+    } catch (err) {
+      console.error('chat error:', err);
+      typing.querySelector('.chat-bubble').textContent =
+        'Sorry — the model could not load (' + err.message + '). Try again.';
+    }
+    body.scrollTop = body.scrollHeight;
+  };
+
+  fab.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  send.addEventListener('click', ask);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') ask(); });
+}
+
+/* Tiny HTML-escaper for user/bot text injected via innerHTML. */
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
 /* ── Init ─────────────────────────────────────────────────────── */
 (function init() {
   // Restore theme
@@ -1084,6 +1286,9 @@ function mountAiSearch() {
   }
 
   buildDots();
+
+  // Floating chatbot widget (global, on every page)
+  mountChatbot();
 
   // Deep-link: load part from URL hash (#part3 for main parts, #opt-13 for rule options)
   const hash      = window.location.hash;
