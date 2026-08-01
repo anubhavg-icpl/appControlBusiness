@@ -390,6 +390,17 @@ const PARTS = [
     desc:  'Comprehensive reference covering supplemental policy considerations, deny rule XML anatomy, rule precedence, policy merging, allow-list architecture, Microsoft recommended block rules, certificate chains, double-signed files, unsafe practices, and advanced WDAC gotchas.',
     keywords: 'WDAC notes tips best practices, supplemental policy, deny rules, rule precedence, policy merging, allow-list, block rules, certificate chains, advanced WDAC',
   },
+
+  // ── AI Rule Search (index 43) — interactive ONNX tool ─────────
+  {
+    file:  'docs/ai/AI-Rule-Search.md',
+    label: 'AI Rule Search',
+    num:   'ai-search',
+    category: 'ai-search',
+    tags:  ['AI','ONNX','Search','In-Browser'],
+    desc:  'Ask a plain-English question and a small neural network (TF-IDF + MLP) trained on every WDAC reference page runs locally in your browser via ONNX Runtime Web to find the most relevant page.',
+    keywords: 'AI rule search, ONNX Runtime, onnxruntime-web, in-browser ML, WDAC semantic search, neural classifier, TF-IDF, app control question, find rule',
+  },
 ];
 
 /* ── State ────────────────────────────────────────────────────── */
@@ -420,9 +431,14 @@ marked.use({ gfm: true, breaks: false });
 /* ── Dynamic SEO — update meta tags on every part switch ─────── */
 function updateSEO(part) {
   const isOpt   = part.category === 'rule-option';
-  const partUrl = isOpt ? `${BASE_URL}#${part.num}` : `${BASE_URL}#part${part.num}`;
+  const isAiSEO = part.category === 'ai-search';
+  const partUrl = isOpt ? `${BASE_URL}#${part.num}`
+    : isAiSEO ? `${BASE_URL}#ai-search`
+    : `${BASE_URL}#part${part.num}`;
   const title   = isOpt
     ? `${part.label} | WDAC Rule Options — Anubhav Gain`
+    : isAiSEO
+    ? `${part.label} | AI-Powered WDAC Search — Anubhav Gain`
     : `Part ${part.num}: ${part.label} | ${SITE_NAME} — Anubhav Gain`;
   const desc    = part.desc;
 
@@ -475,7 +491,8 @@ function updateSEO(part) {
   document.getElementById('progress-bar')?.setAttribute('aria-valuenow', '0');
 
   // Push browser history state (enables back/forward between parts)
-  history.pushState({ part: part.num }, title, isOpt ? `#${part.num}` : `#part${part.num}`);
+  history.pushState({ part: part.num }, title,
+    isOpt ? `#${part.num}` : isAiSEO ? `#ai-search` : `#part${part.num}`);
 }
 
 /* Helper: find or create a <meta> and set its content */
@@ -625,16 +642,19 @@ function buildHeaderCard(part) {
   const isOpt = part.category === 'rule-option';
   const isFrlCard  = part.category === 'file-rule-level';
   const isNoteCard = part.category === 'notes';
+  const isAiCard   = part.category === 'ai-search';
   const numDisplay = isOpt
     ? part.num.replace('opt-', '').replace('dev', 'Dev').toUpperCase()
     : isFrlCard ? part.num.replace('frl-', '').toUpperCase()
     : isNoteCard ? 'NT'
+    : isAiCard ? 'AI'
     : String(part.num).padStart(2, '0');
   const seriesLabel = isOpt ? 'WDAC Policy Rule Options — Reference'
     : isFrlCard ? 'WDAC File Rule Levels — Reference'
     : isNoteCard ? 'App Control — Notes & Tips'
+    : isAiCard ? 'Interactive Tool — ONNX Runtime Web'
     : 'Mastering App Control for Business';
-  const cardClass = isOpt ? ' phc-opt' : isFrlCard ? ' phc-frl' : isNoteCard ? ' phc-opt' : '';
+  const cardClass = isOpt ? ' phc-opt' : isFrlCard ? ' phc-frl' : (isNoteCard || isAiCard) ? ' phc-opt' : '';
   return `
 <div class="part-header-card${cardClass}">
   <div class="phc-num">${numDisplay}</div>
@@ -725,7 +745,7 @@ function buildDots() {
   partDots.innerHTML = '';
   dotPartMap.length  = 0;
   PARTS.forEach((p, i) => {
-    if (p.category === 'rule-option') return;
+    if (p.category === 'rule-option' || p.category === 'ai-search') return;
     dotPartMap.push(i);
     const d = document.createElement('div');
     d.className   = 'dot' + (i === currentPart ? ' active' : '');
@@ -770,10 +790,12 @@ async function loadPart(index) {
   const isOpt2 = part.category === 'rule-option';
   const isFrl  = part.category === 'file-rule-level';
   const isNote = part.category === 'notes';
+  const isAi   = part.category === 'ai-search';
   bcPart.textContent = isOpt2
     ? `Option ${part.num.replace('opt-', '').replace('dev', 'Dev').toUpperCase()}`
     : isFrl ? `Level: ${part.num.replace('frl-', '').toUpperCase()}`
     : isNote ? 'Notes & Tips'
+    : isAi ? 'AI Rule Search'
     : `Part ${part.num}`;
   prevBtn.disabled   = index === 0;
   nextBtn.disabled   = index === PARTS.length - 1;
@@ -809,6 +831,9 @@ async function loadPart(index) {
     wrapTables(content);
     buildToc();
     readTime.textContent = calcReadTime(raw);
+
+    // Mount interactive widgets after markdown render (AI Rule Search page)
+    if (content.querySelector('#ai-search-root')) mountAiSearch();
 
   } catch (err) {
     content.innerHTML = `
@@ -901,6 +926,140 @@ window.addEventListener('popstate', e => {
   }
 });
 
+/* ── AI Rule Search — lazy onnxruntime-web inference ──────────────
+   Tokenizer + TF-IDF mirror sklearn's TfidfVectorizer exactly (see
+   tools/train_model.py) so the JS vector equals the Python vector for a
+   given query. The ONNX MLP only ever sees a float tensor.
+   ───────────────────────────────────────────────────────────────── */
+const AI = {
+  FEATURES_URL: 'assets/wdac_features.json',
+  MODEL_URL:    'assets/wdac_model.onnx',
+  ORT_CDN:      'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/',
+  _feat: null, _sess: null, _inName: null, _ready: null,
+};
+
+/** Lazily fetch features.json + the ONNX model and create the ort session. */
+function ensureAiReady() {
+  if (AI._ready) return AI._ready;
+  AI._ready = (async () => {
+    if (typeof ort === 'undefined')
+      throw new Error('ONNX Runtime Web failed to load (CDN blocked?).');
+    ort.env.wasm.wasmPaths = AI.ORT_CDN;
+    const [featResp, modelResp] = await Promise.all([
+      fetch(AI.FEATURES_URL), fetch(AI.MODEL_URL),
+    ]);
+    if (!featResp.ok) throw new Error(`features.json HTTP ${featResp.status}`);
+    if (!modelResp.ok) throw new Error(`model.onnx HTTP ${modelResp.status}`);
+    AI._feat = await featResp.json();
+    const bytes = await modelResp.arrayBuffer();
+    AI._sess = await ort.InferenceSession.create(bytes, { executionProviders: ['wasm'] });
+    AI._inName = AI._sess.inputNames[0];
+    return AI._feat;
+  })();
+  return AI._ready;
+}
+
+/** Mirror sklearn token_pattern (?u)\b\w\w+\b, lowercased. */
+function aiTokenize(text) {
+  return text.toLowerCase().match(/[a-z0-9_]{2,}/g) || [];
+}
+
+/** Build the L2-normalized TF-IDF vector (unigrams + bigrams), matching sklearn. */
+function aiVectorize(tokens) {
+  const F = AI._feat;
+  const v = new Float32Array(F.input_dim);
+  const add = (gram) => { const c = F.vocab[gram]; if (c !== undefined) v[c] += 1; };
+  for (let i = 0; i < tokens.length; i++) {
+    add(tokens[i]);
+    if (i + 1 < tokens.length) add(tokens[i] + ' ' + tokens[i + 1]);
+  }
+  let norm = 0;
+  for (let i = 0; i < v.length; i++) { if (v[i]) { v[i] *= F.idf[i]; norm += v[i] * v[i]; } }
+  norm = Math.sqrt(norm);
+  if (norm > 0) for (let i = 0; i < v.length; i++) v[i] /= norm;
+  return v;
+}
+
+/** Run inference → top-k [{idx, label, prob}]. */
+async function aiPredict(query, k = 5) {
+  const F = await ensureAiReady();
+  const vec = aiVectorize(aiTokenize(query));
+  const tensor = new ort.Tensor('float32', vec, [1, F.input_dim]);
+  const out = await AI._sess.run({ [AI._inName]: tensor });
+  const probs = out[AI._sess.outputNames[0]].data;
+  const idxs = [...probs.keys()].sort((a, b) => probs[b] - probs[a]).slice(0, k);
+  return idxs.map(i => ({ idx: i, label: F.labels[i].label, prob: probs[i] }));
+}
+
+/** Build + wire the widget into #ai-search-root (idempotent). */
+function mountAiSearch() {
+  const root = document.getElementById('ai-search-root');
+  if (!root || root.dataset.mounted) return;
+  root.dataset.mounted = '1';
+  root.className = 'ai-search';
+  root.innerHTML = `
+    <div class="ai-search-box">
+      <input id="ai-input" type="search" autocomplete="off" spellcheck="false"
+             placeholder="Ask: e.g. block unsigned drivers"
+             aria-label="Ask a WDAC question" />
+      <button id="ai-go" type="button" aria-label="Run AI search">Search</button>
+    </div>
+    <div id="ai-status" class="ai-status" role="status" aria-live="polite"></div>
+    <ol id="ai-results" class="ai-results" role="list"></ol>`;
+
+  const input   = root.querySelector('#ai-input');
+  const btn     = root.querySelector('#ai-go');
+  const status  = root.querySelector('#ai-status');
+  const results = root.querySelector('#ai-results');
+
+  const setStatus = (msg, kind = '') => {
+    status.textContent = msg || '';
+    status.className = 'ai-status' + (kind ? ' ai-status--' + kind : '');
+  };
+
+  const run = async () => {
+    const q = input.value.trim();
+    if (!q) { results.innerHTML = ''; setStatus('Type a question, then press Search.'); return; }
+    setStatus('Loading model…', 'busy');
+    btn.disabled = true;
+    const t0 = performance.now();
+    try {
+      const top = await aiPredict(q);
+      const ms = Math.round(performance.now() - t0);
+      setStatus(`Top match below · ${ms} ms on-device`, 'ok');
+      results.innerHTML = top.map((r, n) => `
+        <li class="ai-result${n === 0 ? ' ai-result--top' : ''}" data-idx="${r.idx}" tabindex="0" role="link">
+          <div class="ai-result-head">
+            <span class="ai-result-rank">${n + 1}</span>
+            <span class="ai-result-label">${r.label}</span>
+            <span class="ai-result-prob">${(r.prob * 100).toFixed(1)}%</span>
+          </div>
+          <div class="ai-bar"><div class="ai-bar-fill" style="width:${(r.prob * 100).toFixed(1)}%"></div></div>
+        </li>`).join('');
+      results.querySelectorAll('.ai-result').forEach(li => {
+        const go = () => loadPart(parseInt(li.dataset.idx, 10));
+        li.addEventListener('click', go);
+        li.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
+      });
+    } catch (err) {
+      console.error('AI search error:', err);
+      setStatus('Model failed to load: ' + err.message, 'err');
+    } finally {
+      btn.disabled = false;
+    }
+  };
+
+  btn.addEventListener('click', run);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') run(); });
+
+  // Kick off the model fetch as soon as the widget is visible.
+  setStatus('Model loads on first search (≈1.3 MB, cached after).');
+  ensureAiReady().then(
+    () => setStatus('Model ready · type a question and press Search.', 'ok'),
+    (e) => setStatus('Could not preload model: ' + e.message, 'err'),
+  );
+}
+
 /* ── Init ─────────────────────────────────────────────────────── */
 (function init() {
   // Restore theme
@@ -935,6 +1094,9 @@ window.addEventListener('popstate', e => {
     startIdx = Math.max(0, Math.min(PARTS.length - 1, parseInt(partMatch[1]) - 1));
   } else if (optMatch) {
     const found = PARTS.findIndex(p => p.num === optMatch[1]);
+    if (found >= 0) startIdx = found;
+  } else if (hash.includes('ai-search')) {
+    const found = PARTS.findIndex(p => p.num === 'ai-search');
     if (found >= 0) startIdx = found;
   }
 

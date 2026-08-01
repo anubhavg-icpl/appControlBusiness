@@ -1,0 +1,8 @@
+# Train a small TF-IDF + MLP WDAC classifier and export ONNX + features.json.
+# CPU-only is fine.
+torch>=2.0
+scikit-learn>=1.3
+numpy>=1.24
+onnx>=1.14
+onnxruntime>=1.16
+onnxscript>=0.7   # torch>=2.13 ONNX exporter dependency
