@@ -390,17 +390,6 @@ const PARTS = [
     desc:  'Comprehensive reference covering supplemental policy considerations, deny rule XML anatomy, rule precedence, policy merging, allow-list architecture, Microsoft recommended block rules, certificate chains, double-signed files, unsafe practices, and advanced WDAC gotchas.',
     keywords: 'WDAC notes tips best practices, supplemental policy, deny rules, rule precedence, policy merging, allow-list, block rules, certificate chains, advanced WDAC',
   },
-
-  // ── AI Rule Search (index 43) — interactive ONNX tool ─────────
-  {
-    file:  'docs/ai/AI-Rule-Search.md',
-    label: 'AI Rule Search',
-    num:   'ai-search',
-    category: 'ai-search',
-    tags:  ['AI','ONNX','Search','In-Browser'],
-    desc:  'Ask a plain-English question and a small neural network (TF-IDF + MLP) trained on every WDAC reference page runs locally in your browser via ONNX Runtime Web to find the most relevant page.',
-    keywords: 'AI rule search, ONNX Runtime, onnxruntime-web, in-browser ML, WDAC semantic search, neural classifier, TF-IDF, app control question, find rule',
-  },
 ];
 
 /* ── State ────────────────────────────────────────────────────── */
@@ -832,9 +821,6 @@ async function loadPart(index) {
     buildToc();
     readTime.textContent = calcReadTime(raw);
 
-    // Mount interactive widgets after markdown render (AI Rule Search page)
-    if (content.querySelector('#ai-search-root')) mountAiSearch();
-
   } catch (err) {
     content.innerHTML = `
       <div style="text-align:center;padding:80px 20px;color:var(--text-muted)">
@@ -991,75 +977,6 @@ async function aiPredict(query, k = 5) {
   return idxs.map(i => ({ idx: i, label: F.labels[i].label, prob: probs[i] }));
 }
 
-/** Build + wire the widget into #ai-search-root (idempotent). */
-function mountAiSearch() {
-  const root = document.getElementById('ai-search-root');
-  if (!root || root.dataset.mounted) return;
-  root.dataset.mounted = '1';
-  root.className = 'ai-search';
-  root.innerHTML = `
-    <div class="ai-search-box">
-      <input id="ai-input" type="search" autocomplete="off" spellcheck="false"
-             placeholder="Ask: e.g. block unsigned drivers"
-             aria-label="Ask a WDAC question" />
-      <button id="ai-go" type="button" aria-label="Run AI search">Search</button>
-    </div>
-    <div id="ai-status" class="ai-status" role="status" aria-live="polite"></div>
-    <ol id="ai-results" class="ai-results" role="list"></ol>`;
-
-  const input   = root.querySelector('#ai-input');
-  const btn     = root.querySelector('#ai-go');
-  const status  = root.querySelector('#ai-status');
-  const results = root.querySelector('#ai-results');
-
-  const setStatus = (msg, kind = '') => {
-    status.textContent = msg || '';
-    status.className = 'ai-status' + (kind ? ' ai-status--' + kind : '');
-  };
-
-  const run = async () => {
-    const q = input.value.trim();
-    if (!q) { results.innerHTML = ''; setStatus('Type a question, then press Search.'); return; }
-    setStatus('Loading model…', 'busy');
-    btn.disabled = true;
-    const t0 = performance.now();
-    try {
-      const top = await aiPredict(q);
-      const ms = Math.round(performance.now() - t0);
-      setStatus(`Top match below · ${ms} ms on-device`, 'ok');
-      results.innerHTML = top.map((r, n) => `
-        <li class="ai-result${n === 0 ? ' ai-result--top' : ''}" data-idx="${r.idx}" tabindex="0" role="link">
-          <div class="ai-result-head">
-            <span class="ai-result-rank">${n + 1}</span>
-            <span class="ai-result-label">${r.label}</span>
-            <span class="ai-result-prob">${(r.prob * 100).toFixed(1)}%</span>
-          </div>
-          <div class="ai-bar"><div class="ai-bar-fill" style="width:${(r.prob * 100).toFixed(1)}%"></div></div>
-        </li>`).join('');
-      results.querySelectorAll('.ai-result').forEach(li => {
-        const go = () => loadPart(parseInt(li.dataset.idx, 10));
-        li.addEventListener('click', go);
-        li.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
-      });
-    } catch (err) {
-      console.error('AI search error:', err);
-      setStatus('Model failed to load: ' + err.message, 'err');
-    } finally {
-      btn.disabled = false;
-    }
-  };
-
-  btn.addEventListener('click', run);
-  input.addEventListener('keydown', e => { if (e.key === 'Enter') run(); });
-
-  // Kick off the model fetch as soon as the widget is visible.
-  setStatus('Model loads on first search (≈1.3 MB, cached after).');
-  ensureAiReady().then(
-    () => setStatus('Model ready · type a question and press Search.', 'ok'),
-    (e) => setStatus('Could not preload model: ' + e.message, 'err'),
-  );
-}
-
 /* ── Chatbot — retrieval + extract over the WDAC corpus ───────────
    Reuses the ONNX ranker (aiPredict) to pick the right doc, then scores
    that doc's H2 sections by TF-IDF cosine to the query and returns the
@@ -1159,7 +1076,7 @@ function mountChatbot() {
   fab.id = 'chat-fab';
   fab.className = 'chat-fab';
   fab.setAttribute('aria-label', 'Open App Control AI chat');
-  fab.innerHTML = '<span class="chat-fab-icon">?</span>';
+  fab.innerHTML = '<span class="chat-fab-icon"><svg viewBox="0 0 24 24" width="27" height="27" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4.5a2.8 2.8 0 0 0-2.8 2.8c-1.4.2-2.2 1.3-2.2 2.6 0 .5.1.9.3 1.3-.8.5-1.3 1.3-1.3 2.3 0 1.2.8 2.2 1.9 2.5.1 1.4 1.3 2.5 2.7 2.5h1.4V4.5z"/><path d="M12 4.5a2.8 2.8 0 0 1 2.8 2.8c1.4.2 2.2 1.3 2.2 2.6 0 .5-.1.9-.3 1.3.8.5 1.3 1.3 1.3 2.3 0 1.2-.8 2.2-1.9 2.5-.1 1.4-1.3 2.5-2.7 2.5h-1.4V4.5z"/><path d="M12 4.5v15"/><path d="M8.4 9.2c.7.2 1.2.8 1.2 1.6M15.6 9.2c-.7.2-1.2.8-1.2 1.6M8.6 14.5c.6 0 1.1-.4 1.3-1M15.4 14.5c-.6 0-1.1-.4-1.3-1"/></svg></span>';
 
   const panel = document.createElement('div');
   panel.id = 'chat-panel';
