@@ -1221,6 +1221,7 @@ function mountChatbot() {
     fab.classList.add('chat-fab--hidden');
     if (!body.hasChildNodes()) greet();
     setTimeout(() => input.focus(), 50);
+    ensureAiReady().catch(() => {});   // preload model while user reads greeting
   };
   const close = () => {
     panel.classList.add('chat-panel--hidden');
